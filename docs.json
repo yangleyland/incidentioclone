@@ -8,7 +8,6 @@
     "dark": "#f25533"
   },
   "favicon": "/incident-icon-alarmalade.svg",
-  "anchor": "help-centre/index",
   "navigation": {
     "tabs": [
       {
@@ -31,9 +30,7 @@
               {
                 "group": "Configuration & Setup",
                 "icon": "gear",
-                "pages": [
-                  "help-centre/configure-your-account/index"
-                ]
+                "pages": ["help-centre/configure-your-account/index"]
               },
               {
                 "group": "Core Features",
@@ -75,16 +72,12 @@
               {
                 "group": "Additional Resources",
                 "icon": "book",
-                "pages": [
-                  "help-centre/other-articles/index"
-                ]
+                "pages": ["help-centre/other-articles/index"]
               },
               {
                 "group": "Need More Help?",
                 "icon": "headset",
-                "pages": [
-                  "help-centre/help-feedback/contact-us"
-                ]
+                "pages": ["help-centre/help-feedback/contact-us"]
               }
             ]
           }
@@ -318,15 +311,11 @@
           },
           {
             "group": "Glossary of terms",
-            "pages": [
-              "product-documentation/glossary/index"
-            ]
+            "pages": ["product-documentation/glossary/index"]
           },
           {
             "group": "Debug",
-            "pages": [
-              "design-kitchen-sink"
-            ]
+            "pages": ["design-kitchen-sink"]
           }
         ]
       },
@@ -372,3 +361,4 @@
     }
   }
 }
+
