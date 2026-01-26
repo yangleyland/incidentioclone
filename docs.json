@@ -17,7 +17,6 @@
             "group": "Help Centre",
             "public": true,
             "pages": [
-              "index",
               "help-centre/index",
               {
                 "group": "Getting Started",
