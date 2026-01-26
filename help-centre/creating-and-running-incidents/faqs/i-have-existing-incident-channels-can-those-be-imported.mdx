@@ -1,0 +1,43 @@
+---
+title: "I have existing incident channels, can those be imported?"
+description: ""
+canonical_article_id: 74
+migrated_at: "2026-01-21T18:14:16Z"
+source_url: "https://help.incident.io/articles/7289105411-i-have-existing-incident-channels%2C-can-those-be-imported"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7289105411-i-have-existing-incident-channels%2C-can-those-be-imported) on January 21, 2026
+</Info>
+
+You may start using [incident.io](https://incident.io/) after having already run incidents within Slack in the past. If so, you'll want to bring all the data with you when starting to use our product to make sure your team has the relevant information to hand, and to track trends in your incidents using our Insights.
+
+**What if the Slack channel is archived?**
+
+Bots can't view the contents of archived channels, so you'll need to enable [privileged Slack access](/help-centre/installing-incident-io/what-does-incident.io-need-privileged-slack-access-for) , which lets us unarchive the channel and see what was in it.
+
+Don't worry, we'll also re-archive the channel after the import is complete!
+
+**How do I import an incident from an existing Slack channel?**
+
+You'll be following the same steps outlined in the [Creating your first incident using the API](/help-centre/api-and-integrations/api/creating-your-first-incident-using-the-api) help article
+
+When making the API call to create the incident, make sure to:
+
+- Set `mode` within the request payload to `"retrospective"`
+- Set `retrospective_incident_options.slack_channel_id` within the request payload to the Slack channel ID
+
+For example, the payload might look like:
+
+```plaintext
+{
+  "mode": "retrospective",
+  "retrospective_incident_options": {
+    "slack_channel_id": "C01DZSENFFT"
+  },
+  "custom_field_values: [],
+  "severity_id": "01G0J1EXE7AXZ2C93K61WBPYEH"
+}
+```
+
+After the incident has been created, the main events that occurred in the Slack channel will be used to generate the [incident timeline](/help-centre/learning-from-incidents/generating-your-incident-timeline) , and your insights will be updated within an hour.

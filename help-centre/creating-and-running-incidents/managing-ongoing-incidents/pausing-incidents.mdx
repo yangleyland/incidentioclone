@@ -1,0 +1,39 @@
+---
+title: "Pausing incidents"
+description: ""
+canonical_article_id: 68
+migrated_at: "2026-01-21T18:10:53Z"
+source_url: "https://help.incident.io/articles/9294287415-pausing-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9294287415-pausing-incidents) on January 21, 2026
+</Info>
+
+While an incident is ongoing, there are many reasons you might need to put it on hold for a moment. Whether that's waiting on a third-party to get back to you, or simply because it's outside the team's working hours.
+
+## Why pause incidents?
+
+Pausing an incident will clearly communicate through announcements and the dashboard that an incident is not currently being worked on.
+
+While an incident is paused, we won't send nudges to the incident channel. Workflows configured to run on active incidents will not run until the incident is resumed.
+
+Time an incident spends in the paused status also won't count towards duration metrics, giving more accurate reporting on when an incident was being worked on.
+
+## How do I use it?
+
+The `/inc pause` command allows you to pause an incident, setting the date & time it should be paused until, and a message explaining why it's been paused.
+
+![](/images/help-centre/pausing-incidents/screenshot-1.png)
+
+The incident will automatically be resumed at the time specified, and put into the status it was in prior to pausing .
+
+You can always resume it before then using `/inc update` , as well as change what time it's paused until.
+
+We've included a few handy shortcuts to pause more quickly such as
+
+`/inc pause until tomorrow` to pause until 09:00 the following morning
+
+`/inc pause until working hours` to pause until the nearest weekday at 09:00
+
+`/inc pause for 45` to pause the incident for 45 minutes

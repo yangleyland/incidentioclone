@@ -1,0 +1,27 @@
+---
+title: "Status Pages incident severity"
+description: ""
+canonical_article_id: 260
+migrated_at: "2026-01-21T18:40:28Z"
+source_url: "https://help.incident.io/articles/3471418239-status-pages-incident-severity"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3471418239-status-pages-incident-severity) on January 21, 2026
+</Info>
+
+On your status page, incidents are presented with colour-coded icons depending on a few criteria. These appear in the main heads-up banner, the system status section, and the incident calendar:
+
+![Main 'heads-up' banner](/images/help-centre/status-pages-incident-severity/screenshot-1.png)
+
+![System status section](/images/help-centre/status-pages-incident-severity/screenshot-2.png)
+
+![The incident calendar](/images/help-centre/status-pages-incident-severity/screenshot-3.png)
+
+Scheduled maintenance is always presented with a blue spanner icon.
+
+Unscheduled incidents are presented with a warning triangle that's either grey for "no impact", yellow for "degraded performance", orange for "partial outage", or red for "full outage", depending on the impact of the incident.
+
+1. If an incident is ongoing, we'll show the icon for the the worst current impact
+2. If an incident is ongoing, but has no impact (for example if impact has been mitigated and you're now in 'monitoring'), we'll show a grey impact icon
+3. When an incident is resolved, we show the worst impact it had on each day in the calendar and system status components. For example, if you had a full outage from 11pm until midnight and a partial outage from midnight until 2am, the incident would appear as red on the first day and orange on the second day.

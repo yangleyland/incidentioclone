@@ -1,0 +1,128 @@
+---
+title: "Incident Types"
+description: ""
+canonical_article_id: 49
+migrated_at: "2026-01-21T17:58:12Z"
+source_url: "https://help.incident.io/articles/8660174559-incident-types"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8660174559-incident-types) on January 21, 2026
+</Info>
+
+Tailor your response process to the situation you're responding to with custom configurations using **incident types** .
+
+Incident types are only available on our Pro or Enterprise plan.
+
+## Setting Up
+
+To switch this feature on, navigate to Settings > [Incident Types](https://app.incident.io/settings/incident-types)
+
+After enabling, you'll be directed to edit an existing incident type: this is the **default** incident type that all your existing incidents are associated with. ​
+
+![](/images/help-centre/incident-types/screenshot-1.png)
+
+As the default incident type, this will be **pre-selected** on incident creation. It's a good idea to make this your most common type of incident, or once you create a more frequent type, change that to be the default.
+
+The name of your incident type is what people will select from a dropdown when declaring an incident from Slack or the web dashboard. We recommend making this short, for example "Production Outage" or "Data Breach".
+
+The description will be displayed whenever the incident type is selected, helping provide context about this incident type so the reporter knows they've selected the right type.
+
+An example description for a "Data Breach" might be:
+
+*Customer data has been exposed, or is at risk of being exposed.*
+
+It's easy to go back and edit this type later, so don't worry about setting everything up immediately.
+
+---
+
+## Using Incident Types
+
+Now you've created some incident types, reporters will be asked to pick an incident type whenever declaring an incident.
+
+That means we'll ask for a type in:
+
+- Slack app, after running `/inc`
+- Web dashboard, when clicking "Declare incident"
+
+It is important to realise that having now enabled incident types, selecting a type is **mandatory** whenever creating new incidents.
+
+You can however change the incident type later on, if you find that another type is more appropriate.
+
+Here's an example of the Slack app when declaring an incident:
+
+![](/images/help-centre/incident-types/screenshot-2.png)
+
+For **triage** incidents that are auto-created, such as those we create from PagerDuty integrations, we won't select a type right away.
+
+Once you accept a triage incident, you'll be asked to select the type and fill in any associated custom fields.
+
+---
+
+## Custom Fields
+
+Custom fields can apply to a specific subset of incident types, which you can configure either by:
+
+1. Selecting existing custom fields in the **incident type** create/edit flow:
+
+![](/images/help-centre/incident-types/screenshot-3.png)
+
+2. Adding a **condition** on incident type to the **custom field** in the create/edit flow:
+
+![](/images/help-centre/incident-types/screenshot-4.png)
+
+Both flows achieve the same thing, which is adding conditions to the custom field to select the appropriate incident types. You don't need to worry about keeping these two in-sync, as it's all custom field conditions under-the-hood.
+
+Any properties of the custom field (whether it's required, the field type, the description) will be consistent across all incident types.
+
+---
+
+## Roles
+
+Roles can also be configured to only apply to certain incident types.
+
+Roles are configured in the same two ways as custom fields, via the incident types flow, or through conditions on the roles edit route.
+
+---
+
+## Severities
+
+Incident types allow you to customise how incident severities appear, if you need a severity (eg. Major) to have different descriptions depending on the type.
+
+Before we explain how to change the description, it's important to understand that even with customised severity descriptions, **severities are shared across incident types and their order will remain consistent.**
+
+This ensures you can compare the severities of different incident types, and the fact that severity names remain the same helps your organisation leverage a consistent terminology.
+
+So, how do you customise severities? You'll do this in the incident type create/edit flow:
+
+![](/images/help-centre/incident-types/screenshot-5.png)
+
+**Override Descriptions**
+
+In the above screenshot, we have **overridden the Critical severity description** so that when our incident type is selected, we'll show:
+
+*Outages affecting major flows of our application, required immediate response.*
+
+This replaces the default description for that severity, which helps people select the severity that is appropriate given the incident type.
+
+**Hiding Severities**
+
+Perhaps some incident types should never be a particular severity: is a Product Outage where the whole site is down ever Minor, for example?
+
+In the example screenshot, we've hidden the Minor severity by clicking the toggle visibility button to the right of the severity panel. It will no longer be visible as an option when creating or updating incidents.
+
+It is worth noting that at least one severity level needs to remain per incident.
+
+---
+
+## Workflows
+
+Workflows can be configured to run only on incidents that match a specific type, just as you can configure other workflow conditions.
+
+To use this, visit [Workflows](https://app.incident.io/workflows) and edit the workflow you want to make conditional on the incident type.
+
+Once in the edit page, click "Add condition" to open the condition modal, and create a condition on incident type:
+
+![](/images/help-centre/incident-types/screenshot-6.png)
+
+You can also filter workflows by the incident types they apply to, from the Workflows page. This helps you see which automations are configured for your incident types, and can be useful when managing workflows across multiple teams, if each team has their own incident type.

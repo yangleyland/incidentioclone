@@ -1,0 +1,27 @@
+---
+title: "Can I integrate third-party status pages into my status page?"
+description: ""
+canonical_article_id: 278
+migrated_at: "2026-01-21T18:40:25Z"
+source_url: "https://help.incident.io/articles/3960053507-can-i-integrate-third-party-status-pages-into-my-status-page"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3960053507-can-i-integrate-third-party-status-pages-into-my-status-page) on January 21, 2026
+</Info>
+
+It's fairly common for folks to to display the status of third-party services (like AWS, GitHub, Slack, or Okta) on their incident.io status page to give their users a complete view of service health, including dependencies.
+
+Currently, incident.io status pages do not support direct integration with third-party status pages. This means you cannot automatically display the status of external services like AWS, GitHub, or other vendors' status pages within your incident.io status page.
+
+As a temporary workaround, you can:
+
+1. Use email alert sources to ingest status page subscription emails from third parties
+2. Declare incidents based on these alerts
+3. Update your status page accordingly (you can also always consider [automating these updates](/help-centre/status-pages/public-status-pages/automatically-publishing-to-your-status-page)  )
+
+<Info>
+
+A third-party status page integration is a frequently requested feature that we're considering for development. If you'd like to add your vote, just let us know at [help@incident.io](mailto:help@incident.io)
+
+</Info>

@@ -1,0 +1,82 @@
+---
+title: "Generating your incident timeline"
+description: ""
+canonical_article_id: 176
+migrated_at: "2026-01-21T18:29:30Z"
+source_url: "https://help.incident.io/articles/7767182003-generating-your-incident-timeline"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7767182003-generating-your-incident-timeline) on January 21, 2026
+</Info>
+
+Post-mortems are a best practice and incredibly useful. Good post-mortems rely on someone (you?) building a clear and cohesive timeline of the incident.
+
+But it can become a real nightmare to retroactively parse through 100s of Slack messages, screenshots, Sentry errors, GitHub PRs/commits etc. to get a clear picture of what happened.
+
+Not anymore! **While your incident is playing out and you're focused on fixing, we'll be your scribe, hoovering up and digesting key events for you**
+
+## Where's the timeline?
+
+You can find an incident's timeline on the `Timeline` tab.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-1.png)
+
+## Editing the timeline
+
+We'll automatically create events on your timeline using your incident updates (e.g. severity changes, status changes) and pinned slack messages.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-2.png)
+
+This should give an overview of your key moments, but you may want to add some extra colour about these events, or add other important events. You can do this from inside our editor - just hit the `Edit` button.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-3.png)
+
+The right panel here shows you what your timeline currently looks like. To change any of the titles or add a description, just hit the pencil icon.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-4.png)
+
+## Adding other events
+
+You can do this a few ways.
+
+#### (1) Adding items from the activity log
+
+On the left panel in the editor you'll notice every event that we detected during the incident. These include:
+
+- Role changes
+- Updates to the incident summary
+- Actions (created, assigned, updated)
+- Pull requests and commits in GitHub
+- Errors in Sentry
+- Images posted in the channel
+
+If any of these events are important to the narrative, you can add them to the timeline by just hitting the plus icon button.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-5.png)
+
+#### (2) Pinning messages from the Slack channel
+
+While in an incident's `/inc-...` channel, simply **use the pin emoji** ( ) on a message, screenshot etc. to add it to the timeline! You can also use Slack's built-in "Pin to channel" command 👇🏼
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-6.png)
+
+*Items pinned will be stamped at the time of their actual posting, not at the time at which they were pinned. So* **don't worry if you forgot to pin items in the heat of the moment** *! We'll make sure to position them adequately on the timeline.*
+
+#### (3) Adding a custom event
+
+If the event happened outside of the incident channel (e.g. a code deployment, a message from a customer), you can still add it to the timeline as a custom event.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-7.png)
+
+You just need to provide the timestamp and a title for the event.
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-8.png)
+
+## Then what?
+
+Once you've curated your timeline, you might want to **create a post-mortem** in your document provider like Notion. We'll render a copy of the timeline in your document for you!
+
+You may also want to **start a discussion** about particular events on the timeline. For instance, if there is ambiguity about why something happened that might be relevant to the debrief, you could start a discussion in advance. Just hover over an event to add a comment. Your comment will notify other responders who have been following the incident
+
+![](/images/help-centre/generating-your-incident-timeline/screenshot-9.png)

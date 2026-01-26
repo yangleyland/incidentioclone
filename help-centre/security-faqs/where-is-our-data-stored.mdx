@@ -1,0 +1,17 @@
+---
+title: "Where is our data stored?"
+description: ""
+canonical_article_id: 306
+migrated_at: "2026-01-21T18:54:27Z"
+source_url: "https://help.incident.io/articles/9704887768-where-is-our-data-stored"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9704887768-where-is-our-data-stored) on January 21, 2026
+</Info>
+
+For transactional data processing (interacting with the Slackbot, and viewing the dashboard), the data is hosted in GCPs Belgium region, in [europe-west1](https://cloud.google.com/about/locations#europe) . We additionally have a hot standby in the Netherlands region, [europe-west4](https://cloud.google.com/about/locations#europe) .
+
+For analytical data processing (for our internal analytical use case), data is stored [within Europe](https://cloud.google.com/bigquery/docs/locations) .
+
+We currently don't send any data outside of Europe.

@@ -1,0 +1,48 @@
+---
+title: "Using Zapier"
+description: "Connect your Zapier account with incident.io to declare incidents when something happens in another system."
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Using Zapier
+
+Connect your Zapier account with incident.io to declare incidents when something happens in another system.
+
+1. First, install the incident.io Zapier app, by clicking "Accept Invite & Build a Zap" on this [invite page](https://zapier.com/developer/public-invite/162447/c60b514649e6aeb2a3d29594e7943a9d/).
+
+2. Click "Create Zap" and choose a trigger from one of your other systems. For this example we're using the "incoming email" trigger:
+
+<img src="/images/integrations/zapier/01-new-inbound-email-trigger.png" alt="New Inbound Email trigger" />
+
+3. In the "Action" section, search for "incident.io":
+
+<img src="/images/integrations/zapier/02-search-incident-io.png" alt="Searching for incident.io in the Action section" />
+
+4. Select the "Create Incident" action:
+
+<img src="/images/integrations/zapier/03-create-incident-action.png" alt="Create Incident action" />
+
+5. Click "sign in" to add an API key:
+
+<img src="/images/integrations/zapier/04-sign-in.png" alt="Sign in button" />
+
+This will open a new window where you can paste in an API Key. Generate one from the ["API Keys" section of our dashboard](https://app.incident.io/settings/api-keys). You'll need to give it permission to create incidents, view data (like public incidents and organisation settings), and view catalog types and entries.
+
+<img src="/images/integrations/zapier/05-api-key-permissions.png" alt="API key permissions settings" />
+
+6. Paste the key into Zapier, and click "Yes, Continue"
+
+<img src="/images/integrations/zapier/06-paste-key.png" alt="Paste key into Zapier" />
+
+7. Now configure the incident information: the minimum required fields are:
+
+- "idempotency key": we'll only ever create one incident for each unique value here, so this should be something that uniquely identifies the trigger. In this example, each email is assigned a "Message ID", so using that as the idempotency key means we'll only open one incident for each email.
+- Severity: select this from the dropdown
+- Visibility: whether this incident should be public or private
+
+<img src="/images/integrations/zapier/07-configure-incident.png" alt="Set up action section with incident configuration" />
+
+You can also pre-fill custom fields, and assign roles by either email address or Slack user ID.

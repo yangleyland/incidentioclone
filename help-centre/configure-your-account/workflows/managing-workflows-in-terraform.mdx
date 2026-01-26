@@ -1,0 +1,47 @@
+---
+title: "Managing workflows in Terraform"
+description: ""
+canonical_article_id: 32
+migrated_at: "2026-01-21T17:33:57Z"
+source_url: "https://help.incident.io/articles/5292680156-managing-workflows-in-terraform"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5292680156-managing-workflows-in-terraform) on January 21, 2026
+</Info>
+
+Managing workflows in terraform is useful if you:
+
+- Want to use version control to preview and roll-back changes to a workflow
+- Want to apply complex access control (e.g. only members of the SRE team can edit specific core SRE workflows)
+- Want to create workflows programatically based on other data that you store in Terraform
+
+## Building your Terraform
+
+Workflows have a pretty complex structure, so we’d recommend you build your workflow in the UI using our visual builder, and then copy the Terraform that we generate into your repo.
+
+![](/images/help-centre/managing-workflows-in-terraform/screenshot-1.png)
+
+## Making the dashboard ‘Terraform aware’
+
+We want to make sure the dashboard understands that you’re managing a workflow via Terraform, and can adapt accordingly.
+
+You can easily see which workflows are managed via Terraform:
+
+![](/images/help-centre/managing-workflows-in-terraform/screenshot-2.png)
+
+You can tell us where your Terraform code is stored, so it’s easy for your colleagues to find and update it:
+
+![](/images/help-centre/managing-workflows-in-terraform/screenshot-3.png)
+
+We warn you before you make a change that would pull the workflow out of sync with your Terraform state:
+
+![](/images/help-centre/managing-workflows-in-terraform/screenshot-4.png)
+
+You can find out more in our [Terraform provider docs.](https://registry.terraform.io/providers/incident-io/incident/latest/docs/resources/workflow) ​
+
+## API Key Permissions
+
+As part of the setup you'll need to create an incident.io API Key. To do *all the things* we currently support in Terraform, you'll want to look at giving the key the following permissions. However, you can always refine this if you're only looking to manage certain components. ​
+
+![](/images/help-centre/managing-workflows-in-terraform/screenshot-5.png)

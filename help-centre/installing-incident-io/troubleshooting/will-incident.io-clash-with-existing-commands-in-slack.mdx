@@ -1,0 +1,27 @@
+---
+title: "Will incident.io clash with existing commands in Slack?"
+description: ""
+canonical_article_id: 20
+migrated_at: "2026-01-21T18:54:02Z"
+source_url: "https://help.incident.io/articles/4483983531-will-incident.io-clash-with-existing-commands-in-slack"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4483983531-will-incident.io-clash-with-existing-commands-in-slack) on January 21, 2026
+</Info>
+
+<Tip>
+
+You can find a cheatsheet with all of the `/inc` commands [here](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/shortcuts-cheatsheet)  .
+
+</Tip>
+
+Our Slack application has two slash commands: `/inc` and `/incident` . They both work in the same way, and are a quick and powerful way of interacting with incident.io from within Slack channels.
+
+For example: `/inc eu-west-1 is down` will let you declare a new incident, `/inc help` will take you to a quick "command picker" and `/inc action restart the database` will let you quickly add a new action.
+
+Slack only lets one application listen to a particular command. If you have an existing application that has registered `/inc` or `/incident` as slash commands, then these will start to be handled by incident.io when you install us to Slack.
+
+Installing us into Slack won't remove the other application from Slack. Multiple applications can define the same slash commands, and the most recently installed app "wins". If you're migrating from a Slack application that uses `/inc` , and wish to install our app without disrupting that, you'll need to re-install that application after you have installed incident.io.
+
+You can read more about commands and shortcuts in [the Slack documentation](https://slack.com/intl/en-gb/help/articles/360057554553-Use-shortcuts-to-take-actions-in-Slack) , and [their API documentation](https://api.slack.com/interactivity/slash-commands) goes into even more detail.

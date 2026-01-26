@@ -1,0 +1,152 @@
+---
+title: Alert sources
+description: Ingest alerts from external tools, regardless of format or platform.
+---
+
+Alert sources connect external monitoring tools to incident.io, bringing issues detected across your systems into your on-call workflow. Once configured, alert sources form the entry point for routing to on-call teams, triggering escalations, and creating incidents.
+
+**To add and configure an alert source:**
+
+1. Using the sidebar, navigate to **Settings → Alerts**
+2. Click the **+** button to add alert sources
+3. Select your alert source, choosing from [native integrations](#native-integrations), [HTTP sources](#default-http-sources), or [email sources](#email-sources) and click **Continue**
+4. Follow the in-dashboard instructions to connect, send test alerts, and complete setup
+
+incident.io also supports [live phone call routing](/product-documentation/on-call/live-call-routing) for voice-based alerts.
+
+## Native integrations
+
+Connect observability platforms, cloud providers, error tracking tools, uptime monitors, ticketing platforms and more, with pre-configured integrations. Receive alerts when metrics breach thresholds, applications throw errors, services go down, or security threats are detected.
+<CardGroup cols={2}>
+  <Card title="AWS CloudWatch" icon="/icons/integrations/aws.svg" horizontal />
+  <Card title="AWS SNS" icon="/icons/integrations/aws.svg" horizontal />
+  <Card title="Azure Monitor" icon="/icons/integrations/microsoft.svg" horizontal />
+  <Card title="BugSnag" icon="/icons/integrations/bugsnag.svg" horizontal />
+  <Card title="Checkly" icon="/icons/integrations/checkly.svg" horizontal />
+  <Card title="Chronosphere" icon="/icons/integrations/chronosphere.svg" horizontal />
+  <Card title="Cloudflare" icon="/icons/integrations/cloudflare.svg" horizontal />
+  <Card title="Coralogix" icon="/icons/integrations/coralogix.svg" horizontal />
+  <Card title="Cronitor" icon="/icons/integrations/cronitor.svg" horizontal />
+  <Card title="Crowdstrike Falcon" icon="/icons/integrations/crowdstrike.svg" horizontal />
+  <Card title="Datadog" icon="/icons/integrations/datadog.svg" horizontal />
+  <Card title="Dynatrace" icon="/icons/integrations/dynatrace.svg" horizontal />
+  <Card title="Elastic" icon="/icons/integrations/elastic.svg" horizontal />
+  <Card title="Expel" icon="/icons/integrations/expel.svg" horizontal />
+  <Card title="GitHub Issue" icon="/icons/integrations/github.svg" horizontal />
+  <Card title="Google Cloud Platform" icon="/icons/integrations/googlecloud.svg" horizontal />
+  <Card title="Grafana" icon="/icons/integrations/grafana.svg" horizontal />
+  <Card title="Honeycomb" icon="/icons/integrations/honeycomb.svg" horizontal />
+  <Card title="Jira/ITSM" icon="/icons/integrations/jira.svg" horizontal />
+  <Card title="Monte Carlo" icon="/icons/integrations/montecarlo.svg" horizontal />
+  <Card title="Nagios Core" icon="/icons/integrations/nagios.svg" horizontal />
+  <Card title="New Relic" icon="/icons/integrations/newrelic.svg" horizontal />
+  <Card title="Opsgenie" icon="/icons/integrations/opsgenie.svg" horizontal />
+  <Card title="Panther" icon="/icons/integrations/panther.svg" horizontal />
+  <Card title="PagerDuty" icon="/icons/integrations/pagerduty.svg" horizontal />
+  <Card title="Pingdom" icon="/icons/integrations/pingdom.svg" horizontal />
+  <Card title="Prometheus Alertmanager" icon="/icons/integrations/prometheus.svg" horizontal />
+  <Card title="PRTG" icon="/icons/integrations/prtg.svg" horizontal />
+  <Card title="Runscope" icon="/icons/integrations/runscope.svg" horizontal />
+  <Card title="Sentry Issues" icon="/icons/integrations/sentry.svg" horizontal />
+  <Card title="SolarWinds AppOptics" icon="/icons/integrations/solarwinds.svg" horizontal />
+  <Card title="Splunk" icon="/icons/integrations/splunk.svg" horizontal />
+  <Card title="StatusCake" icon="/icons/integrations/statuscake.svg" horizontal />
+  <Card title="Sumo Logic" icon="/icons/integrations/sumologic.svg" horizontal />
+  <Card title="Uptime.com" icon="/icons/integrations/uptime.svg" horizontal />
+  <Card title="Zendesk" icon="/icons/integrations/zendesk.svg" horizontal />
+</CardGroup>
+
+## Default HTTP sources
+
+HTTP sources enable receiving alerts from any tool not covered by the [native integrations list](#native-integrations).
+
+Use default HTTP sources when you control the webhook payload from external tools. incident.io provides a URL endpoint where you send alerts with a custom payload structure.
+
+```json Expected body structure
+{
+  "title": "My first alert",
+  "description": "Some additional context",
+  "deduplication_key": "first-alert",
+  "status": "firing",
+  "metadata": {
+    "team": "core",
+    "service": "api"
+  }
+}
+```
+
+Use the `metadata` field to set [alert attributes](/product-documentation/on-call/alert-attributes) for routing and filtering. See the [Alert Events API documentation](https://api-docs.incident.io/tag/Alert-Events-V2/) for full field specifications and validation rules.
+
+## Custom HTTP sources
+
+Use custom HTTP sources when working with tools that send webhooks with HTTP payload structures that cannot be modified. Write custom JavaScript within these sources to transform those payloads into incident.io's expected alert format.
+
+```json Example payload from external tool
+{
+  "title": "High CPU usage on server-01",
+  "status": "firing",
+  "description": "CPU usage exceeded 90% threshold",
+  "url": "https://monitoring.example.com/alerts/12345",
+  "team": "platform",
+  "severity": "critical"
+}
+```
+
+```javascript Your transform expression
+// $ represents your incoming payload
+return {
+  title: $.title ? $.title : 'Custom HTTP alert',
+  status: $.status === 'resolved' ? 'resolved' : 'firing',
+  description: $.description ? $.description : '',
+  source_url: $.url,
+  metadata: { team: $.team, severity: $.severity }
+}
+```
+
+## Email sources
+
+Send emails to a unique email address to create alerts in incident.io automatically.
+
+When you create an email source, incident.io generates a unique email address for that source:
+
+```text Example email address
+abc123xyz-f769e4dda22b@inbound.incident.io
+```
+
+Use email sources for:
+- Monitoring tools or scripts that send email notifications but don't support webhooks
+- Customer support or internal escalations where critical emails should trigger alerts
+
+Each email sent to the address creates a new alert. You can configure how email fields (subject, body, sender) map to [alert attributes](/product-documentation/on-call/alert-attributes).
+
+## Troubleshoot alert sources
+
+Use the Inspect feature to diagnose payload and transformation issues. Click **Inspect** on any alert to view the original payload, JavaScript expressions, and extraction results. Edit attribute expressions to add fallbacks for unexpected payloads or fix catalog entry mappings.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How many alert sources can I create?">
+    Unlimited. All plans support connecting multiple monitoring tools simultaneously.
+  </Accordion>
+
+  <Accordion title="Can I modify native alert sources?">
+    No. Native sources use fixed parsing logic. Use attribute expressions or create a custom HTTP source for custom extraction.
+  </Accordion>
+
+  <Accordion title="What happens if my monitoring tool changes its payload format?">
+    Native sources update automatically. For custom HTTP sources, update transform expressions to match the new payload structure.
+  </Accordion>
+
+  <Accordion title="Can I test alert sources without spamming my team?">
+    Yes. Test alerts during alert source setup, and optionally create a test alert route that declines or silences all alerts.
+  </Accordion>
+
+  <Accordion title="Do alert sources support heartbeat monitoring?">
+    No native heartbeat monitoring. Use third-party uptime monitoring services (Checkly, Cronitor, Uptime.com, Pingdom) with native alert sources, or send heartbeat signals via custom HTTP alert sources.
+  </Accordion>
+
+  <Accordion title="Why aren't my alerts appearing?">
+    Check any of the following; wrong payload format, authentication issues, firewall blocking, or rate limiting in your monitoring tool.
+  </Accordion>
+</AccordionGroup>

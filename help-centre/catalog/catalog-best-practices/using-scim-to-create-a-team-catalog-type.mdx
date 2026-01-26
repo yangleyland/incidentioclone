@@ -1,0 +1,85 @@
+---
+title: "Using SCIM to create a Team catalog type"
+description: ""
+canonical_article_id: 100
+migrated_at: "2026-01-21T18:15:48Z"
+source_url: "https://help.incident.io/articles/1970128721-using-scim-to-create-a-team-catalog-type"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1970128721-using-scim-to-create-a-team-catalog-type) on January 21, 2026
+</Info>
+
+Catalog is a powerful tool for driving automation across the product. By modelling the relationships between entities in your organisation, you can route alerts and updates to the right people, get insights broken down by team, and reduce the manual work associated with incidents.
+
+If you use SCIM groups as the source of truth for team membership, you can use our team creation wizard to sync your SCIM groups with Catalog and create a Team catalog type that mirrors your SCIM configuration.
+
+## Getting started
+
+### Step 1: Connecting SCIM
+
+Firstly, you'll want to head over to [Settings > Integrations](https://app.incident.io/~/settings/integrations) , and then select your SCIM provider. Some examples of providers we support are:
+
+- Entra
+- CyberArk
+- Google
+- JumpCloud
+- Okta
+- OneLogin
+- PingFederate
+- Rippling
+
+In this example, we'll use Okta as the SCIM provider that we want to use to power our Team catalog type. Click the Okta integration tile, and a drawer will open:
+
+![](/images/help-centre/using-scim-to-create-a-team-catalog-type/screenshot-1.png)
+
+Next, press "Connect Teams" under the "Manage teams in Catalog (SCIM)" section.
+
+Now, you'll enter into the wizard for setting up your Team catalog type.
+
+![](/images/help-centre/using-scim-to-create-a-team-catalog-type/screenshot-2.png)
+
+From this list you can select Okta (or your desired SCIM provider).
+
+- If you haven't installed this provider before, a drawer then opens asking you to "Connect" your Okta provider. After pressing "Connect" you'll be guided through a setup process for connecting SCIM. *Note: You can follow the instructions* [in this guide](/help-centre/account-admin/permissions/okta-scim-group-setup) *on how to connect your SCIM provider correctly.*
+- If you've already installed, this you'll proceed straight to Step 2 (below).
+
+![](/images/help-centre/using-scim-to-create-a-team-catalog-type/screenshot-3.png)
+
+### Step 2: Selecting your teams
+
+Once you have a SCIM provider connected (or if you've already configured it), you'll then be presented with the option to choose from the relevant groups that have been pushed to incident.io from your SCIM provider. If you do not see the groups you'd expect, please [read the FAQ](/help-centre/catalog/catalog-best-practices/using-scim-to-create-a-team-catalog-type).
+
+![](/images/help-centre/using-scim-to-create-a-team-catalog-type/screenshot-4.png)
+
+Select all of the entries that you'd like to make a team for in incident.io.
+
+### Step 3: Adding attributes
+
+Now it's time to associate information from other integrations with our new Team catalog type.
+
+![](/images/help-centre/using-scim-to-create-a-team-catalog-type/screenshot-5.png)
+
+Let's start with "Slack Channel".
+
+We'll use AI to suggest Slack Channels for each of the Teams you've created. Feel free to accept those suggestions, or make tweaks where necessary.
+
+![](/images/help-centre/using-scim-to-create-a-team-catalog-type/screenshot-6.png)
+
+When you're done, hit save. Add as many attributes as you want. You can always add more later.
+
+To wrap everything up, hit finish. You'll now see your newly created Team catalog type which can be used to drive automation across our entire application. For more information on what you can do with Catalog, check out [incident.io/catalog](https://incident.io/catalog) .
+
+## FAQ
+
+### Why aren't my SCIM groups showing up?
+
+SCIM is a push-based protocol and incident.io will only ever be able to sync the groups that you choose to push. Creating new groups in your SCIM provider will typically require an additional step to push them to incident.io.
+
+- For [Okta](https://workos.com/docs/integrations/okta-scim/5-assign-users-and-groups-to-your-application) , you can follow this article.
+- For [Google Groups](https://workos.com/docs/integrations/google-directory-sync/4-select-which-groups-to-sync-to-your-application) , you can follow this article.
+- For others, please check the help centre for your given provider.
+
+Once your SCIM groups are pushed to incident.io, membership of your SCIM groups in catalog will be kept in sync with group membership in your SCIM provider. As a result, membership of your Team catalog type will also remain in-sync.
+
+Note that pushing a new SCIM group to incident.io will sync the group and its membership to the catalog (e.g. a new entry will be added to "Okta Groups") but it will not create a new entry in your Team catalog type, and this will need to be configured manually by navigating to your Team catalog type, and hitting "Create entry".

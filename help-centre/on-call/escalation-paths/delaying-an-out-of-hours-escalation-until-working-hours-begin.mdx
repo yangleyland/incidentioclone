@@ -1,0 +1,49 @@
+---
+title: "Delaying an out of hours escalation until working hours begin"
+description: ""
+canonical_article_id: 164
+migrated_at: "2026-01-21T18:29:20Z"
+source_url: "https://help.incident.io/articles/5377818253-delaying-an-out-of-hours-escalation-until-working-hours-begin"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5377818253-delaying-an-out-of-hours-escalation-until-working-hours-begin) on January 21, 2026
+</Info>
+
+When folks are asleep, the last thing they need is a low priority alert or escalation waking them up in the middle of the night. With our [smart escalation paths](/help-centre/on-call/escalation-paths/smart-escalation-paths) you can now happily remain unconscious when this happens by holding these until working hours begin.
+
+## 1. Handling an out of hours escalation
+
+Below you can see an example of how we can hold an escalation by setting the time to acknowledge to until `Working hours begin` in our outside working hours branch.
+
+<Warning>
+
+Escalations can be created from [alerts through alert routes](/help-centre/alerts/alert-configuration/creating-escalations-and-incidents-from-alerts) , [via workflows](/help-centre/on-call/get-started-with-on-call/getting-started-with-on-call) e.g. automated escalations sent when a human declares an incident or directly from someone triggering [a manual escalation](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/escalating-incidents) .
+
+</Warning>
+
+![](/images/help-centre/delaying-an-out-of-hours-escalation-until-working-hours-begin/screenshot-1.png)
+
+Lets walk through how this works by considering what happens when an alert arrives outside of our configured working hours for this escalation path. ​ When the escalation from my alert hits my escalation path, it would immediately go into my second branch which sends a slack escalation into the team's slack channel.
+
+That escalation would then not proceed any further in my escalation path until working hours begin because of my time to acknowledge setting (highlighted in yellow). ​ When working hours begin, my escalation would then hit the retry node taking it back to the start of my escalation path. Now that we're in working hours, my escalation would go down my primary branch which results in a high priority escalation to the individual on-call for my infrastructure team's schedule.
+
+<Warning>
+
+You could also consider just sending a [low-priority notification](/help-centre/on-call/escalation-paths/smart-escalation-paths#h_c88c98a73e) to a schedule instead of a slack message. This might be preferable if you don't want the escalation to be public as we don't currently support sending Slack escalations to private slack channels.
+
+</Warning>
+
+**Word of warning:** It's important to note that if an escalation hits a node of an escalation path with a schedule where no-one is on-call, it will skip that node and move on to the next one. This can then have bad consequences e.g. If I put an escalation node in my OOH's branch that had a schedule with no-one on it OOH's, it would be skipped and this would result in the escalation just being retried according to the retry rules in your retry node.
+
+We'd therefore typically advise always keeping a schedule 24/7 where possible (i.e. someone is always on call) and letting the escalation path manage how escalations are handled out of hours. 2. Handling an out of hours escalation with priorities
+
+You can also extend this to use escalation priorities to further enhance your escalation path. Below you can see that we've added another conditional branch on priority to ensure that we only wake people up when our escalation priority is Urgent or Critical, for any other OOHs alerts, it would then follow a similar branch to what we've just configured above. ​
+
+![](/images/help-centre/delaying-an-out-of-hours-escalation-until-working-hours-begin/screenshot-2.png)
+
+<Warning>
+
+You can find further details on how to configure your alert / escalation priorities [here](/help-centre/on-call/escalation-paths/smart-escalation-paths#h_a8c15db5f7) . These will then be available to use within your alerting configuration, workflows and escalate forms to help determine the path your escalations should then take.
+
+</Warning>

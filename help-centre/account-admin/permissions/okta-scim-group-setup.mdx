@@ -1,0 +1,53 @@
+---
+title: "Okta SCIM group setup"
+description: ""
+canonical_article_id: 293
+migrated_at: "2026-01-21T18:40:41Z"
+source_url: "https://help.incident.io/articles/1461358560-okta-scim-group-setup"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1461358560-okta-scim-group-setup) on January 21, 2026
+</Info>
+
+For organisations that use a SCIM-based IDP solution, incident.io allows you to manage users and permissions in your IDP provider. Additionally your users and user groups will be synced to the incident.io catalog, making them available for use in workflows and in [our on-call product](https://incident.io/on-call) .
+
+To integrate with SCIM, navigate to **Settings > Integrations** and search for **Okta** . Click the **Connect** button in the automatic user provisioning section.
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-1.png)
+
+This will launch the SCIM directory sync flow, powered by WorkOS. You can select a provider from the list, or manually enter the details of your own provider if required. In this guide, we'll use **Okta** but WorkOS provides comprehensive instructions on the next step for all of their supported providers.
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-2.png)
+
+Follow the steps to create an app in Okta and take care to ensure your push groups are correctly configured. It's easy to create an app, assign groups to the app and then fail to push groups to the app.
+
+If you require more detailed steps on this setup process, you can consult the WorkOS guides here
+
+- For [Okta](https://workos.com/docs/integrations/okta-scim/5-assign-users-and-groups-to-your-application) , this article
+- For [Google](https://workos.com/docs/integrations/google-directory-sync/4-select-which-groups-to-sync-to-your-application) , this article
+- For others, search for the relevant provider [here](https://workos.com/docs/integrations)
+
+*Note: Common issues with Okta push group setup are covered in* [this guide](https://support.okta.com/help/s/article/Group-Push-Common-Issues?language=en_US) *.*
+
+Once you've completed the flow and successfully verified your credentials, your SCIM directory will begin to sync with incident.io. This can take some time.
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-3.png)
+
+Once your directory is synced, you'll see the success message:
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-4.png)
+
+Clicking **Done** will return you to the incident.io Settings page and allow you to map your SCIM groups to roles in incident.io. Click **Add assignment** to map one of your SCIM groups to an incident.io role.
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-5.png)
+
+Once you've assigned your SCIM groups to roles, you're ready to click **Continue** and confirm your selection.
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-6.png)
+
+At this point, your incident.io users and groups will be managed via SCIM and you will no longer be able to assign roles manually in the incident.io UI.
+
+![](/images/help-centre/okta-scim-group-setup/screenshot-7.png)
+
+In addition, your SCIM groups and assigned users will be visible in the catalog, making them available for use in workflows across the product.

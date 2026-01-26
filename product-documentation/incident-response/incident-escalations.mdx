@@ -1,0 +1,104 @@
+---
+title: Incident escalations
+description: Get the right people involved during incident response
+icon: "/icons/escalate.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Incident escalations
+
+Escalations bring additional people into active incidents when you need more expertise, resources, or decision-making authority. Use escalations to page on-call responders directly, notify stakeholders via other channels, or raise awareness by adjusting incident severity.
+
+incident.io supports two escalation approaches: hard escalations (paging responders through on-call integrations) and soft escalations (notifications via workflows). Choose the approach that matches your escalation needs and team structure.
+
+## Hard escalations
+
+Hard escalations page specific people or teams through your on-call system, sending notifications directly to their configured contact methods (phone, SMS, push notifications).
+
+Use the `/incident escalate` or `/incident page` commands in an incident channel to manually escalate to the right person or team. The escalation form shows available escalation paths based on your on-call configuration.
+
+<Tip>
+incident.io keeps you updated on escalation status, showing when notifications are sent and when you can expect someone to join the incident.
+</Tip>
+
+### On-call integrations
+
+Configure hard escalations using:
+
+- **incident.io On-call**: Native escalation paths and schedules managed directly in incident.io (see [On-call](/product-documentation/on-call/overview))
+- **PagerDuty**: Escalate using existing PagerDuty services and escalation policies
+- **OpsGenie**: Route escalations through OpsGenie teams and escalation rules
+- **Splunk On-Call**: Trigger escalations via Splunk On-Call policies
+
+When multiple on-call integrations are configured, incident.io shows escalation options from all connected systems. Configure the default escalator at **Settings → Forms → Escalate**.
+
+<Tip>
+For PagerDuty integrations, hide specific services or escalation policies from the escalation form by adding the `incident-io-ignore` tag in PagerDuty.
+</Tip>
+
+### Automated escalations
+
+Configure workflows to automatically escalate based on incident conditions (severity, affected services, time of day). Workflow-triggered escalations behave identically to manual escalations, following the same notification and acknowledgment patterns.
+
+See [Workflows](/product-documentation/workflows/overview) for automation configuration.
+
+## Soft escalations
+
+Soft escalations notify people without paging them through on-call systems. Use soft escalations for awareness notifications to stakeholders, executives, or teams who need context but aren't actively responding.
+
+Configure soft escalations using workflows with notification steps:
+
+- **Email**: Send incident summaries to distribution lists or specific addresses
+- **SMS**: Text message notifications to mobile numbers
+- **Slack Direct Message**: Private messages to specific users
+- **Slack ephemeral message**: Temporary messages visible only to specific users
+
+Trigger soft escalations based on incident attributes (severity, priority, impact) or manually from incident channels.
+
+## When to escalate
+
+Consider escalating when:
+
+- **Expertise needed**: The incident requires knowledge or access beyond the current responders
+- **Scope increases**: Impact grows beyond initial assessment, affecting more users or critical services
+- **Time pressure**: The incident isn't resolving within expected timeframes
+- **Decision authority required**: Resolution requires approval or decisions from senior leadership
+- **Resource constraints**: Current responders need additional hands to parallelize investigation or remediation
+
+<Warning>
+Escalate early rather than late. Bringing in help at the right time reduces overall incident duration and prevents responder burnout.
+</Warning>
+
+## Escalation during incident lifecycle
+
+Access escalation options throughout the incident:
+
+- **Incident channel**: Use `/incident escalate` or `/incident page` commands
+- **Pinned message**: Click **Escalate** from the incident summary pinned in the channel
+- **Web dashboard**: Select **Escalate to someone** from the incident overflow menu (three dots)
+- **Mobile app**: Trigger escalations directly from incident details
+
+Escalations create timeline entries showing who was paged, when they acknowledged, and when they joined the incident.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How do I escalate manually without an incident?">
+    Page on-call responders before declaring an incident when you've discovered an issue that hasn't triggered alerts. Use `/inc page` in Slack, or select **Escalate to someone** from the **Declare incident** dropdown in the web dashboard.
+  </Accordion>
+
+  <Accordion title="Can I escalate to multiple levels if the same person is on consecutive escalation paths?">
+    The escalation button only escalates to the next immediate level in your escalation path. You cannot skip levels to reach different people at higher levels, even if the same person is assigned to consecutive levels. The escalation button appears only on the original acknowledged escalation.
+  </Accordion>
+
+  <Accordion title="What's the difference between escalating and just adding someone to the incident channel?">
+    Escalations page people through their configured notification methods and create formal acknowledgment requirements. Adding someone to the channel sends a standard Slack notification. Use escalations when you need guaranteed attention; use channel invites for awareness or collaboration.
+  </Accordion>
+
+  <Accordion title="Can I customize which escalation paths appear in the escalate form?">
+    Configure available escalation options at **Settings → Forms → Escalate**. Add catalog types (Teams, Services, Features) to let responders search by context rather than knowing specific escalation paths. Map catalog types to escalation paths to route automatically based on ownership.
+  </Accordion>
+</AccordionGroup>

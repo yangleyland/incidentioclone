@@ -1,0 +1,111 @@
+---
+title: Core concepts
+description: The fundamental building blocks of incident.io and how they work together
+author: auto-ai-doc-migration
+icon: "/icons/incident-types.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+
+
+## Basic concepts
+
+
+### Alert
+
+An alert is an automated signal from your monitoring systems that something unusual or problematic has been detected. Alerts contain information about what's broken - the raw data that helps your team understand and respond to issues.
+
+When an alert fires, it doesn't automatically mean you need a full incident response. Instead, alerts give you options based on your configuration: send the alert to a Slack channel for awareness, page someone to investigate, or automatically create an incident if the issue is serious enough.
+
+Alerts include key information like a title, description, and metadata about the issue. They also have a priority (urgent vs. in-hours) that determines how quickly someone needs to respond.
+
+
+### Escalation
+
+An escalation is how you get hold of one or more people when you need human attention - think of it as "paging someone." It's the mechanism that notifies the right person at the right time through their preferred channels (push notifications, SMS, phone calls).
+
+Escalations can be triggered in several ways: from alerts, manually, from workflow automation.
+
+Each escalation has a status: triggered (sent), acknowledged (someone's on it), cancelled (no longer needed), or expired (no response in time).
+
+
+### Incident
+
+An incident is a coordinated workspace where humans and machines respond together when things break. It's where your team collaborates to understand, fix, and communicate about problems affecting your systems or services.
+
+Incidents move through a lifecycle - from initial triage through active response, to resolution, and finally closure. Each incident creates a dedicated Slack or Teams channel, tracks what's happening on a timeline, and captures all the context you need for learning afterward.
+
+To learn more on how to create, manage and close incidents see [Incident response](/incident-response/overview)
+
+
+## Configuration concepts
+
+### Alert route
+
+An alert route determines what happens when an alert comes in. Think of it as a decision tree: if this type of alert fires, then take these actions.
+
+Alert Routes can:
+- **Send alerts to a Slack channel** for team awareness without paging anyone
+- **Create an escalation** to page the on-call engineer
+- **Automatically create an incident** for critical issues that need immediate coordination
+
+You can also set up grouping rules that send related alerts into the same incident, preventing alert fatigue and keeping related issues together.
+
+### Schedule
+
+A schedule defines who's available to respond at specific times. It manages your on-call rotations, ensuring someone is always ready to handle issues that need immediate attention.
+
+Schedules handle the complexity of rotations for you - different timezones, working hours (weekdays vs. weekends, day shifts vs. night shifts), and handovers between team members. You can layer multiple people in the same time slot, integrate with your calendar system to account for time off, and even include public holidays.
+
+
+### Escalation path
+
+An escalation path defines the route an escalation takes to reach people. It answers: who should we try to reach first? If they don't respond, who's next? Should we notify multiple people at once or one at a time?
+
+Escalation paths typically connect to your schedules - so you might have a path that says "page whoever's currently on-call for the backend team, wait 5 minutes, then page their manager if no response."
+
+You can also add conditions to paths: route urgent issues differently than in-hours notifications, or branch based on what kind of alert triggered the escalation. This flexibility means you're not waking people up at 3 AM for issues that can wait until morning.
+
+
+### Call route
+
+A call route gives you a dedicated phone number that automatically connects callers to whoever's currently on-call. It's designed for situations where someone needs to reach your team by phone - maybe a customer has your emergency number, or a vendor needs to alert you about a critical issue.
+
+When someone calls the number, incident.io routes the call through your escalation paths, trying to reach the right person based on who's on-call right now. If the first person doesn't answer, it moves to the next person in the path - just like your escalation logic works for alerts.
+
+This means you can share a single, stable phone number externally without worrying about updating it every time your on-call rotation changes. The routing happens automatically based on your current schedules.
+
+
+### Policies
+
+Policies help you enforce incident response standards across your organization. They're automated rules that check whether your team is following best practices - and flag it when they're not.
+
+For example, you might create a policy that requires all critical incidents to have follow-up actions completed within 7 days, or that post-mortems must be written within 48 hours of closing a high-severity incident. When these deadlines are missed, incident.io surfaces the violation so you can address it.
+
+This is particularly useful for compliance requirements or maintaining consistent incident response quality as your team grows. Instead of manually tracking whether standards are being met, policies do the checking for you.
+
+
+
+
+
+## Catalog
+
+The Catalog is your connected map of everything that exists in your organization. It's how incident.io understands your unique organizational context - your services, teams, products, customers, and how they all relate to each other.
+
+Think of the Catalog as a set of interconnected spreadsheets, or a set of database tables. Each "spreadsheet" is a **Catalog Type** (like Services, Teams, or Products). Each row in that spreadsheet is an **Entry** (like your "payments-api" service or your "platform" team). The columns are **Attributes** that describe each entry and create connections between different types.
+
+Here's why this matters: the Catalog powers routing and automation throughout incident.io. You can set up rules like "when an alert comes in tagged with the payments service, automatically page whoever's listed as that service's on-call team." As your organization grows, the Catalog scales with you - you're not editing individual alert routes every time a team changes.
+
+The Catalog is deliberately un-opinionated. Unlike other tools that force you into their taxonomy, incident.io lets you use your own structure and naming conventions. If you already have a service catalog in a developer portal like Backstage, Cortex or another tool, you can import it directly.
+
+
+## Workflow
+
+A workflow automates actions during incidents based on triggers you define. Think of it as "if this happens, then do that" - when an incident is created or changed, when someone joins a channel, or when a message is posted, workflows can automatically execute tasks without manual intervention.
+
+Workflows consist of three parts: a trigger (what sets it off), conditions (when it should run), and steps (what it does). For example, you might create a workflow that automatically posts a reminder to update your status page when an incident reaches a certain severity.
+
+

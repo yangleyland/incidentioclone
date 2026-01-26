@@ -1,0 +1,49 @@
+---
+title: "High page view alerts"
+description: ""
+canonical_article_id: 12
+migrated_at: "2026-01-21T18:57:31Z"
+source_url: "https://help.incident.io/articles/6637601672-high-page-view-alerts"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6637601672-high-page-view-alerts) on January 21, 2026
+</Info>
+
+[incident.io](http://incident.io/) can send you alerts when your status page is receiving a higher number of views than normal.
+
+This integrates with our alerts and triggers system, meaning that you can configure what actions we should take when we detect that this is happening.
+
+## When will you alert me?
+
+[incident.io](http://incident.io/) will send you an alert when we notice your status page has had an average amount of views that are three standard deviations higher than they would be in a normal 15 minute window.
+
+In order for your page to be eligible to receive alerts it has to:
+
+- Have been live for more than four days
+- Have a custom domain attached
+- Have not had a status page incident updated in the last 15 minutes
+
+## How can I turn this feature on?
+
+High page views is listed as an alert source in the triggers section of the product - there you’ll be able to choose what to do when you get an alert like this.
+
+You can see the triggers that apply to this status page in by going to Status Pages, clicking Settings, then “Page views”.
+
+If you don’t have a trigger that applies, you’ll be guided to create one.
+
+![](/images/help-centre/high-page-view-alerts/screenshot-1.png)
+
+Once you’ve created a trigger that applies to your status page, it’ll show in this section.
+
+If you want to see all your triggers, click to the “Alerts” section and you’ll be able to all triggers that apply to all alerts.
+
+## How can I turn this feature off?
+
+You can set a trigger to ignore alerts which have the source “Status Page Views”; this means that when an alert is created, your trigger won’t cause it to be escalated.
+
+You can see the triggers that apply to this status page in by going to Status Pages > Settings > “Page Views”.
+
+![](/images/help-centre/high-page-view-alerts/screenshot-2.png)
+
+Either edit the trigger so it doesn’t apply to this alert source, or delete it all together.

@@ -1,0 +1,23 @@
+---
+title: "Why can't I use images in my incident summaries?"
+description: ""
+canonical_article_id: 325
+migrated_at: "2026-01-21T18:54:57Z"
+source_url: "https://help.incident.io/articles/7302636147-why-can-t-i-use-images-in-my-incident-summaries"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7302636147-why-can-t-i-use-images-in-my-incident-summaries) on January 21, 2026
+</Info>
+
+Although our summary editor supports pasting in images, we found that this caused performance issues: as these images could be incredibly large — and are accessed whenever an incident is shown, or listed.
+
+On 25th March 2025, we introduced a change that means that we deny updates to summaries that contain images. This is to preserve the performance of the [incident.io](http://incident.io/) platform. Users will now see an error message when they try to save, and it will point them towards other features that support them.
+
+Specifically:
+
+- In Slack, we'll ingest any images that are posted into the channel, and these end up in the incident timeline.
+- In Slack, configurable forms can be set to include a "file upload" element, and images here end up as incident attachments.
+- When editing a postmortem using our in-app editor, you can upload images as evidence.
+
+In Microsoft Teams, this is a known shortcoming: they won't be able to upload images by pasting them into the channel.

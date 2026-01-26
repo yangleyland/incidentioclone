@@ -1,0 +1,67 @@
+---
+title: "Decision Flows"
+description: ""
+canonical_article_id: 93
+migrated_at: "2026-01-21T18:15:41Z"
+source_url: "https://help.incident.io/articles/9192553935-decision-flows"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9192553935-decision-flows) on January 21, 2026
+</Info>
+
+It isn't always clear what should be done during an incident. That's why we created Decision Flows, a set of steps that helps you make a decision in an incident.
+
+You might use Decision Flows to help choose whether to update your public status page, or whether something needs to be reported to a regulator.
+
+---
+
+1. You can find [Decisions Flows](https://app.incident.io/settings/decision-flows) under settings on your incident.io page.
+
+![](/images/help-centre/decision-flows/screenshot-1.png)
+
+2. Click "+ New Decision Flow"
+
+You'll have the option of choosing a blank decision flow or working from our Data Breach (GDPR) template. For this example, we will choose to work from the template.
+
+![](/images/help-centre/decision-flows/screenshot-2.png)
+
+3. Name the decision flow, and add a description.
+
+We recommend taking the time to go into some detail for the description to provide context around when and how to use this workflow. You have the option of applying this workflow for All Incidents or Test incidents only.
+
+![](/images/help-centre/decision-flows/screenshot-3.png)
+
+4. You can now build your decision flow. By filling out the following for each branch of the tree:
+
+- **Node** , this is displayed in the UI to help the decision maker navigate the process (Keep it short and sweet!)
+- **Prompt** , This will be shown to the user when they are going through the decision flow. You can use Slack [mrkdwn](https://api.slack.com/reference/surfaces/formatting#basics) in this field.
+- **Options** , these are the options the decision maker can choose from.
+
+![](/images/help-centre/decision-flows/screenshot-4.png)
+
+5. When you have completed creating your decision flow, simply click Save Changes.
+
+![](/images/help-centre/decision-flows/screenshot-5.png)
+
+6. Create a Workflow to trigger your Decision Flow.
+
+Navigate to [Workflows](https://app.incident.io/workflows) and click "+ New Workflow". For this Workflow, we are going to select the trigger 'When an incident is created or changed'.
+
+![](/images/help-centre/decision-flows/screenshot-6.png)
+
+7. You can now name your Workflow and add a condition that makes sense for the Decision Flow you created. For this example, we will choose Incident Severity 'is one of' Critical. Other helpful conditions might be Incident Type or an Impacted Team custom field.
+
+![](/images/help-centre/decision-flows/screenshot-7.png)
+
+8. You can now choose Prompt a Decision Flow as the Step. We have now created a workflow that will show our Decision Flow for all Critical incidents.
+
+![](/images/help-centre/decision-flows/screenshot-8.png)
+
+9. You will now provide a Prompt (to provide additional context) and can choose which Decision Flow you'd like triggered. We have now created a workflow that will show our Decision Flow for all Critical incidents.
+
+![](/images/help-centre/decision-flows/screenshot-9.png)
+
+---
+
+Decision Flows can be a great way to guide someone during a incident. If you have any additional questions about Decision Flows or Workflows, feel free to reach out to us on Slack!

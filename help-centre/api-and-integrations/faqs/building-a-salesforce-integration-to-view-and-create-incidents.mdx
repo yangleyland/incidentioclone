@@ -1,0 +1,57 @@
+---
+title: "Building a Salesforce Integration to view and create incidents"
+description: ""
+canonical_article_id: 238
+migrated_at: "2026-01-21T18:54:01Z"
+source_url: "https://help.incident.io/articles/4460789918-building-a-salesforce-integration-to-view-and-create-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4460789918-building-a-salesforce-integration-to-view-and-create-incidents) on January 21, 2026
+</Info>
+
+We don't currently support a native Salesforce integration for declaring and viewing of incidents within Salesforce. However, the below guide should help provide a blueprint of how to build this yourself without too big of a lift, whilst also taking advantage of our existing [Salesforce -- Catalog integration](/help-centre/api-and-integrations/salesforce-integration).
+
+## Declaring Incidents
+
+The simplest way to declare incidents within Salesforce is to add a button within any given page layout that links to [inc.new](http://inc.new/). This will take the user to your default incident declaration form where they'll be able to then declare an incident.
+
+### Pre-filling the declaration form
+
+You might want to default to a certain incident type or automatically tag a customer that's affected by an incident e.g. I could have a declare incident for customer button within the Account page layout
+
+You can do this by passing various values within the querystring of the URL in the button e.g. [inc.new?name=hello-world](http://inc.new/?name=hello-world) would launch an incident declare form with the name of the incident already set to "hello-world".
+
+You can find a more extensive article on exactly what you can pass within the querystring [here](/help-centre/api-and-integrations/pre-filling-declare-incident-fields-using-url-parameters)
+### Declaring an Incident for a specific customer
+
+It's fairly common to expose an *Affected Customer(s)* field when declaring an incident. This not only helps with tracking who to provide updates to but can also provide additional context to responders and trigger automations using our [Catalog](/help-centre/catalog). Our existing [Salesforce integration](/help-centre/api-and-integrations/salesforce-integration) pulls a list of Accounts from your Salesforce instance. This catalog type can then be used as the type of a [custom field](/help-centre/configure-your-account/using-the-catalog#h_0609a6a41d) e.g. *Affected Customer(s)* and exposed within your incident declaration form. You can then pre-fill this when declaring an incident from a specific salesforce account.
+
+When pre-setting a custom field value that has a catalog type, you'll need to send the `external_id` or an `alias` of a catalog entry for that type. You can find those values by heading into any given catalog entry within the UI. The accounts created from the Salesforce -- Catalog integration will all have an `external_id` equivalent to that account's Account Id in Salesforce. An example formula you could therefore have within a Button on an Account page might look like this:
+
+```plaintext
+https://app.incident.io/~/incidents?createIncident=true&amp;name=Incident%20declared%20from%20Salesforce%20for%20{!Account.Name}&amp;custom_field_[id-of-your-custom-field]={!Account.Id}
+```
+
+## Viewing Incidents
+
+You may also wish to provide greater visibility for live incidents within Salesforce and potentially report on incident data within Salesforce. This requires a little more effort than that needed to add the declare incident button but can be done in a couple of ways:
+
+### Representing incidents in Salesforce
+
+We'd recommend first creating a new custom object to represent an incident.io Incident. At a minimum you'll probably want the following fields:
+
+| **Field Name** | **Field Type** |
+| --- | --- |
+| Name | Text() |
+| Status | Picklist() - Options should align with your incident statuses that can be configured within your [incident lifecycle](/help-centre/creating-and-running-incidents/creating-a-new-incident/incident-lifecycle) |
+| Summary | Text Area (Long) |
+| Affected Account | Lookup(Account) |
+
+### Pushing incident data into Salesforce
+
+To get start populating the data in your new customer object in Salesforce, you could implement either a Pull-based or Push-based method depending on how realtime you need your incident data to be in Salesforce.
+
+For the Pull-based method, you'd need to periodically call incident.io's [list incidents](https://api-docs.incident.io/tag/Incidents-V2/#operation/Incidents%20V2_List) API endpoint to retrieve incident data and then use the Salesforce API to create or update incidents in Salesforce. The staleness of data here will be dependent on how frequently you're retrieving information from the API and updating / creating your incidents in Salesforce.
+
+For the Push-based method, you'd handle real-time updates sent by incident.io via [webhooks](https://api-docs.incident.io/tag/Webhooks) and use the information we send within these to create / update the Salesforce incidents via the API. This is the preferred method if you want your data to be as close to realtime as possible.

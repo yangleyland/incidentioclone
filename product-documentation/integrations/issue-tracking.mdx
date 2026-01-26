@@ -1,0 +1,24 @@
+---
+title: Issue tracking
+description: Connect incident.io with issue tracking tools
+icon: "/icons/search.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="STUB" />
+
+# Issue tracking
+
+## ServiceNow
+
+The following fields are synced between incident.io and ServiceNow:
+
+| INCIDENT.IO | SERVICENOW CASES TABLE | SERVICENOW INCIDENT | SYNC STATUS |
+|-------------|------------------------|---------------------|-------------|
+| Title | Title - String | Short Description | One way sync from incident.io → ServiceNow |
+| Summary | Description - String | Description | One way sync from incident.io → ServiceNow |
+| Status | State - String | State | Bi-directionally synced |
+| Incident URL | Incident URL - String | Work Notes | One way sync from incident.io → ServiceNow |
+| Severity | Incident Urgency (int) | Urgency | Bi-directionally synced |
+| Severity | Incident Impact (int) | Impact | Bi-directionally synced |

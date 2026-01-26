@@ -1,0 +1,155 @@
+---
+title: Alert routing
+description: Page the right teams and create incidents automatically.
+---
+
+Alert routes are the set of filters and rules determining what happens to alerts coming from [alert sources](/product-documentation/on-call/alert-sources) like observability platforms, error tracking tools and ticketing platforms. Alerts can be routed to **page people, create incidents and notify Slack or Microsoft Teams channels**. Configure alert routes for scale across your organization. Using the sidebar, navigate to **Settings → Alerts → Routes**.
+
+## How alert routes work
+
+Alert routes ingest incoming alerts from [sources](/product-documentation/on-call/alert-sources) through four configurable stages:
+
+
+<Steps>
+  <Step title="Filter alerts (optional)">
+    Exclude irrelevant alerts using [alert attributes](/product-documentation/on-call/alert-attributes) (e.g., filter out staging environments)
+  </Step>
+  <Step title="Configure escalations">
+    Route alerts to [escalation paths](/product-documentation/on-call/escalation-paths) or specific users
+  </Step>
+  <Step title="Create incidents">
+    Define when alerts trigger incidents, configure grouping, set incident details and triage mode
+  </Step>
+  <Step title="Send to Slack or Microsoft Teams">
+    Notify channels for visibility and manual actions
+  </Step>
+</Steps>
+
+## 1. Filter alerts
+
+Filter out alerts that should not be processed by this route. Use [alert attributes](/product-documentation/on-call/alert-attributes) like environment, priority, or team to exclude irrelevant alerts. Example use cases include:
+- Filtering out `Staging` environment alerts to focus only on production issues
+- Excluding low-priority alerts that don't require immediate attention
+
+## 2. Configure escalations
+
+Choose between **static routing** for simple, predictable escalations or **dynamic routing** to automatically route alerts based on their context using the catalog.
+
+| Routing type | When to use | Example scenario |
+|--------------|-------------|-------------------|
+| **Dynamic routing** (recommended) | Best when one alert route needs to handle multiple teams or services. Configure once, using alert attributes and catalog relationships to choose the right escalation path. | Pick the escalation path of the team owning the affected service<br/><br/>`Alert > Service > Owner > Escalation paths` |
+| **Static routing** | Choose a specific escalation path or user directly. Best when one alert source should always notify the same team or person. | Escalate all `P1` alerts from Grafana to the Infrastructure team's escalation path|
+
+### How dynamic routing works
+
+Dynamic routing uses [alert attributes](/product-documentation/on-call/alert-attributes) to read context from the alert payload and traverse your [catalog](/product-documentation/catalog) to find the correct escalation path.
+
+For example, an dynamic alert route can:
+1. Read the impacted <Badge color="yellow">Service</Badge> from the alert attributes (e.g., "Billing API")
+2. Find which <Badge color="purple">Team</Badge> owns that service in your catalog (e.g., "Payments")
+3. Page that team's escalation path automatically
+
+This approach allows one alert route configuration to work across all services and teams without manual updates. For example, when team ownership changes in your catalog, routing updates automatically without reconfiguring alert routes.
+
+Set up **fallback expressions** to ensure alerts always reach someone when metadata is incomplete. For example, when an escalation paths aren't available for the <Badge color="purple">Payments</Badge> team, always alert the <Badge color="purple">Infrastructure</Badge> team's escalation path: <br/>`Alert > Service > Owner > Escalation paths || Infrastructure escalation path`
+
+<Tip>
+Enable **auto-cancel escalations** to automatically cancel pages when alerts resolve.
+</Tip>
+
+## 3. Create incidents from alerts
+
+Create incidents directly from alerts to group related alerts together, and provide a central place to triage whether issues require action. This approach enables tracking alert patterns and tuning quality over time. Choose when alerts create incidents using [alert attributes](/product-documentation/on-call/alert-attributes):
+
+**Create incidents automatically with alert routes to:**
+- Track and investigate specific high priority alerts (e.g., `P1` and `P2` alerts, or alerts from a specific <Badge color="yellow">Service</Badge>)
+- Group related alerts together for centralized triage and response
+- Monitor and tune alerts workload and quality over time
+
+**Skip incident creation from alert routes when:**
+- Attributes suggest quick routine fixes which don't need a full incident workflow
+- Alerts are for game days or testing scenarios
+- Alerts come from support ticketing systems that don't require incident workflow
+
+### Grouping alerts
+
+Reduce alert noise by grouping related alerts into a single incident using shared [alert attributes](/product-documentation/on-call/alert-attributes) like <Badge color="purple">Team</Badge>, <Badge color="yellow">Service</Badge>, <Badge color="red">Customer</Badge> or more. Choose between suggested and automatic grouping:
+
+- **Suggested grouping** - On-call responders can confirm or reject suggestions for grouped alerts, and decide to attach alerts to the same incident or create a new incident.
+- **Automatic grouping** - Immediately attach related alerts to existing incidents without manual confirmation. Responders can unlink alerts via the incident homepage if needed.
+
+<Info>
+Alerts can be grouped together for up to 48 hours in a rolling window.
+</Info>
+
+Incidents can be created in `Triage` status, for on-call responders to accept, decline, or merge once they have investigated the potential issue. Alternatively, choose to start incidents in `Active` status.
+
+## 4. Send to Slack or Microsoft Teams
+
+Route alerts to Slack or Microsoft Teams channels to create a shared surface for teams to see, triage, and act on alerts. Use channels for:
+
+- **Passive visibility** - Keep teams aware of what's happening without paging anyone
+- **Triage before escalating** - Let teams assess alerts in a channel first, with the option to escalate or page if needed
+- **Declare incidents** - Allow teams to directly declare incidents from alerts
+
+Route alerts to **public** or **private** channels, and add further filter conditions to send only a subset of alerts. For example, sending only `P1` alerts to the `#critical-alerts` channel.
+
+Use expressions and [catalog](/product-documentation/catalog) relationships to send alerts to different channels based on alert attributes. For example, `Alert > Team > Slack channel` sends alerts to the Slack channel associated with the impacted team, configured in your Catalog.
+
+Customise the details shown in incidents appearing in Slack or Microsoft Teams channels. Configure the following fields, with custom expressions:
+
+| Configurable fields | Description |
+|-------|-------------|
+| **Name** | Defaults to alert title. Customizable using alert attributes, and can be set with AI |
+| **Summary** | Defaults to alert description. Customizable using alert attributes, and can be set with AI |
+| **Incident mode** | Defaults to real incidents. Optionally create test, retrospective, or tutorial incidents |
+| **Type** | Set incident type based on alert attributes (e.g., `Production incident`, `Security incident`) |
+| **Severity** | Set incident severity based on alert attributes (e.g., `Major`, `Minor`, `Critical`) 
+
+<Tip>
+Add further details as fields shown in incidents appearing in channels (e.g., impacted <Badge color="yellow">Service</Badge>)
+</Tip>
+
+From alerts posted in Slack or Microsoft Teams, responders can:
+
+- Declare an incident or join one if it already exists
+- View and resolve the alert
+- View full alert details by clicking into the incident.io dashboard
+
+<Info>
+If your alert route creates private incidents, incidents declared from Slack or Microsoft Teams alerts will also be private. The person declaring the incident is automatically invited.
+</Info>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How do I silence alerts during maintenance windows?">
+    Temporarily disable the alert route during maintenance by navigating to **Settings → Alerts → Routes** and toggling the route off. Re-enable when maintenance is complete.
+
+    Alternatively, add a filter condition to exclude alerts during specific time windows using custom alert attributes.
+  </Accordion>
+
+  <Accordion title="Can I manually attach alerts to existing incidents?">
+    Yes. Navigate to the incident homepage, scroll to the **Alerts** section, and click **Attach alert**. Search for the alert you want to attach.
+
+    You can also attach alerts directly from the **On-call → Alerts** page by clicking on an alert and selecting **Attach to incident**.
+  </Accordion>
+
+  <Accordion title="How do I create private incidents from alerts?">
+    Configure privacy in the incident details section of your alert route. Select **Private** for incident visibility. Only invited responders will have access to private incident channels and data.
+  </Accordion>
+
+  <Accordion title="What's the difference between deduplication and grouping?">
+    **Deduplication** prevents duplicate alerts from the same source. Alerts with the same deduplication key update the existing alert rather than creating a new one. This happens at the alert level before routing.
+
+    **Grouping** combines multiple distinct alerts into a single incident to reduce noise. This happens at the incident level during alert route processing. For example, grouping alerts by <Badge color="yellow">Service</Badge> means all alerts affecting the same service attach to one incident.
+  </Accordion>
+
+  <Accordion title="How long can alerts be grouped together in an incident?">
+    Alerts can be grouped together for up to 48 hours in a rolling window. Each time a new alert in the group arrives, the 48-hour window resets.
+
+    **Example:** If alerts arrive at 9:00 AM, 10:00 AM, and 11:00 AM, all three can be grouped. The window extends 48 hours from 11:00 AM (the most recent alert).
+
+    If a new alert arrives after the 48-hour window expires, a new incident is created.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,65 @@
+---
+title: "Assigning a Priority to Follow-ups"
+description: ""
+canonical_article_id: 179
+migrated_at: "2026-01-21T18:29:19Z"
+source_url: "https://help.incident.io/articles/5174880695-assigning-a-priority-to-follow-ups"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5174880695-assigning-a-priority-to-follow-ups) on January 21, 2026
+</Info>
+
+[Follow-ups](/help-centre/learning-from-incidents/follow-ups) are a way for your team to capture something that needs to be done after an incident is closed. These will come in all shapes and sizes, from an urgent task such as reverting a temporary workaround, to a low priority task such as investigating how to move to a new cloud provider. You are able to assign each follow-up a priority, to capture this level of importance within [incident.io](https://incident.io/) .
+
+In this article, we will show you how to configure and assign priorities to your follow-ups, as well as how they work with [policies](/help-centre/policies) , [workflows](/help-centre/configure-your-account/workflows/getting-started-with-workflows) , and reporting.
+
+## Assigning a Priority
+
+Set the priority via the dropdown in either the web or Slack experience.
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-1.png)
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-2.png)
+
+## Configuring Follow-up Priorities
+
+Navigate to the [Settings → Follow-ups](https://app.incident.io/settings/follow-ups) page to configure:
+
+- If follow-ups are required to have a priority
+- The amount of options available to choose from
+- The name and description of each priority option
+- The default priority option
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-3.png)
+
+## Using Priorities with Policies
+
+Navigate to the [Settings → Policies](https://app.incident.io/settings/policies) page, and select **New Policy** and then choose **Follow-ups** as the **Policy type** .
+
+Within the **Follow-up requirements** section, you are able to use **Follow-up Priority** alongside **Expressions** to determine the SLA that you want to set, allowing you to build a policy that says:
+
+- "All high priority follow-ups must be completed within 3 days, medium priority follow-ups within 10 days".
+  - Note that in this example, Low priority follow-ups will have no SLA, so won't trigger a violation.
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-4.png)
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-5.png)
+
+## Using Priorities with Workflows
+
+Navigate to the [Workflows configuration page](https://app.incident.io/workflows) , and select **New Workflow** and your workflow trigger (e.g. " **When a follow-up is created or changed"** ).
+
+Click **Add condition** and choose **Follow-up Priority** to require that this workflow is conditional on the priority of a follow-up, thus allowing for workflows such as:
+
+- "When a follow-up is created or changed, and the priority is set to urgent, then email the tech lead."
+
+## Using Priorities with Reporting
+
+Navigate to the [Follow-ups reporting page](https://app.incident.io/follow-ups) , and select **Follow-up Priority** from the **Split By** dropdown in the top-right of the screen, this will update the **At a glance** table.
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-6.png)
+
+You can also make use of the **Follow-up Priority** filter on this page, by clicking **Filter** in the top-right of the screen.
+
+![](/images/help-centre/assigning-a-priority-to-follow-ups/screenshot-7.png)

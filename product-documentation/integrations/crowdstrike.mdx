@@ -1,0 +1,56 @@
+---
+title: "Crowdstrike Falcon"
+description: "Automatically page the right people and create incidents for alerts received from Falcon"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Crowdstrike Falcon
+
+Customers can seamlessly connect Falcon with incident.io to import crucial information. When an alert comes through Falcon, it enables incident.io to page the right person based on the customer's configuration, provide detailed information about the alert, and gather the necessary team members in the incident channel to collaborate on resolving the incident. Additionally, incident.io can automatically create incidents from alert sources and filter and group them according to the customer's preferences.
+
+This article provides step by step instructions for setting up Crowdstrike Falcon as an alert source within incident.io.
+
+## Instructions
+
+1. Head over to the [Alerts](https://app.incident.io/~/alerts/sources) section in your incident.io dashboard and select the sources tab at the top of the page
+
+<img src="/images/integrations/crowdstrike/step1-alerts-sources.png" alt="Alerts sources tab in incident.io dashboard" />
+
+<img src="/images/integrations/crowdstrike/step1-new-alert-source.png" alt="New alert source button" />
+
+2. Press the 'New alert source' button and search for 'Crowdstrike Falcon' and click continue to create the alert source
+
+<img src="/images/integrations/crowdstrike/step2-select-crowdstrike.png" alt="Select Crowdstrike Falcon from alert sources" />
+
+3. Then click the [Crowdstrike Falcon marketplace](https://marketplace.crowdstrike.com/listings/webhook) and choose Configure, head to Webhook and then choose Configure in the Webhook and in the modal 'Add configuration'. You will need to have all four options defaulted to Ok
+
+4. Now you can go back to incident.io and copy and paste the Name, Webhook URL, HMAC Secret key and Signature Header Name to the Crowdstrike Falcon modal.
+
+<img src="/images/integrations/crowdstrike/step4-copy-webhook-config.png" alt="Copy webhook configuration from incident.io" />
+
+5. After head to 'All Workflows' in Crowdstrike Falcon and click 'Create workflow' and choose the trigger to be an Event, Name the workflow and click Next to get to the workflow builder
+
+<img src="/images/integrations/crowdstrike/step5-create-workflow.png" alt="Create workflow in Crowdstrike Falcon" />
+
+6. Click sequential so it says 'Action'. Click 'Notify' from the modal and 'Call webhook' and then choose webhook name you copy pasted earlier from the drop down menu.
+
+7. Choose Data format to be Custom JSON and go back to incident.io and copy the payload from the alert source
+
+<img src="/images/integrations/crowdstrike/step7-copy-payload.png" alt="Copy payload from alert source" />
+
+8. Finish the configuration, give a name for the workflow and turn it on and save
+
+9. Now you can go and test the workflow by going to the workflow, click 'Edit' and then 'Execute workflow'
+
+10. You should receive the alert now in incident.io and now you can parse things from the payload!
+
+## Detailed instructions in the video below
+
+[Video: Embedded video](https://www.loom.com/embed/485691a7f5e64a16ab55a88109d768c2)
+
+---
+
+Can't find the alert source you are looking for? Head to our [integrations page](https://incident.io/integrations) or message us to [support@incident.io](mailto:support@incident.io)

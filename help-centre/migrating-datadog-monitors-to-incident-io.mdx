@@ -1,0 +1,42 @@
+---
+title: "Migrating Datadog monitors to incident.io"
+description: ""
+canonical_article_id: 328
+migrated_at: "2026-01-21T18:55:00Z"
+source_url: "https://help.incident.io/articles/8722907146-migrating-datadog-monitors-to-incident-io"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8722907146-migrating-datadog-monitors-to-incident-io) on January 21, 2026
+</Info>
+
+## Background
+
+Many organizations use Datadog as an [alert source](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation)  to trigger incident creation and/or escalations.
+
+If you are migrating from another paging provider to [incident.io](http://incident.io/) On-call, you'll need your Datadog monitors to point from your old provider to incident.io. This can be done using either:
+
+1. **Terraform**
+2. **Our migration tool (currently in beta)**
+
+## Terraform
+
+All you will need to do is update your monitor descriptions. Anywhere there is a tag referencing a paging provider (ie. @pagerduty-SERVICENAME), you can replace with @webhook-incident-io.
+
+If you are tagging your monitors with services, you can send all your monitors to one alert source and then parse the Datadog payload to get the service as an alert attribute.
+
+See more details on setting up your alert sources [here](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation)  .
+
+## Migration tool (currently in beta)
+
+If you do not use Terraform, you can use our migration tool which automatically updates your Datadog configuration to point to [incident.io](http://incident.io/) .
+
+This is a tool you can download plug in your Datadog API keys. The tool itself will:
+
+- Analyze all your monitors and creating a file for them to fill out that maps PagerDuty or Opsgenie services, for example, to [incident.io](http://incident.io/) teams
+- Talk you through the options for one webhook in Datadog or multiple webhooks
+- Automatically create the webhook configurations in Datadog
+- Automatically update their monitors to point to [incident.io](http://incident.io/)
+- Automatically remove PagerDuty or Opsgenie when we are successful
+
+This can be accessed via Github [here](https://github.com/incident-io/datadog-migrator) . Also, see a complementary Loom for help [here](https://www.loom.com/share/1f0a862752054bb0a1a8830f5bd9c500?sid=dad2a390-81bd-4ad6-bd42-78ab97526aa3) .

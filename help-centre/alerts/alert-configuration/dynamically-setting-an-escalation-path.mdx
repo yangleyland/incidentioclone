@@ -1,0 +1,43 @@
+---
+title: "Dynamically setting an escalation path"
+description: ""
+canonical_article_id: 116
+migrated_at: "2026-01-21T18:19:41Z"
+source_url: "https://help.incident.io/articles/1138092740-dynamically-setting-an-escalation-path"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1138092740-dynamically-setting-an-escalation-path) on January 21, 2026
+</Info>
+
+If you're looking to stop having to hard-code escalation paths in your workflows, you've come to the right article.
+
+We'll dig into exactly how you can start dynamically setting your escalation paths based on another field e.g. select an affected feature for an incident and then escalate to the team that owns that feature.
+
+<Warning>
+
+**Required reading:** You'll need to have a read of [this article](/help-centre/catalog/catalog-best-practices/what-data-should-i-bring-into-catalog)
+</Warning>
+
+Now that you've read that article, you should have a good understanding of the Catalog types we'll need to support this use-case.
+
+Essentially, you'll need a catalog type to represent your Teams and Features, with each Feature having an Owner (Team), and each Team having an Escalation Path.
+
+This then lets you create the following expression wherever you need to get from **Feature** ** -> **Escalation Path** . This could be within the Escalations section of an Alert Route, or within a workflow that escalates to a team when an incident is declared manually:
+
+![](/images/help-centre/dynamically-setting-an-escalation-path/screenshot-1.png)
+
+Note that the **Incident** -> **Affected Service** here is a custom field of type **Feature** from my Catalog which is exposed in my incident declaration and update forms for users to then set.
+
+This would then behave very similarly within an Alert Route depending on what you're pulling out of any given alert. For instance, if my alerts pointed to features I could create an Alert attribute of type **Feature** and do a very similar expression to the above in the my escalation section of my route.
+
+![](/images/help-centre/dynamically-setting-an-escalation-path/screenshot-2.png)
+
+If my alert only pointed me to a team, we could just create an Alert attribute of type **Team** and lookup to escalation path from there.
+
+<Warning>
+
+For more information on how to set an attribute that has a catalog type from an Alert, please see [here](/help-centre/alerts/alert-configuration/escalating-to-the-right-team-from-an-alert)
+</Warning>
+
+​ ​ ​ ​

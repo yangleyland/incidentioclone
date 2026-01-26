@@ -1,0 +1,268 @@
+---
+title: External status pages
+description: Communicate with customers during incidents using public and customer status pages
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# External status pages
+
+External status pages keep your customers informed when incidents happen. Whether you're communicating with everyone at once through public pages or providing dedicated updates to specific customers, external pages build trust by showing transparency during outages. This guide covers both public and customer status pages—your tools for external incident communication.
+
+## Public status pages
+
+Public status pages show all your users the current state of your service. Anyone with the URL can view ongoing incidents, scheduled maintenance, and historical uptime—no login required.
+
+### When to use public pages
+
+**Best for:** SaaS products, platform services, APIs, and any service where all users should see the same status information.
+
+**Common scenarios:**
+- Your entire platform is down or degraded
+- Scheduled maintenance affects all users
+- You want to build trust through transparency
+- Regional or product-specific issues (use sub-pages)
+
+### Setting up a public page
+
+Navigate to **Status Pages** → **Create public page** and configure:
+
+1. **Page title and URL** - Choose your status page name and URL (e.g., `status.yourcompany.com`)
+2. **Components** - Add services or systems you'll report status for (API, Dashboard, Mobile App, etc.)
+3. **Branding** - Upload your logo and favicon
+4. **Theme** - Choose light or dark mode
+5. **Custom domain** (optional) - Use your own domain instead of `statuspage.incident.io`
+
+Each component can have different status levels: **Operational**, **Degraded Performance**, **Partial Outage**, or **Major Outage**.
+
+### Sub-pages for segmentation
+
+Sub-pages let you create multiple connected status pages under one parent page. Each sub-page shows different components based on your [Catalog](/product-documentation/catalog/overview) structure.
+
+**When to use sub-pages:**
+
+- **Regional services**: Global page + separate pages for US, EU, APAC
+- **Multiple products**: Platform page + individual pages for each product line
+- **Service tiers**: Different views for Free, Pro, Enterprise offerings
+- **Customer segments**: B2B vs B2C product lines
+
+**How sub-pages work:**
+
+Sub-pages are powered by Catalog. You create a Catalog type (e.g., "Regions" or "Products"), and each Catalog entry becomes a sub-page. Components are then mapped to specific sub-pages.
+
+For example, with a "Regions" Catalog type:
+- Parent page: `status.yourcompany.com` (shows aggregated global view)
+- Sub-page 1: `status.yourcompany.com/us` (shows US components only)
+- Sub-page 2: `status.yourcompany.com/eu` (shows EU components only)
+- Sub-page 3: `status.yourcompany.com/apac` (shows APAC components only)
+
+Users can navigate between sub-pages, and each has its own subscription options.
+
+**Setting up sub-pages:**
+
+<Steps>
+  <Step title="Create with sub-pages">
+    Choose **Create with sub-pages** when creating your public page. You'll configure the Catalog type that powers the segmentation.
+  </Step>
+
+  <Step title="Configure Catalog">
+    Either create a new Catalog type (e.g., "Regions") or use an existing one. Each Catalog entry becomes a sub-page.
+
+    <img src="/images/status-pages/sub-pages-create.png" alt="Sub-pages creation form showing Catalog integration and component mapping" style={{maxWidth: "480px"}} />
+  </Step>
+
+  <Step title="Map components">
+    Add components and assign them to specific sub-pages. Configure which components appear on all sub-pages vs. specific ones.
+  </Step>
+
+  <Step title="Publish incidents">
+    When publishing an incident, select affected components—incident.io automatically routes updates to the relevant sub-pages.
+  </Step>
+</Steps>
+
+**Note:** Sub-pages are available on Enterprise plans.
+
+## Customer status pages
+
+Customer pages provide authenticated, per-customer status views. Each customer sees only incidents affecting their specific infrastructure or services.
+
+### When to use customer pages
+
+**Best for:** B2B companies with dedicated infrastructure, multi-tenant SaaS with customer-specific deployments, or high-value accounts needing private status updates.
+
+**Common scenarios:**
+- Running dedicated infrastructure per customer
+- Customer-specific components or services
+- Regulatory requirements for private incident communication
+- Enterprise customers needing their own status view
+
+**Example:** You manage dedicated databases for Enterprise customers. When Customer A's database has issues, only Customer A sees that incident on their customer page—other customers don't see it.
+
+### Setting up customer pages
+
+Navigate to **Status Pages** → **Create customer page** and configure:
+
+1. **Customer identification** - Choose or create a Catalog type for customers
+2. **Domain allowlist** - Add email domains allowed to access each customer page (e.g., `customera.com`)
+3. **Components** - Map components to specific customers via Catalog
+4. **Branding** - Logo, favicon, and theme (applies to all customer pages)
+
+Like sub-pages, customer pages are powered by Catalog. Each Catalog entry represents a customer and gets its own authenticated status page.
+
+### Access control
+
+Customer pages use email-based authentication via magic links. Access is controlled by email domain:
+
+- Add `customera.com` to the allowlist → anyone with `@customera.com` email can access that customer's page
+- Users receive a magic link to sign in when they visit the page
+- Access is checked on every page load—removing a domain immediately revokes access
+- **Never add public email domains** like `gmail.com` to allowlists
+
+**Sharing customer pages:**
+
+Customer page URLs aren't publicly visible. Send customers their unique URL (found in Settings or by visiting the page yourself).
+
+## Publishing incidents
+
+Publish incidents to your external status pages to keep users informed during outages.
+
+### Manual publishing
+
+From any active incident:
+
+1. Navigate to the incident details page
+2. Click **Publish to status page**
+3. Select which status page(s) to publish to
+4. Choose affected components
+5. Set component status levels (Degraded, Partial Outage, Major Outage)
+6. Write a customer-facing update message
+7. Notify subscribers (optional)
+
+Updates appear immediately on your status page. Post additional updates as you investigate and resolve the incident.
+
+### Automated publishing with workflows
+
+Use [Workflows](/product-documentation/workflows/overview) to automatically publish incidents to status pages based on severity, affected services, or other criteria.
+
+**Example workflow:** "When a Critical incident is declared affecting Production API, automatically publish to Public Status Page with 'Major Outage' status."
+
+This ensures high-severity incidents are communicated quickly without manual steps.
+
+### Unpublishing incidents
+
+Remove an incident from a status page by navigating to the incident's status page dashboard and clicking **...** → **Delete incident from sub-page** (or unpublish from parent page).
+
+## Components and status levels
+
+Components represent the services or systems you report status for. Examples: API, Dashboard, Mobile App, Payments, Authentication.
+
+**Status levels:**
+- **Operational** - Service working normally (green)
+- **Degraded Performance** - Service slower than usual (yellow)
+- **Partial Outage** - Some functionality unavailable (orange)
+- **Major Outage** - Service completely unavailable (red)
+
+Users see the worst status among all components on the main page. If one component is Major Outage, the overall status shows as Major Outage.
+
+### Component organization
+
+Group related components or show them individually. For example:
+- **API** (parent) → API Authentication, API Rate Limiting (children)
+- **Dashboard** (standalone)
+- **Mobile App** (parent) → iOS App, Android App (children)
+
+Component ordering can be customized in Settings → Components.
+
+## Customization
+
+### Branding
+
+- **Logo** - Displayed in the header (PNG or JPEG)
+- **Favicon** - Browser tab icon (PNG, 512x512 recommended)
+- **Custom domain** - Use your domain (e.g., `status.yourcompany.com`) instead of `statuspage.incident.io`
+
+### Theming
+
+Choose between **Light mode** and **Dark mode** to match your brand aesthetics.
+
+### Date view
+
+Display past events as a **Calendar** view or **List** view. Users can navigate through historical incidents.
+
+### Customization limits
+
+Currently, you cannot customize colors, fonts, or layout beyond the options above. Custom CSS and advanced styling aren't supported.
+
+## Scheduled maintenance
+
+Schedule maintenance windows to inform users about planned downtime.
+
+1. Navigate to your status page settings
+2. Create a maintenance window with start/end times
+3. Select affected components
+4. Write a description of the maintenance
+5. Maintenance automatically publishes and resolves based on scheduled times
+
+Subscribers receive notifications when maintenance begins and ends. Maintenance windows appear differently from incidents on your status page.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can I customize the appearance of my status page?">
+    Customization is limited to logo, favicon, custom domain, and light/dark theme selection. Custom colors, fonts, layout changes, and CSS aren't currently supported.
+  </Accordion>
+
+  <Accordion title="Can I create status pages in multiple languages?">
+    Built-in multi-language support isn't available. You can use third-party translation services like Unbabel or Localize by adding their JavaScript widget. Contact help@incident.io for setup assistance.
+  </Accordion>
+
+  <Accordion title="Can I display system metrics on my status page?">
+    You can display metrics using third-party services like Datadog or New Relic. Embed their public dashboards or status widgets on your page. Native metric display isn't currently built into incident.io status pages.
+  </Accordion>
+
+  <Accordion title="Can I integrate third-party status pages into mine?">
+    Yes! You can embed other providers' status widgets (e.g., AWS, Google Cloud) to show their service status alongside yours. Use their public embed codes or iframe widgets.
+  </Accordion>
+
+  <Accordion title="How is uptime calculated?">
+    Uptime is calculated as the percentage of time a component was operational over a given period (typically 90 days). Degraded Performance counts as uptime, while Partial and Major Outages count as downtime. Scheduled maintenance is excluded from uptime calculations.
+  </Accordion>
+
+  <Accordion title="What happens to incidents when I remove a component?">
+    Historical incidents remain visible on your status page even after deleting a component. Future incidents can't affect the deleted component, but past incidents preserve the component name for historical accuracy.
+  </Accordion>
+
+  <Accordion title="Can I adjust the time window shown on my status page?">
+    The status page shows the last 90 days by default. Users can navigate through historical incidents using the calendar or list view. You cannot change the 90-day window.
+  </Accordion>
+
+  <Accordion title="Can I manage status pages using Terraform or automation?">
+    Yes! incident.io has a full API for managing status pages, components, and incidents. You can use Terraform or other infrastructure-as-code tools to automate status page configuration. See our API documentation for details.
+  </Accordion>
+
+  <Accordion title="Can I create maintenance windows through the API?">
+    Yes, maintenance windows can be created, updated, and deleted via the incident.io API. This allows you to automate scheduled maintenance announcements as part of your deployment pipelines.
+  </Accordion>
+
+  <Accordion title="How do incident severity levels map to status page statuses?">
+    Incident severity doesn't automatically map to component status. When publishing an incident, you manually choose component status levels (Operational, Degraded, Partial Outage, Major Outage) based on actual impact. A Critical incident might only degrade one component, while a Minor incident could cause a Major Outage if it affects core functionality.
+  </Accordion>
+
+  <Accordion title="Can I remove specific sub-pages from showing an incident?">
+    Yes. Navigate to the incident's status page dashboard and click **...** → **Delete incident from sub-page** to remove it from a specific sub-page while keeping it on others.
+  </Accordion>
+
+  <Accordion title="Who can publish to status pages?">
+    By default, anyone who can update incidents can publish to status pages. Configure publishing permissions in Settings → Status Pages → Permissions to restrict who can publish updates.
+  </Accordion>
+
+  <Accordion title="Can I order components on my status page?">
+    Yes. In Settings → Components, drag and drop components to reorder them. This order applies to your status page display.
+  </Accordion>
+
+  <Accordion title="Do sub-pages have their own subscribers?">
+    Yes! Each sub-page has independent subscription management. Users can subscribe to specific sub-pages (e.g., only EU region) or the parent page (all regions). See [Subscriptions and communication](/product-documentation/status-pages/subscriptions-and-communication) for details.
+  </Accordion>
+</AccordionGroup>

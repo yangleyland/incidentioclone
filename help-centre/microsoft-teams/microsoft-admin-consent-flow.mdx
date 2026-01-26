@@ -1,0 +1,34 @@
+---
+title: "Microsoft's 'admin consent' flow"
+description: ""
+canonical_article_id: 316
+migrated_at: "2026-01-21T18:54:42Z"
+source_url: "https://help.incident.io/articles/9863086198-microsoft-admin-consent-flow"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9863086198-microsoft-admin-consent-flow) on January 21, 2026
+</Info>
+
+To sign up to incident.io we ask you to log in using your Microsoft account. We then need our application to be granted a set of permissions in Microsoft Entra. To do this, we send you through the "Admin consent" flow.
+
+If you're unfamiliar with this flow, you should read [Microsoft's documentation about admin consent](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/user-admin-consent-overview#admin-consent) . You need to be a **Privileged Administrator** to do this, or you will need one to do this on your behalf.
+
+During signup, we show you a "Grant Microsoft admin consent" button. There are two ways to progress here. Click the button, and you will be taken to Microsoft.
+
+If you **are** able to consent to the permissions, then you can complete the admin consent flow here. Once finished, you'll be able to click "Install to Microsoft Teams".
+
+If you **are not able** to consent to the permissions, then you will see one of two things: either a message saying you can't consent, or a dialog that allows you to request consent from an administrator. For both of these situations, you will need to find a user who is a privileged administrator, and they will need to go through the steps detailed below.
+
+## Consenting through Microsoft Entra
+
+They should sign in to [https://entra.microsoft.com/](https://entra.microsoft.com/) and go to Applications → Enterprise Applications. Search for "incident.io", and go to "Permissions" on the left, in the "Security" section. Once here, they should click the "Grant admin consent for ..." button. This will take them through the flow where they consent to our permissions.
+
+If a request was submitted, follow the instructions in Microsoft's documentation on [reviewing admin consent requests](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/review-admin-consent-requests) .
+
+Once you've done this, you'll need to go back through the admin consent flow in our app, so that we re-check whether consent has been granted. This step is important!
+
+## Further reading
+
+- [Configure the admin consent workflow](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-admin-consent-workflow)
+- [Overview of admin consent in Entra](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/user-admin-consent-overview#admin-consent)

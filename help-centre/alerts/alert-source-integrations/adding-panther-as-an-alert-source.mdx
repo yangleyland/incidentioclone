@@ -1,0 +1,55 @@
+---
+title: "Adding Panther as an Alert Source"
+description: ""
+canonical_article_id: 122
+migrated_at: "2026-01-21T18:21:19Z"
+source_url: "https://help.incident.io/articles/9866789178-adding-panther-as-an-alert-source"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9866789178-adding-panther-as-an-alert-source) on January 21, 2026
+</Info>
+
+This article provides step by step instructions for setting up Panther as an alert source within incident.io.
+
+## Instructions
+
+1. Head over to the [Alerts](https://app.incident.io/~/alerts/sources) section in your incident.io dashboard
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-1.png)
+
+2. Select the sources tab at the top of the page
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-2.png)
+
+3. Press the 'New alert source' button
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-3.png)
+
+4. Search for 'Panther' and click continue to create the alert source
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-4.png)
+
+5. Switch over to your Panther dashboard, and select 'Alert Destinations' under the 'Configure' section
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-5.png)
+
+6. If you already have another alert destination set up, click the 'Create New' button in the top right hand corner. Otherwise, click 'Add your first Destination'.
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-6.png)
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-7.png)
+
+7. Choose 'Custom Webhook' from the list of destinations
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-8.png)
+
+8. Copy the Webhook URL provided to you after you created a Panther alert source in the incident.io dashboard, and make sure to add a custom HTTP header for 'Authorization'. The value for this header is provided to you in the incident.io dashboard, alongside the Webhook URL.
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-9.png)
+
+9. Click 'Add Destination' and then 'Send Test Alert' to test your integration. You should be able to see a test alert in your incident.io dashboard!
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-10.png)
+
+![](/images/help-centre/adding-panther-as-an-alert-source/screenshot-11.png)

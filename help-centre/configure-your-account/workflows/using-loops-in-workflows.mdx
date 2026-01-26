@@ -1,0 +1,62 @@
+---
+title: "Using loops in Workflows"
+description: ""
+canonical_article_id: 30
+migrated_at: "2026-01-21T18:57:53Z"
+source_url: "https://help.incident.io/articles/2313186672-using-loops-in-workflows"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2313186672-using-loops-in-workflows) on January 21, 2026
+</Info>
+
+*If you haven't worked with Workflows before, check out our* [Getting Started with Workflows guide](/help-centre/configure-your-account/workflows/getting-started-with-workflows)
+
+Workflow loops allow you to repeat a step multiple times for all values in a multi-valued custom field or expression.
+
+## Adding a Workflow loop
+
+To add a Workflow loop, simply click "Add a step" and then choose the "Create a loop" option.
+
+![](/images/help-centre/using-loops-in-workflows/screenshot-1.png)
+
+Returning to the main workflow screen, you will see a new loop block has appeared in your steps.
+
+![](/images/help-centre/using-loops-in-workflows/screenshot-2.png)
+
+## Selecting a resource to loop over
+
+The "Select a variable" dropdown will give you available resources you can loop over. This can be one of:
+
+- A multi-select custom field
+- An [expression](/help-centre/configure-your-account/workflows/how-to-use-workflow-expressions) that returns a list of values.
+
+![](/images/help-centre/using-loops-in-workflows/screenshot-3.png)
+
+## Adding steps to a Workflow loop
+
+Once you've picked what you want to run your steps over, you can add Workflow steps to your loop using the "Add a step to this loop" button.
+
+This works just like adding a regular workflow step, and you can reference the value you are looping over in the step - you'll find these at the top of any relevant menus, prepended by "Each". In this example, we are looping over the custom field "Impacted surface":
+
+![](/images/help-centre/using-loops-in-workflows/screenshot-4.png)
+
+You can add as many steps as you would like to a loop and re-order them by dragging and dropping, just like steps. They cannot be moved out of the loop, though.
+
+## How often will workflow loops run?
+
+Workflow loops function slightly differently from regular workflow steps - if the custom field or expression you are looping over changes, the loop will run its steps on any new values.
+
+Let's elucidate this with an example:
+
+Imagine you have set up a workflow to run once per incident when the incident severity is critical or higher. You've got two steps:
+
+- Announce the incident in `#product`
+- For each team in the `Affected Teams` custom field:
+  - Page the relevant escalation policy in PagerDuty
+
+This workflow will function as follows:
+
+1. A critical incident is declared, affecting teams `A` and `B` . The workflow runs, posting the announcement and escalating following `Policy-A` and `Policy-B` .
+2. The `Affected Teams` custom field is updated to now include Team `C`
+3. The first step, posting the announcement, will *not* be re-run, since it has already been executed for this incident. **However** , the second, looping step will "catch up" with the new `Affected Teams` value by escalating to `Policy-C` .

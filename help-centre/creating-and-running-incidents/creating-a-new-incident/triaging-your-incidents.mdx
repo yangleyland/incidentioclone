@@ -1,0 +1,91 @@
+---
+title: "Triaging your incidents"
+description: ""
+canonical_article_id: 52
+migrated_at: "2026-01-21T18:02:35Z"
+source_url: "https://help.incident.io/articles/1093002640-triaging-your-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1093002640-triaging-your-incidents) on January 21, 2026
+</Info>
+
+Occasionally you might be presented with a problem you don't fully understand - you think it has the potential to be an incident, but you need to confirm this first. That's why we have **triage incidents** .
+
+## What makes triage incidents special?
+
+When you create an incident in `Triage` , it is not considered "live" yet. The `Triage` incident status is managed by us and denotes incidents which are being triaged ie. someone is deciding whether or not they're looking at a problem.
+
+Once a responder has made their decision (perhaps by bringing other users into the incident channel or using decision flows), they can then either:
+
+- **Accept** the incident - this means it will move to the first live status and can start being investigated
+- **Decline** the incident - this should be chosen if a responder concludes that the triage incident is not actually a problem
+- **Merge** the incident - this should be chosen if the incident is a duplicate of another one
+
+Note that by declining or merging a triage incident, it never enters a "live" status and is removed from your metrics.
+
+An existing incident lifecycle might look like this:
+
+![](/images/help-centre/triaging-your-incidents/screenshot-1.png)
+
+But an incident going through triage has extra stages before being promoted to live:
+
+![](/images/help-centre/triaging-your-incidents/screenshot-2.png)
+
+This flow might be familiar to you if you already use our [PagerDuty auto-create feature](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation) . During auto-create, we'll spin up a triage incident when a a PagerDuty incident fires, and you decide whether or not its worth opening an incident for. Our new offering is the same but we're just letting you create those triage incidents *manually* .
+
+## How can I create a triage incident?
+
+You'll only be able to create (or auto-create) triage incidents if you're on our Pro plan.
+
+If this is you, next time you declare an incident from within Slack, you'll notice some radio buttons for configuring whether or not the incident should start from the `Triage` status.
+
+![](/images/help-centre/triaging-your-incidents/screenshot-3.png)
+
+Once you've filled out the form and hit "Create", we'll announce the incident in your default announcements channel, highlighting that it is the `Triage` state.
+
+Your incident will look and act similar to a normal "Live" incident, for example you can escalate or assign roles, and workflows will run (unless you configure them not to). But there are a few key differences:
+
+- **You won't be able to use the full range of commands** . For example, we won't let you update your StatusPage from a triage incident, or create actions or follow-ups. We believe these should be reserved for incidents that are confirmed issues.
+- Every now and then we'll **nudge the channel to make a decision** . This stops you from accidentally getting stuck into fixing the issue without moving the incident through the lifecycle.
+- After the usual welcome message at the beginning of the channel, we'll send you **some options for quickly making a decision** :
+
+![](/images/help-centre/triaging-your-incidents/screenshot-4.png)
+
+As an alternative to using these buttons, you can accept/merge/decline a triage incident at any time by calling `/inc update` .
+
+If you choose to merge or decline the triage incident, we'll update the announcement post so it takes up less space:
+
+![](/images/help-centre/triaging-your-incidents/screenshot-5.png)
+
+## What are the benefits of using this feature?
+
+### You can discover problems faster
+
+It's common for our customers to discover an a issue, but not have enough context to know what type of incident they're dealing with or how severe it is. Discussion to ascertain whether its a problem can be slow and exclude the right people. Equally (and quite understandably), many users are wary of declaring a live incident in this case because it could be a false alarm.
+
+Triage incidents lower the bar to creating an incident channel - they don't require an incident type or severity to be set during creation, and you can easily remove the incident from your metrics if it turned out to be nothing to worry about.
+
+### More insights
+
+We track a timestamp associated with each of these decisions: `Accepted at` , `Declined at` , and `Merged at` . They'll appear on an incident homepage to help you piece together what happened.
+
+You can also create a custom duration like "Time to accept" from the [lifecycle settings page](https://app.incident.io/settings/lifecycle) and use our [MTTX insights dashboard](https://app.incident.io/insights?tab=mttx) to track how well you're doing at triaging your incidents.
+
+### Quality control
+
+For some of our customers, there's a very high bar for a problem to be declared an incident. That's why we're letting you enforce all incidents to start in triage, if you wish.
+
+This is configured per incident type to support different processes in different teams. Just head to Settings → Types and flip the toggle for the relevant incident type.
+
+![](/images/help-centre/triaging-your-incidents/screenshot-6.png)
+
+### Completeness
+
+When the discussion takes place within an incident channel, you don’t lose any context that might have taken place elsewhere in Slack. You make it easier for yourself to curate the timeline (by pinning messages) and for anyone in the future to understand what happened.
+
+## Can I disable this feature?
+
+If you like, you can prevent users from creating triage incidents. To do this, you'll need to be an organisation owner or admin. Head over to the [lifecycle page](https://app.incident.io/settings/lifecycle) and scroll down to `Triage` , then disable the toggle.
+
+![](/images/help-centre/triaging-your-incidents/screenshot-7.png)

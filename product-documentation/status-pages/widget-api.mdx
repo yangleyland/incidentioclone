@@ -1,0 +1,163 @@
+---
+title: Widget API and embedding
+description: Embed real-time status information directly in your product or website
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Widget API and embedding
+
+The widget API lets you embed real-time status information directly into your product or website. Instead of directing users to a separate status page, show component health, active incidents, and uptime data wherever users need it—from your app header to your login page.
+
+## Use cases
+
+**Common embedding scenarios:**
+- Display component status badges in your app header
+- Show active incidents on your login page during outages
+- Embed incident history in your support portal
+- Build custom status dashboards using status data
+- Integrate status into internal tools and monitoring systems
+
+The widget updates in real-time as incidents are published or updated, ensuring users always see current information.
+
+## Setting up the widget API
+
+<Steps>
+  <Step title="Access widget settings">
+    Navigate to **Settings** → **Widget API** in your status page configuration.
+  </Step>
+
+  <Step title="Generate credentials">
+    Generate an API key or embed code depending on your implementation approach:
+    - **Embed code** - Pre-built JavaScript widget for quick integration
+    - **API key** - Direct API access for custom implementations
+  </Step>
+
+  <Step title="Add to your site">
+    Add the generated code to your website or product. The widget automatically fetches and displays status data.
+  </Step>
+
+  <Step title="Style the widget">
+    Customize the widget appearance to match your design system. The widget accepts CSS styling and configuration options.
+  </Step>
+</Steps>
+
+## Implementation approaches
+
+### JavaScript embed widget
+
+Use the pre-built embed widget for quick integration:
+
+```html
+<script src="https://widget.incident.io/status.js"></script>
+<div data-incident-status="your-status-page-id"></div>
+```
+
+The embed widget provides:
+- Component status badges
+- Active incident count
+- Recent incident feed
+- Automatic updates
+
+### API integration
+
+Use the API directly for custom implementations:
+
+```javascript
+fetch('https://api.incident.io/v1/status_pages/your-page-id', {
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  // Build custom UI with status data
+});
+```
+
+The API returns:
+- Current component statuses
+- Active incidents
+- Historical incident data
+- Uptime metrics
+
+## Widget capabilities
+
+**What you can display:**
+- **Component status badges** - Show operational, degraded, or outage states for specific components
+- **Active incident count** - Display number of ongoing incidents
+- **Incident feed** - Show recent or active incidents with details
+- **Uptime percentages** - Display component reliability metrics
+- **Maintenance windows** - Show scheduled maintenance
+
+**Update frequency:**
+- Widgets poll for updates every 60 seconds by default
+- Configurable polling interval
+- Supports webhooks for instant updates (API integration only)
+
+## Customization
+
+The widget accepts configuration options for appearance and behavior:
+
+**Display options:**
+- Show/hide specific components
+- Filter by incident severity
+- Control update frequency
+- Choose light or dark theme
+- Set custom CSS classes
+
+**Example configuration:**
+```javascript
+{
+  components: ['api', 'dashboard'],
+  theme: 'dark',
+  pollInterval: 30,
+  showUptime: true
+}
+```
+
+## Security considerations
+
+**API key access:**
+- API keys are read-only and scoped to your status page
+- Keys can be rotated anytime from Settings → Widget API
+- Use separate keys for different environments (staging, production)
+
+**CORS restrictions:**
+- Configure allowed domains in Settings → Widget API
+- Widgets only load from approved domains
+- Prevents unauthorized embedding
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can I embed the widget on multiple sites?">
+    Yes. Generate one API key and use it across multiple sites. Configure allowed domains in Settings → Widget API to control where the widget can load.
+  </Accordion>
+
+  <Accordion title="Does the widget work with SPAs and modern frameworks?">
+    Yes. The widget API works with React, Vue, Angular, and other JavaScript frameworks. Use the API integration approach for full control over rendering.
+  </Accordion>
+
+  <Accordion title="How often does the widget update?">
+    The default polling interval is 60 seconds. You can configure this down to 10 seconds or use webhooks for instant updates with API integration.
+  </Accordion>
+
+  <Accordion title="Can I style the widget to match my site?">
+    Yes. The embed widget accepts custom CSS classes and supports light/dark themes. For complete control, use the API integration and build your own UI.
+  </Accordion>
+
+  <Accordion title="Is there a rate limit on API requests?">
+    Yes. Widget API requests are rate limited to 60 requests per minute per API key. This is sufficient for typical polling intervals.
+  </Accordion>
+
+  <Accordion title="Can I show historical data with the widget?">
+    Yes. The API returns historical incident data. You can build custom views showing incident history, uptime trends, and past maintenance windows.
+  </Accordion>
+
+  <Accordion title="Does the widget support Intercom integration?">
+    Yes, but Intercom has a dedicated integration separate from the widget API. See [Subscriptions and communication](/product-documentation/status-pages/subscriptions-and-communication) for Intercom setup.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,69 @@
+---
+title: "Why are Microsoft Teams direct messages not working for a user?"
+description: ""
+canonical_article_id: 340
+migrated_at: "2026-01-21T18:55:23Z"
+source_url: "https://help.incident.io/articles/7314274298-why-are-microsoft-teams-direct-messages-not-working-for-a-user"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7314274298-why-are-microsoft-teams-direct-messages-not-working-for-a-user) on January 21, 2026
+</Info>
+
+## Background
+
+In order to be able to DM a Microsoft Teams user, that user needs to have the [incident.io](http://incident.io/) Microsoft Teams app installed at a user level. When you first sign up for [incident.io](http://incident.io/) using a Microsoft tenant, we ask for the `TeamsAppInstallation.ReadWriteAndConsentSelfForUser.All` permission. This permission lets us proactively install our Microsoft Teams app when you (for example) make a user the lead of an incident, so that we can send them a DM to notify them.
+
+Sometimes, we are still not able to proactively install our application for the user, and so it isn't possible for us to DM them.
+
+## Verifying installation state
+
+Microsoft don't provide an interface to verify which users have a particular Microsoft Trams app installed, but you can use PowerShell to help verify this.
+
+First, the Microsoft Teams module must be installed:
+
+Plain Text 
+
+```plaintext
+Install-Module Microsoft.Graph.Teams -Scope CurrentUser
+```
+
+Then run this, replacing `user@domain.com` as appropriate:
+
+Plain Text 
+
+```plaintext
+Connect-MgGraph -Scopes "TeamsAppInstallation.ReadForUser.All"
+Get-MgUserTeamworkInstalledApp -UserId "user@domain.com" -ExpandProperty "teamsAppDefinition"
+```
+
+This should show you which applications the user has installed: you should see [incident.io](http://incident.io/) in this list. If you don't, we won't be able to DM that user. If there are users that can successfully get DMs from incident.io, we would suggest comparing the output of this command for two users.
+
+You can also install the app using PowerShell, which may reveal the underlying reason that the installation didn't work:
+
+Plain Text 
+
+```plaintext
+Connect-MgGraph -Scopes "TeamsAppInstallation.ReadWriteForUser.All"
+
+$appId = "c878d453-b147-49d6-aab9-b912dcaee5ec"
+
+$body = @{
+    "teamsApp@odata.bind" = "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/$appId"
+}
+
+New-MgUserTeamworkInstalledApp -UserId "user@domain.com" -BodyParameter $body
+```
+
+In the example above, `c878d453-b147-49d6-aab9-b912dcaee5ec` is the ID of our application within Microsoft's app catalog ( [see here](https://appsource.microsoft.com/en-us/product/office/WA200007219?tab=Overview) ).
+
+## Setting up an app policy
+
+One way to ensure [incident.io](http://incident.io/) is installed for users is by setting up a policy:
+
+1. Sign in to [https://admin.teams.microsoft.com/](https://admin.teams.microsoft.com/) .
+2. Navigate to Teams apps → Setup policies.
+3. Edit "Global policy" (for all users) or create a new policy for specific users.
+4. Under "Installed apps", click "Add apps".
+5. Search for and select the [incident.io](http://incident.io/) app, click "Add", and save the policy.
+6. You then need to assign the policy to the correct users or groups.

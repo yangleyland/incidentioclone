@@ -1,0 +1,35 @@
+---
+title: "How do escalation delays work when no one is on-call for a level?"
+description: ""
+canonical_article_id: 166
+migrated_at: "2026-01-21T18:29:21Z"
+source_url: "https://help.incident.io/articles/8534913817-how-do-escalation-delays-work-when-no-one-is-on-call-for-a-level"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8534913817-how-do-escalation-delays-work-when-no-one-is-on-call-for-a-level) on January 21, 2026
+</Info>
+
+## Context
+
+When setting up escalation paths, you can configure delays between different escalation levels. However, there may be confusion about how these delays work when there is no one scheduled to be on-call for a particular level.
+
+## Answer
+
+While escalation paths allow you to set delay times between different levels (for example, a 5-minute delay between Level 2 and Level 3), these delays are only applied when there is at least one person on-call at that level who can be paged.
+
+Important behavior to note:
+
+<Info>
+
+If there is no one on-call for a particular level, the system will automatically and immediately progress to the next level without waiting for the configured delay time
+
+The configured delay time only takes effect when there is at least one user available to be paged at that level
+
+</Info>
+
+For example:
+
+- If you have a 5-minute delay configured between Level 2 and Level 3
+- And there is no one scheduled for Level 2 on-call
+- The system will skip Level 2 immediately and proceed to Level 3 without waiting for the 5-minute delay

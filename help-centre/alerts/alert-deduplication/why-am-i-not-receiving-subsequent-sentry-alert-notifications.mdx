@@ -1,0 +1,34 @@
+---
+title: "Why am I not receiving subsequent Sentry alert notifications?"
+description: ""
+canonical_article_id: 136
+migrated_at: "2026-01-21T18:54:01Z"
+source_url: "https://help.incident.io/articles/4754446095-why-am-i-not-receiving-subsequent-sentry-alert-notifications"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4754446095-why-am-i-not-receiving-subsequent-sentry-alert-notifications) on January 21, 2026
+</Info>
+
+## Context
+
+When configuring Sentry as an alert source, you may notice that while the initial test notification is received successfully, subsequent alert notifications appear not to come through, even though they are being sent from Sentry's side.
+
+## Answer
+
+<Info>
+
+This issue is most commonly seen when first setting up and testing the Sentry alert source.
+
+</Info>
+
+If you're not receiving subsequent Sentry alerts, this is likely due to an existing alert still in a firing state that is using the same deduplication key. Here's how it works:
+
+- We use the `issue_id` as a deduplication key for Sentry alerts
+- If multiple active alerts are triggered for the same `issue_id` , only the first alert will be shown
+- The duplicate alerts will be automatically deduplicated to prevent alert fatigue
+- A new alert will only be created when:
+  - A different `issue_id` is received
+  - The previous alert with the same `issue_id` has been resolved
+
+To verify if you're receiving alerts correctly, test with a new alert that has a different `issue_id` than any currently active alerts.

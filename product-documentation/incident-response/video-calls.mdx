@@ -1,0 +1,96 @@
+---
+title: Video calls
+description: Connect teams instantly with automatic video calls for every incident.
+icon: "/icons/presentation.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Video calls
+
+Video calls give incident responders a real-time space to collaborate, debug issues, and coordinate actions. incident.io makes it easy to create and manage video calls for incidents, whether through automatic generation, manual links, or integrations with Zoom, Google Meet, and Microsoft Teams.
+
+Once configured, video calls appear in your incident channel, dashboard, and anywhere the incident is mentioned - giving responders instant access to your digital war room.
+
+## Automatic call creation
+
+incident.io can automatically generate a video call whenever an incident is declared. This removes manual work and ensures every incident has a dedicated space for real-time collaboration.
+
+Configure automatic call creation through your video conferencing integration:
+
+**To set up automatic call creation:**
+
+1. Navigate to **Settings → Integrations**
+2. Connect your video conferencing provider (Zoom, Google Meet, or Microsoft Teams)
+3. After connecting, open the integration settings
+4. Toggle on **Automatically create incident call**
+
+When enabled, incident.io creates a unique video call for each new incident and posts it to the incident channel with a **Join Call** button. The call link also appears in the dashboard and throughout the platform wherever the incident is referenced.
+
+<Tip>
+Zoom and Google Meet require a service account for installation. Microsoft Teams connections belong to the user who installs the integration.
+</Tip>
+
+## Manual call links
+
+If you already have a video call running, paste the link into your incident channel. incident.io recognizes call links from supported providers and prompts you to pin it as the incident's official call.
+
+**To manually add a call link:**
+
+1. Copy your video call URL (from Zoom, Google Meet, Microsoft Teams, or any other provider)
+2. Paste it into the incident channel
+3. Click **Pin as incident call** when prompted
+
+You can also use `/incident call` in Slack or the **Start a call** button in the dashboard to create or attach a call link manually.
+
+<Tip>
+If you have multiple video providers configured, you'll be able to choose which one to use when creating calls manually.
+</Tip>
+
+## Fixed call links
+
+Some teams use a single dedicated video call link for all incidents (e.g., a permanent Zoom room). You can configure this default link to be automatically attached to every incident.
+
+**To set a fixed call link:**
+
+1. Navigate to **Settings → Automation**
+2. Find the **Default call URL** field
+3. Enter your permanent video call link
+4. Save your settings
+
+The fixed link will now be attached to all new incidents automatically.
+
+## Digital war rooms
+
+Video calls serve as your digital war room - a central place where responders gather to troubleshoot issues, share screens, and make decisions in real-time. Whether automatically generated or manually added, these calls help teams coordinate effectively during incidents.
+
+Key benefits of video war rooms:
+
+- **Immediate collaboration**: Responders join the same space without coordination overhead
+- **Screen sharing**: Debug issues together by viewing logs, dashboards, and code
+- **Faster decisions**: Real-time discussion speeds up assessment and action
+- **Clear communication**: Voice reduces misunderstandings common in text-only channels
+
+<AccordionGroup>
+  <Accordion title="Which video conferencing providers are supported?">
+    incident.io integrates with Zoom, Google Meet, and Microsoft Teams for automatic call creation. You can also manually paste links from any video conferencing provider - incident.io will recognize and pin them.
+  </Accordion>
+
+  <Accordion title="Can I use multiple video providers?">
+    Yes. You can install multiple integrations (e.g., both Zoom and Google Meet). When creating calls manually or from the dashboard, you'll be able to choose which provider to use. Only one provider can be configured for automatic call creation at a time.
+  </Accordion>
+
+  <Accordion title="What happens if I paste a call link when auto-creation is enabled?">
+    The manually pasted link takes precedence. incident.io will ask if you want to pin the pasted link as the incident's call, replacing any automatically generated call.
+  </Accordion>
+
+  <Accordion title="Do I need a service account for video integrations?">
+    Zoom and Google Meet require service accounts to ensure the integration remains active even when individual users leave the organization. Microsoft Teams connections belong to the user who installs the integration. See each integration's documentation for specific permission requirements.
+  </Accordion>
+
+  <Accordion title="Can I record incident calls?">
+    Recording depends on your video provider's settings. Zoom integrations support automatic recording if configured in your Zoom workspace settings. Check your video provider's documentation for recording capabilities and compliance requirements.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,43 @@
+---
+title: "FAQs: Teams in incident.io"
+description: ""
+canonical_article_id: 111
+migrated_at: "2026-01-21T18:19:40Z"
+source_url: "https://help.incident.io/articles/1553964585-faqs-teams-in-incident-io"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1553964585-faqs-teams-in-incident-io) on January 21, 2026
+</Info>
+
+## Should I manage teams in settings, or in Catalog?
+
+You can manage teams and their members in Settings → Teams, or directly in Catalog.
+
+The only exception is the **Escalation paths** attribute: we set this for you, based on which escalation paths have been attached to each team.
+
+If you add additional attributes to your teams, such as their team Slack channel, you can only manage these in Catalog.
+
+<Info>
+
+If you're managing your team type in code (for example with [catalog-importer](https://github.com/incident-io/catalog-importer) , or [Terraform](https://registry.terraform.io/providers/incident-io/incident/latest) ), you won't be able to edit teams in the incident.io dashboard at all, since we can't keep your catalog-importer or Terraform config in sync.
+
+</Info>
+
+## How are incidents filtered by team?
+
+Incidents are filtered by a team custom field. When you sign up, we'll create an "Affected teams" custom field automatically, and filter on this field by default.
+
+You can change which field we use to filter incidents by team in [Settings → Teams → Configure](https://app.incident.io/~/settings/teams/configure) .
+
+If you don't have a team custom field you can read how to set one up in our [guide to Catalog-powered custom fields](/help-centre/configure-your-account/using-the-catalog)
+## How are alerts filtered by team?
+
+Alerts are filtered by a team attribute. When you sign up, we'll create a "Team" attribute automatically, and filter on this field by default.
+
+You can change which attribute we use to filter alerts by team in [Settings → Teams → Configure](https://app.incident.io/~/settings/teams/configure) .
+
+If you tag your alerts by service, you can add a team attribute which gets set based on which team(s) own the service for the alert. See how to configure alert attributes in [our guide here](/help-centre/alerts/alert-configuration/attributes-and-priorities)
+## Can I filter escalations by team?
+
+Escalations aren't filtered by team. You can navigate from either alerts or incidents to escalations.

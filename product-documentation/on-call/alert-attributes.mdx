@@ -1,0 +1,210 @@
+---
+title: Alert attributes
+description: Turn alert data into critical context for responders to power routing, escalations, and automation.
+---
+
+Alerts from different sources (observability platforms, error tracking tools, ticketing platforms and more) arrive with inconsistent formats and field names. Alert attributes create a consistent language to describe alerts regardless of source.
+
+These standardized attributes enable [alert routing](/product-documentation/on-call/alert-routing) to automatically page the right teams based on alert context. Attributes are fields extracted from JSON payloads like:
+
+| Attribute | Example attribute value |
+|-----------|------------------------|
+| <Badge color="purple">Team</Badge> | Product development |
+| <Badge color="yellow">Service</Badge> | Payments |
+| <Badge color="red">Customer</Badge> | Acme Corp |
+| `Priority` | P1 |
+
+Attributes also provide visibility for on-call responders, power workflows, and enable insights into alert patterns and quality over time.
+
+Define attributes in **Settings → Alerts → Attributes** and configure attribute extraction when setting up new [alert sources](/product-documentation/on-call/alert-sources).
+
+## What attributes enable
+
+**Alert routing**
+- Automatically page the right teams based on the alert context. Configure [alert routes](/product-documentation/on-call/alert-routing) to use attributes for dynamic routing.
+- For example, route alerts to the team owning the affected service.
+
+**Populate incident custom fields**
+- Automatically set incident custom fields from alert attributes.
+- For example, when multiple alerts are grouped into one incident, the incident's affected <Badge color="purple">Teams</Badge> custom field can aggregate all team attributes from those alerts and show which teams were impacted.
+- This enables better insights and reporting on incidents.
+
+**Trigger workflows**
+- Drive automations based on alert context using attributes in [workflow](/product-documentation/workflows/overview) conditions.
+- For example, use impacted <Badge color="red">Customer</Badge> attribute to automatically add the account's Customer success manager to incidents.
+- Another example, use the <Badge color="blue">Github user</Badge> attribute to page the engineer who last worked on this area.
+
+**Learn from insights**
+- Aggregate and analyse alerts across different sources and identify patterns.
+- Catalog-powered attributes allow for more granular insights than plain text attributes.
+- For example, use feature attribute to analyze which product areas generate the most alerts, helping prioritize reliability work.
+
+**Send to the right channels**
+- Route alerts to specific Slack or Microsoft Teams channels dynamically based on context.
+- For example, use <Badge color="purple">Team</Badge> attribute to send alerts to the right team channel.
+
+## Define attributes
+
+Set up attributes once, use them everywhere. Define which fields matter for your organization:
+
+1. Using the sidebar, navigate to **Settings → Alerts**
+2. Click the **Settings icon** (gear icon in top right)
+3. Select **Attributes**
+4. Click **+ Add attribute** to create a new attribute (see [recommended attributes](#recommended-attributes) below)
+5. Configure the fields:
+   - **Name**: What to call the attribute (e.g., Team, Service, Customer)
+   - **Resource type**: Link to Catalog types or store as plain text (String)
+   - **Multi-value**: Allow multiple values per alert
+   - **Required**: Mark as required when this attribute is critical for routing and escalation
+6. Click **Save changes**
+
+**String (text) attributes** store freeform data like error messages or URLs. **Catalog-powered attributes** link to your organizational structure and enable dynamic routing.
+
+<Tip>
+To use Catalog-powered attributes, set up your [Catalog](/product-documentation/catalog) first.
+</Tip>
+
+### Recommended attributes
+
+Start with these commonly used attributes to enable powerful routing and automation:
+
+| Recommended attribute | Common uses |
+|----------------------|------|
+| <Badge color="purple">Team</Badge> | Routes alerts to the right team automatically, tracks which teams are affected across grouped alerts |
+| <Badge color="yellow">Service</Badge> | Groups alerts by service for routing and insights, helps identify which services generate the most alerts |
+| <Badge color="blue">Feature</Badge> | Groups alerts by product area, especially useful for insights and analysis, can trigger automations (e.g., update status page for feature outages) |
+| <Badge color="red">Customer</Badge> | Triggers customer-specific workflows, for example automatically add the account's CSM to incidents |
+| `Labels` | Catch-all for key-value pairs from alert sources, avoids creating 15+ individual attributes for every piece of metadata |
+
+### Labels
+
+Labels bundle multiple key-value pairs without requiring individual attribute setup. Alert sources like Grafana, Datadog, and Sentry send lots of metadata (`resource_type`, `cluster`, `namespace`, `environment`) as labels. Instead of creating a separate attribute for each, use labels to pull through all key-value pairs automatically.
+
+This lets teams add new labels to their monitoring tools without additional configuring anything in incident.io. Labels appear automatically on alerts for debugging and context.
+
+For example, a Grafana alert might include labels as a single alert attribute with information like:
+- `cluster: us-east-1`
+- `namespace: production`
+- `resource_type: pod`
+- `severity: critical`
+
+### Required attributes
+
+Mark attributes like <Badge color="purple">Team</Badge> as `Required` to ensure all alerts include critical fields. When required attributes are missing, incident.io notifies admins via email or Slack—helping you catch configuration issues before they break routing.
+
+For example, if your alert routing depends on the team attribute and it's missing, admins are notified immediately to fix the upstream configuration.
+
+<Tip>
+Only mark attributes as required when every alert is expected to include that value.
+</Tip>
+
+## Extract attributes from sources
+
+Extract attribute values from alert payloads when setting up and configuring [alert sources](/product-documentation/on-call/alert-sources). Use AI recommendations, or use custom logic to extract specific attributes.
+
+### Extract using AI
+
+AI analyzes your alert payload and automatically suggests which attributes to extract, matching fields like <Badge color="purple">Team</Badge>, <Badge color="yellow">Service</Badge>, or <Badge color="red">Customer</Badge> to your defined attributes and existing Catalog entries.
+
+**To use AI-powered extraction:**
+
+1. Follow the [alert source setup](/product-documentation/on-call/alert-sources) steps and navigate to the final stage **Configure your setup**
+2. Click **Review attributes** to see AI suggestions based on your payload
+3. For each suggested attribute:
+   - Click **Accept** to add the attribute extraction (e.g., parse Team from payload)
+   - Click **Skip** to ignore the suggestion
+4. Accepted attributes appear in **Your attributes** section
+
+### Extract with custom logic
+
+Extract specific attributes from alerts or transform values when you need custom logic.
+
+**To link an existing attribute from the alert source payload:**
+
+1. In the Attributes section during source setup, click **+ Add**
+2. Select **Link an existing attribute** and choose an attribute from your catalog
+3. The attribute automatically maps to matching fields in your payload
+
+**To create custom extraction with JavaScript:**
+
+1. In the Attributes section during source setup, click **+ Add**
+2. Select **Create a new attribute** and enter the attribute name (e.g., Team slack channel)
+4. Write JavaScript (ES5) expression to extract the value from your payload
+5. Configure the result type (String, Customer, Business functionality, etc.)
+
+**Common custom extraction scenarios:**
+
+**Extract from nested arrays**
+
+When a monitoring tool sends data in arrays, filter to find the specific value you need:
+
+```javascript
+// Extracts feature name from tags like ["feature:payments", "env:prod"]
+$.metadata.tags.filter(function(tag) {
+  return tag.startsWith("feature:")
+})
+```
+
+**Add fallback values**
+
+When different alert sources use different field names, add fallbacks to ensure the attribute always gets populated:
+
+```javascript
+// Try multiple possible locations for team name
+$.metadata.team || $.labels.team || "unknown"
+```
+
+This tries `$.metadata.team` first, then `$.labels.team` if that's empty, and finally defaults to "unknown" if neither exists.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why are my attributes missing?">
+    When alerts arrive without expected attribute values, click **Inspect** on any alert to view the original payload, JavaScript expressions, and extraction results.
+
+    Common causes:
+    - **Inconsistent payloads**: Your monitoring tool sends different data structures for different alert types. Add fallback expressions using `||` (e.g., `$.metadata.team || $.labels.team`)
+    - **Missing Catalog entries**: For Catalog-powered attributes, text values from your payload must match Catalog entries. Use **External IDs** as your system's canonical identifier or add **Aliases** for naming variations. For example, a team called "Payments" might have aliases "payments", "paymnts", and "billing-team" so alerts from different monitoring tools all map to the same Catalog entry.
+
+    Edit attribute expressions in your alert source to add fallbacks or adjust extraction logic.
+  </Accordion>
+
+  <Accordion title="How do I set up and map priorities?">
+    Create priorities based on alert severity in **Settings → Alerts → Priorities**. Define priority levels like `P1`, `P2`, `P3` that correspond to severity values from your monitoring tools. Use these priorities in [alert routes](/product-documentation/on-call/alert-routing) and [escalation paths](/product-documentation/on-call/escalation-paths) to control escalation behavior.
+
+    For example, route `P1` alerts directly to senior engineers while `P2` alerts follow standard escalation.
+
+    **Map incoming severities to priorities:**
+
+    Navigate to **Settings → Alerts → Priorities**, edit a priority, and add aliases to map incoming alert severities:
+    - **P1**: Add aliases "critical", "error", "urgent"
+    - **P2**: Add aliases "high", "major"
+    - **P3**: Add aliases "medium", "warning"
+
+    Note: Priority matching is case-sensitive, so "High" and "high" are different.
+  </Accordion>
+
+  <Accordion title="What's the difference between String and Catalog attributes?">
+    **String (text) attributes** store freeform data like error messages, URLs, or environment names. Use these when you don't need to link the value to other parts of incident.io.
+
+    **Catalog-powered attributes** link to your organizational structure (teams, services, etc.) and enable dynamic routing. When you set an attribute like <Badge color="purple">Team</Badge> to a Catalog type, you can use expressions like `alert.team.escalation_path` to automatically page the correct team.
+
+    Choose Catalog attributes when you need to route alerts or connect to escalation paths. Choose String attributes for context that doesn't need automation.
+  </Accordion>
+
+  <Accordion title="When should I use aliases vs External IDs?">
+    **External IDs** are your system's canonical identifier—immutable and unique. Set these first as the "source of truth" for each Catalog entry.
+
+    **Aliases** handle naming variations. Add multiple aliases to match different ways your monitoring tools refer to the same thing. For example, a team might have External ID `platform-team` but aliases "platform", "platform-eng", "Platform Engineering".
+
+    Use both together: External IDs keep things organized internally, while aliases make sure alerts from different tools all match the same Catalog entry.
+  </Accordion>
+
+  <Accordion title="Where can I see attributes?">
+    Alert attributes appear across incident.io to give responders context:
+    - **Alerts table** (**On-call** → **Alerts**) - Scan attributes across multiple alerts
+    - **Alert sidebar** - Click any alert to see all attributes, or click **Inspect** to view raw JSON
+    - **Mobile app, SMS, voice** - Critical context when being paged via [mobile app](/product-documentation/on-call/mobile-app-push-notifications), [SMS, or voice calls](/product-documentation/on-call/sms-and-voice)
+    - **Incident channels** - View alert attributes as incident context
+  </Accordion>
+</AccordionGroup>

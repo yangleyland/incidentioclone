@@ -1,0 +1,53 @@
+---
+title: "Allowlisting IP addresses for VCS/on-premise integrations"
+description: ""
+canonical_article_id: 241
+migrated_at: "2026-01-21T18:54:02Z"
+source_url: "https://help.incident.io/articles/8242295180-allowlisting-ip-addresses"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8242295180-allowlisting-ip-addresses) on January 21, 2026
+</Info>
+
+When communicating with on-premise services e.g. Jira Server, or other services which may enforce IP-allowlisting (e.g. Gitlab or GitHub), we use specific IP addresses.
+
+Some services, when run in an on-premise or enterprise SaaS configuration, encourage you to use IP addresses to filter traffic from unknown sources, however we strongly recommend that you use additional strategies to secure your instance, including SSL/TLS.
+
+## IP addresses
+
+The following IP addresses are currently used:
+
+Plain Text 
+
+```plaintext
+34.91.219.113
+34.32.171.26
+146.148.114.148
+104.155.67.8
+```
+
+If using our **AI SRE** product, access must be allowed from **additional** IP addresses:
+
+Plain Text 
+
+```plaintext
+34.52.216.178
+34.140.142.231
+35.204.31.148
+35.204.114.23
+```
+
+## Further information
+
+All IP addresses stated above are reserved solely for [incident.io](http://incident.io/) application usage only, and not shared with other organisations or infrastructure.
+
+We will send **notice 2 weeks in advance** of any changes to this list, to all customers using an integration dependant on these addresses.
+
+All requests from incident.io to on-premise integrations are made using secure cryptography to protect data in transit.
+
+<Info>
+
+To ensure changes to follow-ups in **Jira Server** specifically sync back to incident.io, you'll need to register a webhook. Learn [how to do that here](/help-centre/setting-up-a-webhook-in-jira-server) .
+
+</Info>

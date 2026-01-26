@@ -1,0 +1,50 @@
+---
+title: "Zoom: diagnosing common issues"
+description: ""
+canonical_article_id: 335
+migrated_at: "2026-01-21T18:55:17Z"
+source_url: "https://help.incident.io/articles/8779686436-zoom-diagnosing-common-issues"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8779686436-zoom-diagnosing-common-issues) on January 21, 2026
+</Info>
+
+This page gives extra detail on errors that you might see when using Zoom for your incident calls, or when using Scribe to transcribe them.
+
+## Meeting not found
+
+We need to look up data about the call, in order to fetch information about the people who are participating. If you see this error, it is because we weren't able to fetch information about the current call. If the call URL was set manually, please check that the call can be accessed by the Zoom account that was used to connect the Zoom integration.
+
+## Host has disallowed web clients
+
+This means that the meeting host has forbidden joining the call from the web, which prevents Scribe from joining. Sometimes, this can be because E2E encryption has been enabled for the call.
+
+## I've enabled Scribe, but it's not joining my calls?
+
+We require new permissions for Zoom and Google Meet to enable call transcription. If you previously had those integrations setup it might be that you are using an older version of our permissions.
+
+Please make sure to update to the latest by re-authenticating the integration to ensure you have the right permissions.
+
+If you're still seeing issues with Zoom, please check your settings in the Zoom app to ensure that recording has been allowed.
+
+![image.png](/images/help-centre/zoom-diagnosing-common-issues/screenshot-1.png)
+
+## Scribe is joining my Zoom calls, why am I not seeing a transcript?
+
+We rely on Zoom meeting captions to generate the transcript of your call. If the bot joined your call but you're not seeing a transcript after a few minutes, it could be because you have meeting captions disabled.
+
+To enable meeting captions, navigate to **Host Caption Control Settings** while in a Zoom meeting, then enable the setting called **Allow Closed Captioning for this meeting.**
+
+![image.png](/images/help-centre/zoom-diagnosing-common-issues/screenshot-2.png)
+
+![image.png](/images/help-centre/zoom-diagnosing-common-issues/screenshot-3.png)
+
+If you don't see the option to enable meeting captions in your Zoom client, you likely have the setting turned off globally.
+
+To resolve this, simply go to [Zoom settings](https://zoom.us/profile/setting?tab=meeting) and flip the toggle for **Automated captions.**
+
+![image.png](/images/help-centre/zoom-diagnosing-common-issues/screenshot-4.png)
+
+If **this is the first time you've installed Zoom** , we recommend to ensure you've ticked the option to allow shared access permissions at the bottom referenced [here](/help-centre/api-and-integrations/communication/zoom)
+Should you continue to experience issues, please reach out to support.

@@ -1,0 +1,316 @@
+---
+title: "Setting up Teams in Catalog"
+description: ""
+canonical_article_id: 4629305061
+migrated_at: "2026-01-23T13:38:10Z"
+source_url: "https://help.incident.io/articles/4629305061-setting-up-teams-in-catalog"
+internal: true
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4629305061-setting-up-teams-in-catalog) on January 23, 2026
+</Info>
+
+Understanding the teams within your organization is a key part of driving successful incident response. By setting up teams allows you can create powerful automations & unlock new features. For example:
+
+
+
+- Workflows:
+  - Show or require different information when a user is declaring an incident, depending on what team they’re in
+  - Auto-subscribe managers to incidents that their team members are participating in
+  - Restrict accepting a security incident to only members of the infrastructure & security group
+  - Automatically set custom fields based on who is assigned to a role in an incident
+- Features:
+  - In Insights, understanding how many hours each team spends on incidents
+  - In Insights, spot trends in follow-up completion rates by team
+  - In Filters across our dashboard, filter Incidents by the team that reported the incident
+
+
+
+We know that every organization is different, so we allow you to model teams **flexibly** using **Catalog** . This allows you to model your specific organization structure, without having to fit into someone else's box. For example, you could have:
+
+
+
+- A Catalog type **Team** that has **Members** , a **Manager** , and **** a **Tech Lead**
+- A Catalog type **Division,** which contains a list of the **Teams** that it includes
+- A Catalog type **Function** which has **Members** so you know whether someone is an Engineer, a Product Manager or a Customer Success Manager
+
+
+
+**Both Step 1 and Step 2 are required in order to leverage Teams across our entire application (including Insights!).**
+
+
+
+## Step 1: Setting up Teams
+
+
+
+To get set up with Teams in Catalog, you have two options:
+
+
+
+1. Create Teams via [the dashboard](https://app.incident.io/~/catalog) , and manage them with a point-and-click interface
+  1. Head to [Settings → Teams](https://app.incident.io/~/settings/teams)
+  2. Click 'Get started'
+2. Use the [Catalog Importer](https://github.com/incident-io/catalog-importer/tree/master/docs) to create Teams from your own data source (e.g. manage them in Github or Gitlab)
+  1. Follow the Catalog Importer installation instructions
+  2. Ensure that all *user* attributes, e.g. Team Members, use the `User` type rather than `SlackUser` ( [see example](https://github.com/incident-io/catalog-importer/tree/master/docs/simple) )
+
+
+
+*Note: You can also get started with the point-and-click interface, and then* [export your teams](https://incident-io-knowledge-base.help.usepylon.com/articles/2752354608-managing-catalog-types-in-github) *to Github once you’re happy with the setup.*
+
+
+
+As an example, here’s our Post Incident engineering team represented in our Catalog, where the Team Lead and Members attributes are both of the type **incident.io User** :
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-1.png)
+
+
+
+Once you've connected Teams → Users, there's lots of powerful things you can now do.
+
+
+
+As an example, you can now write a Workflow Expression that takes the Affected Feature of an incident, finds the owning team, grabs the Team Manager, and then in a Workflow Step assigns an Action to that Team Manager. Powerful stuff!
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-2.png)
+
+
+
+However, a ton of value can be unlocked in the other direction, e.g. going from User → Team. For example:
+
+
+
+- In Workflows, only execute the Workflow if the Reporter is part of the Database team.
+- In Insights, understanding how many hours each team spends on incidents.
+- In Insights, spot trends in follow-up completion rates by team.
+- In Filters, return a list of Incidents that include a Participant from the Infrastructure team.
+- And many more...
+
+
+
+These User → Team examples require us to add a little bit more configuration.
+
+
+
+## Step 2: Going from User → Team
+
+
+
+To unlock the real power of Teams, you'll want to be able to *navigate* from a **User** to the **Team** they’re in, across incident.io features like Forms, Workflows, and more.
+
+
+
+To do this, we need to create a **Backlink** .
+
+
+
+<Info>
+
+
+
+**More details about Backlinks**
+
+
+
+*In almost all cases you'll configure your Teams in Catalog by adding "Members" to the "Team" catalog type. Why? It's much quicker to open a specific Team, and then add all Members of that team in a single dropdown select, rather than going through every person in your organisation, and adding the Team which they're in. It's just quicker & easier to start with Teams!*
+
+
+
+*So, in most cases, you've associated Teams → Users, but you're missing the "Backlink" from Users → Teams. It would be a lot of wasted effort to have to also go through all Users and re-pick their Team (e.g. Alice is in Team A, Bob is in Team B). Instead, you simply want to leverage the pre-existing connection (that you've already built) between Teams → Users, but in the other direction: Users → Teams. This is what Backlinks do!*
+
+
+</Info>
+
+
+
+A Backlink enables you to create powerful automations that start with "for this user... I want to do this thing". So, if we don't create a Backlink, you'll only be able to build automations that start with "for this team... I want to do this thing".
+
+
+
+So, let's get our User → Team Backlink set up:
+
+
+
+Head over to your [User catalog type](https://app.incident.io/~/catalog) (in the Users section of the Catalog homepage), open it, and hit "Edit type".
+
+
+
+Then, create an attribute called Team, and choose from the relevant Backlink (in most cases this will be called "Members" or "Team Members":
+
+
+
+![image (15).png](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-3.png)
+
+
+
+*Note: You'll also see other options here if you have other attributes with the type User. For example, Team → Tech Lead would return the Team for which the User is a Tech Lead of. For this example, let's just set up the "Members" Backlink.*
+
+
+
+We can then specify whether we expect users to be a member of multiple teams, or just one.
+
+
+
+<Warning>
+
+
+
+Our [Teams dashboard in Insights](https://app.incident.io/~/insights/teams) will only work if Users are Members of **just one** Team. This is because if a User is associated with multiple teams, it's not possible to assign the hours worked to a given Team, and we want to avoid double counting).
+
+
+</Warning>
+
+
+
+At incident.io, we expect users to be part of a single team, so we can choose ‘Just one’:
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-4.png)
+
+
+
+We now have a new attribute **Team** which represents ‘the Team which this user is a member of’.
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-5.png)
+
+
+
+And that's it, you've now set up everything you need to leverage Users and Teams across our entire application. Happy User & Teams-ing!
+
+
+
+## Another Backlink Configuration Example
+
+
+
+Just to cement what we've done in this guide, here's another example...
+
+
+
+Let's assume you have a Features catalog type, and a Feature Areas catalog type (e.g. the higher-level category that a set of features are part of). When setting up Catalog, you map all Features to a Feature Area.
+
+
+
+It would be extremely repetitive, difficult to maintain, if you then needed to also map all Feature Areas to Features. This means your Feature Area catalog type ends up looking like this (note: the lack of "link" back to Features):
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-6.png)
+
+
+
+So, in order to "go the other way", you'll want to set up a Backlink such that you can access Features from the Feature Area catalog type.
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-7.png)
+
+
+
+Which results in a Feature Area catalog type that has a Backlink to Features.
+
+
+
+## Configuring Backlinks via Catalog Importer
+
+
+
+If you'd like to add Backlinks to a catalog type that you're managing via Catalog Importer, no problem!
+
+
+
+In your Catalog Importer config, you'll need to add `backlink_attribute: id` , where `id` = the ID of the attribute that defines the link between your source and target catalog types. Note: You'll also want to drop the `source` property from the Backlinked attribute.
+
+
+
+In [our Features and Feature Areas example](https://incident-io-knowledge-base.help.usepylon.com/articles/4629305061-setting-up-teams-in-catalog#another-backlink-configuration-example-57) , your Catalog Importer config would look something like this:
+
+
+
+```plaintext
+// Feature
+attributes: [
+  {
+    id: 'feature_area',
+    name: 'Feature Area',
+    type: 'Custom["Feature Area"]',
+    array: true,
+    source: '$.feature_area',
+  }
+]
+
+// Feature Area
+attributes: [
+  {
+    id: 'features',
+    name: 'Features',
+    type: 'Custom["Feature"]',
+    backlink_attribute: feature_area
+  }
+]
+```
+
+
+
+## Examples
+
+
+
+There are many examples of how you can use your new Teams catalog type, especially the User → Teams link.
+
+
+
+### Example Usage: Incident Forms
+
+
+
+You can now customise your declare incident form based on the user’s team, like defaulting the affected team to the current user’s team or showing / requiring fields based on the user. Check it out in [Settings → Forms](https://app.incident.io/~/settings/forms) .
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-8.png)
+
+
+
+### Example Usage: Workflows
+
+
+
+You can now use a user’s team to build out workflows. In this example, we’ll auto-subscribe Engineering Managers to every incident that someone in their team is participating in. This helps keep managers aware of where members of their team might be unexpectedly spending time, and who might need support.
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-9.png)
+
+
+
+### Example Usage: Restricted Incident Types
+
+
+
+You can now restrict an incident type by rule - here, we’re saying that only users in the Infrastructure team can accept security incidents.
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-10.png)
+
+
+
+### Example Usage: Automatically Set Custom Fields based on Roles
+
+
+
+You can now automatically set custom fields based on who is assigned to a role in an incident, for example "set 'affected team' based on which team the incident lead is a member of".
+
+
+
+![](/images/help-centre/internal/setting-up-teams-in-catalog/screenshot-11.png)

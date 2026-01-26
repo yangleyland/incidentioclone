@@ -1,0 +1,62 @@
+---
+title: "Notion"
+description: "Export post-mortems into Notion to collaborate with your team"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Notion
+
+After your incident is over, it can be useful to dig into what happened in an incident, why, and how it can be prevented in the future.
+
+Our Notion Integration allows you to export post-mortems into Notion. Which you can then use to collaborate with your team.
+
+<img src="/images/integrations/notion/notion-export-example.png" alt="Notion export example" />
+
+---
+
+# Installation
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations), find "Notion" and click "Install".
+
+<img src="/images/integrations/notion/settings-integrations.png" alt="Settings integrations page" />
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user who installed it**. Notion connections like this, which use OAuth, belong to a specific user — for this reason, you may wish to set up a dedicated service or "bot" account.
+
+Click "Install in Notion", and you'll be redirected to the install flow within Notion. Review the permissions we're requesting, and click "Next"
+
+<img src="/images/integrations/notion/notion-permissions.png" alt="Notion permissions screen" />
+
+We also need to install a template for the pages we create. Click "Use a template provided by the developer", and then "Allow access"
+
+<img src="/images/integrations/notion/notion-template.png" alt="Notion template installation" />
+
+## You're done
+
+Congratulations, it's been installed
+
+You'll find the page in your private Notion space – move it to somewhere that suits you, and that can be accessed by everyone.
+
+<img src="/images/integrations/notion/installation-complete.png" alt="Installation complete" />
+
+---
+
+# Exporting your first post-mortem
+
+1. Go to the incident timeline of an incident
+
+2. On the right-hand side, in the "Post-mortem" section, click "Create a post-mortem"
+
+<img src="/images/integrations/notion/create-postmortem.png" alt="Create post-mortem button" />
+
+3. The 'Create post-mortem modal" will appear
+
+- Select "Notion" from the destinations
+- Select your template
+- Select which timezone should be used
+- Click "Create" and wait a few seconds
+- Your post-mortem document has been created, and it'll be linked to the incident page
+
+<img src="/images/integrations/notion/postmortem-modal.png" alt="Create post-mortem modal" />

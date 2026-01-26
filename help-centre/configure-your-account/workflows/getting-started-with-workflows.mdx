@@ -1,0 +1,198 @@
+---
+title: "Getting started with Workflows"
+description: ""
+canonical_article_id: 29
+migrated_at: "2026-01-21T18:57:56Z"
+source_url: "https://help.incident.io/articles/7288327080-getting-started-with-workflows"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7288327080-getting-started-with-workflows) on January 21, 2026
+</Info>
+
+## Quick start
+
+If you're short on time, watch this 3-minute video on how to build a workflow in incident.io:
+
+<iframe src="https://www.loom.com/embed/3a7ea36474bc468abdab045b19d27d06" width="100%" height="400" allowfullscreen></iframe>
+
+## Introducing workflows
+
+Workflows allow you to automate certain actions and behaviors based on specific triggers. For example, [incident.io](http://incident.io/) can automatically invite users or user groups to a particular Slack channel when a specific custom field is set on an incident.
+
+![A diagram of an example workflow: the trigger to start the workflow is ](/images/help-centre/getting-started-with-workflows/screenshot-1.png)
+
+## Parts of a Workflow
+
+## Triggers: what should cause the workflow to run
+
+Think of a trigger as something that happens to set off a chain of events. You can choose from the following pre-defined triggers:
+
+- An incident is created or changed
+- Someone joins an incident channel
+- Someone posts a message in an incident channel
+
+## Conditions: which incidents or users this workflow should run for
+
+Conditions are a set of criteria that control when the workflow should run. If you don't set any conditions, the workflow will apply to **all** incidents/users.
+
+For example, if you choose the "someone posts a message in an incident channel" trigger, and don't add any conditions, the workflow will run for every new message posted in the incident channel.
+
+Depending on the workflow trigger, you can choose from a number of fields such as:
+
+- Incident severity
+- Incident role
+- Incident status
+- User (where applicable)
+- Content of a Slack message (where applicable)
+- Any [Custom Fields](https://www.notion.so/2fde7f61efe34fa7b3d93e54e26aa4d0) you've defined
+
+An example condition might be to invite a particular user group to an incident channel only if the severity is high, or the incident is of a certain type (ie, Data Breach).
+
+## Steps: what should happen when the workflow runs
+
+These are the actions or behaviors which happen when the trigger fires and the criteria for the workflow are met.
+
+A workflow can have one or more steps, which will be executed in order. Just a few examples are:
+
+- Send a message to a Slack channel
+- Send a direct message to one or more users
+- Post an incident announcement in a Slack channel
+- Create incident actions
+- Create incident follow-ups
+- Prompt a Decision Flow
+- Invite a user or user group to the incident channel
+
+*Is there a step you'd like to see? Let us know in the* [Community Slack](https://incident.io/community) *!*
+
+## Viewing your workflows
+
+The "Workflows" link on the top menu bar of the Web UI takes you to Workflows Home. This is where you can see - and make changes to - your organization's workflows.
+
+If you don't have any workflows yet, you'll see a list of templates that you can use to get started.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-2.png)
+
+Click the workflow name to open detailed information, or make changes to the workflow directly with the "edit" and "delete" buttons to the right of each list item.
+
+**Getting Started with Workflows**
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-3.png)
+
+## Creating a workflow
+
+## Getting started
+
+## From a template
+
+From the Workflows Home page, find the top section with the heading "Templates".
+
+In the template you want to set up, click "Start from this template".
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-4.png)
+
+You'll be taken to the "Create a Workflow" page, with the details already filled out.
+
+## From scratch
+
+Create your own workflow from scratch by clicking "New workflow" in the top right-hand corner of Workflows Home.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-5.png)
+
+You'll then be prompted to choose a trigger for the workflow. This is the event that needs to happen for the workflow to run.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-6.png)
+
+Clicking one of these triggers will take you to a form where you can configure the workflow to your liking.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-7.png)
+
+## Configuring your workflow
+
+## Name
+
+Give your workflow a name that describes what it does. We'll use this name in the list of workflows you see when you open Workflows Home, and we'll link back to it when your workflow posts in Slack. If you don't pick a name, we'll create one for you!
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-8.png)
+
+## Conditions
+
+Here, you can choose the specific criteria that will control whether or not the workflow runs when the trigger fires. For example, you might want to only run the workflow for incidents with particular severity, or incidents where you're the incident lead.
+
+If you don't add any conditions, the workflow will run for all incidents (and if your trigger involves users, e.g. "when someone joins an incident", it will run for all users).
+
+Click the "Add condition" button to add a new condition.
+
+In the dialog that appears, click the entity you want to filter for this condition.
+
+The options you get will depend on the entity you've selected but might include `is set` / `is not set` , `contains` , or `is one of` / `is not one of` .
+
+Not all operators support values - for example, `is set` or `is not set` is a simple true or false value, so you won't be able to choose a value for that.
+
+`is one of` and `is not one of` operators will give you a list of values to choose from: you can choose as many as you like.
+
+## Steps
+
+Steps are the tasks that the workflow will execute when the conditions are matched. For example, they might include posting a message or inviting a Slack user to a particular Slack channel. You can add multiple steps to a workflow (maximum 20).
+
+You need to add at least one step before you can save your workflow.
+
+Click the "Add a step" button to add a new step to your workflow. In the dialog that appears, choose the step you want to add.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-9.png)
+
+You'll then be asked to configure the step you've chosen. The configuration options differ depending on the step.
+
+For example, you might be able to choose a Slack channel or user, write a message, or select a [Decision Flow](https://app.incident.io/settings/decision_flows) to trigger.
+
+## Trigger options
+
+If an option has a "Use variable" button next to it, it's a special dynamic value that depends on the incident - for example, "Incident Slack channel" will be the Slack channel that [incident.io](http://incident.io/) creates for a given incident, and will be unique for each incident.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-10.png)
+
+## Saving your new workflow
+
+Once you've finished adding steps, click the "Save as draft" button at the bottom of the page. If you're ready to set this live, then hit the "Save and set live" button. Once you've set this live, you'll just see a "Save" button.
+
+## Viewing workflow details
+
+When editing a workflow, you can hit the Activity button to view the run history.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-11.png)
+
+A list of runs looks looks like this:
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-12.png)
+
+## Testing a workflow
+
+Testing a workflow will check that your steps work as you expect them to. Due to technical limitations, you can't currently test any workflow conditions.
+
+Click the "Test" button at the top of the workflow.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-13.png)
+
+Choose an incident to test a workflow against, and we'll run the workflow steps you selected. If the trigger involves a user, we'll ask you to select a user for the test as well.
+
+You can use a [test incident](https://www.notion.so/cf2afaf86aa449ad80f2417aebb94884) for this purpose.
+
+For example, if you have a workflow that sends a direct message to a user who joins an incident channel, selecting a specific Slack user in the `Test workflow` dialog will send your workflow's message to that user once you click "Test". For this reason, we advise that you choose your own name!
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-14.png)
+
+We'll then run the workflow, and let you know whether everything worked as expected.
+
+## Make changes to an existing workflow
+
+Click the name of the workflow you want to edit. Here, you can make changes to the name, conditions, and steps.
+
+![](/images/help-centre/getting-started-with-workflows/screenshot-15.png)
+
+You can't change the workflow trigger - you'll need to delete the workflow and create a new one with a different trigger.
+
+Click the "Save" button to save your changes. All future workflow runs will use the new configuration.
+
+## Delete a workflow
+
+Click the "Delete workflow" option in the "..." menu to delete the workflow. Note that deleted workflows can't be restored, so make sure you're deleting the right one!

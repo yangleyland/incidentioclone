@@ -1,0 +1,86 @@
+---
+title: "Keeping your customers in the loop"
+description: ""
+canonical_article_id: 64
+migrated_at: "2026-01-21T18:11:01Z"
+source_url: "https://help.incident.io/articles/4650758933-keeping-your-customers-in-the-loop"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4650758933-keeping-your-customers-in-the-loop) on January 21, 2026
+</Info>
+
+Good incident management is about good communications. Sharing updates regularly to keep your customers ( [and team](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/sharing-status-updates-with-your-team) !) updated is a great practice to get into.
+
+There are 2 ways you can send updates to your customers in incident.io:
+
+- If you use a **public status page** , [you can connect it to incident.io](/help-centre/api-and-integrations/communication/statuspage) to update it in 2 clicks
+- Send updates **using incident.io** [Workflows](https://app.incident.io/workflows) : you can send customised email updates to customers
+
+*We're working on our own status page replacement -* [get in touch](http://incident.io/community) *to tell us your wishlist!*
+
+---
+
+## Broadcasting via a status page
+
+Many organisations use [Statuspage](https://www.atlassian.com/software/statuspage?&aceid=&adposition=&adgroup=105159877168&campaign=9727779962&creative=542925905936&device=c&keyword=statuspage&matchtype=e&network=g&placement=&ds_kids=p52662632874&ds_e=GOOGLE&ds_eid=700000001541417&ds_e1=GOOGLE&gclid=Cj0KCQiAr5iQBhCsARIsAPcwROOx2VeQcgYn60PH4-3G67YH30xcaJak-bzEJAON8vVT85fclVpgCZIaAiNJEALw_wcB&gclsrc=aw.ds) to create a public webpage that customers can refer and subscribe to to stay informed about incidents.
+
+Once you have set up a status page with incident.io or [connected your Atlassian Statuspage to incident.io](/help-centre/api-and-integrations/communication/statuspage) , just **hit** `/incident statuspage` **to keep your status page updated** with the latest information!
+
+<iframe src="https://www.loom.com/embed/03def85c8f2a4f7593b4eed1aff6149e" width="100%" height="400" allowfullscreen></iframe>
+
+️ *Automatic status page updates are on our* [roadmap](http://incident.io/roadmap) *but not available yet*
+
+*In the meantime, on top of our built-in nudges (see video), you could also set up a* [Workflow](http://app.incident.io/workflows) *like the one below to remind your team to update your status page!* 👇🏼
+
+![](/images/help-centre/keeping-your-customers-in-the-loop/screenshot-1.png)
+
+---
+
+## Targeted updates via incident.io
+
+If you do not have a status page, or want to do conditional updates, [Workflows](http://app.incident.io/workflows) is what you're looking for! Workflows will let you, for example:
+
+- Send a customised message (email, SMS, Slack message etc.) to a specific customer when an incident affecting them is declared, updated or closed
+- Send an email to all your customers when an incident's severity crosses a certain threshold
+- Send an incident update to a Slack Connect channel with your customer
+- ...
+
+Building a Workflow is very simple! Let's use the first case above as an example
+
+1. **Pick the communication trigger**
+
+Do you want the customer communication (email, Slack message etc.) to be sent when:
+
+- An incident is created, or its details (severity, status etc.) are updated; or
+- When a teammate shares a status update message?
+
+*Note: you can of course use the other 2 triggers, though those tend to be for more internal uses.*
+
+In this example, we'll pick ' *When an incident is created or changed* ', as we want to inform our customer when someone creates an incident affecting them.
+
+![](/images/help-centre/keeping-your-customers-in-the-loop/screenshot-2.png)
+
+2. **Select some conditions that need to be met for the comms to go out**
+
+For example, you might want customers to only be informed of Critical incidents. Or you might have a [Custom Field](/help-centre/creating-and-running-incidents/creating-a-new-incident/customizing-your-incident-creation-form-using-custom-fields) that tracks affected customers, systems or customer journeys - so you can pick a condition that fires comms only when specific values of those fields are met.
+
+For our example, we'll use our Custom Field ' *Customer* ' to alert our customer Globex Corporation that an incident affected them has arisen. We'll also add an extra condition to only update them if the incident is Major or Critical, so we don't make them hit the panic button for small issues.
+
+![](/images/help-centre/keeping-your-customers-in-the-loop/screenshot-3.png)
+
+3. **Add your communication channel and personalise your message**
+
+You can now add the communication channel (or channels - you can add multiple Steps!) you'd like to use for your customer communication, and use our editor to customise your message with the right information.
+
+For this example, we'll choose to send an email to our example client. We'll use handy variables to automatically fill out the right Affected Component and Incident Lead values
+
+![](/images/help-centre/keeping-your-customers-in-the-loop/screenshot-4.png)
+
+4. **Hit** `Create` **and you're all set**
+
+Check out the end result for our example!
+
+![](/images/help-centre/keeping-your-customers-in-the-loop/screenshot-5.png)
+
+If you need any help setting those up or are looking for triggers, conditions or steps you can't see, [get in touch](http://incident.io/community) !

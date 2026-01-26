@@ -1,0 +1,138 @@
+---
+title: Schedules overview
+description: Define who is on-call and when, so alerts can be routed to the right responders.
+---
+
+Schedules form the foundation of reliable on-call behaviour across incident.io, elimating manual coordination about who responds to alerts at any moment. Once configured, schedules are referenced across [alert routes](/product-documentation/on-call/alert-routing) and [escalation paths](/product-documentation/on-call/escalation-paths), to automatically determine who should be notified and when.
+
+Configure schedules in **On-call → Schedules** to create, edit, and preview coverage.
+
+## Schedule components
+
+Every schedule is made up of a small set of core components that control who is on-call and when.
+
+| Element | Description | Example |
+|--------|-------------|---------|
+| **Responders** | Users and teams that can be scheduled on call. | Individual <Badge color="blue">Users</Badge>, one or more <Badge color="purple">Teams</Badge>, or a combination. |
+| **Rotations** | The order responders take turns being on call. | Rotate through responders sequentially. |
+| **Handover time** | The moment responsibility passes to the next responder. | Every Monday at 09:00 (UTC). |
+| **Shifts** | How often responsibility changes over time. | Daily, weekly, or custom shift changes. |
+| **Working hours** | Time windows that define when responders are on call. | Business hours per region in a follow-the-sun model. |
+
+## Set up on-call coverage
+
+<Steps>
+  <Step title="Create a schedule">
+    Navigate to **On-call → Schedules** and select **Create schedule**.
+  </Step>
+  <Step title="Add responders">
+    Select teams or individual users who can be on-call. Teams are resolved via the [Catalog](/product-documentation/catalog) and ensure schedules stay in sync as membership changes.
+  </Step>
+  <Step title="Configure rotations and coverage">
+    Configure how and when responders rotate, including the handover time, number of concurrent shifts, and coverage hours.
+  </Step>
+  <Step title="Preview and save">
+    Preview upcoming handovers and coverage before saving the schedule.
+  </Step>
+</Steps>
+
+<Info>
+For more advanced setups, schedules can include multiple rotations to support use cases such as follow-the-sun coverage.
+</Info>
+
+## How schedules behave
+
+Once a schedule is configured, incident.io uses its rules to determine who is responsible for responding to alerts over time. Schedule behaviour is deterministic and applies consistently across alerting and escalation.
+
+#### Timezone handling
+
+Each schedule uses a defined timezone to calculate handover times.
+
+Rotations advance according to this timezone regardless of where responders are located. Different rotations within the same schedule can use different timezones, supporting follow-the-sun coverage across regions.
+
+#### Resolving on-call responsibility
+
+To determine who is on call at a given moment, incident.io evaluates the current time, the configured working hours, the active rotations, and the schedule timezone.
+
+Each rotation resolves to a single on-call responder at any point in time.
+
+When multiple rotations are active simultaneously, all responders from active rotations are considered on-call. Escalation paths and notifications will include all users who have active shifts at that moment across all rotations.
+
+#### Asymmetric rotations
+
+Rotations do not need to use equal shift lengths.
+
+You can configure unequal shift durations, such as a three day shift followed by a four day shift. When the number of shifts matches the number of responders, incident.io balances on-call hours evenly over time, even if individual shifts differ in length.
+
+#### Repeating responders
+
+A responder can appear multiple times within the same rotation.
+
+This increases their on-call frequency relative to others and can be used to weight coverage or model escalation layers. incident.io surfaces a warning when responders are repeated but allows the configuration.
+
+## Managing schedule changes
+Schedules are expected to change over time as teams grow, availability shifts, or coverage requirements evolve. incident.io provides mechanisms to preview changes, apply updates safely in the future, and handle temporary or unexpected adjustments without affecting historical on-call data.
+
+#### Preview changes before saving
+
+Preview upcoming handovers before saving schedule changes. Toggle between timeline and calendar views to verify rotation order and coverage.
+
+When editing an existing schedule, the preview shows both the current configuration and proposed changes side by side.
+
+#### Schedule changes for future dates
+
+Set schedule updates to take effect at a specific future date and time. Until that moment, the schedule continues using its current configuration.
+
+Use scheduled changes when onboarding new responders mid-rotation, adjusting coverage hours for a future date, or changing rotation intervals without disrupting the current shift.
+
+<Tip>
+Rotations advance based on handover time, not the scheduled change effective time. Always verify rotation order using the preview after scheduling changes.
+</Tip>
+
+#### Temporary coverage changes
+
+Use [overrides](/product-documentation/on-call/overrides-and-cover-requests) to replace scheduled responders for defined time windows without modifying rotation configuration. Overrides expire automatically when the window ends.
+
+#### Version history
+
+Restore previous schedule versions from the schedule dropdown menu. Preview the version before restoring it to confirm it matches your needs.
+
+Restoring a previous version applies the configuration to future coverage only. Historical shifts and incident timelines remain unchanged.
+
+## Sync schedules externally
+
+incident.io can sync schedule information to external systems:
+
+- **Slack user groups** to keep channel membership aligned with the current on-call responder  
+- **Google Calendar** to surface upcoming shifts in responders’ calendars  
+
+Configure syncing from **On-call → Schedules**. Changes to schedules automatically update connected systems.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why is no one on-call right now?">
+    Schedules return no active responder when the current time falls outside all configured intervals.
+
+    Review your interval configuration if you expect coverage during that time window.
+  </Accordion>
+
+    <Accordion title="How do I change who is on-call temporarily?">
+    Use [overrides](/product-documentation/on-call/overrides-and-cover-requests) to replace scheduled responders for defined time windows. Overrides expire automatically and do not modify the underlying schedule.
+  </Accordion>
+
+  <Accordion title="Can I see who was on-call at a specific time in the past?">
+    Yes. Open a schedule and adjust the timeline or calendar view to historical dates. The schedule shows who was on-call based on the configuration active at that time.
+
+    Schedule edits affect future coverage only.
+  </Accordion>
+
+  <Accordion title="What happens if a scheduled responder is deactivated?">
+    When a responder is deactivated via Slack, Okta, or another provisioning system:
+    - Responders with edit permissions receive a notification
+    - Escalations automatically skip deactivated users
+
+    Edit the schedule to remove deactivated users and maintain proper coverage.
+  </Accordion>
+</AccordionGroup>
+

@@ -1,0 +1,37 @@
+---
+title: "Pre-filling 'declare incident' fields using URL parameters"
+description: ""
+canonical_article_id: 358
+migrated_at: "2026-01-21T18:55:52Z"
+source_url: "https://help.incident.io/en/articles/8894707-pre-filling-declare-incident-fields-using-url-parameters"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/en/articles/8894707-pre-filling-declare-incident-fields-using-url-parameters) on January 21, 2026
+</Info>
+
+You might want to provide people with links to declare an incident from other places (like internal systems) where you already know something about the incident. In cases like this, you can use URL parameters to speed up the declaration of incidents.
+
+The base URL is [https://app.incident.io/~/incidents?createIncident=true](https://app.incident.io/~/incidents?createIncident=true) . The tilde ( `~` ) can be replaced with your organisation's slug. If you don't replace this, you'll be redirected to the organisation that you are currently logged in as.
+
+The following URL parameters are supported:
+
+- `name` : taken as a string.
+- `summary` : also taken as a string.
+- `severity` : this can be either a severity ID, or name.
+- `status` : this can be either a status ID, or name. We will infer whether the incident should be "active" or "triage" based on this.
+- `incident_type` : this can be either an incident type ID.
+
+## Custom fields
+
+You can also pre-fill custom fields via URL parameters. We currently support single-select and multi-select fields (including catalog backed).
+
+Specifying the custom field is done by prefixing the name or ID of the custom field with: `custom_field_` . For example, to set a custom field called Service with ID `ABC123` , the parameter name would be `custom_field_Service` , or `custom_field_ABC123`
+
+Specifying the custom field value can be done using either the option's:
+
+- name (e.g `custom_field_Service=Backend` )
+- ID (e.g `custom_field_Service=ID2` )
+- external ID (in the case of catalog backed custom fields) (e.g `custom_field_Service=EXTID2` )
+
+Multi-select custom fields values can be passed by repeating the parameter multiple times with different values. For example, `custom_field_Service=Backend&custom_field_Service=Frontend`

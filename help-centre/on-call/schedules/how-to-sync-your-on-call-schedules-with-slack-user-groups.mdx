@@ -1,0 +1,69 @@
+---
+title: "How to Sync Your On-Call Schedules with Slack User Groups"
+description: ""
+canonical_article_id: 162
+migrated_at: "2026-01-21T18:29:25Z"
+source_url: "https://help.incident.io/articles/7911237669-how-to-sync-your-on-call-schedules-with-slack-user-groups"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7911237669-how-to-sync-your-on-call-schedules-with-slack-user-groups) on January 21, 2026
+</Info>
+
+The on-call users for a schedule can be synced to a Slack user group, such as `@on-call-team-alpha` , that'll always be kept up-to-date.
+
+![](/images/help-centre/how-to-sync-your-on-call-schedules-with-slack-user-groups/screenshot-1.png)
+
+![](/images/help-centre/how-to-sync-your-on-call-schedules-with-slack-user-groups/screenshot-2.png)
+
+## Getting started
+
+Go to any on-call schedule, then in the top-right, click "Connect Slack group"
+
+![](/images/help-centre/how-to-sync-your-on-call-schedules-with-slack-user-groups/screenshot-3.png)
+
+From here, the schedule can be linked to an existing Slack user group, or a new Slack user group can be created.
+
+## Slack user group permissions
+
+Slack has permissions around who can update user groups. By default, this is set to "Workspace Admins and Owners only". This doesn't include the incident.io Slack bot.
+
+To enable this feature, you can follow one of these two options:
+
+#### Option 1.: Allow all workspace members to manage user groups
+
+Head to user group restrictions in your Slack workspace settings at [https://slack.com/admin/settings#user_group_restrictions](https://slack.com/admin/settings#user_group_restrictions) .
+
+Update both of the user group permissions to "Everyone, except guests".
+
+![](/images/help-centre/how-to-sync-your-on-call-schedules-with-slack-user-groups/screenshot-4.png)
+
+That's it! This will give the incident.io Slack bot permission to manage and sync on-call user groups.
+
+#### Option 2.: Use an admin or owner account to manage user groups
+
+If you would like to restrict your user group management settings, you can connect a Slack admin/owner user that we can use to manage Slack user groups.
+
+If you've set both of the User Groups permissions above to either "Workspace Admins and Owners" or "Workspace Owners only", you will need to connect a Workspace Owner account to be able to sync schedules to Slack user groups.
+
+We recommend creating a new user account just for incident.io, because the connected user will appear to be taking actions within Slack, which can cause confusion.
+
+Follow the steps [here to set up a user for privileged Slack access](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access) .
+
+![](/images/help-centre/how-to-sync-your-on-call-schedules-with-slack-user-groups/screenshot-5.png)
+
+Once you have connected a workspace owner account as a Privileged Slack user, you will now be able to use our feature to sync schedules to Slack user groups!
+
+## When no one is on-call
+
+Slack doesn't support a user group without members. However, it does support enabling and disabling user groups. Therefore, if no one is on call for a schedule, the user group will be disabled. Slack's UI will display this as no one being part of the user group. When someone comes on call for the schedule, the user group will be re-enabled and updated with the correct users.
+
+![](/images/help-centre/how-to-sync-your-on-call-schedules-with-slack-user-groups/screenshot-6.png)
+
+---
+
+<Info>
+
+Syncing schedules to Slack user group can also be used to reach out the person who is on-call by anyone if they just have a few questions or don't want to create an incident!
+
+</Info>

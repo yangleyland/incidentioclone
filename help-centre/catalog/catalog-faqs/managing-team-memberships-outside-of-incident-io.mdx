@@ -1,0 +1,42 @@
+---
+title: "Managing team memberships outside of incident.io"
+description: ""
+canonical_article_id: 354
+migrated_at: "2026-01-21T18:55:49Z"
+source_url: "https://help.incident.io/en/articles/9471222-managing-team-memberships-outside-of-incident-io"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/en/articles/9471222-managing-team-memberships-outside-of-incident-io) on January 21, 2026
+</Info>
+
+Derived attributes in Catalog let you manage team memberships outside of incident.io. This article will walk you through how to do this with Slack User Groups, but this approach will also work with teams synced via our integrations with:
+
+- Cortex
+- GitHub
+- Linear
+- OpsLevel
+
+First, you'll need to create a Team type in the catalog if you don't already have one. Once you've done that, edit the type and add a data attribute with type Slack User Group.
+
+![](/images/help-centre/managing-team-memberships-outside-of-incident-io/screenshot-1.png)
+
+You can now add a derived attribute based off of that which pulls in team members via the Slack User Group.
+
+![](/images/help-centre/managing-team-memberships-outside-of-incident-io/screenshot-2.png)
+
+Your team catalog type should now look something like this. You may have more attributes if you already had a team type.
+
+![](/images/help-centre/managing-team-memberships-outside-of-incident-io/screenshot-3.png)
+
+Save your type, and then find or create a new entry and set the "Slack User Group" attribute. In this example I've set it to "Incident Responders".
+
+![](/images/help-centre/managing-team-memberships-outside-of-incident-io/screenshot-4.png)
+
+Save that entry, and you'll see that the members attribute for the team is now populated.
+
+![](/images/help-centre/managing-team-memberships-outside-of-incident-io/screenshot-5.png)
+
+Those team members are the users that are in the Slack User Group "Incident Responders". We sync this data regularly, so if that groups changes in Slack, the changes will be reflected in the catalog.
+
+You can now follow the instructions in [Getting started with teams](/help-centre/catalog/getting-started-with-teams) to the Team type to unlock the ability to filter incidents by team, and explore insights by team.

@@ -1,0 +1,35 @@
+---
+title: "Datadog"
+description: ""
+canonical_article_id: 103
+migrated_at: "2026-01-21T18:19:39Z"
+source_url: "https://help.incident.io/articles/9954934162-datadog"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9954934162-datadog) on January 21, 2026
+</Info>
+
+Catalog Importer is a great way to sync data from all your other systems to incident.io. A popular source is Datadog, below are the steps needed to run the catalog importer to create Datadog teams and services.
+
+1. Download the `catalog-importer` tool [following the instructions here](https://github.com/incident-io/catalog-importer)
+
+2. Create an [incident.io](http://incident.io/) [API key with read/write access to the Catalog here](https://app.incident.io/~/settings/api-keys) and set it as an environment variable called `INCIDENT_API_KEY`
+
+3. Run `catalog-importer` init to create a new folder/config
+
+4. Drop the `importer.jsonnet` file I've attached below in the folder you created above (if you are using Datadog's EU tenant – [app.datadoghq.eu](http://app.datadoghq.eu/) , please update [api.datadoghq.com](https://api.datadoghq.com/) to [api.datadoghq.eu](http://api.datadoghq.eu/) )
+
+5. Head to Datadog and create an [Application Key](https://app.datadoghq.com/organization-settings/application-keys) and [API key](https://app.datadoghq.com/organization-settings/api-keys) .
+
+6. Set the `DATADOG_APPLICATION_KEY` environment variable to the app key and `DATADOG_API_KEY` as the API key
+
+7. Run `catalog-importer sync --config=importer.jsonnet`
+
+8. See all the data in your [incident.io](http://incident.io/) Catalog!
+
+Please find below the config file for creating Datadog services and teams.
+
+Please reach out if you run into any issues!
+
+importer.jsonnet

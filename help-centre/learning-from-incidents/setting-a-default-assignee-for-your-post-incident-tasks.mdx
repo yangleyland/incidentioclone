@@ -1,0 +1,37 @@
+---
+title: "Setting a default assignee for your post-incident tasks"
+description: ""
+canonical_article_id: 183
+migrated_at: "2026-01-21T18:29:18Z"
+source_url: "https://help.incident.io/articles/5733000779-setting-a-default-assignee-for-your-post-incident-tasks"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5733000779-setting-a-default-assignee-for-your-post-incident-tasks) on January 21, 2026
+</Info>
+
+When an incident enters [the post-incident flow](/help-centre/configure-your-account/define-your-post-incident-process-using-the-post-incident-flow) , we create a set of tasks like `Create the postmortem` which must be addressed.
+
+It's possible to rely on these tasks being picked up proactively, but if you're on our **Pro** or **Enterprise** plans you'll see the option to set a default assignee from the [task settings](https://app.incident.io/settings/post-incident-flow) ! This means that tasks are more likely to get done, and incidents progress through the post-incident flow quicker.
+
+## Who should be the default assignee?
+
+You might want all tasks to be assigned to the lead so they can delegate. Alternatively you might choose for some tasks to be assigned to a particular role (for example, the `Schedule a debrief` task might be assigned to the `Debrief scheduler` role).
+
+You can also create an expression here, which means we'll assign different people under different conditions:
+
+![](/images/help-centre/setting-a-default-assignee-for-your-post-incident-tasks/screenshot-1.png)
+
+Our default is that the lead should be automatically assigned to all tasks, but you can change this in [Settings > Post-incident flow](https://app.incident.io/settings/post-incident-flow) by clicking "edit" on each task.
+
+Note that the default assignee is optional, so if you don't want your tasks to be automatically assigned you can just clear the defaults we've set for you.
+
+## When will they get assigned?
+
+When an incident first enters the post-incident flow we will automatically assign the tasks for you.
+
+Because we support expressions like "when the severity is critical" here, we'll also re-evaluate who should be assigned whenever an incident changes. So if it looks like the assignee should be someone else, we'll update the assignee and notify the new person.
+
+## Can I override this?
+
+Yes! If you assign a task manually, we will no longer try to assign that task automatically.

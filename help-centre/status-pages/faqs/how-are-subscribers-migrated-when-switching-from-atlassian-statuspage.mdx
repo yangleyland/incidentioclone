@@ -1,0 +1,37 @@
+---
+title: "How are subscribers migrated when switching from Atlassian StatusPage?"
+description: ""
+canonical_article_id: 271
+migrated_at: "2026-01-21T18:40:38Z"
+source_url: "https://help.incident.io/articles/3287696346-how-are-subscribers-migrated-when-switching-from-atlassian-statuspage"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3287696346-how-are-subscribers-migrated-when-switching-from-atlassian-statuspage) on January 21, 2026
+</Info>
+
+## Context
+
+When migrating from Atlassian StatusPage to incident.io's status page, you'll want to ensure your existing subscribers continue receiving updates. Understanding which subscriber types can be migrated automatically and which require manual intervention is important for planning your migration.
+
+## Answer
+
+During the Atlassian StatusPage migration process, incident.io automatically handles certain types of subscribers while others require manual action:
+
+## Automatically Migrated
+
+- **Email Subscribers:** All email subscribers are automatically migrated when you click "Go Live" in the migration wizard
+- **Slack Subscribers:** Subscribers from connected Slack workspaces will be migrated automatically
+
+## Not Supported/Requires Manual Action
+
+- **Webhook Subscribers:** Webhook subscriptions are not currently supported. You may wish to consider exposing the [widget API](/help-centre/status-pages/public-status-pages/embed-your-status-page's-data-into-your-own-product) to customers in this case if they want to programatically retrieve the status of your status page.
+
+## How to Migrate
+
+1. Enable the status page integration in incident.io
+2. Access the Atlassian status page migration wizard
+3. Follow the migration steps until you reach the "Go Live" stage
+4. Click "Go Live" to automatically migrate supported subscribers
+
+For a detailed walkthrough of the complete migration process, refer to our [migration guide](/help-centre/status-pages/public-status-pages/migrating-from-atlassian-statuspage).

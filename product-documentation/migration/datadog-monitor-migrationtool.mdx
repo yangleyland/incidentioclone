@@ -1,0 +1,48 @@
+---
+title: Datadog monitor migration tool
+description: A CLI tool to help migrate Datadog monitors over from PagerDuty or Opsgenie to incident.io
+author: auto-ai-doc-migration
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+If you have many Datadog monitors pointing to PagerDuty or Opsgenie, our migration tool can automatically update everything to point to incident.io.
+
+<Warning>
+  The Datadog migration tool is currently in beta. It's available as a private GitHub repository. Contact our support team at help@incident.io to get access.
+</Warning>
+
+## What the tool does
+
+The migration tool automates the process of updating your Datadog monitors to use incident.io instead of your current on-call provider. It handles the entire migration workflow:
+
+- Walks you through webhook configuration options (single webhook vs. multiple webhooks)
+- Automatically creates webhook configurations in Datadog
+- Updates your monitors to point to incident.io
+- Removes your previous on-call provider (PagerDuty or Opsgenie) references when migration is successful
+
+The tool is flexible and can be used via command line, interactive prompts, or config file. It has a dry run mode to preview changes without modifying monitors
+
+## Getting started
+
+<Steps>
+  <Step title="Get access">
+    Contact our support team at help@incident.io to request access to the private GitHub repository.
+  </Step>
+  <Step title="Install the tool">
+    Clone the repository and follow the installation instructions in the README.
+  </Step>
+  <Step title="Run the migration">
+    The tool will guide you through the configuration and migration process step by step, including a dry run.
+  </Step>
+  <Step title="Verify your monitors">
+    After migration completes, verify that your Datadog monitors are correctly configured to send alerts to incident.io.
+  </Step>
+</Steps>
+
+## Resources
+
+- [Github repo: datadog-migrator](https://github.com/incident-io/datadog-migrator)
+- [Step-by-step Loom guide](https://www.loom.com/share/1f0a862752054bb0a1a8830f5bd9c500)

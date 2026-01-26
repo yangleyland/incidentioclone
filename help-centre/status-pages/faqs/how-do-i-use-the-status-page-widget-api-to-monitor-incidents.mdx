@@ -1,0 +1,35 @@
+---
+title: "Do you have a status page API?"
+description: ""
+canonical_article_id: 273
+migrated_at: "2026-01-21T18:40:38Z"
+source_url: "https://help.incident.io/articles/8366103220-how-do-i-use-the-status-page-widget-api-to-monitor-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8366103220-how-do-i-use-the-status-page-widget-api-to-monitor-incidents) on January 21, 2026
+</Info>
+
+## Context
+
+When building applications, you may want to display the current status of your services or notify users about ongoing incidents directly within your application, rather than requiring them to visit your status page separately.
+
+## Answer
+
+The [Status Page Widget API](/help-centre/status-pages/public-status-pages/embed-your-status-page's-data-into-your-own-product) allows you to programmatically retrieve information about your status page incidents, including active incidents and scheduled maintenance.
+
+To use the Widget API:
+
+1. Navigate to your status page settings in the dashboard
+2. Locate and enable the Widget API option
+3. Once enabled, you can use the API endpoint to retrieve:
+  - Ongoing incidents (status will be one of `investigating` , `identified` , `monitoring` or `resolved` )
+  - In-progress maintenance
+  - Scheduled maintenance
+
+![Screenshot 2025-05-13 at 11.53.31.png](/images/help-centre/how-do-i-use-the-status-page-widget-api-to-monitor-incidents/screenshot-1.png)
+
+Important notes:
+
+- The Widget API works regardless of whether your status page is live or not
+- You can't use the API to create or update status page incidents. It's read-only at present but if you'd like to see an API for making changes in the future just let us know via help@incident.io.

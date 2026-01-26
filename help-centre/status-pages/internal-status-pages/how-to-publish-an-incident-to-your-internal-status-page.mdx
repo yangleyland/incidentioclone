@@ -1,0 +1,61 @@
+---
+title: "How to publish an incident to your internal status page"
+description: ""
+canonical_article_id: 268
+migrated_at: "2026-01-21T18:40:41Z"
+source_url: "https://help.incident.io/articles/8672254556-how-to-publish-an-incident-to-your-internal-status-page"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8672254556-how-to-publish-an-incident-to-your-internal-status-page) on January 21, 2026
+</Info>
+
+Internal status pages allow your organisation to get quick access to a summary of what the known issues are right now with your system - they allow you to display ongoing incidents in a clear way to non-technical stakeholders.
+
+Incidents can be published to your internal status page in two ways: by either manually publishing it from within your incident channel, or by configuring a set of conditions to automatically publish matching incidents to the page.
+
+## Manually publishing an incident to your internal status page
+
+You can manually publish an incident to your internal status page using the `/inc sp` command from within your incident’s Slack channel.
+
+If you have both external and internal status pages configured, you’ll be prompted to select which type of status page you want to update. Choose ‘Internal page’
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-internal-status-page/screenshot-1.png)
+
+Select the page you’d like to publish this incident to, and hit publish.
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-internal-status-page/screenshot-2.png)
+
+That’s it! You can navigate to your internal status page and you’ll now see the incident you’ve just published. If you want to remove this incident, you can do so via the dashboard.
+
+Any new updates that are created for the incident via `/inc update` (or via the dashboard) will now appear in your status page, allowing you to get the latest updates for all ongoing incidents at a glance.
+
+## Automatically publish incidents to your internal status page
+
+Automatically updating your status page means you can make your audience aware of problems immediately, without any need for manual intervention.
+
+Internal status pages are automatically published to by configuring automation rules.
+
+You can think of these as criteria against which your incidents should be filtered, in order to be displayed on your status page.
+
+## Configuring rules
+
+To configure automation rules, head over to the ‘Settings’ tab, and then ‘Automation’.
+
+We’ll automatically set you up a rule which means that any incidents affecting your components will be published to this internal page.
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-internal-status-page/screenshot-3.png)
+
+You can edit or delete this rule, or add new rules by clicking on ‘Add automation rule’.
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-internal-status-page/screenshot-4.png)
+
+You can chose whether or not a rule applies only when an incident affects one of the components listed on your status page, or applies to all live incidents:
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-internal-status-page/screenshot-5.png)
+
+## How does manual publishing affect my automation rules?
+
+If you manually publish an incident to your status page that already matches your automation rules for the page, this will have no additional effect.
+
+Removing the incident, however, means that you will need to manually publish it again if you want it to display on your internal status page.

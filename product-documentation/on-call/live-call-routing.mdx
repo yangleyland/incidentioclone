@@ -1,0 +1,86 @@
+---
+title: Live call routing
+description: Route incoming phone calls to the right on-call teams.
+---
+
+Live call routing connects incoming phone calls to on-call teams, ensuring critical issues reach the right person without manual coordination.
+
+Use live call routing to provide external stakeholders, customers, or monitoring systems with a single phone number that always reaches your on-call team. Configure call routing rules to match your schedules and escalation logic.
+
+Using the sidebar, navigate to **Settings → Call routes**. Click **Request number** to request a new phone number and configure routing.
+
+## Manage phone numbers
+
+Request new phone numbers with incident.io or bring your own existing phone numbers, for supported regions.
+
+**Supported regions for call routing numbers:**
+
+| Region | Country Code |
+|--------|--------------|
+| United States | +1 |
+| United Kingdom | +44 |
+| Netherlands | +31 |
+| Israel | +972 |
+
+<Tip>
+Request numbers for different countries through support within the platform, or by [contacting support](mailto:support@incident.io).
+</Tip>
+
+Live call routing numbers may function for end users in neighboring countries depending on carrier and regional telecom coverage.
+
+Control who can call each number and use custom prompts to reduce accidental calls and provide callers with context about who they are contacting.
+
+- **Anyone can call** - No restrictions, calls route immediately to your team
+- **Require caller confirmation** - Type a custom message to be played to callers (e.g., "Press 1 to reach our on-call engineering team"), then require them to press '1' to connect
+- **Specific phone numbers only** - Restrict access to an allowlist of approved phone numbers
+
+## Configure routing rules
+
+Assign each phone number to a routing rule. Each routing rule defines escalation levels - you choose which schedules or users to notify at each level.
+
+- On each level, incident.io tries calling each person for 30 seconds.
+- If they don't pick up, it tries the next person.
+- Once everyone on level 1 has been tried, the system moves to level 2, continuing until all levels are exhausted.
+
+Add multiple levels to ensure calls eventually reach someone.
+
+## Supported languages
+
+Choose the language for automated voice responses when handling inbound calls. Currently supported languages include:
+- English
+- French
+- German
+- Portuguese (Brazilian)
+- Portuguese (Portugal)
+
+[Contact support](mailto:support@incident.io) to request languages not listed above. The selected language applies to caller confirmation prompts and system messages.
+
+## Alert routing for calls
+
+Incoming calls create alerts that can be routed using [alert routes](/product-documentation/on-call/alert-routing). Create alert routes for the **Incoming calls** alert source to:
+- Create incidents automatically when calls come in
+- Send call notifications to Slack or Microsoft Teams channels
+- Group calls into incidents based on attributes
+- Filter which calls trigger incidents based on conditions
+
+Use alert routing to go beyond basic call connection and integrate calls into your broader incident response workflow.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What does my customer see when calling me?">
+    Your customer only sees the phone number incident.io purchases on your behalf. If you have specific requirements for this number (e.g. a specific country or area code, a toll-free number), [contact support](mailto:support@incident.io) when requesting a number.
+  </Accordion>
+
+  <Accordion title="What will I see when I am being connected to a call?">
+    Calls routed to responders will come from your live call routing number. Add this number to your phone's do-not-disturb bypass settings to ensure you receive calls.
+  </Accordion>
+
+  <Accordion title="Is there an extra charge for live call routing?">
+    See the [pricing page](https://incident.io/pricing) for details on how many numbers are included on each plan. Anyone on a call route needs an On-call seat. Contact your customer success manager if you require more numbers.
+  </Accordion>
+
+  <Accordion title="What happens if no one answers the call?">
+    The system waits 30 seconds for each person to answer before trying the next person on that level. Once everyone on a level has been tried, it moves to the next level. If no one at any level answers, the call ends.
+  </Accordion>
+</AccordionGroup>

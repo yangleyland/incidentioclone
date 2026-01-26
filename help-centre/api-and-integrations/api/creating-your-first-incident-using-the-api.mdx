@@ -1,0 +1,79 @@
+---
+title: "Creating your first incident using the API"
+description: ""
+canonical_article_id: 193
+migrated_at: "2026-01-21T18:29:19Z"
+source_url: "https://help.incident.io/articles/4081604110-creating-your-first-incident-using-the-api"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4081604110-creating-your-first-incident-using-the-api) on January 21, 2026
+</Info>
+
+Our API gives you the power to automatically create an incident from another system, such as a monitoring tool like DataDog, or a ticketing system like Zendesk. This is valuable because it means you spend less time starting your incident process, and more time resolving the issue.
+
+To show how easy this can be to set up, we'll walk you through a simple example where we create an incident through the API.
+
+## Step 1: generate an API key in incident.io.
+
+Head to Settings → API keys in the dashboard and generate a key with `Create incidents` enabled.
+
+## Step 2: fetch your severity configuration.
+
+We require you to declare the severity of your incident during creation, by supplying a severity ID in the payload. Because severities are custom to each organisation, you’ll have to make a call to fetch your severities first.
+
+This will be in the form of a HTTP GET request, using the API key you generated earlier for Bearer token authentication.
+
+```plaintext
+GET https://api.incident.io/v1/severities
+
+// Response
+{
+  "severities": [
+    {
+      "name": "Minor",
+      "description": "It's not that bad, everyone chill.",
+      "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+      "rank": 1,
+      "created_at": "2021-08-17T13:28:57.801578Z",
+      "updated_at": "2021-08-17T13:28:57.801578Z"
+    },
+    {
+      "name": "Major",
+      "description": "It's quite bad.",
+      "id": "01FXNA5TFQXZRM3K1JDVTWXV4X",
+      "rank": 2,
+      "created_at": "2021-08-17T13:28:57.801578Z",
+      "updated_at": "2021-08-17T13:28:57.801578Z"
+    }
+  ]
+}
+```
+
+Let’s say the incident you are handling is of the lowest severity - you’d make a note of the ID for the “Minor” severity.
+
+## Step 3: create your incident!
+
+Using the same authentication, you then need to make a HTTP POST request to create the incident. You can find our required fields in the [API docs](https://api-docs.incident.io/#operation/Incidents%20V2_Create) , but at the time of writing this includes:
+
+- **Idempotency key.** This needs to be unique for every incident, to ensure we don’t accidentally create duplicate incidents.
+- **Severity ID.** This is what you obtained in step 2.
+- **Visibility.** This is an enum of either `public` (anyone can access the incident) or `private` (only invited users have access).
+
+```plaintext
+POST https://api.incident.io/v2/incidents
+
+// Payload
+{
+  "name": "Testing incident.io's API",
+  "idempotency_key": "test1",
+  "severity_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+  "visibility": "public",
+}
+```
+
+Et voila! The incident has been created in our system. The response will contain the incident body, which now includes the ID we have assigned your incident, along with other defaults.
+
+**In a real life scenario, you probably want to create incidents that are more complex than this, for example declare the incident type or any custom fields. In this case, you need to make preliminary calls to the** [incident types endpoint](https://api-docs.incident.io/#operation/Incident%20Types%20V1_List) **or** [custom fields endpoint](https://api-docs.incident.io/#operation/Custom%20Fields%20V1_List) **respectively, to obtain the relevant ID's like you did in step 2.**
+
+We’d love to hear what you build using our API, and how you’d like us to extend it. So please drop any feedback you have in the `#api` channel in the [incident.io Community](https://incident.io/community)

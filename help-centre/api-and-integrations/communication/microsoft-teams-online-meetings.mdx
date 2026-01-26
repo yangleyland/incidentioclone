@@ -1,0 +1,57 @@
+---
+title: "Microsoft Teams Online Meetings"
+description: ""
+canonical_article_id: 208
+migrated_at: "2026-01-21T18:39:23Z"
+source_url: "https://help.incident.io/articles/1826710556-microsoft-teams-online-meetings"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1826710556-microsoft-teams-online-meetings) on January 21, 2026
+</Info>
+
+We offer a Microsoft Teams integration for **Slack** organisations. We'll **automatically generate and surface an individual call URL when an incident is declared** , so you have a dedicated 'war room' for every incident.
+
+You can also manually create calls from the incident details page, or paste a link to the call in your incident slack channel, and we'll pick it up.
+
+This helps speed up your incident response, and reduces the burden of manual tasks on responders.
+
+## Installation
+
+<Warning>
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it** . Microsoft connections like this, which use OAuth, belong to a specific user — for this reason, you may wish to set up a dedicated service or "bot" account. We use the same user account connection for all our Microsoft integrations. Therefore, the account you use to connect this integration will need to be the same for Outlook Calendar.
+
+[Read more about service accounts and the permissions we require](/help-centre/api-and-integrations/using-a-service-account-to-integrate-with-microsoft-outlook-and-teams) .
+
+</Warning>
+
+## 1. Installing the Integration
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations) , find "Microsoft Teams" and click "Connect".
+
+Click "Sign in with Microsoft" and you'll be redirected to the install flow within Microsoft. Review the permissions we're requesting and click "Next".
+
+## 2. Turn on auto-create call
+
+If you wish to have calls auto-created when new incidents are declared, toggle on "Automatically create incident call".
+
+![image.png](/images/help-centre/microsoft-teams-online-meetings/screenshot-1.png)
+
+## Use
+
+As well as auto-creation of calls, you can also manually create them from the dashboard and Slack.
+
+## Creating call from the dashboard
+
+Choose to start a call from the incident details page in the dashboard. If you've only got Microsoft Teams configured, we'll automatically create the call. If you have other providers, you'll be able to choose.
+
+![image.png](/images/help-centre/microsoft-teams-online-meetings/screenshot-2.png)
+
+Responders will then see a link to the call in the dashboard and Slack.
+
+## Creating call from Slack
+
+From within your incident channel, use `/inc call` to create a new Microsoft Teams meeting.
+
+If you already have a meeting created, you can paste a link to it, and we'll offer to attach it to the incident for you.

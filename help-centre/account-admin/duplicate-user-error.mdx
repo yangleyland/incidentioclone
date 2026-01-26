@@ -1,0 +1,29 @@
+---
+title: "How do I fix a duplicate user error?"
+description: ""
+canonical_article_id: 303
+migrated_at: "2026-01-21T19:09:33Z"
+source_url: "https://help.incident.io/articles/9856573154-duplicate-user-error"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9856573154-duplicate-user-error) on January 21, 2026
+</Info>
+
+When a user logs in, they might see an error:
+
+> We found multiple SAML accounts for your email address
+
+This happens when we've entered a 'bad state' between incident.io's user management, and your identity provider (e.g. Okta).
+
+This often happens when someone is changing their name, or you're changing the domains of your canonical emails as part of a migration.
+
+To resolve this:
+
+1. Ensure that someone's canonical email address in your IDP exactly matches their email in Slack or Microsoft Teams. If these are not the same, we won't be able to authenticate them correctly
+2. Go to [Settings → Users](https://app.incident.io/~/settings/users/users) and search for the user's name. You should see multiple items in the list
+3. One of those users should be a 'SAML only' user, meaning they won't have a `Slack` connection badge. This user will also have a 'Deactivate User' button in the bottom left -> click this!
+
+![image (40).png](/images/help-centre/duplicate-user-error/screenshot-1.png)
+
+Once you have just a single active user, and the email addresses match, the user should now be able to log in successfully.

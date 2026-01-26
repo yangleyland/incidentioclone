@@ -1,0 +1,229 @@
+---
+title: Subscriptions and communication
+description: Manage how users receive status page notifications and updates
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+
+# Subscriptions and communication
+
+Subscriptions keep your users informed about incidents without them constantly checking your status page. Whether it's email notifications for customers or Slack messages for internal teams, subscriptions ensure the right people know when things go wrong—and when they're fixed.
+
+## Subscription options
+
+### Public status page subscriptions
+
+Users visiting your public or customer status pages can subscribe to receive updates via:
+
+**Email notifications**
+- Users enter their email address on your status page
+- Receive notifications when incidents are published, updated, or resolved
+- Choose to subscribe to all components or specific ones
+- Unsubscribe links included in every email
+
+**RSS feeds**
+- Subscribe via RSS feed URLs (found on your status page)
+- Updates appear in RSS readers automatically
+- Useful for monitoring tools and aggregation services
+
+**Atom feeds**
+- Similar to RSS but with additional metadata
+- Standard format for feed readers and monitoring systems
+
+**Component-specific subscriptions:**
+
+Users can subscribe to specific components instead of all incidents. For example, subscribe only to "API" updates, ignoring "Dashboard" incidents. This reduces notification noise for users who only care about certain services.
+
+### Internal status page subscriptions
+
+Internal users manage subscriptions through **User Preferences** → **Incident Subscriptions**, not via the status page itself.
+
+**Notification channels:**
+- **Slack** - Direct messages when subscribed incidents update
+- **Email** - Sent to registered email address
+- **SMS** - Requires phone number verification
+- **Mobile app** - Push notifications via incident.io mobile app
+
+**Auto-subscribe rules:**
+
+Internal users can set up automatic subscription based on criteria:
+- "Subscribe to all Critical and Major incidents"
+- "Subscribe when incidents affect Production API"
+- "Subscribe to incidents tagged with my team"
+
+These rules apply across all incidents, not just status page incidents.
+
+<img src="/images/status-pages/user-preferences-subscriptions.png" alt="User preferences showing subscription channels and auto-subscribe rules configuration" style={{maxWidth: "360px"}} />
+
+See [Internal status pages](/product-documentation/status-pages/internal-status-pages#subscription-differences) for detailed comparison of internal vs. public subscriptions.
+
+## Controlling subscriber notifications
+
+When publishing or updating an incident on your status page, you control whether subscribers are notified.
+
+**Publishing an incident:**
+- Choose "Notify subscribers" to send immediate notifications
+- Skip notifications if the update isn't urgent or you're testing
+
+**Posting updates:**
+- Each update lets you choose whether to notify subscribers
+- Updates always appear on your status page regardless of notification setting
+- RSS/Atom feeds always include all updates (even if email notifications weren't sent)
+
+**When to notify subscribers:**
+- **Do:** Initial incident publication (users need to know something's wrong)
+- **Do:** Major status changes (identified root cause, implemented fix)
+- **Do:** Resolution (incident is fixed)
+- **Don't:** Minor investigation updates with no new information
+- **Don't:** Internal-only updates not relevant to customers
+
+Over-notifying erodes trust. Send updates when there's meaningful new information.
+
+## Managing subscribers
+
+### Adding subscribers manually
+
+For public status pages, subscribers must sign up themselves via the status page. You cannot add subscribers manually via email address—they must opt in.
+
+**Why:** Email anti-spam regulations (CAN-SPAM, GDPR) require users to explicitly subscribe. Adding users without consent violates these regulations.
+
+### Importing subscribers
+
+When migrating from another status page provider (like Atlassian Statuspage), you can import existing subscribers.
+
+1. Export subscribers from your current provider (CSV format)
+2. Navigate to **Status Pages** → Your page → **Settings** → **Subscribers**
+3. Click **Import subscribers** and upload CSV
+4. Map CSV columns to required fields (email, component subscriptions)
+5. Import completes—subscribers automatically opted in
+
+**Important:** Only import subscribers who previously consented to your status page notifications. Don't add new addresses during migration.
+
+See [Importing status pages](/product-documentation/status-pages/importing-status-pages) for full migration guide.
+
+### Removing subscribers
+
+**For individual users:**
+Every notification email includes an "Unsubscribe" link. Users can unsubscribe themselves instantly.
+
+**For administrators:**
+Remove specific subscribers in Settings → Subscribers. Useful for removing outdated email addresses or managing bulk unsubscribes.
+
+### Subscriber limits
+
+No hard limit on subscriber count for public status pages. However, extremely high subscriber counts (>100,000) may require coordination with incident.io support for optimal email delivery.
+
+## Email customization
+
+### Sender address
+
+By default, status page notification emails come from `noreply@incident.io`. You cannot customize the sender email address.
+
+**Why:** Email deliverability relies on proper SPF/DKIM records. Using incident.io's sending infrastructure ensures high delivery rates and avoids spam filtering.
+
+### Branding
+
+Status page notification emails include your:
+- Company logo (from status page branding)
+- Status page name
+- Color scheme (inherited from status page theme)
+
+Message content is controlled when publishing/updating incidents.
+
+## Advanced integration
+
+### Intercom integration
+
+Display your status page directly in Intercom messenger for customer support teams.
+
+**Setup:**
+1. Install the incident.io Intercom app
+2. Configure which status page to display
+3. Status page appears in Intercom messenger automatically
+
+Users see real-time incident status without leaving your support portal. Reduces support ticket volume during incidents.
+
+### Widget API
+
+Embed real-time status information directly into your product or website using the widget API. Display component status badges, active incidents, and uptime data wherever users need it.
+
+See [Widget API and embedding](/product-documentation/status-pages/widget-api) for complete setup instructions and implementation guides.
+
+## RSS and Atom feeds
+
+### Finding feed URLs
+
+Feed URLs are displayed on your public status page footer:
+- RSS: `https://statuspage.incident.io/[your-page]/feed.rss`
+- Atom: `https://statuspage.incident.io/[your-page]/feed.atom`
+
+### Feed content
+
+Feeds include:
+- Active and recently resolved incidents
+- Component status updates
+- Maintenance windows
+- Incident summaries and detailed updates
+
+Feeds update within seconds of status page changes.
+
+### Monitoring with feeds
+
+Use RSS/Atom feeds with monitoring tools like:
+- Datadog incident.io integration
+- PagerDuty RSS monitoring
+- Custom alerting scripts
+- Feed aggregators (Feedly, NewsBlur)
+
+Useful for automated incident detection and alerting pipelines.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Is there a limit on status page subscribers?">
+    There's no hard limit for public status pages. Contact help@incident.io if you expect more than 100,000 subscribers to ensure optimal email delivery configuration.
+  </Accordion>
+
+  <Accordion title="Can I customize the email sender address?">
+    No. Status page emails are sent from `noreply@incident.io` to ensure reliable delivery. Custom sender addresses aren't supported, but emails include your branding and logo.
+  </Accordion>
+
+  <Accordion title="How do I add Google Analytics to my status page?">
+    Add your Google Analytics tracking ID in Settings → Advanced → Google Analytics. The tracking code will be added to all your status pages automatically, letting you track visitor behavior.
+  </Accordion>
+
+  <Accordion title="Can I manually add subscriber email addresses?">
+    No. Anti-spam regulations require users to explicitly opt in to status page subscriptions. Users must subscribe via your status page. The only exception is importing subscribers from another status page provider where they previously opted in.
+  </Accordion>
+
+  <Accordion title="Do subscribers get notified about maintenance windows?">
+    Yes. Subscribers receive notifications when scheduled maintenance begins and ends (based on your configured times). They can also unsubscribe from maintenance-only notifications if they only want incident updates.
+  </Accordion>
+
+  <Accordion title="Can I send test notifications to subscribers?">
+    Not directly. To test notifications, publish a test incident with a clear title like "[TEST] Checking notification system" and mark it as resolved immediately. Notify subscribers during the test to confirm delivery.
+  </Accordion>
+
+  <Accordion title="Do RSS feeds work for internal status pages?">
+    No. Internal status pages don't support RSS or Atom feeds. Internal users subscribe via User Preferences and receive notifications through Slack, email, SMS, or mobile app.
+  </Accordion>
+
+  <Accordion title="Can users subscribe to sub-pages individually?">
+    Yes. Each sub-page has independent subscription management. Users visiting a specific sub-page (e.g., EU region) can subscribe only to that sub-page's incidents. They can also subscribe to the parent page to receive all incidents.
+  </Accordion>
+
+  <Accordion title="What happens if an email bounces?">
+    Bounce handling is automatic. Hard bounces (invalid addresses) are removed after 3 consecutive failures. Soft bounces (temporary issues) are retried automatically. You can view bounce statistics in Settings → Subscribers.
+  </Accordion>
+
+  <Accordion title="Can I integrate with WhatsApp for incident updates?">
+    WhatsApp integration isn't currently supported. incident.io supports Slack, email, SMS, and mobile app push notifications for incident updates.
+  </Accordion>
+
+  <Accordion title="How do component-specific subscriptions work?">
+    When subscribing, users select specific components they care about (e.g., only "API" incidents). They'll only receive notifications for incidents affecting those components. This reduces noise for users who don't need updates about all services.
+  </Accordion>
+</AccordionGroup>

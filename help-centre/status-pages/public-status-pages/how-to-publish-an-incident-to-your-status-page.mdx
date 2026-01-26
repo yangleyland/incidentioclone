@@ -1,0 +1,74 @@
+---
+title: "How to publish an incident to your status page"
+description: ""
+canonical_article_id: 257
+migrated_at: "2026-01-21T18:40:39Z"
+source_url: "https://help.incident.io/articles/1748051878-how-to-publish-an-incident-to-your-status-page"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1748051878-how-to-publish-an-incident-to-your-status-page) on January 21, 2026
+</Info>
+
+During an incident it's important to keep your customers in the loop, so they know you're working on it, and when they can expect things to change. Read more on how to write a great status page update in our [guide to incident management](https://incident.io/guide/response/keeping-your-customers-in-the-loop/) .
+
+Publishing an incident to your status page gives your customers a place to check in for the latest information, and can optionally send messages to your subscribers to proactively tell them what's going on.
+
+You can publish a new incident from our dashboard, or via Slack, using the `/incident statuspage` command. Read more about publishing from Slack in [this article](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/keeping-your-customers-in-the-loop) .
+
+Let's walk through publishing a new incident to your status page from the dashboard.
+
+---
+
+First, navigate to your [status pages list](https://app.incident.io/status-pages) , and select the status page you want to update.
+
+Click 'Publish incident' in the top-right. You'll see a form like this:
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-status-page/screenshot-1.png)
+
+There's four key things here:
+
+1. **The incident name**
+
+What's the headline of this incident in a few words? We'll show this:
+
+- Anywhere there's a link to this incident
+- As the subject line for emails to subscribers
+- As the heading on the status page for this incident
+
+2. **What's the status right now?**
+
+There's four statuses available:
+
+1. **Investigating** : you're not sure what the issue is yet.
+2. **Identified** : you're working on a resolution for this issue.
+3. **Monitoring** : your customers should expect things to be back to normal, but your response hasn't wrapped up yet.
+4. **Resolved** : everything is back to normal
+
+3. **Message**
+
+This is a longer-form update you can use to communicate in more detail with your customers. We'll show this on your status page while the incident is ongoing, and on the page for this incident.
+
+4. **Components impacted**
+
+Some customers might not use all parts of your product or service. Help them quickly understand what might not be working as normal using component statuses. For example, if only the website is affected by this incident, you might select 'Full outage' for that component:
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-status-page/screenshot-2.png)
+
+This will appear in the System Status part of your status page:
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-status-page/screenshot-3.png)
+
+If there are multiple incidents ongoing at once, marking a component as `No impact` will not overwrite another incident that has marked it as affected. You should choose the impact levels you set based on **this incident alone** , and we'll aggregate the values across all open incidents when working out the current status.
+
+---
+
+Now it's time to review and publish your incident. Click 'Review incident'.
+
+This is your opportunity to proof-read the details, and make sure everything is ready to go:
+
+![](/images/help-centre/how-to-publish-an-incident-to-your-status-page/screenshot-4.png)
+
+You can also choose whether or not to proactively notify subscribers to your status page here.
+
+Once you're ready, click 'Publish incident' and you're all set

@@ -1,0 +1,63 @@
+---
+title: "Troubleshooting: Unable to install due to channel restrictions"
+description: ""
+canonical_article_id: 16
+migrated_at: "2026-01-21T18:57:38Z"
+source_url: "https://help.incident.io/articles/4258864431-troubleshooting%3A-unable-to-install-due-to-channel-restrictions"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4258864431-troubleshooting%3A-unable-to-install-due-to-channel-restrictions) on January 21, 2026
+</Info>
+
+## Why am I having this issue?
+
+In order to provide the best experience for managing incidents, we need to be able to create channels inside your Slack workspace. There's two types of channel that we create:
+
+1. The main `#incidents` announcement channel. This is created during install, and is used as a place to announce new incidents as they happen.
+2. Individual `#inc-...` channels, which are created whenever you declare a new incident, and used to coordinate your response.
+
+As channel creation is a core feature of the product, we'll prevent you from installing us if we detect workspace settings that'll prevent us from working correctly.
+
+---
+
+## Fixing the problem
+
+*You'll need a workspace admin to do this!*
+
+There are two options:
+
+1. **Allow all workspace members to create channels**
+
+Head to your Slack workspace settings:
+
+![](/images/help-centre/troubleshooting:-unable-to-install-due-to-channel-restrictions/screenshot-1.png)
+
+Make sure the *People who can create public channels* setting is set to *Everyone except guests.*
+
+![](/images/help-centre/troubleshooting:-unable-to-install-due-to-channel-restrictions/screenshot-2.png)
+
+That's it! Select " *I've changed channel creation permissions* " and complete your installation
+
+![](/images/help-centre/troubleshooting:-unable-to-install-due-to-channel-restrictions/screenshot-3.png)
+
+---
+
+2. **Use an admin account to create channels**
+
+If you'd like to keep your channel management settings, you can connect a Slack admin user that we'll use to create and manage incident channels.
+
+We recommend creating a new user account just for incident.io, because the connected user will appear to be taking actions within Slack, which can cause confusion. For example, this user:
+
+- will be the "channel creator" for all incident channels
+- will appear to archive incident channels
+
+If you've set "people who can create private channels" to either "workspace admins and owners" or "workspace owners only", you will need to connect a Workspace Owner account to use [private incidents](/help-centre/creating-and-running-incidents/faqs/can-we-mark-incidents-as-sensitive-and-restrict-access) . The connected user will:
+
+- be invited to all private incident channels
+- will appear to remove participants whose access has been revoked
+- will appear to archive the incident channel
+
+Once you've created this user, make sure you're logged in to Slack as that user in your browser, then select " *I'd like to use a Slack admin user* ", and click " *Continue* ".
+
+![](/images/help-centre/troubleshooting:-unable-to-install-due-to-channel-restrictions/screenshot-4.png)

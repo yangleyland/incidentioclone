@@ -1,0 +1,118 @@
+---
+title: "Zendesk"
+description: "Link Zendesk tickets to incidents, sync communications between your support team and incident responders, and keep everyone informed"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Zendesk
+
+During an incident, communication with your customers is key.
+
+With incident.io we can help. We'll enable your incident response team to communicate better with your support team, providing updates on both sides.
+
+This integration allows you to link Zendesk tickets directly with your incident, relaying comms between the two places and ensuring everything is well connected. Engineers will have visibility on communications coming from your customers and support agents will be kept up to date on ongoing issues.
+
+Read on to find out how to get started.
+
+---
+
+## Setting up
+
+You can add Zendesk to incident.io and configure the settings in just a few clicks.
+
+1. Go to Settings → [Integrations](https://app.incident.io/settings/integrations)
+
+Scroll down to "collaborate" and click "Connect" next to Zendesk
+
+2. Type in your subdomain
+
+Click `Go to Zendesk` and approve authorisation of incident.io
+
+3. Copy the token provided
+
+Click the `Install the Zendesk app` button
+
+4. Paste in the token into the Zendesk UI
+
+Press `Install` to complete
+
+<img src="/images/integrations/zendesk/setup-complete.png" alt="Zendesk setup completed" />
+
+Once your account is connected you can start powering up your teams.
+
+---
+
+## Attaching tickets
+
+Now that your account is connected you can start to attach tickets to your incidents.
+
+When your support agents are viewing a new ticket they will have a snapshot into any ongoing incidents you and your responders are managing.
+
+They'll be able to search for incidents with certain keywords, to check if the ticket in front of them is related to an existing incident.
+
+When the agent finds the relevant incident, they'll be able to attach it from within Zendesk and have visibility on any updates.
+
+<img src="/images/integrations/zendesk/zendesk-app-search.png" alt="Search for incidents in Zendesk app" />
+
+Additionally, if a Zendesk ticket link is pasted into an incident channel this will attach the ticket to the incident.
+
+<img src="/images/integrations/zendesk/attach-ticket-slack.png" alt="Attaching a ticket by pasting a link in Slack" />
+
+Top tip! If you would like incident.io to appear at the top of your app list in Zendesk, learn how to reorder your apps [here](https://support.zendesk.com/hc/en-us/articles/4409155972378-Managing-your-installed-apps#topic_tc5_qn4_ym).
+
+---
+
+## Ticket updates
+
+Once a Zendesk Ticket is attached, we'll keep it in sync with an incident.
+
+Any updates on the incident - such as a change in severity, or a status update from your incident lead - are added as internal notes on the ticket.
+
+Similarly, any comments on the ticket are relayed into the incident channel.
+
+<img src="/images/integrations/zendesk/ticket-updates-sync.png" alt="Ticket updates synced to incident" />
+
+---
+
+## Updating your incident channel
+
+With this integration we'll make it easy for everyone involved in an incident to get updates.
+
+- Attaching tickets pushes a notification to your incident channel
+*This gives responders a quick insight into customer communications and start to get an understanding of the potential impact of the issue.*
+- Responses and internal notes in Zendesk are pushed to your incident channel.
+*This gives your responders real time updates directly from customers with information that could help them to debug the issue.*
+
+<img src="/images/integrations/zendesk/incident-channel-updates.png" alt="Updates posted to incident channel" />
+
+---
+
+## Tagging tickets
+
+Any Zendesk user will know the power of the tag and when it comes to incident.io it's no different.
+
+Every time an incident is attached to a ticket a tag will be added (`incident/[id]`). If you decide that the ticket isn't related to the incident, you can simply remove it.
+
+Tagging incidents will also allow you to perform bulk actions.
+
+- Attach multiple tickets to ongoing incidents
+- Remove tickets from ongoing incidents
+
+Tags will allow you to get a snapshot into the scale of an incident and provide important data for your post incident process.
+
+---
+
+## Catalog types
+
+Once you connect Zendesk, you can configure incident.io to pull through organisations from Zendesk into Catalog. This will then allow you to create a custom field based on that Catalog type. This is useful as a way to tag which customers are affected by an incident without having to manually upload a customer list to incident.io via a separate sync process.
+
+To enable this sync, switch the toggle in Settings > Integrations > Zendesk and click "Save".
+
+<img src="/images/integrations/zendesk/catalog-sync-toggle.png" alt="Enable catalog sync in settings" />
+
+---
+
+We hope you love the Zendesk integration as much as we do! If you have any questions or feedback please don't hesitate to [get in touch](mailto:support@incident.io).

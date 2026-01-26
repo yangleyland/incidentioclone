@@ -1,0 +1,133 @@
+---
+title: "Using Catalog with On-call"
+description: ""
+canonical_article_id: 142
+migrated_at: "2026-01-21T18:21:24Z"
+source_url: "https://help.incident.io/articles/9580336408-using-catalog-with-on-call"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9580336408-using-catalog-with-on-call) on January 21, 2026
+</Info>
+
+Catalog is our powerful engine, enabling seamless automation of configurations across both On-call and Response products. At its core, Catalog lets you map your organization’s structure, allowing us to route alerts to the appropriate teams, support customer-facing teams in identifying the right contacts, and streamline configuration to accelerate migration.
+
+Catalog offers flexibility and versatility to meet your needs, along with default settings to help you get started. Integrating a third-party service catalog, like Backstage, is also quick and easy.
+
+## How we page
+
+When something goes wrong, it’s essential to involve the right people immediately. Paging or escalation can happen automatically from your alert source or manually by someone initiating a page or an incident
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-1.png)
+
+In both cases, to ensure the right people are paged, it’s essential to connect your Catalog types with the correct escalation paths. For example, you can link Teams, Services, and Features to their respective escalation paths for streamlined paging.
+
+<Info>
+
+If you attach teams to your escalation paths, we will automatically add this link to Catalog for you, to make paging by team easier.
+
+</Info>
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-2.png)
+
+## Escalating and creating incidents automatically from your alerts
+
+Once your Catalog is set up with types connected to escalation paths, you can configure *Alert Routing* to dynamically route escalations to the appropriate team and individual.
+
+This means that you can use one route for even 100 teams without creating separate configurations to each.
+
+1. Head to alert route
+2. Go to escalations
+3. Escalate via dynamic value
+4. Create an expression ie. From Services → Teams → Escalation paths
+5. Save
+
+Now every time an alert comes in, we'll read what service it will have and route it depending on that to the right team!
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-3.png)
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-4.png)
+
+<Info>
+
+Learn how to **automatically** escalate and create incidents [here](/help-centre/alerts/get-started-with-alerts/creating-incidents-automatically-via-alerts) .
+
+</Info>
+
+## Escalating and creating incidents manually
+
+When a customer reports an issue, team members often need to manually escalate or create an incident. They can do this through the web dashboard or by using the `/inc` or `/inc escalate` commands. With Catalog, customer-facing teams don’t need to know exactly who owns a feature; they can simply escalate based on the feature, and the Catalog will route it to the correct team.
+
+<Info>
+
+Learn how to **manually** escalate and create incidents [here](/help-centre/on-call/get-started-with-on-call/creating-incidents-manually) .
+
+</Info>
+
+## Configuring your Catalog
+
+To set up your Catalog with On-call, we’ve created simple defaults to help you get started. In this section, we’ll share some example structures to guide you along the way!
+
+#### 1. Determine the structure of your Catalog
+
+The structure of your Catalog depends on your system and organisation structure. A common simple structure is
+
+- Teams
+- That own Services
+- That power features
+
+For larger companies, there might be more grouping of teams into domains
+
+- Domains
+- That includes teams
+- That own Services
+- That includes features
+
+#### 2. Create them as Catalog Types
+
+After you have decided on which Types you need, it's time to import those types from your third-party service catalog or manually create them.
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-5.png)
+
+#### 3. Connect types to Teams
+
+To ensure your On-call configuration functions correctly, connect all necessary types using Attributes and Derived Attributes, which can be edited within each Type. Make sure the Type is selected from the Catalog and is not set as Text or String.
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-6.png)
+
+<Info>
+
+The Catalog is very flexible and can be used in thousands of different ways to suit your company, so please contact us if you have a specific use case you'd like to run through with us at [support@incident.io](mailto:support@incident.io) .
+
+</Info>
+
+## Parsing Catalog values from alerts
+
+To finalize setup, ensure the metadata from your alerts—such as labels—connects with the Catalog entries you've created for your types. Here are some examples of how alert metadata can map to your Catalog:
+
+- Alert → Service → Team → Escalation Path
+- Alert → Feature → Team → Escalation Path
+- Alert → Team → Escalation Path
+- etc...
+
+#### Attributes
+
+When setting up your alert source, start by sending an initial payload that includes the typical metadata for your alerts. Next, organize this metadata so it can drive escalations and other automated actions on the platform—these elements are called *Attributes* .
+
+You can create Attributes that connect to Catalog types or store them as text as needed. If your Catalog is already configured, we’ll automatically identify matches and suggest attributes based on those entries.
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-7.png)
+
+#### Aliases & External IDs
+
+Sometimes, your payload may use different names or formats for the same metadata. The *External ID* is how your systems identify this entry, and it cannot be changed once set.
+
+Use *Aliases* to reference this Catalog entry across other tools. Aliases should be unique and permanent, allowing you to rename the Catalog entry without changing the alias."
+
+![](/images/help-centre/using-catalog-with-on-call/screenshot-8.png)
+
+<Info>
+
+Aliases are helpful when names change, such as a team name update. This allows you to change the name of your type while adding the previous name as an alias, ensuring continued recognition without interruption.
+
+</Info>

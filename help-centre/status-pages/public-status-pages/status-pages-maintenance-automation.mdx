@@ -1,0 +1,71 @@
+---
+title: "Status Pages maintenance automation"
+description: ""
+canonical_article_id: 253
+migrated_at: "2026-01-21T18:40:30Z"
+source_url: "https://help.incident.io/articles/8915200122-status-pages-maintenance-automation"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8915200122-status-pages-maintenance-automation) on January 21, 2026
+</Info>
+
+## How do maintenance windows work?
+
+A maintenance window is similar to an unscheduled incident, but with a few differences:
+
+- It must have a set time window which confirms when you expect components to not be working as normal.
+- Scheduled maintenance windows appear in your status page in advance, to help your customers plan around it.
+- Optionally, maintenance windows can progress to ‘in progress’ at the start time, and then to ‘completed’ at the end of the maintenance window. Automated updates will not notify your subscribers. If you disable this, you’ll need to manually update the status of the maintenance window when it is in progress and when it is completed.
+
+‘In progress’ maintenance windows will appear on your status page as ongoing issues for your customers to be aware of.
+
+## How do I schedule a maintenance window?
+
+<Info>
+
+Scheduled maintenance is only available for your public-facing status pages - internal pages cannot currently have scheduled maintenance added to them.
+
+</Info>
+
+Navigate to [Status pages](https://app.incident.io/~/status-pages) in your left-hand menu, and select the status page you want to add scheduled maintenance to. Then, click in to the **Maintenance** tab:
+
+![image.png](/images/help-centre/status-pages-maintenance-automation/screenshot-1.png)
+
+In the top-right of your screen, you'll now see a **Schedule maintenance** button:
+
+![image.png](/images/help-centre/status-pages-maintenance-automation/screenshot-2.png)
+
+Click this to open up the form:
+
+![](/images/help-centre/status-pages-maintenance-automation/screenshot-3.png)
+
+This is similar to the ‘publish incident’ flow, but there’s a few differences. Let’s walk through the form.
+
+1. First **choose a name** : we’ll use this anywhere that links to this maintenance window, and as the subject line in any emails to subscribers.
+
+2. Next choose **whether to automate this maintenance** .
+
+By default, we’ll automatically update your maintenance window to be ‘in progress’ at the scheduled start time, and to ‘completed’ at the scheduled end time.
+
+3. Now select the **start and end time** of the maintenance window.
+
+4. The **message** is where you explain the anticipated impact of this maintenance event.
+
+This will be shown on the status page for this maintenance window, and optionally sent to your subscribers.
+
+5. Finally select **which components will be affected** .
+
+This helps your customers understand whether they’ll be impacted by this maintenance event.
+
+---
+
+As with an unscheduled incident, click ‘Review’ to double-check before you publish to your status page.
+
+![](/images/help-centre/status-pages-maintenance-automation/screenshot-4.png)
+
+<Info>
+
+We will not notify your subscribers automatically when the maintenance window starts and end.
+
+</Info>

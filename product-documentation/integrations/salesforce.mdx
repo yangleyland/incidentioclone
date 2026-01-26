@@ -1,0 +1,70 @@
+---
+title: Salesforce
+description: Connect Salesforce accounts to incidents for smarter workflows and better data analysis
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Salesforce integration
+
+Using our Salesforce integration, you can attach your customer accounts to incidents in only a few clicks, enabling smarter workflows and making data analysis easier and more impactful. You can also do powerful things like:
+
+- Send an email to senior managers when a high-revenue customer is impacted by an incident
+- Add the relevant Customer Success Manager to an incident when one of their customers is impacted
+- Remind an incident channel when there's an open opportunity for a prospect that might be impacted by an incident
+
+Before configuring the integration, make sure that you have an [Account List](https://trailhead.salesforce.com/content/learn/projects/prepare-your-salesforce-org-for-users/create-a-unique-account-list-view) configured in Salesforce so that you can easily identify it when you go through our install process.
+
+---
+
+## Setting up
+
+### 1. Go to Settings > Integrations > Salesforce
+
+Click `Connect` and you'll be redirected to Salesforce, where you can login as the user you'd like to connect with -- or, if you're already logged in, you'll see a modal prompting you to authorise incident.io to access a variety of scopes within Salesforce.
+
+<img src="/images/integrations/salesforce/salesforce-authorize.png" alt="Salesforce authorization screen" />
+
+Click Allow, and you'll be redirected back to your integration settings page to complete configuration. From here, choose an Account List to integrate with the Catalog.
+
+<img src="/images/integrations/salesforce/salesforce-account-list.png" alt="Choose an Account List to sync" />
+
+<Warning>
+Your integration will be considered "incomplete" until you do this.
+</Warning>
+
+Once this is done, you'll be able to see the list of your customers' accounts as entries under the new 'Salesforce Account' Catalog type.
+
+<img src="/images/integrations/salesforce/salesforce-catalog.png" alt="Salesforce Account catalog entries" />
+
+By default, we'll synchronise:
+
+- Name
+- Owner
+- Description
+- Employees
+- Industry
+
+The incident.io Catalog can be configured to also sync dynamic attributes. To do this, navigate to the desired type in Catalog, e.g. "Salesforce Account", click "Edit type" and add then click "Import from Salesforce".
+
+Note that in order for incident.io to successfully sync these dynamic attributes the attached service account must also have permission to read them.
+
+The integration is read-only, so only read permissions are required for all attributes.
+
+Also note that you can only sync one Account List, with a limit of 50,000 accounts that can be synced from this list.
+
+---
+
+## Adding more Salesforce objects and fields
+
+Once you've set up the basic Salesforce integration, you can choose to add Salesforce custom fields, as well as more Salesforce objects like "Contact" or "Opportunity".
+
+Head to [Catalog](https://app.incident.io/~/catalog), scroll to Salesforce and hit "Import another type":
+
+<img src="/images/integrations/salesforce/salesforce-import-type.png" alt="Import another Salesforce type" />
+
+After a few minutes, the new Salesforce object will load with the relevant entries. To add more Salesforce fields, hit "Edit type" and then "Add attribute":
+
+<img src="/images/integrations/salesforce/salesforce-add-attribute.png" alt="Add Salesforce attribute" />

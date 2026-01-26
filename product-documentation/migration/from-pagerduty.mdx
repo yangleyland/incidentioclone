@@ -1,0 +1,131 @@
+---
+title: From PagerDuty
+description: Tools and resources to make migrating from PagerDuty to incident.io easier
+author: auto-ai-doc-migration
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+We know that migrating from PagerDuty to incident.io can feel intimidating, as there can be a lot of configuration that you have in place that you don’t want to lose. So, we’ve built (and continue to build) tooling to make this process easier for you.
+
+Below is a list of tools that you can leverage to make your testing phase and official migration / onboarding easier, including:
+- **PagerDuty alert source** - Test without reconfiguring alert providers
+- **Pull PagerDuty data into Catalog**
+- **Import schedules**
+- **Mirror schedules into PagerDuty**
+- **Import escalation paths**
+- **Terraform provider** - Manage configuration as code
+- **Datadog migration tool** - Automate monitor updates
+- **Import historical incidents** - Preserve incident history
+
+Also, let us know if there is something else that you'd need help with migrating! We are here to make this as painless as possible - so we can always work together to figure out what else we can provide.
+
+## PagerDuty alert source
+
+You can connect your PagerDuty instance directly to incident.io as an alert source. This lets you test on-call features like schedules and escalation paths without having to reconfigure your alert providers (like Datadog or Grafana).
+
+Your testing setup would look like:
+```
+Datadog → PagerDuty → escalate via incident.io
+```
+
+Once you're ready to fully migrate, you'll move to:
+```
+Datadog → escalate via incident.io
+```
+
+<Tip>
+  Using PagerDuty as an alert source significantly reduces time to testing since you don't need to reconfigure all your monitoring tools upfront.
+</Tip>
+
+For detailed setup instructions, see our [PagerDuty integration documentation](https://help.incident.io/articles/2470059178-pagerduty) and [alert source data extraction guide](https://help.incident.io/articles/7594934427-extracting-json-alert-data).
+
+
+## Pull PagerDuty data into Catalog
+
+If you have connected PagerDuty into incident.io, we will automatically pull in your PagerDuty schedules, services, teams, and users into the Catalog.
+This allows you to use PagerDuty data with the rest of your catalog data. For example, you can determine what should still be paged via PagerDuty vs. incident.io.
+
+See our catalog documentation for more on [importing data](https://help.incident.io/articles/5006458726-how-do-i-get-data-into-catalog%3F) and [using the catalog](https://help.incident.io/articles/2606187127-using-the-catalog).
+
+
+## Import schedules and escalation policies
+
+You can import schedules and escalation policies directly from PagerDuty into incident.io, including bulk imports to speed up the process.
+
+[TODO: EXPAND]: # 
+
+<Info>
+  Both single and bulk imports are supported, so you can bring over all your schedules and escalation policies at once if you prefer.
+</Info>
+
+[TODO: EXPAND]: #
+
+## Mirror schedules to PagerDuty
+
+We have built out the ability to mirror an incident.io schedule into a PagerDuty schedule(s). This allows organizations to test out cover requests and overrides in earnest within incident.io, and have that reflect back into PagerDuty.
+
+This is great for organizations that are in a testing phase and need to keep PagerDuty in-sync until onboarding has started.
+
+
+## Terraform provider support
+
+If you use Terraform to manage your on-call configuration, our Terraform provider supports alert sources, alert routes, escalation paths, and schedules.
+
+Terraform is especially helpful for migrating alert sources. For example, if you have many monitors in Datadog that point to PagerDuty, you can quickly update your Terraform config to have those monitors point to incident.io instead.
+
+```hcl
+# Example: Update Datadog monitors to use incident.io
+resource "datadog_monitor" "example" {
+  name    = "Example Monitor"
+  type    = "metric alert"
+  message = "@incident-io-alert-source"
+  # ... other configuration
+}
+```
+[TODO: REVIEW HCL CODE]: #
+
+See our [Terraform provider documentation](https://registry.terraform.io/providers/incident-io/incident/latest/docs).
+
+
+## Datadog migration tool
+
+If you don't use Terraform and have many Datadog monitors pointing to PagerDuty, our migration tool can automatically update everything to point to incident.io.
+
+See [Datadog monitor migration tool](/migration/datadog-monitor-migration-tool).
+
+## Import historical incidents
+
+If you want to bring over your incident history from PagerDuty, we have a sample script available that demonstrates how to import incidents using our API.
+
+This is useful for:
+- Maintaining historical context for your team
+- Preserving incident metrics and trends
+- Ensuring continuity in your incident data
+
+Contact our support team for access to the PagerDuty incident import script.
+
+[TODO: EXPAND]: #
+
+## Related resources
+
+<CardGroup cols={2}>
+  <Card title="Alert sources" icon="bell" href="/on-call/alert-sources">
+    Learn about connecting alert sources
+  </Card>
+  <Card title="Schedules" icon="calendar" href="/on-call/schedules">
+    Set up and manage on-call schedules
+  </Card>
+  <Card title="Escalation paths" icon="stairs" href="/on-call/escalation">
+    Configure escalation policies
+  </Card>
+  <Card title="Terraform provider" icon="code" href="https://registry.terraform.io/providers/incident-io/incident/latest/docs">
+    View Terraform documentation
+  </Card>
+</CardGroup>
+
+## Need help?
+
+We're here to make your migration as smooth as possible. If you need additional tooling or support that isn't covered here, reach out to our team at help@incident.io.

@@ -1,0 +1,31 @@
+---
+title: "Adding connected users to Catalog"
+description: ""
+canonical_article_id: 106
+migrated_at: "2026-01-21T18:19:42Z"
+source_url: "https://help.incident.io/articles/6563490557-adding-connected-users-to-catalog"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6563490557-adding-connected-users-to-catalog) on January 21, 2026
+</Info>
+
+Users of incident.io — your incident responders — are core to the incident management process. Those responders likely have accounts across many daily-use services, including services that you can (and should!) integrate with incident.io, like PagerDuty, Sentry, Linear and more.
+
+Connecting third-party users to incident.io lets you build powerful integrations that *just work* with your existing tools - link Sentry users to identify the relevant people when you receive a Sentry alert and then notify them via Slack. The more you connect, the more you can do.
+
+In most cases, when you connect a new integration, these *external users* will be added to Catalog and where we can, we'll link them to the relevant incident.io user via a *catalog attribute* .
+
+To see this in action, navigate to the catalog type for an external user type (e.g. PagerDuty User) and click on any of the entries to see information about the external user, and the incident.io user that they're connected to.
+
+![](/images/help-centre/adding-connected-users-to-catalog/screenshot-1.png)
+
+If an integration has a concept of users, we'll perform the import and link process automatically when you set up your integration.
+
+<Warning>
+
+Be aware that some integrations e.g. Github and Jira, don't support automatic user linking as we're not able to uniquely identify a matching user from an external user's email address.
+
+</Warning>
+
+If you need to create, edit or remove any connections between an incident.io user and a third-party user, you can do this via the *Users* catalog type. Click on the user you'd like to edit and use the *Connected accounts* list to manage connections.

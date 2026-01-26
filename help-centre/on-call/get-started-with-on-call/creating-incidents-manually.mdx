@@ -1,0 +1,91 @@
+---
+title: "Creating incidents manually"
+description: ""
+canonical_article_id: 141
+migrated_at: "2026-01-21T18:21:22Z"
+source_url: "https://help.incident.io/articles/7236627606-creating-incidents-manually"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7236627606-creating-incidents-manually) on January 21, 2026
+</Info>
+
+When something goes wrong, it’s crucial to involve the right people immediately. Escalation can be triggered automatically by your alert source or manually by paging the responsible team.
+
+![](/images/help-centre/creating-incidents-manually/screenshot-1.png)
+
+In this article, we'll go through how you can escalate to the right teams and declare incidents manually by using Catalog, Custom fields and Workflows.
+
+## Creating incidents manually
+
+To create incidents your team can use the [Web Dashboard](https://app.incident.io/~/dashboard) or /inc -command in Slack or MS teams.
+
+Next, they’ll see a modal in either Slack or the Web Dashboard, where they can add more details about the incident. Thanks to our Catalog configuration, the appropriate contact is identified automatically through the Feature → Team → Escalation Path connection.
+
+In the below form we have used 'Affected feature' that has been connected to a team, and then to an escalation path so by choosing the Feature we know who we should page! Below we'll go through how to configure the below form and enable the workflow to automate paging the right teams when someone manually creates an incident.
+
+![](/images/help-centre/creating-incidents-manually/screenshot-2.png)
+
+<Info>
+
+For both incident declaration and escalation forms, you can configure fields with information essential for responders, guiding the person escalating on whom to page. Options include selecting by feature, team, or even a service.
+
+</Info>
+
+## How to set up manual incident creation
+
+While alerts may generate most incidents, customer-facing teams may occasionally need to raise incidents manually. To make this easier, use the Catalog to escalate incidents to the appropriate team based on the feature—no need for customer-facing teams to know exactly who owns what.
+
+Here's how to help your teams to create incidents and to page the right people
+
+1. Head to the [Catalog](https://app.incident.io/~/catalog) and create a new type like Features.
+  - Ensure that the Features are connected to teams
+2. Go to Settings and [Custom fields](https://app.incident.io/~/settings/custom-fields)
+  - Create a new Standard custom field for Features
+3. Then go to [Forms](https://app.incident.io/~/settings/forms) and go to 'Declare'
+  - Add 'another field' and choose 'Feature'
+4. Then head to Workflows and create a new workflow
+  - Choose the template 'Escalate via incident.io'
+  - Ensure that Status for incident is either Triage or Active
+  - Edit the step 'Escalate via incident.io and create an expression that navigates from the Feature to the Escalation path
+5. Save draft and set live!
+
+Now when someone manually creates an incident, we'll ask what features are affected and then escalate the incident to the right people.
+
+## Escalations
+
+You are also able to escalate incidents further or just escalate before creating incidents.
+
+To page, team members can go to [Escalations](https://app.incident.io/~/on-call/escalations) in our Web Dashboard or use the `/inc escalate` command in Slack or Microsoft Teams.
+
+After initiating, they’ll see a modal in either Slack or the Web Dashboard where they can select the appropriate feature. Thanks to our Catalog configuration, we know exactly whom to page by linking Feature → Team → Escalation Path.
+
+To set up the 'Escalate' -form, just follow the same steps as we did in the 'Declare' -form [here](/help-centre/on-call/get-started-with-on-call/creating-incidents-manually)
+![](/images/help-centre/creating-incidents-manually/screenshot-6.png)
+
+![](/images/help-centre/creating-incidents-manually/screenshot-7.png)
+
+## Creating incidents with a third-party paging tool
+
+If you’re still using a third-party paging tool, like PagerDuty or Opsgenie, you can send alerts to us through those tools or directly from your observability tools. Sending alerts directly from the source allows for smarter grouping by Service and time period, especially when using the Catalog.
+
+#### Creating incidents
+
+Incident creation through a third-party paging tool works similarly, though escalation configurations aren’t available on our side.
+
+- You can create incidents from Alerts with a third-party paging tool. Read more about automatically creating incidents [here](/help-centre/alerts/get-started-with-alerts/creating-incidents-automatically-via-alerts)
+- Creating incidents manually with /inc -command
+
+#### Escalating incidents
+
+You can escalate incidents via a 3rd party tool - the set up is exactly the same as the rest of the article, but the workflow will need to include
+
+- Step - 'Escalate via third party', instead of incident.io
+
+If you want to do smart escalations, you'll have to map your Features to Teams, AND Teams to PD/OpsGenie Esc Paths in the Catalog
+
+<Info>
+
+Using both our On-call and Response product can create lot of benefits like unified data flow, continuous feedback on your alerts and so, better noise management all under in a single pane of glass. ​ Learn more about our On-call [here](https://incident.io/on-call) .
+
+</Info>

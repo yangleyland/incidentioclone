@@ -1,0 +1,136 @@
+---
+title: "Alerts and automatic incident creation"
+description: ""
+canonical_article_id: 83
+migrated_at: "2026-01-21T18:15:15Z"
+source_url: "https://help.incident.io/articles/3486006116-alerts-and-automatic-incident-creation"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3486006116-alerts-and-automatic-incident-creation) on January 21, 2026
+</Info>
+
+Yes! We support automatically creating incidents from many sources including Datadog, Sentry, Grafana, and more!  To see if we support the source you want, try [creating an alert source](https://app.incident.io/~/alerts/sources/create) to see which options are available.
+
+<Info>
+
+**Can't see the source you want?** You can use our HTTP source to connect with most tools that provide webhooks.
+
+</Info>
+
+## Setting Up
+
+## 1. Connect an alert source
+
+1. Create an alert source to receive alerts
+
+- Navigate to [Alerts > Create alert source](https://app.incident.io/~/alerts/sources/create)
+- Select the source that you want to import
+
+2. Connect your source to receive alerts
+
+- Follow the steps provided for your chosen source to connect it and receive your first alert
+- You'll see live alerts come in once you start receiving them, you can try sending a test alert from your source to check your configuration
+
+![](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-1.png)
+
+3. Configure your alerts
+
+When connecting your alert sources to [incident.io](http://incident.io/) , you can add custom attributes to provide more context to your alerts. Examples include: team, affected customer, affected feature or environment. This allows you to pull values from your alert payload into rich data on your incidents.
+
+These can provide helpful clues for responders when digging into the alert issue. Plus, it will be a helpful way of grouping and filtering your alerts into incidents via alert routes.
+
+<Info>
+
+**Every alert source is rate limited** We apply a rate limit of **120 events/minute** for each alert source. This means that if you have two alert sources, we will process up to 240 events every minute. When the rate limit is exceeded, we will respond with an HTTP 429 `Too Many Requests` . Organization-level limits are also applied to ensure reasonable use.
+
+</Info>
+
+---
+
+## 2. Create an alert route
+
+Now that you have an alert source that's receiving alerts, you need to connect it to an alert route to start creating incidents from your alerts.
+
+1. Select alert sources
+
+- Select any alert sources which should trigger incidents
+- You can filter which specific alerts should create incidents later
+
+2. Filter and group
+
+- Filter and alerts which should not auto-create incidents for (i.e. low priority alerts)
+- Group alerts, so when an alert fires, we find active incidents with similar alerts and give responders the ability to attach the alert to an incident or create a new incident from that alert (ie. grouping alerts by the team or service that owns the alert). [More on that later.](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation)
+
+3. Configure incidents
+
+- Choose how you want the incidents created from your alerts to look
+- You can select title and summary from the alert details you have available to you
+- Add any custom fields which should be set based on details on your alert
+
+---
+
+## How does it work?
+
+Once auto-creation is switched on, incidents will be automatically created in a **triage** state.  We'll try our best to pull the right people into the incident channel.
+
+When joining a triage incident, you'll be met with this:
+
+![](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-2.png)
+
+![](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-3.png)
+
+**Accept it** This will accept this **triage** incident as a real incident.
+
+- You will be asked if you'd like to rename the incident, and you'll be able to set any custom fields you have configured
+- All your workflows will kick off once the incident is accepted, and you can get to work
+- The incident which triggered this will become an **attachment** of your incident.
+
+**Merge it into another** Was this alert caused by an incident with an existing channel that you already know about? If so, you can **merge** the other incident to any open incident channel. ​ The incident that was created in triage will be **declined** , and the channel will be archived after a short delay. ​
+
+**Decline it** Selecting this will **decline** the incident, and archive the channel. ​ Declined incidents are excluded from any metrics or workflows that you have set up. It's like they never existed at all.
+
+---
+
+## Grouping
+
+Sometimes multiple incidents or alerts in a short space of time are caused by the same underlying problem. To avoid creating unnecessary noise, we recommend configuring a **grouping window** . This allows us to check in with you before we spin up new incidents automatically. ​ We'll continue to use HTTP source for our example, but the same applies to other alerts and the like:
+
+1. An incident is auto-created from a HTTP incident ​
+2. A second HTTP incident is triggered **within the grouping window,** with a matching service
+3. The next step depends on the **grouping behaviour** you've configured. For this example, we'll use **suggested** as this is our recommended setting. See [below](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation) for more details on **automatic grouping.**
+4. Instead of creating a new incident, we will post the below message in **all** open incidents **** with matching HTTP services created **within the grouping window.**
+
+![Screenshot 2025-11-25 at 2.13.08 PM.png](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-4.png)
+
+**Merge it into another** This will **attach** this HTTP incident to the existing incident.
+
+- Any other grouping suggestion messages will be deleted from other channels, it's unlikely it's linked to multiple incidents ​
+
+![](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-5.png)
+
+**Decline** This will reject the HTTP incident from this channel, and remove all references to it. ​ If the incident is declined in the channel from **all incident channels** , we'll archive the channel in 5 minutes.
+
+## Automatic grouping
+
+Automatic grouping automatically attaches related grouped alerts into the same active incident without asking for manual confirmation via the incident channel or dashboard.
+
+The alert can be unlinked from incident via the dashboard.
+
+![Screenshot 2025-12-03 at 11.55.20.png](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-6.png)
+
+## FAQ
+
+**What does my deduplication key in my alert payload do in incident.io?**
+
+Deduplication keys are one way to indicate that some events are the same alert: If your alert events have the same deduplication key, we won't create new alerts in [incident.io](http://incident.io/) for them - if it's different we create a new alert.
+
+**An incident just got created today, but the associated alert and escalation came in yesterday - what could have happened?**
+
+If an alert is marked as unrelated to an incident, it will trigger a new incident based on the alert route. The creation time for the new incident is set to the time the alert is marked as unrelated.
+
+Grouping logic can be defined for an alert route for alerts to be grouped into an incident. If one then marks it as unrelated, we assume it might need its own incident. This triggers it to be raised in Triage, following the Alert Route rules (check the Triage mode setting at the bottom to determine if incidents should be created or not).
+
+In **some cases** to prevent this, one might want to enable the option underneath the Triage condition in the Alert Route to be enabled:
+
+![image.png](/images/help-centre/alerts-and-automatic-incident-creation/screenshot-7.png)

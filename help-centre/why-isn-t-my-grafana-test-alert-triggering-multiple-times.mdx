@@ -1,0 +1,31 @@
+---
+title: "Why aren't my Grafana alerts appearing within incident.io?"
+description: ""
+canonical_article_id: 331
+migrated_at: "2026-01-21T18:55:07Z"
+source_url: "https://help.incident.io/articles/7701025096-why-isn-t-my-grafana-test-alert-triggering-multiple-times"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7701025096-why-isn-t-my-grafana-test-alert-triggering-multiple-times) on January 21, 2026
+</Info>
+
+## Context
+
+When using Grafana to send alerts to incident.io, you might notice that some alerts don't appear as expected in the incident.io interface. This typically happens due to deduplication logic within incident.io.
+
+## Answer
+
+This behavior is most commonly seen when sending test alerts from Grafana to [incident.io](http://incident.io/) and it happens because Grafana uses the same 'fingerprint' for each test alert, and incident.io uses this fingerprint as the deduplication key for Grafana alerts. To send multiple test alerts successfully, you'll need to resolve the existing alert first within incident.io.
+
+To test multiple Grafana alerts:
+
+1. Navigate to the alert details page in incident.io
+2. Click the resolve button in the top right corner of the alert page
+3. Send a new test alert from Grafana
+
+<Info>
+
+Note: In a production environment with real Grafana alerts, this manual resolution isn't necessary. Grafana automatically sends a 'resolve' notification which will clear the alert in incident.io, allowing subsequent alerts with the same fingerprint to trigger normally.
+
+</Info>

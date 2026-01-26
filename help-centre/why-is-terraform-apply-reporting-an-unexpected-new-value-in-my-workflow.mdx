@@ -1,0 +1,50 @@
+---
+title: "Why is 'terraform apply' reporting an unexpected new value in my workflow?"
+description: ""
+canonical_article_id: 326
+migrated_at: "2026-01-21T18:54:58Z"
+source_url: "https://help.incident.io/articles/6070972835-why-is-terraform-apply-reporting-an-unexpected-new-value-in-my-workflow"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6070972835-why-is-terraform-apply-reporting-an-unexpected-new-value-in-my-workflow) on January 21, 2026
+</Info>
+
+<Info>
+
+For internal use only, and for using to crib responses to customers who raise this issue with workflows. This doesn't apply to other Terraform resources — just workflows.
+
+</Info>
+
+Sometimes, we add new parameters to our workflows, which offer new functionality. Existing workflows are silently "upgraded" to support this new parameter, which means they gain a new "parameter binding"
+
+This can result in a Terraform error that looks like this:
+
+```plaintext
+When applying changes to incident_workflow.[name], provider "provider[\"registry.terraform.io/incident-io/incident\"]" produced an unexpected new value: .steps[1].param_bindings: new element 3 has appeared.
+
+This is a bug in the provider, which should be reported in the provider's own issue tracker.
+
+Error: Provider produced inconsistent result after apply
+```
+
+What Terraform is saying here, is that a new value for a parameter appeared that it wasn't expecting. We don't yet handle this gracefully, and we're not entirely sure if there's a good solution here yet.
+
+We're going to release a new version of our Terraform provider to fix this, but in the meantime, if `param_bindings` is complaining about being changed, then they should add the missing parameter binding.
+
+Example:
+
+Plain Text 
+
+```plaintext
+!               param_bindings = [
+-                   {
+                    },
+                    # (3 unchanged elements hidden)
+                ]
+                # (1 unchanged attribute hidden)
+            },
+        ]
+```
+
+That output is saying that Terraform is missing a `{}` param binding — and they should add this if they want to unblock themselves. The new version of our Terraform provider will mean this step isn't required.

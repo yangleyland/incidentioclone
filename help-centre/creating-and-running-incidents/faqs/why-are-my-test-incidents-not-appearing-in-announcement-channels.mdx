@@ -1,0 +1,25 @@
+---
+title: "Why are my incidents not being announced?"
+description: ""
+canonical_article_id: 88
+migrated_at: "2026-01-21T18:15:10Z"
+source_url: "https://help.incident.io/articles/8691774274-why-are-my-test-incidents-not-appearing-in-announcement-channels"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8691774274-why-are-my-test-incidents-not-appearing-in-announcement-channels) on January 21, 2026
+</Info>
+
+## Context
+
+When creating incidents, you may notice that some incidents are not being announced in your configured announcement channels. This can happen when incidents are created in test mode, tutorial, or Private incident, even though the incident channel is created.
+
+## Answer
+
+Tests, tutorials, and private incidents are intentionally excluded from announcement rules by design. This behavior exists to prevent cluttering announcement channels or exposing sensitive private incident data.
+
+To ensure your incidents are announced in configured channels:
+
+1. Verify that the incident is not set to Test, tutorial, or private when creating it
+2. Use Test mode only when you want to practice or test incident workflows without triggering announcements
+3. For real incidents that need to be announced, make sure to create them in standard active (non-test) mode.

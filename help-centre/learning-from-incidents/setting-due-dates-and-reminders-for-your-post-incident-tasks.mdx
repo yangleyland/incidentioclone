@@ -1,0 +1,47 @@
+---
+title: "Setting due dates and reminders for your post-incident tasks"
+description: ""
+canonical_article_id: 357
+migrated_at: "2026-01-21T18:55:49Z"
+source_url: "https://help.incident.io/en/articles/9014592-setting-due-dates-and-reminders-for-your-post-incident-tasks"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/en/articles/9014592-setting-due-dates-and-reminders-for-your-post-incident-tasks) on January 21, 2026
+</Info>
+
+When an incident enters [the post-incident flow](/help-centre/configure-your-account/define-your-post-incident-process-using-the-post-incident-flow) , we create a set of tasks like `Create the postmortem` which must be addressed.
+
+While often not as urgent as solving the incident itself, the post-incident flow ensures you have recorded the right timestamps, fields, and learnings while the incident is still fresh in peoples memories.
+
+In order to help people prioritise what to work on next it can help to set expectations about when a task should be completed by.
+
+## Deciding on a due date
+
+Not every incident is equal. Some are more complex, some more serious in nature, others may involve completely different sets of teams. It might seem impossible to decide on a due date for tasks across all of that but thankfully you can easily set multiple conditions on when a task might be due.
+
+To do so, begin editing a post-incident flow task and look towards the due date section. You are now able to set an expression powered by incident fields along with your own catalog of custom fields to decide on the values to return here.
+
+In this example we're saying we want the post-mortem to be completed as soon as possible if the incident is of a `Critical` severity, otherwise you can take a bit longer:
+
+![](/images/help-centre/setting-due-dates-and-reminders-for-your-post-incident-tasks/screenshot-1.png)
+
+## What does the due date do?
+
+Once an incident transitions into a post-incident flow, all of the tasks will have their due dates set. Within the UI you are able to see when each task is due, and who it is currently assigned to.
+
+When a task becomes overdue it will be highlighted in the UI:
+
+![](/images/help-centre/setting-due-dates-and-reminders-for-your-post-incident-tasks/screenshot-2.png)
+
+## Automatic and manual reminders
+
+If you are on our **Pro** or **Enterprise** plans you will be able to send automatic reminders to users; simply enable the option within your post-incident flow settings.
+
+When a task assigned to a user becomes overdue we will send a gentle reminder to the user that this date has gone past so they can make sure they finish the task.
+
+![](/images/help-centre/setting-due-dates-and-reminders-for-your-post-incident-tasks/screenshot-3.png)
+
+You can now also manually send reminders to people for specific tasks via the post-incident view. Clicking `Send reminder` will send a similar reminder message to the assignee reminding them to finish this post-incident task.
+
+![](/images/help-centre/setting-due-dates-and-reminders-for-your-post-incident-tasks/screenshot-4.png)

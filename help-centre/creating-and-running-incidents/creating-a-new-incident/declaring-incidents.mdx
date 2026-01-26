@@ -1,0 +1,66 @@
+---
+title: "Declaring incidents"
+description: ""
+canonical_article_id: 47
+migrated_at: "2026-01-21T17:57:50Z"
+source_url: "https://help.incident.io/articles/5383115388-declaring-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5383115388-declaring-incidents) on January 21, 2026
+</Info>
+
+Something has gone wrong, and we need to respond!
+
+There are 3 ways to kick-off a real incident (you can create [test incidents](/help-centre/creating-and-running-incidents/faqs/can-we-run-fake-incidents-to-sandbox-incident.io) if you want to run experiments and do dry runs without affecting production incidents!).
+
+<iframe src="https://www.loom.com/embed/9ee99794179a4243a23672060b577738" width="100%" height="400" allowfullscreen></iframe>
+
+---
+
+## 1. In Slack use /incident (or /inc)
+
+From any channel in Slack, typing `/inc` or `/incident` and hitting `Enter` will pop up the incident creation form.
+
+*Tooltips*
+
+- If you know your incident's title/summary, you can type extra text directly at the end of the `/incident` to pre-fill the incident form's " *What's going on?* " field (e.g. `/inc Website is down` )
+- Using `/incident` in a dedicated incident channel (the `#inc-...` ones) won't declare an incident, but instead will open up a menu of actions on that specific incident (e.g. change the severity, update the Statuspage etc.).
+
+---
+
+## 2. In Slack turn a message into an incident
+
+You just need to hit the 3 built-in dots on a Slack message and click 'Create an incident' 👇🏼 (we explain [how to do this in-depth](/help-centre/creating-and-running-incidents/faqs/can-we-create-incidents-or-actions-from-an-existing-slack-message) )
+
+![](/images/help-centre/declaring-incidents/screenshot-1.png)
+
+---
+
+## 3. In Teams use the incident tab
+
+In Teams, head to the General channel in the Incidents Team (where your incidents are announced) and click on the incident.io tab to find the incident declare form.
+
+![](/images/help-centre/declaring-incidents/screenshot-2.png)
+
+---
+
+## 4. Use inc.new in your browser to create an incident
+
+Here you can create a new live or [retrospective incident](/help-centre/creating-and-running-incidents/creating-a-new-incident/can-i-create-retrospective-incidents) .
+
+![](/images/help-centre/declaring-incidents/screenshot-3.png)
+
+Just fill out all the details of the incident you're declaring, and it will be declared in Slack too!
+
+![](/images/help-centre/declaring-incidents/screenshot-4.png)
+
+Regardless of which method you choose, we'll trigger a form asking for some basic information about the incident - all totally [customisable](/help-centre/creating-and-running-incidents/creating-a-new-incident/customizing-your-incident-creation-form-using-custom-fields) !
+
+*In the heat of the moment, you don't even need to fill out the form before hitting* `Create` *: by default, we'll kick off a low-severity incident with a randomly generated name (both the name and severity are easy to change later via* `/inc rename` *and* `/inc update` *).*
+
+We'll also tell your team about the new incident via the incident announcements channel ( `#incidents` by default, but you can [change the announcement rules](/help-centre/creating-and-running-incidents/faqs/can-we-change-where-incidents-get-announced) ).
+
+![](/images/help-centre/declaring-incidents/screenshot-5.png)
+
+Ready to rumble!

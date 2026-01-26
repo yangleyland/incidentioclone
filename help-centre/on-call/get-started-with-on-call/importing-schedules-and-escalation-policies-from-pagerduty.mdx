@@ -1,0 +1,57 @@
+---
+title: "Importing schedules and escalation policies from PagerDuty and OpsGenie"
+description: ""
+canonical_article_id: 143
+migrated_at: "2026-01-21T18:21:13Z"
+source_url: "https://help.incident.io/articles/7709430939-importing-schedules-and-escalation-policies-from-pagerduty"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7709430939-importing-schedules-and-escalation-policies-from-pagerduty) on January 21, 2026
+</Info>
+
+If you're looking to migrate from PagerDuty to incident.io On-call you can make use of the escalation policy import feature (accessible via the [Escalation paths page](https://app.incident.io/~/on-call/escalation-paths) ) to quickly and easily import your PagerDuty escalation policies, schedules and users.
+
+---
+
+To use the feature, you'll need access to incident.io On-call and a PagerDuty integration. See [here](https://intercom.help/incidentio-docs/en/articles/6180917-pagerduty) for details on our PagerDuty integration and how you can connect it to your incident.io account. As part of the integration process, we'll do what we can to link users in PagerDuty to users in the incident.io app. Learn more about this process [here](https://intercom.help/incidentio-docs/en/articles/10308424-adding-connected-users-to-the-catalog) .
+
+Once your PagerDuty integration is connected and your PagerDuty users have been added to the incident.io catalog, you can start importing escalation policies and schedules from PagerDuty.
+
+If you're an OpsGenie user, we also support importing schedules and escalation policies from OpsGenie, so if you have overrides on your schedules in Opsgenie, now when you import those schedules (or escalation paths/policies that reference those schedules) we'll now automatically import any overrides on that schedule too.
+
+<Info>
+
+Current API limitations mean that we'll sync your schedules and escalation policies from an external provider once a day (at around 1000UTC). This means that any changes you make to external escalation policies and schedules won't be visible to incident.io until 1000UTC the following day.
+
+</Info>
+
+You can import schedules or escalation policies via the *Escalation paths* and *Schedules* tabs in the *On-call* section of the dashboard. We'd recommend that you start with escalation policies, as importing an escalation policy will also import all of its referenced schedules and reference them in the created escalation policy.
+
+<Info>
+
+When you import from PagerDuty, we'll replicate the behaviour of your existing escalation policies and schedules but won't connect them to alert sources or routes. This lets you get verify and experiment with your configuration without paging any users.
+
+</Info>
+
+---
+
+Opening the import escalation policies drawer will list your PagerDuty escalation policies and the state that they're in. Select any that you'd like to import from the *Ready to import* list and they'll be imported, along with any schedules that they reference
+
+![](/images/help-centre/importing-schedules-and-escalation-policies-from-pagerduty/screenshot-1.png)
+
+Some schedules and escalation policies can't be imported and will appear in the *Incompatible* tab. A common cause of this is when we're unable to identify all of the users on the escalation path (or schedules) as users in incident.io. This [document](https://intercom.help/incidentio-docs/en/articles/10308424-adding-connected-users-to-catalog) contains information about connecting external users to incident.io.
+
+![](/images/help-centre/importing-schedules-and-escalation-policies-from-pagerduty/screenshot-2.png)
+
+Some schedules and escalation policies aren't feature-compatible with incident.io On-call. This means that we're unable to replicate exactly the features that your escalation policy or schedule makes use of. We're always making improvements to our support for On-call features, so get in touch if you need a feature that we don't support.
+
+---
+
+Once imported, you can view and edit the created escalation policy (and schedules) through the On-call dashboard. When you're happy with the results, you can create alert sources and routes to send alerts to your escalation policy to create escalations and begin paging users.
+
+<Info>
+
+Importing schedules and escalation policies is a one-time operation. Once they've been imported, we won't continue to sync them with PagerDuty. If you'd like to update a schedule or escalation policy with changes from PagerDuty, you can delete the existing schedule or escalation policy in incident.io and re-import it.
+
+</Info>

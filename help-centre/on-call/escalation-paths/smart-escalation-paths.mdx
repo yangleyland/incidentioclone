@@ -1,0 +1,174 @@
+---
+title: "Smart escalation paths"
+description: ""
+canonical_article_id: 163
+migrated_at: "2026-01-21T18:29:32Z"
+source_url: "https://help.incident.io/articles/7922672863-smart-escalation-paths"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7922672863-smart-escalation-paths) on January 21, 2026
+</Info>
+
+## Escalation path branches
+
+You might have people who are on-call just during business hours, or where you only want to wake people up when the priority is the highest for an alert. You can now set up rules around priority and/or working hours to ensure you page the right people at the right time without causing additional noise.
+
+<Warning>
+
+Below instructions help you create multiple escalation paths with rules, but you can still create simple escalation paths with the feature as in [this help article](/help-centre/on-call/get-started-with-on-call/getting-started-with-on-call) .
+
+</Warning>
+
+## How does it work?
+
+You can start creating a new escalation path from scratch or edit your current paths. With this feature, you can
+
+- Set up working hours for all levels in the escalation path
+- Configure priorities in incident.io and connect them to your alert source
+- Configure notifications for your devices for high and low-urgency
+- Create branches based on priority and/or working hours
+- Choose which levels should send high or low-urgency notifications
+- Choose to escalate either within a time window or based on your working hours
+
+![](/images/help-centre/smart-escalation-paths/screenshot-1.png)
+
+## 1. Set up working hours for all levels in the escalation path
+
+Setting up working hours will create the working hours for all levels in the escalation path created. You can choose the days, times, and the timezone. We don't currently support different working hours per level.
+
+![](/images/help-centre/smart-escalation-paths/screenshot-2.png)
+
+## 2. Configure priorities and connect them to your alert source
+
+To use priorities in the escalation path branches, you can create them in [Alert Attribute settings](https://app.incident.io/~/alerts/configuration/attributes) . Priorities are now a first-class citizen in incident.io, which means that you wouldn't need to create those as a custom field in the catalog just to connect with your alert source.
+
+<Warning>
+
+You can create priorities locally just in incident.io or bringing your priorities from your Alert source. We'll show both cases below.
+
+</Warning>
+
+### Create your priorities in incident.io
+
+1. Head to [Alert Attribute settings](https://app.incident.io/~/alerts/attributes)
+2. Create Priorities, organise them with drag and drop and choose a default value
+3. After creating the priorities, head to your [Alert sources](https://app.incident.io/~/alerts/sources) to set up the default priority per source.
+
+![](/images/help-centre/smart-escalation-paths/screenshot-3.png)
+
+![](/images/help-centre/smart-escalation-paths/screenshot-4.png)
+
+### Bring your priorities from your alert source i.e. Datadog
+
+1. Go to your [Alert sources](https://app.incident.io/~/alerts/sources/) and choose an alert source
+2. Go to Configure tab and scroll down to Priorities
+3. Choose to use a variable and Add new Expression
+4. Choose query
+  1. Choose the payload and Parse
+  2. Write to field `$.metadata.priority` (Example, can be a different payload variable name)
+  3. Choose Alert priority from the drop-down
+  4. Choose the default if the query doesn't return the Alert priority
+  5. Save the setting by clicking 'Add'
+5. Save the alert source
+
+<Warning>
+
+You will also be able to see your priorities in Catalog if created or brought through your Alert source.
+
+</Warning>
+
+## 3. Configure notifications for your devices for high and low-urgency
+
+If you want to enable your workflows to use different notifications depending on priority or working hour branches, you can head to your [Preferences](https://app.incident.io/~/user-preferences/on-call-notifications) and choose the notifications you'd like to receive in both cases.
+
+![](/images/help-centre/smart-escalation-paths/screenshot-7.png)
+
+## 4. Create branches based on priority and/or working hours
+
+Now that you have all configurations created, you can start your path with or without conditions. Conditions we offer at the moment are working hours and priority.
+
+You can choose to start from either
+
+![](/images/help-centre/smart-escalation-paths/screenshot-8.png)
+
+If you want to use both priority and working hours as rules, you should create three branches, like below. You can choose to start your escalations either with working hours or priorities. The example below will do the next
+
+- 1st branch will send Alerts **within working hour** s with **high urgency notifications** to the person on call from the Payments team and wait 10 minutes until escalating to the next level
+- Second branch
+  - **If P1** , will send Alerts **outside of working hours** with **high urgency notifications** to the person on call from the Payments team and wait 5 minutes before escalating to the next level
+  - **If other than P1** , will send Alerts **outside working hours** with **low urgency notifications** to the person on call from the Payments team and wait until working hours begin for that person to acknowledge, before escalating to the next level
+
+![](/images/help-centre/smart-escalation-paths/screenshot-9.png)
+
+## 5. Choose which levels should send high or low-urgency notifications
+
+Earlier in this article, we showed how every person can [set up their preferences](/help-centre/on-call/escalation-paths/smart-escalation-paths) on high and low-urgency alerts. To set them up in the Escalation path, just choose either High or Low in every level to choose how you'd want to notify the users.
+
+![](/images/help-centre/smart-escalation-paths/screenshot-10.png)
+
+## 6. Choose to escalate either within a time window or based on your working hours
+
+If you have used Working hours as a condition in your branch, you'll receive a few new options in escalation delays: Working hours begin and working hours end.
+
+This means that people who are on call will receive the notifications at that moment, but we'll wait until that time before we escalate to the next level
+
+![](/images/help-centre/smart-escalation-paths/screenshot-11.png)
+
+---
+
+## Escalate to Slack
+
+Choose when an alert should be escalated to a Slack channel of your choice where anyone can acknowledge and start resolving the alert.
+
+1. Head to Escalation paths
+
+2. Click 'Level' to choose a channel 3. Search for the Slack channel
+
+4. Save your escalation path
+
+<iframe src="https://www.loom.com/embed/201016144316498a8045886d8ca7eb03" width="100%" height="400" allowfullscreen></iframe>
+
+**Example use cases**
+
+- You can send all escalations to a shared Slack channel to let a group of people know that something is wrong, but still escalate to an actual responder at the same time by selecting "Don't wait" as a time to acknowledge option.
+- You can set up a branch to deviate low urgency escalations to a Slack channel.
+
+#### Good to know
+
+- If you have an escalation path that first pages a slack channel, then the person being on call in the next level will be shown as 'Level 1' in your On-call status
+- If you have an escalation path that first pages someone else, then a slack channel, then you, you'll be shown as 'Level 2' in your On-call status
+
+---
+
+## Escalate to everyone
+
+Page everyone at the same time in a schedule or the people of your choice. When choosing this, everyone in the same level will be paged at the same time.
+
+1. Head to Escalation paths
+
+2. Go to a level 3. Choose a schedule or users
+
+4. Choose 'Everyone'
+
+![](/images/help-centre/smart-escalation-paths/screenshot-12.png)
+
+#### Good to know
+
+- By choosing 'Everyone' it means that we will page everyone in that level. If a person from this level acks, we will not escalate to the next level - but we will notify to all people in the level until their notification preferences end. Read more about notification preferences [here.](/help-centre/on-call/being-on-call-as-a-responder/on-call-notifications-and-preferences)
+
+- 'All at once' setting will only page those people in a schedule who are on call
+
+---
+
+## Read more about Escalation paths
+
+[Dynamically setting an escalation path](/help-centre/alerts/alert-configuration/dynamically-setting-an-escalation-path)
+
+[Escalating to the right team from an alert](/help-centre/alerts/alert-configuration/escalating-to-the-right-team-from-an-alert) ​ [Round Robin in Escalation paths](/help-centre/on-call/escalation-paths/round-robin-in-escalation-paths)
+
+<Warning>
+
+If you have any feedback or feature requests on the feature, please send us a message to [support@incident.io](mailto:support@incident.io) - we'd love to hear from you!
+
+</Warning>

@@ -1,0 +1,52 @@
+---
+title: "Sending alerts to Slack channels"
+description: ""
+canonical_article_id: 121
+migrated_at: "2026-01-21T18:21:13Z"
+source_url: "https://help.incident.io/articles/8917380993-sending-alerts-to-slack-channels"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8917380993-sending-alerts-to-slack-channels) on January 21, 2026
+</Info>
+
+You can now use alert routes to send all, or some, of your alerts coming into incident.io into Slack channels. You might want to do this if:
+
+- You want to increase awareness about what alerts are coming through to incident.io
+- You want a space directly in Slack to take actions from your alerts
+- You want to declare incidents manually from alerts, rather than automatically
+
+## Enabling sending alerts to Slack
+
+You can choose to enable sending alerts to Slack from an alert route. Once enabled, you'll be able to select private or public channels to send your alerts to.
+
+## Filtering the alerts you send to Slack
+
+![](/images/help-centre/sending-alerts-to-slack-channels/screenshot-1.png)
+
+If you only want to send a subset of your alerts to Slack, you can add filter conditions when you configure the Slack channels.
+
+## Sending alerts to a different channel according to the alert
+
+Using expressions and the Catalog, you can choose to send alerts to different Slack channels according to alert attributes.
+
+For example, if you are have a `Team` alert attribute, and your `Team` has a `Slack Channel` attribute, you'll be able to dynamically pick where to send your alerts:
+
+![](/images/help-centre/sending-alerts-to-slack-channels/screenshot-2.png)
+
+You can read more about configuring alert attributes [here](/help-centre/on-call/get-started-with-on-call/using-catalog-with-on-call)
+## Taking actions from the alert
+
+From an alert in Slack, you’ll be able to:
+
+- Declare an incident, or join one if it already exists
+- Go to the alert’s source - this could be a Grafana dashboard, an external issue, or a custom URL
+- Silence an alert, for alert sources that support it
+- Resolve an alert
+- Go to the alert in the [incident.io](http://incident.io/) dashboard, and view more from there!
+
+<Info>
+
+If your alert route is set to create private incidents, incidents declared from an alert in Slack will be created as private. The person declaring the incident will be automatically invited.
+
+</Info>

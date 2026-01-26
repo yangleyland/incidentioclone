@@ -1,0 +1,189 @@
+---
+title: Responding to incidents
+description: Declare incidents, fill forms, assign roles, and kick off your incident response process.
+icon: "/icons/undo.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Responding to incidents
+
+When something goes wrong, you need to respond fast. Declaring an incident creates a dedicated incident channel, notifies your team, and sets up the structure for coordinated response. You can declare incidents from Slack commands, by converting messages, through Microsoft Teams, or from your browser. Each incident gets a form to capture key details, roles to organize responsibilities, and automatic announcements to keep everyone informed.
+
+## Declaring an incident
+
+There are four ways to declare an incident in incident.io. Choose the method that fits your workflow.
+
+### From Slack with /incident
+
+Type `/incident` (or the shortcut `/inc`) in any Slack channel and press **Enter**. The incident form appears immediately.
+
+You can pre-fill the incident name by adding text after the command. For example, `/inc Website is down` populates the "What's going on?" field with "Website is down".
+
+<Tip>
+Using `/incident` in an existing incident channel (one starting with `#inc-`) opens the incident actions menu instead of creating a new incident. Use this to change severity, update status pages, or modify incident details.
+</Tip>
+
+### From a Slack message
+
+Click the three dots on any Slack message and select **Create an incident**. This converts the message into an incident, using the message text as context.
+
+Use this when a conversation in a support channel, Slack Connect thread, or direct message reveals a problem that needs incident response.
+
+<Tip>
+If you don't see "Create an incident" in the menu, click **More message shortcuts**. Slack orders shortcuts by usage, so incident options appear after you use them a few times.
+</Tip>
+
+### From Microsoft Teams
+
+Open the **Incidents** team in Microsoft Teams, navigate to the **General** channel, and click the **incident.io** tab. The incident declaration form appears in the tab view.
+
+### From your browser
+
+Visit [app.incident.io/declare](https://app.incident.io/declare) to access the web-based incident form. This method works from anywhere and lets you create active incidents, retrospective incidents, or test incidents.
+
+Use this when you're not in Slack or Teams, or when you need to create a retrospective incident for documentation purposes.
+
+## Understanding incident forms
+
+When you declare an incident, you fill out a form that captures essential information. These forms ensure responders have the context they need, enable workflows to route the incident correctly, and provide data for later analysis.
+
+Every incident form includes:
+
+- **Incident name**: A short description of what's happening (optional during declaration - you can leave it blank and rename later)
+- **Incident type**: Categorizes the incident (e.g., security, performance, data)
+- **Initial status**: Choose between **Active incident** (confirmed problem, immediate response) or **Triage** (investigating to determine if it's a real incident)
+- **Severity**: How serious the problem is (defaults to your lowest severity level)
+- **Summary**: Your current understanding of the incident and its impact (optional, but helpful for context)
+
+You can also add custom fields to capture information specific to your organization - like affected services, customer impact, or business units.
+
+<Tip>
+You don't need to fill out the entire form before creating an incident. Click **Declare incident** with minimal information to start responding immediately. You can update details like severity and summary later using `/inc update`.
+</Tip>
+
+### Configuring incident forms
+
+Navigate to **Settings → Forms** to customize which fields appear in each form. You can configure five different forms:
+
+- **Declare**: Shown when declaring a new incident
+- **Accept**: Shown when accepting a triage incident
+- **Update**: Shown when sharing incident updates
+- **Resolve**: Shown when resolving an incident
+- **Escalate**: Shown when manually escalating
+
+For each form, you control:
+
+- **Which fields appear**: Show or hide fields based on conditions (e.g., only show summary field for Major or Critical severity)
+- **When fields are required**: Make fields required conditionally (e.g., require Comms Lead role for Critical incidents but not for Minor ones)
+- **Default values**: Set defaults for severity, status, or custom fields to speed up form completion
+- **Field descriptions and placeholders**: Add guidance text to help responders fill out forms correctly
+- **Form layout**: Add dividers and help text blocks to organize complex forms
+
+Forms update in real time as you change values. If you change severity from Minor to Major, additional fields that apply to Major incidents appear automatically.
+
+<Warning>
+Balance speed with information needs. Requiring too many fields at declaration slows down response. Consider making fields optional at declaration and required at resolution instead.
+</Warning>
+
+You can also create different forms for different incident types. When a responder selects a specific incident type, the form changes to match that type's configuration.
+
+## Working with incident roles
+
+Roles clarify who's responsible for what during an incident. They make it clear who leads the response, who communicates with stakeholders, and who handles specific technical areas.
+
+### Default roles
+
+Every incident has an **Incident Lead** role. This person coordinates the response, makes decisions, and ensures the incident moves toward resolution. The Incident Lead role is required by default - you can't resolve an incident without assigning one.
+
+### Creating custom roles
+
+Create additional roles to match your incident response process:
+
+1. Navigate to **Settings → Incident Roles**
+2. Click **Add Role**
+3. Configure the role:
+   - **Name**: What the role is called (e.g., "Communications Lead")
+   - **Slack reference**: The shortcut command for assignments (e.g., `comms` lets you use `/inc role comms @user`)
+   - **Description**: Guidance text that appears in the roles modal
+   - **Instructions**: Private message sent to the person assigned, explaining their responsibilities
+   - **Required before resolution**: Check this to prevent resolving incidents without this role assigned
+
+### Assigning roles during an incident
+
+Type `/incident roles` (or `/inc roles`) in the incident channel to open the roles modal. This shows all available roles and who's currently assigned to each.
+
+To assign a role quickly, use `/inc role [role name] [@user]`. For example, `/inc role lead @dinesh` assigns Dinesh as the Incident Lead.
+
+When you assign someone to a role, incident.io:
+
+- Posts an update in the incident channel announcing the assignment
+- Updates the incident announcement message to show current role assignments
+- Sends private instructions to the assigned person explaining what they should do
+
+<Tip>
+If you can't find a team member in the role assignment dropdown, type the first few letters of their name to search. The dropdown shows only a subset of users by default. If they still don't appear, they may need to be invited to incident.io by adding them to the `#incidents` channel.
+</Tip>
+
+## What happens after declaring an incident
+
+When you declare an incident, incident.io automatically:
+
+1. **Creates a dedicated incident channel** (e.g., `#inc-website-is-down`) where responders coordinate
+2. **Posts an announcement** in your announcements channel (typically `#incidents`) with incident details, severity, and assigned roles
+3. **Runs configured workflows** that might page on-call teams, create status page updates, or invite specific people based on affected services
+4. **Starts a timeline** tracking key events and decisions throughout the incident
+
+You can customize where announcements are posted by navigating to **Settings → Announcements**. Create conditional announcement rules to post Critical incidents in additional channels like `#customer-support` or `#leadership`.
+
+The incident is now active and ready for response. Responders join the incident channel, investigate the problem, update severity and status as needed, share updates with stakeholders, and work toward resolution.
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I create retrospective incidents?">
+    Yes. You can record incidents after they happen for reporting and post-incident review.
+
+    Visit [app.incident.io/declare](https://app.incident.io/declare) and select **Retrospective incident** at the top of the form. Fill in incident details and timestamps, then choose whether to announce it. By default, workflows don't run on retrospective incidents, but you can change this in advanced workflow settings.
+
+    Retrospective incidents appear in your dashboard with a clear indicator that they were recorded after the fact.
+  </Accordion>
+
+  <Accordion title="Can I create test incidents?">
+    Yes. Test incidents let you experiment with incident.io features and run practice drills without affecting production incident data.
+
+    Visit [app.incident.io/declare](https://app.incident.io/declare) and select **Test incident** at the top of the form. Test incidents are clearly marked and separated from real incidents in dashboards and reports.
+
+    Use test incidents to train new team members, validate workflow configurations, or practice incident response procedures.
+  </Accordion>
+
+  <Accordion title="Can I create incidents from Slack messages?">
+    Yes. Click the three dots on any Slack message and select **Create an incident** to turn the message into an incident. The message text provides initial context.
+
+    This works in any channel - support channels, Slack Connect threads, or direct messages. If you don't see "Create an incident" in the menu, click **More message shortcuts**. Slack orders shortcuts by usage frequency.
+  </Accordion>
+
+  <Accordion title="Can I change where incidents get announced?">
+    Yes. Navigate to **Settings → Announcements** to customize where incident announcements are posted.
+
+    You can redirect all announcements from the default `#incidents` channel to a different channel. You can also create conditional announcement rules to post specific incident types or severities in additional channels. For example, announce Critical incidents in `#customer-support` while Minor incidents only go to `#incidents`.
+
+    Don't delete whichever channel you're using for default announcements - incident.io needs it to post updates.
+  </Accordion>
+
+  <Accordion title="Why can't I see all my team members when assigning roles?">
+    The role assignment dropdown shows only a subset of users to keep the interface fast. Type the first few letters of someone's name to search for them.
+
+    If they still don't appear, they may not have been added to incident.io yet. Invite them by adding them to your `#incidents` channel in Slack, or by navigating to **Settings → Users** in the web dashboard.
+  </Accordion>
+
+  <Accordion title="What's the difference between Active and Triage status?">
+    **Active incident** means you've confirmed there's a problem and you're responding to it right away. Use this for clear outages or issues affecting customers.
+
+    **Triage** means you're investigating to determine whether something is actually a problem that needs incident response. Use this when you're not sure yet if it's a real incident.
+
+    You can accept a triage incident to convert it to Active, or decline it to close it without a full incident response.
+  </Accordion>
+</AccordionGroup>

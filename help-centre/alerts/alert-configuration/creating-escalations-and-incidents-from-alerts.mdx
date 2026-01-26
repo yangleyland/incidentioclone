@@ -1,0 +1,124 @@
+---
+title: "Creating escalations and incidents from alerts"
+description: ""
+canonical_article_id: 117
+migrated_at: "2026-01-21T18:19:46Z"
+source_url: "https://help.incident.io/articles/4007103429-creating-escalations-and-incidents-from-alerts"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4007103429-creating-escalations-and-incidents-from-alerts) on January 21, 2026
+</Info>
+
+After you have connected your alert source, it's time to create alert routes.
+
+Alert routes process incoming alerts, and determine:
+
+1. How to route alerts to the correct escalation path
+2. Which (if any) alerts should create incidents, as well as alert grouping behaviour
+
+## Creating a new Alert route
+
+After you have connected your alert source, it's time to create one or more alert routes from it. Remember, you can bring data from multiple data sources to one route!
+
+1. Head to Settings > Alerts
+
+2. Create a new Alert Route, and give it a name
+
+3. Choose the alert sources you want to bring to this route
+
+4. Continue
+
+![image.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-1.png)
+
+## Filtering alerts
+
+You can filter alerts out if they are irrelevant to your alert route. Any data from the alert's payload can be used to filter out alerts (leveraging [attributes](/help-centre/alerts/alert-configuration/attributes-and-priorities) ), as well as first-order filters like Source or Priority.
+
+Example: Have an attribute on your alert to capture `Staging` versus `Production` environment, so you can filter out `Staging` alerts.
+
+![image.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-2.png)
+
+## Grouping alerts
+
+Grouping alerts is where we can decrease the amount of noise coming from similar alerts, and reduce alert fatigue.
+
+You can group alerts by time window and/or context (via attributes), like services or teams too.
+
+<Warning>
+
+Catalog is where you can store your organization structure like services, teams, domains, features, integrations etc. This is what makes Alerts powerful for you to create a configuration that is efficient and alerts in the right way and time. You can read more [about Catalog here](/help-centre/configure-your-account/using-the-catalog) .
+
+</Warning>
+
+## Creating escalations from an alert route
+
+You can choose whether you want to page people for your incoming alerts.
+
+Alerts can be escalated to [Escalation path](https://app.incident.io/~/on-call/escalation-paths) [s](https://app.incident.io/~/on-call/escalation-paths) , users, or a combination thereof.
+
+You can either point directly to a specific Escalation Path or user; or (which we recommend!), leverage [Expressions](https://www.loom.com/share/59694b3eb37c4ba6a787fa279fb363d1?sid=3307d250-3e30-4b8c-97e6-33b2ca2b44c6) to dynamically pick the right Escalation Path depending on the alert's context.
+
+1. Go to the Alert Route > Set Escalate alert to "Yes"
+
+2. Choose the escalation path(s) you'd like to page (we recommend leveraging a query-based expression to pick the right Path based on e.g. the impacted Service or Team on the alert)
+
+3. Optionally, you can stack multiple escalation rules (for example, "Escalate to the Team labelled against the alert, AND escalate to the Infrastructure team if alert priority = P1")
+
+4. Toggle on auto-cancel escalations if you wish to cancel pages when an alert is resolved (this is useful for flappy alert sources)
+
+![image.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-3.png)
+
+## Alert Grouping
+
+Grouping in incident [.](http://incident.io/) io happens on the incident object.
+
+In your Alert Route, start by setting "Create incidents, and group alerts by" to "Yes".
+
+Toggle "Group alerts" on.
+
+![Screenshot 2025-12-03 at 11.22.56.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-4.png)
+
+There are two modes for handling grouped alerts: suggested and automatic.
+
+## Suggested (Recommended)
+
+With suggested grouping, you keep a human-in-the-loop to check groupings.
+
+Alerts will come in, and *proposed* to be grouped into an incident. Responders can then either confirm the grouping, or mark alerts as unrelated (via the incident channel or incident homepage).
+
+You also define a grace period, which determines how long to wait for manual confirmation before escalating again.
+
+![Screenshot 2025-12-03 at 11.23.01.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-5.png)
+
+## Automatic
+
+Automatic grouping immediately attaches related alerts into the incident, without requiring manual confirmation.
+
+If needed, responders can unlink alerts via the incident's homepage.
+
+![Screenshot 2025-12-03 at 11.23.34.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-6.png)
+
+## Creating incidents
+
+You can choose exactly when and how you want to create incidents, and what type of incident, when alerts are received.
+
+<Warning>
+
+Note: We recommend declaring Triage incidents alongside your paging, as this allows your team to have a dedicated spot to collaborate, and if your team decides this is not an incident, you can simply decline it! ​ Otherwise, if this turns into a real incident you already have all your troubleshooting context in the Slack channel.
+
+</Warning>
+
+1. Go to the Incident Details
+
+2. Choose what information you want to get shown about an incident in the Slack channel when it is posted. You can see a preview on the right side of the screen.
+
+(We recommend ticking "Set with AI" so we can rename your incident and set its summary automatically using the alert's context!)
+
+3. Dynamically set the incident's severity, and pass any data from your alert to your incident using the "Add Custom Field" option (this will let you e.g. pass the tagged Service on your alert as the Affected Service on your incident), keeping data consistent and auto-populated
+
+4. Tick the "Decline triage incidents' box if you'd like to automatically reject triage incidents when the alert resolves itself
+
+![image.png](/images/help-centre/creating-escalations-and-incidents-from-alerts/screenshot-7.png)
+
+We also allow you to turn off incidents and just escalate based on alerts, you can read more about [Paging without incidents here](https://incident-io-knowledge-base.help.usepylon.com/articles/2217203982-paging-without-incidents) .

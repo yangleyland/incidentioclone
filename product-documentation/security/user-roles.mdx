@@ -1,0 +1,65 @@
+---
+title: User roles
+description: Control user access with base roles and custom permissions
+author: auto-ai-doc-migration
+icon: "shield"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="DRAFT" />
+
+
+User permissions in incident.io are controlled through base roles and custom roles. Each user has one base role (Standard, Admin, or Owner) that determines their core permissions, plus optional custom roles that grant additional capabilities.
+
+Base roles define broad permission levels, while custom roles let you grant specific permissions to individual users or groups. For information on how roles interact with billing, see [Seats](/product-documentation/billing/seats).
+
+Configure roles at **Settings → Users → Roles tab**. Assign roles to users at **Settings → Users → Users tab**.
+
+## Base roles
+
+Every user has a base role that determines their initial permissions. The three base roles are:
+
+**Standard** - Default role for all users. Can view and declare incidents. Responders with this role can participate in incident response.
+
+**Admin** - All Standard permissions, plus ability to manage organization settings and billing.
+
+**Owner** - Full access to all incident.io features and settings.
+
+### Default permissions by role
+
+| Permission | Standard | Admin | Owner |
+|------------|----------|-------|-------|
+| Use incident.io via Slack and dashboard | ✅ | ✅ | ✅ |
+| Create and edit workflows and announcement rules | ✅ | ✅ | ✅ |
+| View organization settings (except billing) | ✅ | ✅ | ✅ |
+| Edit organization settings | ❌ | ✅ | ✅ |
+| View and edit billing settings | ❌ | ✅ | ✅ |
+| View all private incidents | ❌ | ❌ | ✅ |
+
+<Note>
+Slack workspace admins already have access to all private Slack channels, meaning they can access all private incidents regardless of their incident.io role.
+</Note>
+
+Customize base role permissions at **Settings → Users → Roles tab**. Click the edit icon on any base role to modify its permissions. For example, restrict Admin billing access so only Owners can manage billing.
+
+## Custom roles
+
+Create custom roles to grant specific permissions to individual users beyond their base role. Custom roles add permissions—they never remove them. Users receive the union of all permissions from their base role plus any custom roles.
+
+**Example custom roles:**
+- **Engineer** - Manage API keys and webhooks
+- **Finance** - Manage billing settings and on-call pay reports
+- **Security** - View all private incidents
+
+Create custom roles at **Settings → Users → Roles tab** by clicking **Add new**. Define the role name, description, and specific permissions to grant.
+
+## Managing user permissions
+
+View and edit user permissions at **Settings → Users → Users tab**. Each user shows their current seat type, base role, and custom roles.
+
+To modify a user's permissions, click the edit icon next to their name. Change their base role or add custom roles as needed. Users can have multiple custom roles simultaneously.
+
+## Inviting users
+
+Invite new users at **Settings → Users → Users tab** by clicking **Invite user**. Select their base role and any custom roles during invitation. New users receive access according to their assigned roles.

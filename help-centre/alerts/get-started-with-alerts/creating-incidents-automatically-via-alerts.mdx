@@ -1,0 +1,91 @@
+---
+title: "Creating incidents automatically via alerts"
+description: ""
+canonical_article_id: 114
+migrated_at: "2026-01-21T18:19:43Z"
+source_url: "https://help.incident.io/articles/8234929811-creating-incidents-automatically-via-alerts"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8234929811-creating-incidents-automatically-via-alerts) on January 21, 2026
+</Info>
+
+When incidents occur, the on-call person is typically notified through automated alerts or manual incident creation. In this article, we’ll focus on automating the process of escalating and creating incidents.
+
+Head [here](/help-centre/on-call/get-started-with-on-call/creating-incidents-manually) about manually creating incidents.
+
+![](/images/help-centre/creating-incidents-automatically-via-alerts/screenshot-1.png)
+
+## Configuring On-call features
+
+Before configuring alerts for automatic escalation and incident creation, ensure that you have:
+
+1. Set up your teams and any necessary types in the Catalog.
+
+2. Created schedules.
+
+3. Established escalation paths and linked them to the appropriate teams
+
+<Info>
+
+To learn more about the main steps to configure On-call, head [here](/help-centre/on-call/get-started-with-on-call/getting-started-with-on-call)
+</Info>
+
+## Creating incidents from alerts
+
+Alert configuration consists of configuring your
+
+1. Alert sources and attributes
+2. Alert routing including filtering, escalations, incident creation and grouping
+
+![](/images/help-centre/creating-incidents-automatically-via-alerts/screenshot-2.png)
+
+### Connecting your alert source
+
+1. Go to [Alert Configuration](https://app.incident.io/~/alerts/configuration)
+2. Choose your alert source
+  1. If a direct integration isn’t available for your source, connect it via HTTP.
+3. Follow the setup instructions to connect your source and send a test alert.
+4. Configure alert attributes and priority with the help of our AI suggestions.
+  - Choose to use **attributes** or **priority** from the alert payload or set them as a **static field**
+  - Ensure that your alert includes an attribute specifying who should be paged. Whether you page based on Team, Service, or another criterion, the alert should be able to reference an escalation path defined in the Catalog.
+
+![](/images/help-centre/creating-incidents-automatically-via-alerts/screenshot-3.png)
+
+<Info>
+
+**Attributes** provide extra context to your alerts, like services, affected features, or environments. ​ Learn more about Attributes here and Priorities [here](/help-centre/on-call/faqs/understanding-priority-urgency-and-severity)
+</Info>
+
+## Routing your alerts to start escalating and creating incidents
+
+Now set up your alert routes to escalate and create incidents automatically.
+
+1. Create a new Alert route in [Alert configuration](https://app.incident.io/~/alerts/routes/create)
+2. Select the sources you want to include
+3. Filter the alerts you want or don't want to trigger incidents
+4. Enable Escalations, choosing either
+  - **Dynamic escalation** paths based on your team or service attribute (recommended), or
+  - **Static paths** to use the same escalation path for all alerts
+5. Enable incident creation
+  - Automatically create incidents or filter which alerts should trigger them.
+  - Configure **grouping** so similar alerts are handled together [Learn more]
+  - You can also choose Mode=Test to create test incidents
+
+![](/images/help-centre/creating-incidents-automatically-via-alerts/screenshot-4.png)
+
+<Info>
+
+We recommend using only a few alert routes: One for engineering, one for the support team and maybe one for security teams if needed. Using Catalog to dynamically route escalations eases up the configuration and keeps things aligned. ​ Learn more about Alert configuration [here](/help-centre/alerts/alert-configuration)
+
+</Info>
+
+## Creating incidents with a third-party paging tool
+
+If you are still using a third-party tool like PagerDuty or OpsGenie the incident creation can still be manual, but you won't be able to dynamically route escalations as those exist in your third-party tool.
+
+<Info>
+
+Using both our On-call and Response product can create lot of benefits like unified data flow, continuous feedback on your alerts and so, better noise management all under in a single pane of glass. ​ Learn more about our On-call [here](https://incident.io/on-call)
+
+</Info>

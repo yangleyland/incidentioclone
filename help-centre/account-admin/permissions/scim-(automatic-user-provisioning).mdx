@@ -1,0 +1,89 @@
+---
+title: "SCIM (Automatic user provisioning)"
+description: ""
+canonical_article_id: 292
+migrated_at: "2026-01-21T18:40:45Z"
+source_url: "https://help.incident.io/articles/3136902249-scim-%28automatic-user-provisioning%29"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3136902249-scim-%28automatic-user-provisioning%29) on January 21, 2026
+</Info>
+
+You can use SCIM (System for Cross-domain Identity Management) in incident.io to automatically provision users and manage their permissions.
+
+## What does enabling SCIM do?
+
+#### Without SCIM
+
+By default, without SCIM, incident.io automatically creates users when they join incident Slack channels, or when they sign in to the web dashboard using Slack or SAML. When a user is deactivated in Slack, they'll be automatically deactivated in incident.io.
+
+Without SCIM, you manually grant users additional base roles and custom roles within incident.io. When a new user joins, an owner/admin (or other user with a custom role that can manage permissions) can manually assign that user some additional permissions by going to [app.incident.io/settings/users](https://app.incident.io/settings/users) . (You can read more details on permissions [here](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) )
+
+#### With SCIM
+
+When SCIM is installed, users are automatically created in incident.io when they are assigned in the application in your Identity Provider. If a user is unassigned the application in your Identity Provider, they'll be deactivated in incident.io.
+
+Additionally, user permissions are automatically managed by your Identity Provider, and are no longer editable in incident.io. This means you don't have to manually assign roles to new users, and don't have to manually downgrade users in incident.io if their access levels change in your Identity Provider. (You can read more details on permissions [here](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) )
+
+## Installing SCIM
+
+To install SCIM, you'll need to be an owner in incident.io (or have a custom role that can manage security settings), and have admin permissions in your Identity Provider.
+
+1. Go to your user settings, and [open the SCIM tab](https://app.incident.io/settings/users?tab=scim) and click the `Install` button
+
+![](/images/help-centre/scim-(automatic-user-provisioning)/screenshot-1.png)
+
+2. Choose your Identity Provider from the list and follow the steps to set up your connection.
+
+*Please note that although we list many providers here, we're enabling providers as we confirm they send appropriate group membership updates. Please reach out if you receive a message saying your provider is not supported yet.*
+
+![](/images/help-centre/scim-(automatic-user-provisioning)/screenshot-2.png)
+
+3. Define the relationships between groups in your Identity Provider and permissions in incident.io. You only need to do this for groups that you'd like to give elevated permissions to, by default, all users are given the 'Standard' role. To illustrate this further, here are some examples:
+
+- I want all people in the `Engineers` group to have access to [incident.io](http://incident.io/) but not have advanced permissions for administrative tasks. I don't need to define any mapping for this case, as this is the default. The default 'Standard' role assigns all new users a 'Viewer' seat. *(Learn more about Viewers and Responder seats* [here](/help-centre/account-admin/billing-pricing/seat-types-and-viewers-with-incident.io) *.)*
+- I want myself and other `Incident Managers` to be admins in incident.io, so I add an assignment, choose the `Incident Managers` Okta group and then assign them the `Admin` role.
+- I want our IT team to be able to manage SCIM and SAML, so I add an assignment, choose the `IT` Okta group and then assign them a custom role with the `Can manage security settings` permission.
+
+*Please note that if you're not careful here you could lock yourself out - you need to have at least one group assigned the 'owner' permissions, but if you're not in that group, or you remove yourself from that group, you'll no longer be able to edit your SCIM settings. If this happens, please get in touch and we'll help out!*
+
+![](/images/help-centre/scim-(automatic-user-provisioning)/screenshot-3.png)
+
+4. Confirm your SCIM setup. Once you've confirmed this step, we'll start creating users from SCIM and re-assigning any permissions that no longer line up with what you've defined in your SCIM group to role mappings.
+
+![](/images/help-centre/scim-(automatic-user-provisioning)/screenshot-4.png)
+
+## Frequently asked questions
+
+### Can I use SCIM?
+
+SCIM is available to customers on our Enterprise plan - for more pricing details, see our pricing [here](https://incident.io/pricing/) .
+
+### What happens to existing users when I install SCIM?
+
+When you install SCIM, we'll link existing users to SCIM users using their email address. We'll also update their permissions as defined by the group to role mappings you provide in the SCIM settings page. If a user was previously an admin, and they're not a member of the groups that are assigned the admin role, they'll be downgraded to viewers/responders.
+
+If a user exists in incident.io but not in SCIM, they'll retain their existing role and will be marked as 'Unlinked' in the user list. If you don't want these users to have access to the incident.io dashboard at all, we recommend you install SAML too and link that to the same Identity Provider (e.g. Okta) so that only users who are assigned the incident.io app can access the dashboard.
+
+### What happens to existing users when I uninstall SCIM?
+
+When you uninstall SCIM, users will be left in their current state. So if you are an Owner, and you uninstall SCIM, you'll retain that owner role. Users will not be deactivated.
+
+### Can I change a user's permissions once SCIM is enabled?
+
+No, once SCIM is installed, it becomes the source of truth for a user's permissions. If you want to elevate a users permissions, you'll need to add them to an appropriate group in your identity provider.
+
+### I've deactivated a user in SCIM, but they're still active, why is that?
+
+As our application runs both in Slack and on our web dashboard, it's possible that a user can be deactivated in Okta, but still be an active member of your organisation's Slack workspace. If this happens, the user will be treated as 'active' until they're deactivated in Slack. If you don't want this, we recommend you manage your Slack users with the same Identity Provider set up as you manage your incident.io users.
+
+### Can I use SCIM to manage my on-call seats?
+
+Yes! Once you have set up SCIM, there's a section on the configuration page where you can define your on-call seat assignments. This lets you pick groups which are automatically given on-call seats.
+
+Once you've selected a group for on-call seats, you'll no longer be able to manually control those group members' on-call seats - they will be automatically assigned seats. Adding new members to those groups will automatically grant them seats. If a member leaves a group which has been assigned seats, that user will retain their seat until it's manually revoked.
+
+## SAML
+
+We also support SAML, which can be set up independently from SCIM, but can use the same underlying identity provider, such as Okta. Details on how to use SAML in incident.io can be found [here](/help-centre/account-admin/security-data-privacy/sign-in-with-saml) .

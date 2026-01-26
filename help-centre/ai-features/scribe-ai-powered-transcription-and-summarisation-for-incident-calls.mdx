@@ -1,0 +1,134 @@
+---
+title: "Scribe: AI-powered transcription and summarization for incident calls"
+description: ""
+canonical_article_id: 346
+migrated_at: "2026-01-21T18:55:31Z"
+source_url: "https://help.incident.io/en/articles/10200669-scribe-ai-powered-transcription-and-summarisation-for-incident-calls"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/en/articles/10200669-scribe-ai-powered-transcription-and-summarisation-for-incident-calls) on January 21, 2026
+</Info>
+
+<Tip>
+
+Ready to enable Scribe? [Jump to this section](/help-centre/ai-features/scribe-ai-powered-transcription-and-summarisation-for-incident-calls#enabling-scribe) .
+
+</Tip>
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-1.png)
+
+Video calls bring responders together allowing rapid coordination across teams and countries but it brings a number of issues.
+
+If you join an incident call in progress it can be hard to quickly build up an understanding of what's happening without interrupting. The same applies when it comes after the incident has been resolved: without the context and detail of the call it can be hard to build up a clear picture of how an incident progressed from declaration to resolution.
+
+You may have someone keeping notes or even responders regularly updating the incident channel with information but this all takes time and distracts from the issue at hand. How do you easily ensure you don't miss any context, important information, decisions or next steps?
+
+By using **Scribe** of course!
+
+## What is Scribe
+
+Scribe is our friendly AI powered note taker - with Scribe enabled our bot will join your incident calls automatically and take detailed notes as well as providing summaries, key moments, and the current topic into your incident channel.
+
+### Feature: Integrated transcripts
+
+By joining the call it has access to the video and audio from that call. It uses this data, in conjunction with streamed captions from the meeting, to deduce who has said what. It is this transcription we use to power the other Scribe features such as summaries, key moments and current topic.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-2.png)
+
+The transcript can be accessed in the incident details page, by clicking 'View notes'.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-3.png)
+
+### Feature: Detailed summaries
+
+One of the hardest things when joining an in progress incident is knowing what everyone is talking about, or how best you can help. Scribe is continually building a picture of what is happening on the call.
+
+Scribe is continuously building a detailed summary of the whole call. It pulls out important information and next steps, along with providing a general summary of the incident call from start to finish.
+
+These summaries are created in real-time, and are viewable within the incident channel and the dashboard.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-4.png)
+
+### Feature: Current topic
+
+Along with frequent call summaries, the current topic is shown in both the incident channel and the dashboard to help give other users an "at a glance" idea of what's being discussed and how things are going, potentially highlighting that they might want to join the call.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-5.png)
+
+### Feature: Proactive key moments
+
+Scribe also looks to actively pull key moments from the call transcript into the incident channel. Key moments are a combination of important decisions, agreements, or when key information was discovered on a call.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-6.png)
+
+Some examples of key moments are decisions to update a status page, or when a roll-back was triggered, or potentially new information came to light that might help in solving the issue.
+
+Key moments also help new responders get up to speed, as well as streamlining the post-incident process when it comes to building a timeline of what happened.
+
+## Enabling Scribe
+
+Scribe is available to Pro and Enterprise customers. By default it is disabled but once you have a call provider set-up ( [Zoom](/help-centre/api-and-integrations/communication/zoom) , [Microsoft Teams calls](/help-centre/scribe-and-incident-calls/microsoft-teams-calls-diagnosing-common-issues) , or [Google Meet](/help-centre/api-and-integrations/communication/google-meet) ) you can go to [Settings > AI](https://app.incident.io/~/settings/ai) and enable Scribe there.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-7.png)
+
+Once enabled, Scribe will request to join all Google Meet and Zoom incident calls. From here, someone on the incident call can choose to allow or deny entry to Scribe.
+
+<Info>
+
+**Note** : We highly recommend turning on auto-call creation which automatically attaches a new call to each incident.
+
+</Info>
+
+## FAQ
+
+## Does Scribe use a third-party provider?
+
+We use Recall.ai for raw transcription data, who are a third-party sub-processor that provide call transcription services. In order to transcribe the call, Recall.ai store a temporary recording which is deleted when the last human leaves the call. Recall.ai do not retain any data after this point.
+
+We only store the call transcript, which we use to power Scribe features mentioned in this article. We do not store any audio or video from the call.
+
+For more information on how we use AI, you can read the [How do we use AI?](/help-centre/configure-your-account/how-do-we-use-ai) article.
+
+## I've enabled Scribe, but it's not joining my calls?
+
+We require new permissions for Zoom and Google Meet to enable call transcription. If you previously had those integrations setup it might be that you are using an older version of our permissions.
+
+Please make sure to update to the latest by re-authenticating the integration to ensure you have the right permissions.
+
+If you're still seeing issues with Zoom, please check your settings in the Zoom app to ensure that recording has been allowed.
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-8.png)
+
+If you are still seeing issues - please reach out to support.
+
+## Scribe is joining my Zoom calls, why am I not seeing a transcript?
+
+We rely on Zoom meeting captions to generate the transcript of your call. If the bot joined your call but you're not seeing a transcript after a few minutes, it could be because you have meeting captions disabled.
+
+To enable meeting captions, navigate to **Host Caption Control Settings** while in a Zoom meeting, then enable the setting called **Allow Closed Captioning for this meeting.**
+
+![fee4d8c-CleanShot_2024-05-17_at_12.07.54.png](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-9.png)
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-10.png)
+
+If you don't see the option to enable meeting captions in your Zoom client, you likely have the setting turned off globally.
+
+To resolve this, simply go to [Zoom settings](https://zoom.us/profile/setting?tab=meeting) and flip the toggle for **Automated captions.**
+
+![](/images/help-centre/scribe-ai-powered-transcription-and-summarisation-for-incident-calls/screenshot-11.png)
+
+If **this is the first time you've installed Zoom** , we recommend to ensure you've ticked the option to allow shared access permissions at the bottom referenced [here](/help-centre/api-and-integrations/communication/zoom)
+Should you continue to experience issues, please reach out to support.
+
+## Does Scribe work in different languages?
+
+Scribe is designed to operate primarily in English, which has influenced many of our engineering decisions, AI prompts, and design choices.
+
+Currently, we obtain initial transcripts from Google Meet and Zoom. If your call is set to transcribe in a different language, Scribe will still try to take notes, summarise, and post them in your incident channel.
+
+However, please note that we do not officially support languages other than English at this time, though we hope to expand our support in the near future.
+
+## Can I stop transcribing?
+
+See article: [Manually adding and removing Scribe from your incident calls](/help-centre/manually-adding-and-removing-scribe-from-your-incident-calls) 

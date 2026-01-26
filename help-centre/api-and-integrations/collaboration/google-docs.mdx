@@ -1,0 +1,57 @@
+---
+title: "Google Docs"
+description: ""
+canonical_article_id: 226
+migrated_at: "2026-01-21T18:39:36Z"
+source_url: "https://help.incident.io/articles/4186641950-google-docs"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4186641950-google-docs) on January 21, 2026
+</Info>
+
+After your incident is over, it can be useful to dig into what happened in an incident, why, and how it can be prevented in future.
+
+Our Google Docs Integration allows you to export post-mortems into Google Docs. Which you can then use to collaborate with your team.
+
+![](/images/help-centre/google-docs/screenshot-1.png)
+
+---
+
+## Installation
+
+<Warning>
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it** . Google Workspace connections like this, which use OAuth, belong to a specific user — for this reason, you may wish to set up a dedicated service or "bot" account. We use the same user account connection for all our Google integrations. Therefore, the account you use to connect this integration will need to be the same for Google Meet and Calendar.
+
+</Warning>
+
+## 1. Installing the Integration
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations) , find "Google Docs" and click "Install".
+
+Click "Install" and you'll be redirected to the install flow within Google Workspace. Review the permissions we're requesting and click "Next".
+
+![](/images/help-centre/google-docs/screenshot-2.png)
+
+Once you've completed the Google flow, you'll be redirected back to incident.io:
+
+![](/images/help-centre/google-docs/screenshot-3.png)
+
+## 2. Setting up a Postmortem Destination
+
+incident.io has now been connected to Google Docs. Next, we need to specify where in your Google Drive you'd like to export postmortems to.
+
+Go to [Settings → Postmortems](https://app.incident.io/settings/post-mortem) , then click "Add destination"
+
+![](/images/help-centre/google-docs/screenshot-4.png)
+
+Within your web browser, navigate to the folder in Google Drive where you'd like to export postmortems to. This should look like:
+
+```plaintext
+https://drive.google.com/drive/folders/1OLTvX7Ak7Z03...
+```
+
+Paste the link in, give it a sensible name, and click "Create".
+
+You should now be good to go!

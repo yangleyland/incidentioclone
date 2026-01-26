@@ -1,0 +1,52 @@
+---
+title: "Enforcing follow-ups are completed based on priority (policies)"
+description: ""
+canonical_article_id: 40
+migrated_at: "2026-01-21T17:35:22Z"
+source_url: "https://help.incident.io/articles/2790502363-enforcing-follow-ups-are-completed-based-on-priority-%28policies%29"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2790502363-enforcing-follow-ups-are-completed-based-on-priority-%28policies%29) on January 21, 2026
+</Info>
+
+### Introduction
+
+You can use policies to define rules about how your organization completes follow-ups, however, you may want to configure this further based on the priority of the given follow-up.
+
+This helpful article walks through creating a new policy that enforces that urgent follow-ups are completed within 3 days of the incident being resolved, and follow-ups with any other priority have 7 days to be completed.
+
+### Steps
+
+Head over to [Settings → Policies](https://app.incident.io/~/settings/policies) , and click [New Policy](https://app.incident.io/~/settings/policies/create) .
+
+![](/images/help-centre/enforcing-follow-ups-are-completed-based-on-priority-(policies)/screenshot-1.png)
+
+Select `Follow-ups` as the **Policy type** , and give the policy a **Name** and **Description** .
+
+![](/images/help-centre/enforcing-follow-ups-are-completed-based-on-priority-(policies)/screenshot-2.png)
+
+Within the **At what point should we enforce this policy? → SLA days** section, click the **Use an expression** button.
+
+Select the `If... else...` expression type, and add a new expression rule:
+
+- If `Follow-up → Priority is one of Urgent` , return `3`
+- If no rule conditions are met, return `7`
+
+This expression states that if a follow-up has a priority of `Urgent` then it should be completed within 3 days, and for any other priority the follow-up should be completed in 7 days.
+
+Click the **Add** button to save the expression.
+
+![](/images/help-centre/enforcing-follow-ups-are-completed-based-on-priority-(policies)/screenshot-3.png)
+
+![](/images/help-centre/enforcing-follow-ups-are-completed-based-on-priority-(policies)/screenshot-4.png)
+
+Within the **Follow-up requirements** section, create a new requirement:
+
+- `Follow-up → Status is not one of Outstanding`
+
+This requirement is enforcing that for the policy to be fulfilled, the follow-up must have a status that is not `Outstanding` , thus validating that it has been completed.
+
+![](/images/help-centre/enforcing-follow-ups-are-completed-based-on-priority-(policies)/screenshot-5.png)
+
+Click the **Create** button to save the policy.

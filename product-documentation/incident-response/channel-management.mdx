@@ -1,0 +1,131 @@
+---
+title: Channel management (on Slack and MS Teams)
+description: Coordinate incident response in dedicated Slack or Teams channels with customizable announcements, bookmarks, and sub-channels.
+icon: "/icons/slack-channel.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Channel management (on Slack and MS Teams)
+
+Incident channels are where incident response happens. When you declare an incident, incident.io creates a dedicated Slack or Microsoft Teams channel where your team coordinates, shares updates, and tracks progress.
+
+## Channel creation
+
+By default, incident.io creates a channel for every incident as soon as it's declared. The channel name follows your configured naming convention, typically something like `inc-123-database-timeout`.
+
+You can configure certain incident types to skip channel creation for low-severity incidents that don't need dedicated coordination space. If you realize mid-incident that you do need a channel after all, you can create one manually from the dashboard or incident announcement.
+
+To configure this, navigate to **Settings** → **Incident Types** and toggle **Skip channel creation** for your chosen incident type. You can set conditions like "only skip for Minor incidents."
+
+## Announcements
+
+When an incident is declared, incident.io posts an announcement to your configured channels to notify stakeholders. This announcement includes key incident details like severity, summary, and assigned roles.
+
+You can customize what appears in these announcements to match your team's workflow. Navigate to **Settings** → **Announcements** to configure which fields and actions appear in the post. You can add or remove fields, reorder them, and even customize the emoji that appears next to each field.
+
+Announcements give your team at-a-glance context about what's happening without joining the incident channel.
+
+## Bookmarks
+
+Bookmarks appear at the top of incident channels in Slack, giving responders quick access to important information and links. incident.io automatically creates bookmarks for common needs like joining video calls or viewing the incident dashboard.
+
+You can create custom bookmarks to provide snapshot information specific to your incidents. Navigate to **Settings** → **Slack Channel** and click **Add New** to create bookmarks.
+
+There are three types:
+
+- **Pre-defined property** - Shows live incident data like severity or status that updates as the incident changes
+- **Pre-defined link** - Links to incident-related resources like Jira tickets or postmortems
+- **Custom link** - Links to any external resource, useful for frequently-accessed runbooks or documentation
+
+You can set conditions for when bookmarks appear. For example, show a link to your critical incident runbook only for SEV-1 incidents.
+
+Note that Slack's API limits bookmark ordering, so bookmarks may not always appear in your configured order. The most reliable way to control order is through announcement messages.
+
+## Incident streams
+
+Major incidents often involve hundreds of responders and multiple parallel workstreams. Engineering might be debugging the root cause while communications handles customer updates and legal assesses compliance implications. Managing all this coordination in a single channel becomes chaotic fast.
+
+Incident streams let you break complex incidents into focused sub-channels, each with its own Slack channel, video call, and dedicated leads. Streams keep related work organized while maintaining visibility into the overall incident.
+
+### When to use streams
+
+Use streams when your incident has:
+- Multiple teams working independently (engineering, communications, legal)
+- Different impacts across products, services, or regions requiring separate mitigation efforts
+- Parallel investigation paths or root cause analysis
+- Any situation where splitting coordination improves focus without losing visibility
+
+### Creating a stream
+
+Type `/incident stream` in an incident channel or use the dashboard. You'll provide:
+- **Stream name** - Describes the workstream (e.g., "Database recovery", "Customer communications")
+- **Stream lead** - Usually different from the incident lead to avoid splitting focus
+- **Initial participants** - Anyone who should collaborate on this stream
+
+incident.io creates a new Slack channel for the stream and invites the lead and participants. If you've configured automatic call links, a video call is created for the stream too.
+
+### Working in streams
+
+Streams function like mini-incidents within the parent incident. From a stream channel, you can:
+
+- Provide updates with `/incident update` - Updates appear in both the stream channel and the main incident channel
+- Assign roles with `/incident lead` or `/incident roles` - Custom incident roles are available in streams if configured
+- Close the stream with `/incident close` - Provide a final update that's posted to the incident channel
+- Pin messages or use emoji reactions just like in incident channels
+
+All stream activity appears in the incident timeline, tagged with the stream name, so you maintain a complete record of what happened across all workstreams.
+
+### Private streams
+
+Some situations require confidential discussions. Security incidents might involve sensitive breach data, or legal concerns might require limiting access due to regulations.
+
+You can create private streams from public incidents to handle these scenarios. Private streams:
+- Are invitation-only with controlled access
+- Don't share updates to the parent incident channel
+- Don't appear in incident timelines, exports, or Insights
+- Show only basic information (stream name and lead) to users without access
+
+To create a private stream, use `/incident stream` and select **Only invited users (private)** when prompted. You can also convert an existing stream to private by making its Slack channel private.
+
+Note that workspace owners always have access to private streams, even without explicit invitations.
+
+To enable private streams for your workspace, navigate to **Settings** → **Security** and enable the feature. Admins and Owners can grant or revoke access to private streams through the dashboard.
+
+## Incidents without channels
+
+Not every incident needs a dedicated coordination channel. For low-severity issues that one or two people can handle quickly, a channel creates unnecessary overhead.
+
+Configure incident types to skip channel creation for specific scenarios, like Minor incidents or specific issue categories. If you realize mid-incident that you do need a channel, you can create one manually from the dashboard or announcement post.
+
+Navigate to **Settings** → **Incident Types** to configure this per incident type.
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I subscribe to incidents to get updates without joining the channel?">
+    Yes. Click **Subscribe** on the incident dashboard or announcement post to receive updates via Slack DM or email. You can configure auto-subscription rules in **User Preferences** to automatically subscribe to incidents matching certain criteria, like all SEV-1 incidents or incidents affecting your team's services.
+  </Accordion>
+
+  <Accordion title="Why are my bookmarks showing up in the wrong order?">
+    Slack's API only allows appending bookmarks to the end of the list, not reordering them. This means bookmarks may appear in a different order than configured, especially for actions that happen in the background like creating call links. Announcement messages maintain your configured order reliably, so consider using those for critical information.
+  </Accordion>
+
+  <Accordion title="Can I customize which emoji appear in announcements?">
+    Yes. Navigate to **Settings** → **Announcements** and click **Edit Announcement post**. You can customize the emoji for each field and action, reorder fields, and add or remove elements to match your team's preferences.
+  </Accordion>
+
+  <Accordion title="How do I request access to a private stream?">
+    Users outside a private stream can see it exists in the dashboard and view basic information like the stream name and lead. Click **Request access** from the stream details to notify the stream lead. Stream members can grant or revoke access through the **Manage Access** button in the stream drawer.
+  </Accordion>
+
+  <Accordion title="Do streams have their own roles and leads?">
+    Yes. Each stream has its own stream lead, and any custom incident roles you've configured are available in streams. Use `/incident lead` or `/incident roles` from within the stream channel to assign roles. We recommend assigning different leads for streams and the parent incident to avoid splitting focus.
+  </Accordion>
+
+  <Accordion title="Can I create a video call for a stream?">
+    Yes. If you've configured automatic call links in your settings, incident.io creates one automatically when you create the stream. Otherwise, use `/incident call` from the stream channel to link a video call manually.
+  </Accordion>
+</AccordionGroup>

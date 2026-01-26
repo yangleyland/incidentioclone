@@ -1,0 +1,32 @@
+---
+title: "Can I sync multiple schedules to a single Slack user group?"
+description: ""
+canonical_article_id: 155
+migrated_at: "2026-01-21T18:29:10Z"
+source_url: "https://help.incident.io/articles/8368439933-can-i-sync-multiple-schedules-to-a-single-slack-user-group"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8368439933-can-i-sync-multiple-schedules-to-a-single-slack-user-group) on January 21, 2026
+</Info>
+
+## Context
+
+When managing on-call rotations, teams often want to sync multiple schedules (such as primary and secondary on-call, or Level 1 and Level 2 support) to a single Slack user group. This would allow team members to notify all currently on-call personnel using a single @mention in Slack.
+
+## Answer
+
+Currently, it is not possible to sync multiple schedules to a single Slack user group. When setting up schedule sync with Slack, you can only connect one schedule per user group.
+
+Here are some alternative approaches you can consider:
+
+- Create separate user groups for each schedule (e.g., @primary-oncall and @secondary-oncall)
+- Use a single schedule with multiple rotations instead of separate schedules
+  - Each rotation can represent different groups (e.g., primary and shadow rotations)
+  - Note: This approach may not work if you need different escalation paths between the rotations
+
+<Info>
+
+This functionality has been noted as a common feature request, and the product team is tracking this need for future consideration.
+
+</Info>

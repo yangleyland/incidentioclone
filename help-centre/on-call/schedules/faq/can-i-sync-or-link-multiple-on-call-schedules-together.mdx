@@ -1,0 +1,34 @@
+---
+title: "Can I sync or link multiple on-call schedules together?"
+description: ""
+canonical_article_id: 153
+migrated_at: "2026-01-21T18:29:17Z"
+source_url: "https://help.incident.io/articles/8409076726-can-i-sync-or-link-multiple-on-call-schedules-together"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8409076726-can-i-sync-or-link-multiple-on-call-schedules-together) on January 21, 2026
+</Info>
+
+## Context
+
+Organizations often need to coordinate multiple on-call schedules, such as having primary and secondary on-call rotations, or syncing schedules between different teams. Common scenarios include: - Having primary and secondary on-call rotations with the same team members - Coordinating schedules between related teams (e.g., Engineering and DevOps) - Ensuring the same person isn't scheduled for multiple rotations simultaneously
+
+## Answer
+
+Currently, schedules operate independently and cannot be automatically linked or synced with each other. Each schedule needs to be managed separately.
+
+Here are the available options for managing multiple schedules:
+
+1. **Manual Schedule Management** : Create and maintain separate schedules, being mindful to manually check for conflicts when making changes or adding overrides.
+2. **API Integration** : Use the [Schedules API](https://api-docs.incident.io/tag/Schedules-V2) to:
+  - Monitor for scheduling conflicts
+  - Create automated checks for overlapping assignments
+  - Build custom logic for schedule coordination
+3. **Escalation Paths** : For primary/secondary coverage, use escalation paths with different schedules.
+
+<Info>
+
+**Note:** The platform is working on enhanced team-first approaches to on-call configurations which may provide better schedule coordination capabilities in future updates.
+
+</Info>

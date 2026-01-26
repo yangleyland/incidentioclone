@@ -1,0 +1,31 @@
+---
+title: "Does incident.io support Heartbeat monitoring?"
+description: ""
+canonical_article_id: 138
+migrated_at: "2026-01-21T18:21:20Z"
+source_url: "https://help.incident.io/articles/8544637035-does-incident-io-support-heartbeat-monitoring"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8544637035-does-incident-io-support-heartbeat-monitoring) on January 21, 2026
+</Info>
+
+## Context
+
+Many users are looking for Heartbeat monitoring functionality similar to what OpsGenie and other platforms provide. Heartbeat monitoring allows teams to monitor regular check-ins from services (like Prometheus, AlertManager, or other monitoring systems) and trigger alerts if expected check-ins are missed within a defined interval. This is particularly important for ensuring monitoring systems themselves are functioning properly.
+
+## Answer
+
+Currently, [incident.io](http://incident.io/) does not have native heartbeat monitoring functionality. While this feature has been frequently requested, it is not available in the platform at this time and is not on the immediate roadmap.
+
+As a workaround, you have several options:
+
+- Use a third-party uptime monitoring service where a native alert source is supported with [incident.io](http://incident.io/) (such as Checkly, Cronitor, [uptime.com](http://uptime.com/) , or Pingdom);
+- If we don't have a native alert source for your heartbeat monitoring tool, you can use [incident.io](http://incident.io/) 's custom HTTP alert source to trigger alerts via HTTP request.
+- Use a middleware service that can monitor for missed signals and then trigger alerts through [incident.io](http://incident.io/) .
+
+<Info>
+
+If you'd like to see native heartbeat monitoring from [incident.io](http://incident.io/) in the future, please reach out to our Support team or send an e-mail to [help@incident.io](mailto:help@incident.io) providing the details of your use case and we'll look at adding your vote.
+
+</Info>

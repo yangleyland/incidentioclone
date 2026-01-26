@@ -1,0 +1,97 @@
+---
+title: "Priorities in Alerts and On-call"
+description: ""
+canonical_article_id: 4
+migrated_at: "2026-01-21T18:57:17Z"
+source_url: "https://help.incident.io/articles/9052199221-priorities-in-alerts-and-on-call"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9052199221-priorities-in-alerts-and-on-call) on January 21, 2026
+</Info>
+
+Priorities are a great way to tell how important an alert is and it helps your team to understand how fast they should act on the alert or the incident, but also who should be the people involved. Great examples of Priorities are P1, P2, P3 etc - where P1 is the biggest priority.
+
+You can use Priorities in our Escalation paths to choose what should happen in each priority, but also using them to have default priorities per alert source. Below we'll go through how to configure priorities, but also some tips how to use them
+
+## Configuring Priorities
+
+## Creating priorities
+
+We have introduced Priorities as a first-class citizen to incident.io, meaning that you can configure it in the Priorities tab without creating them as a separate custom field.
+
+1. Head to [Priorities](https://app.incident.io/~/alerts/configuration/priorities)
+
+2. Add priorities what you use in your organisation
+
+3. Choose a default priority, meaning that this is what we'll suggest in your sources
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-1.png)
+
+## Viewing priorities in Catalog
+
+Catalog is the engine that powers automation and expressions in incident.io. It allows you to sync or create your organisation structure like teams and services and then connecting them into other incident.io native types like escalation paths, schedules and priorities.
+
+Just head to [Catalog](https://app.incident.io/~/catalog/) > Alert Priority and you'll be able to see all Priorities that you have created earlier in the [Priorities -tab](https://app.incident.io/~/alerts/configuration/priorities) [.](https://app.incident.io/~/alerts/configuration/priorities)
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-2.png)
+
+## Setting priorities from your Alert source
+
+For any given alert, you'll want to look at trying to set the alert priority based on the content within the alert itself e.g. if my alert indicates a higher level of priority in the payload, I probably want the same level of priority to be reflected in the Alert Priority set against that alert. To do so:
+
+1. Head to the Alert source
+
+2. Scroll down to Priority towards the end of the alert attributes section
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-3.png)
+
+3. Click 'Use a variable'
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-4.png)
+
+4. Add new expression
+
+5. Query and choose Payload
+
+6. Then write Javascript expression to extract what you need. In this simple case that is $.metadata.priority. Now you should see the example of the preview
+
+7. Choose 'Alert priority' as what the result should be parsed into
+
+8. And choose the empty value if needed
+
+9. Continue and Save
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-5.png)
+
+If you are not receiving preview both from your payload and your Alert Priority, it means there might be some differences in the priority labels you have set up either in incident.io or in your alert source. You can try using .toLowercase() etc in the Javascript expression if there are differences.
+
+If you are bringing priorities from multiple alert sources with different aliases, you can simplify your Javascript by creating aliases to each priority in the Catalog e.g. if you are using P1 in incident.io, but in your alerts refer to these as Critical, you could add that as an alias so that a value of `critical` will return the P1 alert priority.
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-6.png)
+
+Some companies prefer having severity as a way of looking how important an alert or an incident is. You will be able to bring severity from your alert source and connecting that to our Priorities through the Javascript expression.
+
+## If you have Priorities set up as a Custom field
+
+You might have created Priorities before we brought in our native 'Alert priorities'. This is why you might not be able to use Priorities in Escalation paths. If this is the case, we would recommend you copying your custom field values to the [Alert Priorities](https://app.incident.io/~/alerts/configuration/priorities) [](https://app.incident.io/~/alerts/configuration/priorities) configuration and then deleting your custom field.
+
+## Using Priorities in Escalation paths
+
+You can now set up rules around priority in Escalation paths to ensure you page the right people at the right time without causing additional noise.
+
+1. Head to [Escalation paths](https://app.incident.io/~/on-call/escalation-paths)
+
+2. Create a new escalation path or choose a current one
+
+3. Click '+ Add branch' and 'Add condition'
+
+4. Choose Priority and which ones you want to add as a rule, in example Priority is P1 or P2
+
+![](/images/help-centre/priorities-in-alerts-and-on-call/screenshot-7.png)
+
+5. Add more levels if needed
+
+6. Create or Save changes
+
+More information about Smart Escalation paths and using Priorities, head [here!](/help-centre/on-call/escalation-paths/smart-escalation-paths)

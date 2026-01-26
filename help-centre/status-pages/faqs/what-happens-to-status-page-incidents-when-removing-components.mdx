@@ -1,0 +1,29 @@
+---
+title: "What happens to status page incidents when removing components?"
+description: ""
+canonical_article_id: 288
+migrated_at: "2026-01-21T18:40:36Z"
+source_url: "https://help.incident.io/articles/1771541490-what-happens-to-status-page-incidents-when-removing-components"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1771541490-what-happens-to-status-page-incidents-when-removing-components) on January 21, 2026
+</Info>
+
+## Context
+
+When managing a status page, you may need to remove or reorganize components. This raises questions about what happens to historical incidents that were associated with components that are being removed, and how these incidents will be displayed on the status page afterwards.
+
+## Answer
+
+When you remove a component from your status page:
+
+- The status page incident will remain visible in the incident history
+- The link to the removed component will be lost, meaning the status page incident will no longer show any impacted components
+- Adding new components as affected to historical incidents will not trigger notifications to subscribers
+
+If you need to reassign historical incidents to different components:
+
+1. First, identify all incidents associated with the components you plan to remove
+2. Before removing the old components, manually update the affected status page incidents to include the new replacement components
+3. You can then safely remove the old components

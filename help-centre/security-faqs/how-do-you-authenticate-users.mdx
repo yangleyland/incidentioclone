@@ -1,0 +1,17 @@
+---
+title: "How do you authenticate users?"
+description: ""
+canonical_article_id: 308
+migrated_at: "2026-01-21T18:54:32Z"
+source_url: "https://help.incident.io/articles/4589376566-how-do-you-authenticate-users"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4589376566-how-do-you-authenticate-users) on January 21, 2026
+</Info>
+
+We currently use Slack as our sole authentication mechanism, meaning no additional authentication strategy or provider is required.
+
+However, your organisation chooses to authenticate with Slack — whether that's directly or with a single sign-on provider — that same authentication mechanism is used to access [incident.io](http://incident.io/) .
+
+For the web application, temporary sessions are granted when you sign in with Slack. These periodically expire and are refreshed by redirecting the user through the OAuth flow. We can also revoke these tokens.

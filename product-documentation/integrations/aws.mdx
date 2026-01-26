@@ -1,0 +1,42 @@
+---
+title: "AWS"
+description: "Stream audit logs to Amazon S3 for compliance and security monitoring"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# AWS
+
+To give you visibility over the changes that are made within your incident.io account, we use an audit log. Our audit log is powered by [WorkOS](https://workos.com/). The log is available for customers on our [Enterprise plan](https://incident.io/pricing).
+
+The audit log contains information about any configuration changes, as well as changes to a user's permissions (e.g. being given a new role, or access to a private incident).
+
+Each entry will have an actor (the person or system that made the change) and one or more targets (a thing that was modified by this change). The entry will also include the Location and User Agent of the actor, where applicable.
+
+Each entry will conform to a [schema](https://api-docs.incident.io/tag/Audit-logs), which is documented here. It also has a version, so that if our schema changes over time you'll still be able to parse old events.
+
+We'll retain these entries for one year.
+
+Audit log entries start from 18 April, 2023 (there are no entries available from before that date).
+
+<img src="/images/integrations/aws/audit-log-interface.png" alt="Audit log web interface showing filterable entries" />
+
+## Viewing your audit log
+
+You can view your audit log via our [security settings](https://app.incident.io/settings/security) page.
+
+From there, you'll be able to:
+
+- View the entries via a web interface (filterable by target, event type, actor and date)
+- Export the entries for a given time period to a CSV
+- Set up a log stream to a SIEM provider of your choice (e.g. Datadog, Splunk or an Amazon S3 bucket)
+
+<Warning>
+Please note that you must be an Owner or Admin to access audit logs.
+</Warning>
+
+<img src="/images/integrations/aws/audit-log-streaming.png" alt="Audit log streaming configuration for SIEM providers" />
+
+You can see the details of each of the log entries that are emitted in our [API Docs](https://api-docs.incident.io/tag/Audit-logs).

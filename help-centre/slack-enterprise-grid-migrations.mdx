@@ -1,0 +1,29 @@
+---
+title: "Slack Enterprise Grid migrations"
+description: ""
+canonical_article_id: 339
+migrated_at: "2026-01-21T18:55:14Z"
+source_url: "https://help.incident.io/articles/8616152514-slack-enterprise-grid-migrations"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8616152514-slack-enterprise-grid-migrations) on January 21, 2026
+</Info>
+
+### Do I need to do anything?
+
+No, we handle [Slack Enterprise Grid migrations](https://slack.com/intl/en-gb/help/articles/115002532808-Migrate-workspaces-to-an-Enterprise-organisation) automatically. Slack send an event to our application when an Enterprise Grid migration begins and ends, and we use this as a signal to pause user syncing.
+
+### Why do you pause user syncing?
+
+Grid migrations can result in user IDs changing, so we pause our user syncing process during the migration. We do this because Slack is often a source of truth for authentication, and these migrations can sometimes result in user IDs changing. By pausing the user syncing, we eliminate the risk of users becoming deactivated during the process and losing access to incident.io.
+
+### Do you automatically update user IDs if they change?
+
+Yes. When a Grid migration is taking place, we attempt to exchange the old user ID every time a user signs in. We also run a "bulk exchange" of user IDs every day. For both of these processes, we use Slack's [migration.exchange](https://docs.slack.dev/reference/methods/migration.exchange/) API endpoint.
+
+### Do I need to re-install the incident.io app?
+
+Grid migrations should involve a step where the [incident.io](http://incident.io/) Slack application is re-installed, either at the Grid level or to the individual workspace. We handle both of these cases transparently: however, if you want to install us at a Grid level and have **another** workspace already using incident.io, there is some configuration we need to do on our side to map the workspaces to the correct accounts on our side.
+
+See [this article](/help-centre/installing-incident-io/slack-enterprise-grid) for details on which plans can install [incident.io](http://incident.io/) at the Grid level.

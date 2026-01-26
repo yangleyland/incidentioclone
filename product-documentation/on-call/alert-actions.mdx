@@ -1,0 +1,119 @@
+---
+title: Alert management
+description: Resolve alerts, reduce alert noise, and review the full alert lifecycle
+---
+
+Manage alerts in incident.io to close the loop on addressed issues, reduce noise through deduplication and grouping, and trace what happened with alert timelines. Navigate to **On-call → Alerts** in the dashboard, or use the **Alerts** tab in the mobile app.
+## Alert states
+
+Alerts in incident.io have two states.
+
+| State | Description | How alerts reach this state |
+|-------|-------------|------------------------------|
+| **Triggered** | The alert is active and needs attention | Automatically, when the alert fires from your monitoring source (e.g., Datadog, Sentry, HTTP) |
+| **Resolved** | The alert has been addressed or the underlying issue has cleared | Manually resolved (dashboard or mobile app), bulk resolved (mobile app), or automatically resolved (via deduplication key, incident status sync, or triage decline) |
+
+<Tip>
+Alerts don't have an "acknowledged" state. Acknowledgment happens at the [escalation path](/product-documentation/on-call/escalation-paths) level when someone responds to a page.
+</Tip>
+
+### Timeline and alert lifecycle
+
+Every alert has a timeline tracking its lifecycle. Track what happened by understanding an alert's timeline details. Select a specific alert (**On-call → Alerts → Click on an alert**) to review the timeline and related incidents or escalations.
+| Timeline event | Description |
+|----------------|-------------|
+| **Alert received from source** | The alert fires from your monitoring tool (e.g., Datadog, Sentry, HTTP) |
+| **New incident created** | A new incident is created from the alert via an alert route |
+| **Escalated** | An escalation is triggered via the alert route |
+| **Escalated to [team/path]** | The alert is escalated to a specific escalation path or team (e.g., Product Development) |
+| **Alert resolved** | The alert is resolved manually, automatically, or via incident status sync |
+
+## Resolve alerts
+
+Resolve alerts to close the loop and remove noise from your alert dashboard. When resolving an alert, you're confirming that the underlying issue has been addressed or is no longer relevant.
+
+### Manual and bulk resolution
+
+- **Manual resolution:** Manually resolve alerts in the dashboard or mobile app by selecting the relevant alert and clicking "Resolve".
+
+- **Bulk resolution:** Bulk resolve several related alerts stemming from the same issue at once by selecting multiple alerts in the mobile app or dashboard.
+
+### Automatic resolution
+
+Alerts can resolve automatically in three ways.
+
+- **Deduplication key**: When resolved alerts are sent from sources using the same deduplication key as an active alert, incident.io will resolve the active alert accordingly. This happens automatically when monitoring tools send resolved messages by default (e.g., Grafana), but can be disabled in the source configuration.
+
+- **Incident status**: When an incident is resolved, associated alerts can be automatically resolved.
+
+<Tip>
+Automatically decline incidents in 'triage' status when linked alerts resolve, by enabling "Decline triage incidents if the linked alerts are resolved" when configuring alert routes.
+</Tip>
+
+### Reducing alert noise
+
+incident.io has two mechanisms for reducing alert noise: **deduplication** (alert-level) and **grouping** (incident-level).
+
+**Deduplication** prevents duplicate alerts from being created. If an alert arrives with the same deduplication key as an active alert, no new alert is created to reduce noise. Deduplication keys also handle [automatic resolution](#automatic-resolution).
+
+**Grouping** attaches related alerts to the same incident based on time windows and shared attributes (like service or team). Learn more about configuring [grouping alerts](/product-documentation/on-call/alert-routing#grouping-alerts) when configuring alert routes.
+
+## View and filter alerts
+
+### Dashboard and mobile app
+
+View a complete list of triggered and resolved alerts within the dashboard or mobile app. 
+
+- **Dashboard**: Central hub for investigating alerts and understanding their full context. Navigate to **On-call → Alerts** to view and manage all alerts.
+- **Mobile app**: Perfect for quick triage and bulk resolution when responding to incidents. Navigate to the **Alerts** tab in the mobile app.
+
+From the alerts list, you can:
+- View alerts in a table with customizable columns (status, alert source, priority, attributes).
+- Filter by date range, alert attributes, related incidents, or related escalations to investigate historic alerts.
+- Click into individual alerts to see their full payload, timeline, attributes and more.
+- Bulk resolve alerts, or attach to incidents.
+
+### Slack or Microsoft Teams channels
+
+Alerts appear in Slack or Microsoft Teams channels in two ways:
+
+- **Incident channels**: Alerts that create incidents appear at the top of the incident channel. Subsequent grouped alerts appear as new messages.
+- **Pulse channels**: Alerts configured to send to Slack channels (without creating incidents) for passive monitoring.
+
+Each alert in channels shows its title, description, priority, attributes, and a link to the dashboard.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I manually attach alerts to existing incidents?">
+    Yes. From the alert details page, click **+ Attach to an incident** and select an incident.
+
+    You can also bulk attach alerts from **On-call → Alerts**: select alerts using checkboxes, then click **Bulk actions → Attach to incident**.
+  </Accordion>
+
+  <Accordion title="Why am I not seeing duplicate alerts?">
+    If you're sending multiple alerts but only seeing the first one, this is likely due to deduplication. incident.io uses deduplication keys to prevent duplicate alerts.
+
+    If multiple alerts have the same deduplication key, only the first active alert will appear. A new alert will only be created when:
+    - A different deduplication key is received
+    - The previous alert with the same key has been resolved
+
+    To test with multiple alerts, resolve the existing alert first before sending a new one with the same key.
+  </Accordion>
+
+  <Accordion title="What's the difference between alert states and escalation states?">
+    Alerts have two states: **triggered** and **resolved**.
+
+    Escalations have four states: **triggered**, **acknowledged**, **cancelled**, and **expired**.
+
+    Acknowledging an escalation does not resolve the alert. Alert resolution happens separately through manual resolution, automatic resolution via deduplication keys, or incident status sync.
+  </Accordion>
+
+  <Accordion title="How long can alerts be grouped together in an incident?">
+    Alerts can be grouped together for up to **48 hours** in a rolling window. Each time a new alert in the group arrives, the 48-hour window resets.
+
+    **Example:** If alerts arrive at 9:00 AM, 10:00 AM, and 11:00 AM, all three can be grouped. The window extends 48 hours from 11:00 AM (the most recent alert).
+
+    If a new alert arrives after the 48-hour window expires, a new incident is created.
+  </Accordion>
+</AccordionGroup>

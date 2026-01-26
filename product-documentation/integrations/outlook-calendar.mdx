@@ -1,0 +1,63 @@
+---
+title: "Outlook Calendar"
+description: "Schedule meetings and debriefs directly from incidents using Outlook Calendar integration"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Outlook Calendar
+
+Sometimes, you need to schedule meetings related to your incident. Perhaps a war room for everyone to sync their findings whilst an incident is ongoing, or a debrief about what happened once the incident is resolved.
+
+Our Outlook integration lets you attach events to an incident, and pulls through relevant information about when it is and who is attending.
+
+## Installation
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it**. Outlook connections like this, which use OAuth, belong to a specific user — for this reason, you must set up a dedicated service or "bot" account.
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations), find "Outlook Calendar" and click "Install".
+
+Click "Install" and you'll be redirected to the Microsoft installation flow. Review the permissions we're requesting and click "Accept":
+
+<img src="/images/integrations/outlook-calendar/permissions.png" alt="Microsoft permissions screen showing requested permissions for Outlook Calendar integration" />
+
+Once you've completed the Microsoft authentication flow, you'll be redirected back to incident.io:
+
+<img src="/images/integrations/outlook-calendar/installed.png" alt="Outlook Calendar integration successfully installed in incident.io settings" />
+
+## Scheduling a debrief
+
+In one-click, we can build an Outlook event which has been pre-filled with the incident participants and other useful information - you just need to fill in the rest.
+
+Once your incident has been resolved, you'll notice a new option to 'Schedule a debrief' from the sidebar:
+
+<img src="/images/integrations/outlook-calendar/schedule-debrief.png" alt="Schedule a debrief option in the incident sidebar" />
+
+This will take you to a pre-populated Outlook event. You just need to choose a time and hit save:
+
+<img src="/images/integrations/outlook-calendar/outlook-event.png" alt="Pre-populated Outlook event with incident details" />
+
+## Linking an event from Outlook to an incident
+
+In addition to scheduling a debrief for you, we can also link events created in Outlook to your incidents. You just need to create an event in Outlook which:
+
+1. Has the **incident identifier** (e.g. `INC-123`) in the title or description
+2. Invites the **connected user**
+
+When this happens, we'll automatically attach the event to your incident and message the relevant incident channel:
+
+<img src="/images/integrations/outlook-calendar/linked-event.png" alt="Linked event notification in incident channel" />
+
+If you identify the incident as a [debrief meeting](https://help.incident.io/en/articles/8148411-what-is-a-debrief) (i.e. a catch-up after the incident has been resolved), we'll additionally let the channel know when it's happening and who's invited:
+
+<img src="/images/integrations/outlook-calendar/debrief-notification.png" alt="Debrief notification with attendees and time details" />
+
+Note that if you include the word "debrief" in the event (or whatever you're preferred name for this term is, according to your [debrief settings](https://app.incident.io/settings/debriefs)), we'll automatically attach the event as a debrief without prompting you first.
+
+## Removing a linked event
+
+If we automatically attach a debrief which should not be linked to your incident, you can unlink it by heading to the sidebar on the incident details page, clicking the debrief, and then clicking "..." > "Unlink debrief":
+
+<img src="/images/integrations/outlook-calendar/unlink-debrief.png" alt="Unlink debrief option in the incident sidebar menu" />

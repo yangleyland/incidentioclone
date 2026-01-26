@@ -1,0 +1,58 @@
+---
+title: "Sentry"
+description: "Link Sentry issues to incidents for better error tracking and incident management"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Sentry
+
+Use [Sentry](https://sentry.io) for error tracking, or performance monitoring? To keep everything organised, you can now link issues and incidents.
+
+You can read Sentry's documentation on our integration [here](https://docs.sentry.io/product/integrations/issue-tracking/incidentio/).
+
+# What we can do with Sentry
+
+1. **Link Sentry issues to incidents**
+
+From a Sentry issue, just as you can link to Issue Trackers such as Jira, Linear and GitHub, you can also link to [incident.io](http://incident.io)
+
+<img src="/images/integrations/sentry/sentry-link-issue.png" alt="Link Sentry issue to incident.io" />
+
+2. **Attach Sentry Issues to incidents**
+
+When a Sentry link is posted in an incident Slack channel, it'll offer to attach it
+
+<img src="/images/integrations/sentry/sentry-attach-prompt.png" alt="Prompt to attach Sentry issue" />
+
+<img src="/images/integrations/sentry/sentry-attached.png" alt="Sentry issue attached to incident" />
+
+3. **Keeping you up-to-date**
+
+Activity on the Sentry Issue will be propagated to the incident Slack channel:
+
+<img src="/images/integrations/sentry/sentry-activity-updates.png" alt="Sentry activity updates in Slack" />
+
+# Installation
+
+1. **Go to Settings > [Integrations](https://app.incident.io/settings/integrations)**
+
+2. **Press 'Connect' next to Sentry**
+
+<img src="/images/integrations/sentry/sentry-integrations-page.png" alt="Sentry on integrations page" />
+
+3. **Login to Sentry**
+
+<img src="/images/integrations/sentry/sentry-login.png" alt="Login to Sentry" />
+
+4. **Install**
+
+Review the permissions, then click "Accept & Install"
+
+<img src="/images/integrations/sentry/sentry-install-permissions.png" alt="Sentry installation permissions" />
+
+That's it!
+
+If you run into any issues, [get in touch](http://incident.io/community)

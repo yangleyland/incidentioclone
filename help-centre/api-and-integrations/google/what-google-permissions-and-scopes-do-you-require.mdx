@@ -1,0 +1,51 @@
+---
+title: "What Google permissions and scopes do you require?"
+description: ""
+canonical_article_id: 231
+migrated_at: "2026-01-21T18:39:31Z"
+source_url: "https://help.incident.io/articles/9541363821-what-google-permissions-and-scopes-do-you-require"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9541363821-what-google-permissions-and-scopes-do-you-require) on January 21, 2026
+</Info>
+
+## Google Meet
+
+For reading the details of participants of incident calls so we can display them in incident channels and the Dashboard, we require:
+
+```plaintext
+https://www.googleapis.com/auth/meetings.space.readonly
+```
+
+## Google Calendar
+
+For creating debrief events and inviting people to them, we require:
+
+```plaintext
+https://www.googleapis.com/auth/calendar.events
+```
+
+## Google Drive
+
+For exporting post-mortems to Google Drive, we require:
+
+```plaintext
+https://www.googleapis.com/auth/drive.file
+```
+
+## Listing users
+
+We need to be able to join Google users back to incident.io users. For example, this enables us to invite the right "Jane Smith" to the debrief event, or resolve them to a participant on an incident call. We need to list users to do this, which requires:
+
+```plaintext
+https://www.googleapis.com/auth/admin.directory.user.readonly
+```
+
+We also need the [dedicated service account or "bot" user](/help-centre/api-and-integrations/communication/google-calendar) you connected the Google Calendar/Meet integration with to be an Admin who can read the directory for these features to work. Here is what the permission set requires:
+
+![](/images/help-centre/what-google-permissions-and-scopes-do-you-require/screenshot-1.png)
+
+## Transcribing Calls
+
+We don't require any additional scopes or permissions for our transcription feature with Google Meet.

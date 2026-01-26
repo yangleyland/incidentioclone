@@ -1,0 +1,45 @@
+---
+title: "Alert Insights"
+description: ""
+canonical_article_id: 128
+migrated_at: "2026-01-21T18:21:14Z"
+source_url: "https://help.incident.io/articles/2433910890-alert-insights"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2433910890-alert-insights) on January 21, 2026
+</Info>
+
+Understanding when and how your alerting system fires can help you configure it more effectively, reducing unnecessary noise. This can lead to happier and more productive teams — for example, reducing the amount of times they get woken up in the night for flaky alerts.
+
+## Alerts created
+
+See your alert volume over a certain time period and group them by alert source or any catalog-backed attribute you have created. This can allow you to see if some areas of your product are more problematic, and give you an idea of whether you need to do some investment, reconfigure your alerting, or balance the load for the teams owning those feature areas.
+
+![](/images/help-centre/alert-insights/screenshot-1.png)
+
+## Alert frequency
+
+See which alerts have been the most frequent by title, grouped by title. This allows you to see how many times those alerts have occurred, how many times they've escalated (via incident.io On-call), how many incidents have been created.
+
+If you have lots of the same alerts occurring and getting escalated, but no incidents created - it might be a good time to consider turning or reconfiguring the alert to decrease alert noise for your teams.
+
+![](/images/help-centre/alert-insights/screenshot-2.png)
+
+## Alert acceptance
+
+Understand how many alerts are creating incidents than end up getting accepted versus declined. This can help you to analyse if you need to spend some time working on pager noise.
+
+![](/images/help-centre/alert-insights/screenshot-3.png)
+
+## Most frequently declined alerts
+
+You can also review your most frequently declined alerts. This can then help you reconfigure your routing to then decrease pages from those alerts that are noisy.
+
+## Good to know
+
+- In all of our dashboards, you are able to choose the time period, interval and filters for the entire dashboard. You can also compare these with the previous period!
+
+![](/images/help-centre/alert-insights/screenshot-4.png)
+
+- Escalation numbers only report escalations done via incident.io On-call.

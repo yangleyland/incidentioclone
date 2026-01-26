@@ -1,0 +1,140 @@
+---
+title: "Using the Grafana Integration"
+description: ""
+canonical_article_id: 252
+migrated_at: "2026-01-21T18:40:24Z"
+source_url: "https://help.incident.io/articles/3192569011-what-happens-when-i-click-learn-more-on-integrations"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3192569011-what-happens-when-i-click-learn-more-on-integrations) on January 21, 2026
+</Info>
+
+## Overview
+
+The Grafana integration allows you to connect your Grafana instance to [incident.io](http://incident.io/) to automatically create incidents from Grafana alerts, enrich alerts with organizational context, and attach dashboard screenshots to incidents for faster debugging.
+
+## What you can do with Grafana
+
+Once connected, you can:
+
+- Create incidents automatically from Grafana alerts by setting up alert sources
+- Attach dashboard screenshots to incidents to provide visual context during response
+- Enrich alerts with attributes using labels on your Grafana alert rules to map to services, teams, and other catalog types
+- Sync telemetry dashboards to your [incident.io](http://incident.io/) catalog for easy reference
+
+---
+
+## Connecting Grafana to incident.io
+
+**Prerequisites**
+
+Before connecting, you'll need:
+
+1. Grafana API URL - The hostname of your Grafana instance (e.g., [acme.grafana.net](http://acme.grafana.net/) )
+2. API Key - A Grafana API key with the following permissions:
+  1. Read permissions for dashboards and folders
+  2. For older Grafana versions: Dashboard modification permissions
+
+**To create an API key in Grafana:**
+
+1. Navigate to Configuration > API Keys in Grafana
+2. Click Add API Key
+3. Give it a descriptive name like " [incident.io](http://incident.io/) Integration"
+4. Set it to Admin role (or at minimum, read access to dashboards)
+5. We recommend creating a non-expiring key to avoid connection issues
+
+**Connection steps**
+
+1. In [incident.io](http://incident.io/) , go to Settings > Integrations
+2. Find Grafana and click Connect
+3. Enter your Grafana API URL and API Key
+4. Click Connect to Grafana
+
+Once connected, [incident.io](http://incident.io/) will validate the connection by attempting to access your Grafana instance.
+
+---
+
+## Setting up Grafana alert sources
+
+Alert sources allow you to automatically create incidents from Grafana alerts.
+
+**Creating an alert source**
+
+1. Go to Settings > Alert Sources in [incident.io](http://incident.io/)
+2. Click Create Alert Source
+3. Select Grafana as the source type
+4. Configure your alert source settings (name, routing rules, etc.)
+5. Copy the webhook URL provided (it will look like [https://api.incident.io/v2/alert_events/grafana/\{alertSourceId\}](https://api.incident.io/v2/alert_events/grafana/%7BalertSourceId%7D) )
+
+**Configuring Grafana to send alerts**
+
+1. In Grafana, navigate to Alerting > Contact points
+2. Click Add contact point (or edit an existing one)
+3. Select Webhook as the type
+4. Paste the [incident.io](http://incident.io/) webhook URL
+5. Under Authentication, select Bearer Token and paste the token provided by [incident.io](http://incident.io/) *Note: For older Grafana versions, you may need to use HTTP Basic Auth instead*
+6. Save the contact point
+
+**Alert grouping options**
+
+When configuring your alert source, you can choose how Grafana alert groups map to [incident.io](http://incident.io/) alerts:
+
+- One alert per group (recommended) - Creates a single [incident.io](http://incident.io/) alert for each Grafana alert group, keeping related alerts together
+- Individual alerts - Creates separate [incident.io](http://incident.io/) alerts for each alert within a Grafana alert group
+
+---
+
+## Dashboard screenshots and telemetry
+
+You can configure [incident.io](http://incident.io/) to automatically attach screenshots of specific Grafana dashboards to incidents. This provides visual context during incident response.
+
+**Selecting dashboards**
+
+1. Go to Settings > Integrations > Grafana
+2. Click Configure to open the integration settings
+3. In the Connected Dashboards section, paste a Grafana dashboard URL
+4. Click Add Dashboard to discover and connect it
+5. The dashboard will now be available for use during incidents
+
+**What gets synced:**
+
+- Dashboard name and description
+- Folder location
+- Individual panels within the dashboard
+
+**How dashboard screenshots work**
+
+When an incident is created from a Grafana alert:
+
+- [incident.io](http://incident.io/) can automatically generate and attach a screenshot of related dashboards
+- Screenshots include the relevant time range around the alert
+- Individual panels can also be captured and shared
+
+---
+
+## Enriching alerts with tags
+
+You can tag your Grafana alert rules with labels that map to [incident.io](http://incident.io/) catalog types (like services, teams, or custom catalog types). This automatically enriches your incidents with the right context.
+
+**Adding tags to Grafana alerts**
+
+1. In Grafana, edit your alert rule
+2. Add labels in the format \{catalog-type-name\} with the value being the catalog entry name
+
+*Example: Add a label service with value payment-api*
+
+1. When this alert fires, [incident.io](http://incident.io/) will automatically:
+  1. Look up the service catalog type
+  2. Find the entry named payment-api
+  3. Attach it to the incident
+
+**Common catalog types to use:**
+
+- service - Link alerts to specific services
+- team - Route to the right team
+- Any custom catalog types you've created in [incident.io](http://incident.io/)
+
+---
+
+Still got questions? Reach out to [support@incident.io](mailto:support@incident.io) or message us in your Slack Channel!

@@ -1,0 +1,103 @@
+---
+title: "Customizing your incident creation form using Custom Fields"
+description: ""
+canonical_article_id: 54
+migrated_at: "2026-01-21T18:02:31Z"
+source_url: "https://help.incident.io/articles/3494530207-customizing-your-incident-creation-form-using-custom-fields"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3494530207-customizing-your-incident-creation-form-using-custom-fields) on January 21, 2026
+</Info>
+
+You've [declared your first incident](/help-centre/creating-and-running-incidents/creating-a-new-incident/declaring-incidents) with our default settings and now you're wondering if you can **edit the incident declaration form to categorize incidents and track additional dimensions** such as which teams were involved, what systems were affected, or how many customers were impacted.
+
+You've come to the right place, and yes you can!
+
+---
+
+## Using Custom Fields
+
+Maybe you have different teams that look after different products, customer journeys or different systems? All these can be turned into Custom Fields, and there are a few reasons incident.io customers use Custom Fields.
+
+## Enriching their retros & reporting
+
+You might be looking to enrich your understanding of your incidents and narrow down on systemic issues. Or you might just need additional information for compliance or internal reporting purposes.
+
+Either way, Custom Fields can help you answer questions like:
+
+- *'Which system is most incident-prone?'*
+- *'Which customers suffer the most incidents?'*
+- *'Which team reacts to incidents the fastest?'*
+- *'Which product is most vulnerable?'*
+- ' *How many incidents involved personal data?* '
+- ...
+
+You can capture and visualize all this directly from the [incident.io Insights](https://app.incident.io/insights) , by applying filters off the back of Custom Fields in the [Incidents tab](https://app.incident.io/incidents) , and when you export a CSV of your incidents.
+
+## Triggering specific automation
+
+A very popular use case for Custom Fields is to use them as triggers in [Workflows](https://app.incident.io/workflows) .
+
+For example:
+
+- [Escalate to specific teams/teammates](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/escalating-incidents) based on the severity of an incident, or the product it affects
+- Send an email to only the 3rd parties affected by an incident
+- Message the `#customer-support` channel [when high-value customers are affected by an incident](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/keeping-your-customers-in-the-loop)
+- Send a Slack message to a specific Account Executive [when their customer is affected by an incident](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/keeping-your-customers-in-the-loop)
+
+![](/images/help-centre/customizing-your-incident-creation-form-using-custom-fields/screenshot-1.png)
+
+---
+
+## Setting Up Custom Fields
+
+*Only* [Admins and Owners](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) *can edit Custom Fields.*
+
+1. **Head to Settings >** [Custom Fields](https://app.incident.io/settings/custom-fields)
+
+![](/images/help-centre/customizing-your-incident-creation-form-using-custom-fields/screenshot-2.png)
+
+2. **Add and tweak your Custom Field**
+
+Clicking on `Add New Custom Field` will pop up a creation modal from which you can control:
+
+1. What information to collect
+2. How custom field options are managed (From catalog, fixed list, dynamic list)
+3. Where the custom field will be available
+
+![](/images/help-centre/customizing-your-incident-creation-form-using-custom-fields/screenshot-3.png)
+
+`Field Types`
+
+The field types we support are:
+
+- Single-select
+- Multi-select
+- Text
+- Link
+- Number
+
+If there are any more you'd like us to add, please let us know!
+
+`Name`
+
+The title will appear on the incident declaration form. The shorter and more explicit, the better!
+
+`Description`
+
+This will appear as a tooltip for your team in the modal, like so 👇🏼
+
+![](/images/help-centre/customizing-your-incident-creation-form-using-custom-fields/screenshot-4.png)
+
+3. Conditionally require or show this custom field - This can be found within [Incident Forms](https://app.incident.io/~/settings/forms) , more information in this [article](/help-centre/configure-your-account/configuring-incident-forms) . Here you can set conditions to conditionally render the fields in Forms such as create, accept, update, or resolve forms.
+
+![](/images/help-centre/customizing-your-incident-creation-form-using-custom-fields/screenshot-5.png)
+
+## FAQ
+
+How to derive a custom field from a value set by another field? Check out this article on [Automatically setting custom fields](/help-centre/catalog/catalog-best-practices/automatically-setting-custom-fields)
+
+---
+
+If you run into any trouble, want a leg up setting up workflows, or would like some best practices on Custom Fields, [get in touch](http://incident.io/community) !

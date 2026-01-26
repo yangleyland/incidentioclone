@@ -1,0 +1,88 @@
+---
+title: "Linear"
+description: ""
+canonical_article_id: 213
+migrated_at: "2026-01-21T18:39:38Z"
+source_url: "https://help.incident.io/articles/4023686088-linear"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4023686088-linear) on January 21, 2026
+</Info>
+
+Using Linear to track your team's tasks? Using Linear to *triage* your team's tasks?
+
+This is how you can export [your incident to-dos](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/keeping-track-of-who's-doing-what) to Linear to keep everything centralized, *and* automatically assign tasks according to your [incident schedules](/help-centre/on-call/schedules/building-schedules) .
+
+---
+
+## What we can do with Linear
+
+### Assign triage tickets automatically
+
+If you use [On-call](https://incident.io/on-call) with incident.io, you can combine this with [Linear's Triage functionality](https://linear.app/docs/triage) to automatically action triage tasks to who is currently on call on your incident.io schedules.
+
+### → Exporting follow-ups
+
+1. **Export** [your incident follow-ups](/help-centre/learning-from-incidents/follow-ups) to Linear;
+
+2. **Sync the status of your tasks between Linear and incident.io** , so you can work in Linear without worrying about updating statuses manually in incident.io!
+
+![](/images/help-centre/linear/screenshot-1.png)
+
+3. **Bulk Exports through the Follow-ups tab.**
+
+![](/images/help-centre/linear/screenshot-2.png)
+
+4. **Export templates,** this enables you to pre-set values to fields that can be used when exporting follow-ups.
+
+![](/images/help-centre/linear/screenshot-3.png)
+
+5. **Auto-exports to Linear,** you can automate the export process of follow-ups based on certain incident criteria, such as severity, and specific custom fields such as responsible teams
+
+... [get in touch](http://incident.io/community) to give us your wishlist!
+
+---
+
+## Setting Up
+
+Adding Linear to incident.io is simple.
+
+1. **Go to Settings >** [Integrations](https://app.incident.io/settings/integrations)
+
+Hit `Connect` next to Linear.
+
+![](/images/help-centre/linear/screenshot-4.png)
+
+2. **Log into Linear**
+
+*We currently only support one single Linear workspace* .
+
+![](/images/help-centre/linear/screenshot-5.png)
+
+3. **Enable a Triage action for your team on Linear**
+
+In `linear.app/settings/teams/your-team/triage` , select `Notify` or `Assign` as a Triage action and click **Use schedule** to pick which incident.io schedule you want to automatically use.
+
+![](/images/help-centre/linear/screenshot-6.png)
+
+That's it!
+
+## FAQ
+
+**What follow-up data is synced to and from Linear?**
+
+- Status, Title, Description, and Assignee will all go from Linear to incident.
+
+- The Title and Description fields will go from incident to Linear.
+
+**What schedule data is synced to Linear?**
+
+- Schedule name and times for the next 5 weeks will go from incident to Linear.
+
+**What if I have multiple rotas in incident.io, who will be assigned to the triage tickets in Linear?**
+
+- Linear will assign the person which comes from the first rota hat is active
+- Example: If you have a rota 9am-5pm and a rota 5pm-12am, then we'll return whoever is on shift for each of those. But it you have a first rota that's 24/7, the person on that will always be assigned to the Linear triage tickets.
+
+If you run into any issues, [get in touch](http://incident.io/community)

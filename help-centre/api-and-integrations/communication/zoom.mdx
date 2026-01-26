@@ -1,0 +1,91 @@
+---
+title: "Zoom"
+description: ""
+canonical_article_id: 199
+migrated_at: "2026-01-21T18:29:26Z"
+source_url: "https://help.incident.io/articles/3509995231-zoom"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3509995231-zoom) on January 21, 2026
+</Info>
+
+Having responders create a Zoom meeting whenever they start an incident is best practice, but it's also easily forgotten and not very scalable...
+
+We can take on that work for you! We'll **automatically generate and surface an individual call URL when an incident is declared** , so you have a dedicated 'war room' for every incident.
+
+---
+
+## Installation
+
+You can add Zoom to [incident.io](http://incident.io/) and configure auto create in just a few clicks.
+
+### 1. Go to Settings → Integrations
+
+### 2. Click 'Connect' on the Zoom Integration
+
+![](/images/help-centre/zoom/screenshot-1.png)
+
+### 3. Log in using a service account
+
+Clicking 'Connect' will take you to the Zoom Marketplace, where you'll be asked to sign-in and install the app by accepting the permissions*.
+
+To access our full range of incident calls features, you'll need to install with an account that has role permissions to view users, and check the box "Allow this app to use my shared access permissions".
+
+<Info>
+
+Make sure to create/sign-in with a **** [service account](/help-centre/api-and-integrations/faqs/which-zoom-account-should-we-use-for-incident.io) !
+
+</Info>
+
+On the following screen you will be able to see which permissions our app requests.
+
+![](/images/help-centre/zoom/screenshot-2.png)
+
+<Warning>
+
+Be sure to tick the option to allow shared access permissions at the bottom.
+
+Without this, features such as Scribe will not work correctly and we will not be able to call participant information to display which users are currently on the call.
+
+</Warning>
+
+After authorising the app, you'll be redirected back to the integrations page where Zoom should show as connected.
+
+### 4. Enable auto create
+
+With Zoom installed, you can now configure it to automatically create video calls for your incidents.
+
+![](/images/help-centre/zoom/screenshot-3.png)
+
+### 5. All set!
+
+You're good to go.
+
+## Automatically creating calls
+
+With this configuration applied, [incident.io](http://incident.io/) will create a Zoom meeting whenever an incident is declared.
+
+- The meeting link will be set to the incident's Call URL, display in the dashboard and anywhere the incident is mentioned.
+- We'll also message about the Zoom meeting in the incident channel, with an easy "Join Call" button.
+
+<iframe src="https://www.loom.com/embed/a569ec23fcd4420381aae4664038c1a3" width="100%" height="400" allowfullscreen></iframe>
+
+If you need help with this, [get in touch](http://incident.io/community) !
+
+## Permissions
+
+Installing Zoom will authorise [incident.io](http://incident.io/) to:
+
+- **View and manage meetings** : so we can create meetings in this users name
+- **View and manage recordings** : so we can automatically record these meetings (should it be requested)
+- **View user information** : to help us identify the Zoom user and link them to their Slack identity for debugging of the integration
+- **View user settings** : to read password requirement settings
+
+Additionally, ensure that your settings in the Zoom workspace allows users to request local recordings, this will allow Scribe to starting transcribing the call.
+
+## Connecting multiple accounts
+
+Zoom allows only a single access token per app, per user. This means that once you connect incident.io to Zoom, any previously issued access token for that app and user is invalidated. This means that if (for example) you have a production account connected to to Zoom, and you then connect the same Zoom user to your sandbox account, that the production account will be disconnected from Zoom.
+
+This behaviour from Zoom aligns with OAuth 2.0 best practices to ensure secure access control and prevent simultaneous sessions with multiple tokens.

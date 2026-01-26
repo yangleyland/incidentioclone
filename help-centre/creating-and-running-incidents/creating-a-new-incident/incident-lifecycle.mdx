@@ -1,0 +1,68 @@
+---
+title: "Incident Lifecycle"
+description: ""
+canonical_article_id: 51
+migrated_at: "2026-01-21T18:02:34Z"
+source_url: "https://help.incident.io/articles/2830149060-incident-lifecycle"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2830149060-incident-lifecycle) on January 21, 2026
+</Info>
+
+Your incidents go through a lifecycle, for example:
+
+Declared → Investigating → Fixing → Monitoring → Closed
+
+You can customise the lifecycle of your incidents, to match your organisation's process at [Settings > Respond > Lifecycle](https://app.incident.io/~/settings/lifecycle)
+
+![](/images/help-centre/incident-lifecycle/screenshot-1.png)
+
+There are three main stages of the incident lifecycle you can configure: **triage** , **active** , and **post-incident** .
+
+You can also configure how **timestamps** are set when an incident moves between statuses.
+
+---
+
+## 1. Triage
+
+You can learn more about triage incidents [here](/help-centre/creating-and-running-incidents/creating-a-new-incident/triaging-your-incidents) . Incidents created [automatically from an alert](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation) or via [our API](/help-centre/api-and-integrations/api/our-api) will start in triage. You can configure whether or not incidents created manually can go through triage [here](https://app.incident.io/~/settings/lifecycle) .
+
+---
+
+## 2. Active
+
+These statuses indicate the condition of your incident at a single point in time, while there's still ongoing impact and responders are working towards a resolution. The default statuses are: Investigating, Fixing, and Monitoring.
+
+![](/images/help-centre/incident-lifecycle/screenshot-2.png)
+
+## 3. Post-incident
+
+Once the immediate impact is over, an incident can then enter a [post-incident flow](/help-centre/configure-your-account/define-your-post-incident-process-using-the-post-incident-flow) , where you can define tasks for responders to complete now that there's time to reflect on what went wrong, and how to prevent it happening again.
+
+Define your process in [Settings > Improve > Post-incident flow](https://app.incident.io/~/settings/post-incident-flow) , and set the rules for which incidents should automatically enter the flow. Responders can always opt-in or opt-out of the flow.
+
+![](/images/help-centre/incident-lifecycle/screenshot-3.png)
+
+---
+
+## 4. Timestamps and metrics
+
+![](/images/help-centre/incident-lifecycle/screenshot-4.png)
+
+**Timestamps** are a way to store structured data about your incidents. These are useful for reporting and analysis.
+
+By default, there's a corresponding **timestamp** for each **status** . For example, "Fixed At" is set to the first time the incident changed to the "Monitoring" status.
+
+**Timestamps** can be set in two ways:
+
+1. **Manually** - set by a responder, [from the Incident Homepage](/help-centre/creating-and-running-incidents/faqs/can-we-edit-the-timeline)
+2. **Automatically** - based on an incident status transition
+
+Often, the impact will begin sometime before an incident is declared, so a good example of an additional timestamp could be "Impact Started At", which would be manually set by a human. So, if you wish to calculate the time to resolution for your incidents, it would be more accurate to measure from when the impact started, as opposed to when the incident was declared.
+
+You can define **custom metrics** here too, as the difference between two timestamps:
+
+![](/images/help-centre/incident-lifecycle/screenshot-5.png)
+
+These are available in the MTTX tab in [Insights](https://app.incident.io/~/insights) .

@@ -1,0 +1,119 @@
+---
+title: "Can we mark incidents as sensitive and restrict access?"
+description: ""
+canonical_article_id: 84
+migrated_at: "2026-01-21T18:15:19Z"
+source_url: "https://help.incident.io/articles/5905558102-can-we-mark-incidents-as-sensitive-and-restrict-access"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5905558102-can-we-mark-incidents-as-sensitive-and-restrict-access) on January 21, 2026
+</Info>
+
+We're fighting hard for incidents to be [normalised](https://incident.io/blog/why-more-incidents-is-no-bad-thing) . As such, we are strong proponents of making incidents visible to all, so everyone has access to the information they need to do their job the best they can. As such, **incidents in incident.io are public by default** .
+
+Nonetheless, we are also very conscious that **in some circumstances, privacy is required** . Compliance or legal reasons might call for sensitive incidents to be locked down due to regulations around data privacy, cyber breaches, tip-off or securities law etc.
+
+Let's run through how you can flag incidents as Private, and the implications of it.
+
+If only certain aspects of the incident need to be confidential, you could instead make a [private stream](/help-centre/creating-and-running-incidents/incident-streams/private-incident-streams) in your public incident.
+
+---
+
+## What do Private Incidents do?
+
+Private Incidents are by nature full of sensitive information.
+
+To keep that information safe, there are some restrictions and exceptions we’ve put in place:
+
+1. Private incidents are **by-invitation only** (you can only see incidents you are part of)
+2. Private incidents are **not included in announcement rules** and will never be posted in any announcement channel
+3. By default, **workflows don’t run** against private incidents (but this [can be configured](/help-centre/creating-and-running-incidents/faqs/can-we-run-workflows-on-private-incidents) in the workflow settings)
+4. Private incidents are **not included in CSV** exports and Insights tabs
+5. When you escalate a private incident, we **won’t include any information about the incident** , other than a link to the dashboard, in the escalation.
+
+Since Private Incidents are meant to be discrete, you might need to toggle on the ' *Show private incidents* ' option
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-1.png)
+
+---
+
+## Enabling Private Incidents
+
+If you are an [Admin or Owner](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) of your company's incident.io workspace, you can opt-in on Private Incidents from Settings > [Security.](https://app.incident.io/settings/security)
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-2.png)
+
+---
+
+## Making an incident private
+
+You can make an incident private from the start when you declare it, or turn a public incident private.
+
+## Declaring a private incident from the start
+
+To create a private incident, simply **use the usual** `/incident` **Slack Command** (or your favourite [other method](/help-centre/creating-and-running-incidents/creating-a-new-incident/declaring-incidents) ).
+
+We will add a drop-down labelled ' *Who should be able to see this incident?* '. To make the incident private, select ' *Only invited users (private)* '.
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-3.png)
+
+## Declaring a private incident from an alert
+
+You can also create private incidents automatically from alerts, via alert routes.
+
+This means any incoming alerts will create private incidents by default.
+
+[You can read about how to configure that here](/help-centre/alerts/alert-configuration/creating-private-incidents-from-alerts) .
+
+## >Turning a public incident into a private incident
+
+Sometimes, you might not know if an incident should be private when you declare it - you might still be investigating and it's not quite clear what the issue and its impact is.
+
+Nothing to worry about! You can very easily convert a public incident into a private one by simply **making the incident's** `#inc-...` **channel private from Slack** . We'll take care of locking it down for you from here.
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-4.png)
+
+## >Turning a private incident into a public incident
+
+If you ever find the need to revert a private incident back to a public one, you can simply [convert the incident's slack channel to public](https://slack.com/intl/en-gb/help/articles/213185467-Convert-a-channel-to-private-or-public#:~:text=ask%20for%20help.-,From%20your%20desktop%2C%20open%20the%20channel%20that%20you%20want%20to,Change%20to%20a%20public%20channel.) . We'll then do the same to the incident.
+
+---
+
+## Requesting access to a Private incident
+
+Only people who are in a private incident's `#inc-...` channel will have access to it:
+
+- **If an incident is created as private from the start** , this includes the incident's creator and anyone they actively invite into the private channel;
+- **If you turn a public incident private** , this includes anyone who was on the public-turned-private channel, and anyone invited to the private channel hereafter.
+
+Private Incidents are thus undiscoverable by users who are not in the private incident already. Nonetheless, if someone outside a private incident channel is [paged about that incident](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/escalating-incidents) , or simply voluntarily sent a link to the private channel, they will be able to request access via a placeholder page
+
+![image](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-5.png)
+
+This will send a message to the private incident channel asking for confirmation or denial of access.
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-6.png)
+
+*If you deny access,* **we won’t inform the user** *. An individual user can only request access every 15 minutes.*
+
+---
+
+## Managing access
+
+The incident's Homepage will show you who has participated in the private incident ( *Active Participants* ) and who has been a member ( *Observers* ). Granting and revoking access can be done through the ' *Manage Access* ' button.
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-7.png)
+
+*Active Participants* and *Observers* indicate members who **at any stage** have participated or observed, so even if their access has been revoked they’ll remain in the list.
+
+![](/images/help-centre/can-we-mark-incidents-as-sensitive-and-restrict-access/screenshot-8.png)
+
+Clicking the `Manage Access` button will allow you to:
+
+- **Grant access** : users you invite will be added automatically to the incident Slack channel, and will be able to view the Incident Homepage
+- **Revoke access** : revoking someone’s access will mean they are removed from the Slack channel and they will no longer be able to see the Incident Homepage. They won’t be able to see the incident listed on their Incidents dashboard.
+
+If your Slack workspace restricts who can remove people from channels, **we won’t be able to automatically remove a user from a channel** . In this case, you’ll need to ask the user to leave the channel, or have a workspace admin remove them, before you can revoke their access.
+
+*If a member leaves a private channel voluntarily, we’ll send a message to the channel asking if you’d like to remove their access to the incident. If you dismiss it, they will keep their access, and can rejoin the incident at any time through the Incident Homepage.*

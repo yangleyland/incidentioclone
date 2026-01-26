@@ -1,0 +1,96 @@
+---
+title: GitLab
+description: Export and automatically sync your incident follow-ups with GitLab
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# GitLab
+
+## What our GitLab integration can do
+
+### 1. Export your incident follow-ups to GitLab
+
+You can export your follow-ups to GitLab. We'll sync the status of your tasks, so you can work in GitLab without worrying about updating statuses manually in incident.io!
+
+<Note>
+Use [auto-export follow-ups](https://help.incident.io/en/articles/8447561-auto-exporting-follow-ups) to make sure all your follow-up tasks are tracked in GitLab.
+</Note>
+
+You'll see the option to export your follow-ups from the incident homepage:
+
+<img src="/images/integrations/gitlab/gitlab-export-followups.png" alt="Export follow-ups from incident homepage" />
+
+### 2. Link GitLab issues to your follow-ups
+
+You can copy the reference of issues you already have and linked them back to your incident.io follow-ups.
+
+<img src="/images/integrations/gitlab/gitlab-link-issues.png" alt="Link GitLab issues to follow-ups" />
+
+### 3. Attach GitLab Merge Requests to incidents from Slack
+
+You can attach GitLab MRs to your incident directly from the incident channel.
+
+<img src="/images/integrations/gitlab/gitlab-attach-slack.png" alt="Attach GitLab MRs from Slack" />
+
+### 4. Attach GitLab MRs to incidents from GitLab
+
+You can also attach an MR by mentioning the incident number in the MR title or source branch.
+
+<img src="/images/integrations/gitlab/gitlab-attach-mr.png" alt="Attach MR by mentioning incident number" />
+
+---
+
+## Setting Up
+
+Adding GitLab to incident.io is simple.
+
+<Note>
+You'll need a GitLab top-level group owner to perform some of these steps.
+</Note>
+
+### 1. Create a Service Account user in GitLab
+
+Follow [GitLab's guide to creating a service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html#create-a-service-account). We recommend using 'incident.io' for the `name`, since this will show up in the UI on issues and comments created by the integration.
+
+<Note>
+Make sure the bot user has access to create and edit issues, and view and comment on merge requests in all relevant projects.
+</Note>
+
+We recommend assigning the `Reporter` role to your incident.io service account user.
+
+See GitLab.com: [Permissions and roles](https://docs.gitlab.com/ee/user/permissions.html)
+
+### 2. Create a personal access token with no expiry
+
+Follow [GitLab's guide here](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-service-account-personal-access-token-with-no-expiry-date).
+
+For **scopes**, pass `api`. For **name** use 'incident.io integration'.
+
+Note the token value for the next step!
+
+### 3. Connect the integration
+
+Go to [Settings → Integrations](https://app.incident.io/~/settings/integrations), click on GitLab, then Connect.
+
+<img src="/images/integrations/gitlab/gitlab-connect.png" alt="Connect GitLab integration" />
+
+Paste in the access token created in step 2 and click **Connect**. That's it!
+
+<Warning>
+For GitLab users to connect with their incident.io accounts, their GitLab public email must:
+- Match their incident.io user email
+- Be visible on their GitLab profile
+
+<img src="/images/integrations/gitlab/gitlab-email-visibility.png" alt="Screenshot 2025-06-09 at 08.45.05.png" />
+</Warning>
+
+If you're using self-managed GitLab, make sure traffic from [our IPs](https://help.incident.io/articles/8242295180-allowlisting-ip-addresses-for-jira-server) can reach your instance.
+
+### Next up
+
+We recommend adding a Group Hook in GitLab, which allows us to sync changes in GitLab back to incident.io. Read our [setup guide here](https://help.incident.io/en/articles/9809180-setting-up-a-gitlab-group-hook).
+
+If you run into any issues, [get in touch](https://incident.io/community).

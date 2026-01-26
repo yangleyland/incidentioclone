@@ -1,0 +1,108 @@
+---
+title: "Google Calendar"
+description: ""
+canonical_article_id: 202
+migrated_at: "2026-01-21T18:39:32Z"
+source_url: "https://help.incident.io/articles/8149039426-google-calendar"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8149039426-google-calendar) on January 21, 2026
+</Info>
+
+<Info>
+
+Looking to see holidays from Google Calendar in your on-call schedules? You can set that up using calendar feed subscriptions [here](/help-centre/on-call/schedules/view-holidays-in-on-call-schedules)
+</Info>
+
+Sometimes, you need to schedule meetings related to your incident. Perhaps a war room for everyone to sync their findings whilst an incident is ongoing, or a debrief about what happened once the incident is resolved.
+
+Our Google Calendar integration lets you attach events to an incident, and pulls through relevant information about when it is and who is attending.
+
+---
+
+## Installation
+
+<Warning>
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it** . Google Workspace connections like this, which use OAuth, belong to a specific user — for this reason, you must [set up a dedicated service or "bot" account](/help-centre/api-and-integrations/using-a-service-account-to-integrate-with-google) . We use the same user account connection for all our Google integrations. Therefore, the account you use to connect this integration will need to be the same for Google Meet (which we will connect automatically for you after you connect Calendar) and Google Docs (which requires a separate installation).
+
+</Warning>
+
+## 1. Installing the integration
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations) , find "Google Calendar" and click "Install".
+
+Click "Install" and you'll be redirected to the installation flow within Google Workspace. Review the permissions we're requesting and click "Next".
+
+![](/images/help-centre/google-calendar/screenshot-1.png)
+
+Once you've completed the Google authentication flow, you'll be redirected back to incident.io.
+
+## 2. Adding a subscribed calendar (optional)
+
+Our integration works by listening for events that invite the connected user OR are created within a specific Google calendar, and attaching them if they're related to an incident.
+
+Therefore, you can declare which calendars you'd like us to additionally look for events in (even if they don't invite the connected user), for example: `Engineering Shared Calendar` .
+
+<Info>
+
+**Important** : you will need to make sure that the account used to set up your integration in **Step 1** also has access to this shared calendar. See [Share your calendar with someone](https://support.google.com/calendar/answer/37082) for more details about sharing permissions.
+
+</Info>
+
+To find the Calendar ID ( [why this?](/help-centre/api-and-integrations/faqs/why-do-i-need-to-enter-a-calendar-id-in-order-to-link-my-google-calendar-events) ) of your chosen calendar(s):
+
+1. Head to [Google Calendar](https://calendar.google.com/)
+2. Under **My calendars** or **Other calendars** in the left sidebar, find your chosen calendar, click the three dots and select **Settings and Sharing** .
+3. Copy the **Calendar ID** from the **Integrate Calendar** section.
+4. Paste it into the "Add calendar" section of the [Google Calendar configuration page](https://app.incident.io/settings/integrations/google-calendar/configure) .
+
+Note that if you want us to always create debrief events in one of your subscribed calendars, you can set this up from the [debrief settings](https://app.incident.io/settings/debriefs) page. More information about this feature is [here](/help-centre/api-and-integrations/communication/scheduling-debriefs-in-a-specific-calendar) .
+
+---
+
+## What happens next?
+
+Now that you're all set up, you just need to create an event in Google Calendar which:
+
+1. Has the **incident identifier** (e.g. INC-123) in the title or description
+2. Invites the **connected user** or is created within one of your **subscribed calendars**
+
+When this happens, we'll automatically attach the event to your incident and message the relevant incident Slack channel:
+
+![](/images/help-centre/google-calendar/screenshot-4.png)
+
+If you identify the incident as a [debrief meeting](/help-centre/learning-from-incidents/what-is-a-debrief) (i.e. a catch-up after the incident has been resolved), we'll additionally let the channel know when it's happening and who's invited:
+
+![](/images/help-centre/google-calendar/screenshot-5.png)
+
+Note that if you include the word "debrief" in the event (or whatever you're preferred name for this term is, according to your [debrief settings](https://app.incident.io/settings/debriefs) ), we'll automatically attach the event as a debrief without prompting you first.
+
+---
+
+## Can I undo this?
+
+If we automatically attach an event which should not be linked to your incident, you can unlink it by heading to the attachments tab on the incident homepage, and clicking the unlink button:
+
+![](/images/help-centre/google-calendar/screenshot-6.png)
+
+If we identify a meeting as a debrief when it isn't, you can undo this from the overflow on the `Debrief scheduled` message from Slack or from the sidebar on the incident homepage:
+
+![](/images/help-centre/google-calendar/screenshot-7.png)
+
+---
+
+## One last thing
+
+Did you know that we can help with creating your debrief meeting? We can build a Google Calendar event which has been pre-filled with the incident participants and other useful information - you just need to fill in the rest.
+
+Once your incident has been resolved, you'll notice a new option to `Schedule a debrief` from the sidebar:
+
+![](/images/help-centre/google-calendar/screenshot-8.png)
+
+This will take you to a pre-populated Google Calendar event. You just need to choose a time and hit save:
+
+![](/images/help-centre/google-calendar/screenshot-9.png)
+
+That's all for now folks!

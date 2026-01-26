@@ -1,0 +1,104 @@
+---
+title: "Create an alert source"
+description: ""
+canonical_article_id: 2217203982
+migrated_at: "2026-01-23T13:38:15Z"
+source_url: "https://help.incident.io/articles/2217203982-paging-without-incidents"
+internal: true
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2217203982-paging-without-incidents) on January 23, 2026
+</Info>
+
+It's now possible to choose exactly when and how you want to create incidents through alert routes! In this article, we'll walk you through the steps to customize when incidents are automatically declared when an alert is received based on your Teams.
+
+
+
+<Warning>
+
+
+
+Note: We recommend declaring Triage incidents alongside your paging, as this allows your team to have a dedicated spot to collaborate, and if your team decides this is not an incident, you can simply decline it! Otherwise, if this turns into a real incident you already have all your troubleshooting context in the Slack channel.
+
+
+</Warning>
+
+
+
+## Create an alert source
+
+
+
+1. Head over to the [alert sources](https://app.incident.io/~/alerts/sources) tab within the incident.io dashboard.
+
+
+
+2. Create a new alert source and follow the steps to set it up.
+
+
+
+3. We're going to create a custom attribute for the Team associated with this alert, which we're going to parse from the title attribute of the alert payload.
+
+
+
+![](/images/help-centre/internal/paging-without-incidents/screenshot-1.png)
+
+
+
+## Create an alert route
+
+
+
+1. Now go to the [alert routes](https://app.incident.io/~/alerts/routes) tab and create a new alert route.
+
+
+
+2. Follow the steps to select your new alert source and choose how you want to filter and group these alerts.
+
+
+
+3. In the 'Create incidents' section you can click 'Add condition' to choose the conditions under which you'd like incidents to be automatically declared.
+
+
+
+![](/images/help-centre/internal/paging-without-incidents/screenshot-2.png)
+
+
+
+4. In this case we'll only declare incidents when the Team is assigned to 'Engineering'
+
+
+
+![](/images/help-centre/internal/paging-without-incidents/screenshot-3.png)
+
+
+
+![](/images/help-centre/internal/paging-without-incidents/screenshot-4.png)
+
+
+
+5. Make sure to set up an escalation path so that you can still be paged for alerts that are assigned to other teams.
+
+
+
+6. Click 'Continue' to save your changes and create your alert route.
+
+
+
+Now, any alerts that are processed through this alert route will still page you and your team through the escalation path that you set up, but incidents will only automatically be declared for any alerts that are relevant to the engineering team.
+
+
+
+<Warning>
+
+
+
+**Something missing?**
+
+
+
+We're constantly developing new and polishing our current features to help you do your best work. If there's something you'd like to see, send us a message to [support@incident.io](mailto:support@incident.io)
+
+
+</Warning>

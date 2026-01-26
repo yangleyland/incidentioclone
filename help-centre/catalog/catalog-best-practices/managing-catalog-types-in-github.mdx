@@ -1,0 +1,45 @@
+---
+title: "Managing Catalog Types in GitHub"
+description: ""
+canonical_article_id: 98
+migrated_at: "2026-01-21T18:15:35Z"
+source_url: "https://help.incident.io/articles/2752354608-managing-catalog-types-in-github"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2752354608-managing-catalog-types-in-github) on January 21, 2026
+</Info>
+
+This feature is useful when you want to version control catalog types you've created in the incident.io dashboard.
+
+![](/images/help-centre/managing-catalog-types-in-github/screenshot-1.png)
+
+This feature will generate all the files you need, and configure GitHub to automatically sync changes you make from the repository to the catalog in incident.io.
+
+Once you've configured a catalog type to be managed in GitHub, you'll no longer be able to edit it through the dashboard.
+
+## Can I use it?
+
+If you have access to custom types in the catalog, you can also use the manage in GitHub feature.
+
+## How do I use it?
+
+On the catalog homepage, above your custom types, there's a "Manage in GitHub" button. Clicking it will take you through the process of configuring one or more catalog types to be managed in GitHub.
+
+![](/images/help-centre/managing-catalog-types-in-github/screenshot-2.png)
+
+## How do I change catalog types once they're managed in GitHub?
+
+To change catalog types, edit the [jsonnet](https://jsonnet.org/) files in your repository and open a pull request.
+
+![](/images/help-centre/managing-catalog-types-in-github/screenshot-3.png)
+
+A GitHub action will run and show you the changes that will be made to the catalog.
+
+![](/images/help-centre/managing-catalog-types-in-github/screenshot-4.png)
+
+If you're happy with the changes, merge the pull request and another action will run and sync the change to your incident.io catalog.
+
+## How does it work?
+
+Under the hood, this feature uses our [catalog importer](https://github.com/incident-io/catalog-importer) . This is a flexible tool for syncing external data in to the catalog. If you're looking to do more complex things with external data in the catalog, the examples included with the catalog importer are a great place to start.

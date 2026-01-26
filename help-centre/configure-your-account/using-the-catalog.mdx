@@ -1,0 +1,69 @@
+---
+title: "Using the Catalog"
+description: ""
+canonical_article_id: 38
+migrated_at: "2026-01-21T17:34:59Z"
+source_url: "https://help.incident.io/articles/2606187127-using-the-catalog"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2606187127-using-the-catalog) on January 21, 2026
+</Info>
+
+## Introducing Catalog
+
+The Catalog is a connected map of “everything” that exists in your organization that you can easily navigate and is available across features like Workflows, Insights, and Triggers to level up your incident response.
+
+## Getting started with Catalog
+
+The best place to get started is by following [this hands-on lab session on YouTube](https://www.youtube.com/watch?v=aW0AY3jhdJE) .
+
+## Integrating with an existing Service Catalog
+
+Already using a Service Catalog? No problem! We support a number of [Integrations](/help-centre/catalog) .
+
+## What can I do with Catalog?
+
+Many things! Including, but not limited to:
+
+- [Populating Custom Fields with Catalog data](/help-centre/configure-your-account/using-the-catalog)
+- [Automatic Custom Fields](/help-centre/configure-your-account/using-the-catalog)
+- [Using the Catalog in Workflows](/help-centre/configure-your-account/using-the-catalog)
+- [Powering your Status Page Sub-pages](/help-centre/configure-your-account/using-the-catalog)
+### Populating Custom Fields with Catalog data
+
+Fed up with manually maintaining options for Custom Fields? When configuring [Custom Fields](/help-centre/creating-and-running-incidents/creating-a-new-incident/customizing-your-incident-creation-form-using-custom-fields) , select "From a catalog type" as an option for how the field should be managed. This means that any updates made to a Catalog type will be updated in this Custom Field.
+
+![](/images/help-centre/using-the-catalog/screenshot-1.png)
+
+If you want to migrate an existing Custom Field to be managed from a Catalog type, go to the existing Custom Field that you would like to migrate and follow the migration wizard.
+
+![](/images/help-centre/using-the-catalog/screenshot-2.png)
+
+### Automatic Custom Fields
+
+Want to update the value of a Custom Field based on the value of another Custom Field? For example, when selecting the Affected Service, using the Catalog you could derive the Affected Team without having an Incident Responder select anything.
+
+When creating a Custom Field, select Automated, and then Add an expression.
+
+![](/images/help-centre/using-the-catalog/screenshot-3.png)
+
+Then, use the Expression Builder to navigate through your Catalog to automatically derive a Custom Field based on the value of another Custom Field.
+
+![](/images/help-centre/using-the-catalog/screenshot-4.png)
+
+### Using the Catalog in Workflows
+
+Once you've set up Custom Fields for the relevant Catalog types, you can use those Custom Fields in [Workflows](https://app.incident.io/workflows) . For example:
+
+- Escalate incidents to the right on-call engineers when certain business functionality is impacted.
+- Invite Customer Success Managers to incidents when their customers are mentioned.
+- Notify the executive team when an aggregate amount of revenue across impacted customers crosses a threshold.
+
+### Powering your Status Page sub-pages
+
+Sub-pages are part of our status page offering, and allow you to create a page that is specific to different services, systems, products, or regions. In short, if you operate across multiple countries (UK, US, France), you can have one status page per region.
+
+Catalog supercharges sub-pages by allowing you to associate components/services/systems with regions. For instance, you can say that the API is only used in the UK and France, whilst the Website is used in all regions. This means when you author an update, we can automatically route that update to the relevant sub-pages.
+
+To find out more about setting up sub-pages, visit [this helpful article](/help-centre/status-pages/public-status-pages/setting-up-sub-pages) .

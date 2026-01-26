@@ -1,0 +1,144 @@
+---
+title: From Opsgenie
+description: Tools and resources to make migrating from Opsgenie to incident.io easier
+author: auto-ai-doc-migration
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+We know that migrating from Opsgenie to incident.io can feel intimidating, as there can be a lot of configuration that you have in place that you don’t want to lose. So, we’ve built (and continue to build) tooling to make this process easier for you.
+
+Below is a list of tools that you can leverage to make your testing phase and official migration / onboarding easier, including: 
+- **Opsgenie alert source** - Test without reconfiguring alert providers
+- **Pull Opsgenie information into Catalog** 
+- **Import schedules** 
+- **Import escalation paths** 
+- **Terraform provider** - Manage configuration as code
+- **Datadog migration tool** - Automate monitor updates
+- **On-call readiness report** - Track migration progress
+- **Preferred provider for manual escalations** - Enable phased migrations
+
+Also, let us know if there is something else that you’d need help with migrating! We are here to make this as painless as possible - so we can always work together to figure out what else we can provide.
+
+## Opsgenie alert source
+
+You can connect your Opsgenie instance directly to incident.io as an alert source. This lets you test on-call features like schedules and escalation paths without having to reconfigure your alert providers (like Datadog or Grafana).
+
+Your testing setup would look like:
+```
+Grafana → Opsgenie → escalate via incident.io
+```
+
+Once you're ready to fully migrate, you move to:
+```
+Grafana → escalate via incident.io
+```
+
+<Tip>
+  This simplified testing approach significantly reduces the time it takes to start evaluating incident.io's on-call features.
+</Tip>
+
+To set this up:
+
+<Steps>
+  <Step title="Connect Opsgenie integration">
+    Navigate to **Settings > Integrations** in your incident.io dashboard and connect your Opsgenie account.
+  </Step>
+  <Step title="Configure alert source">
+    Set up Opsgenie as an alert source in incident.io's on-call settings.
+  </Step>
+  <Step title="Test escalations">
+    Trigger test alerts through Opsgenie and verify they escalate correctly through incident.io.
+  </Step>
+</Steps>
+
+For detailed setup instructions, see our [Opsgenie integration documentation](https://help.incident.io/articles/1211002089-opsgenie) and [alert source data extraction guide](https://help.incident.io/articles/7594934427-extracting-json-alert-data).
+
+
+## Pull Opsgenie data into Catalog
+
+If you have connected Opsgenie into incident.io, we will automatically pull in your Opsgenie schedules, services, teams, and users into the Catalog.
+This allows you to use Opsgenie data with the rest of your catalog data. For example, you can determine what should still be paged via Opsgenie vs. incident.io.
+
+See our catalog documentation for more on [importing data](https://help.incident.io/articles/5006458726-how-do-i-get-data-into-catalog%3F) and [using the catalog](https://help.incident.io/articles/2606187127-using-the-catalog).
+
+
+## Import schedules
+
+Import your schedules directly from Opsgenie into incident.io, including bulk imports for teams with many schedules.
+
+[TODO: EXPAND]: # 
+
+## Import escalation paths
+
+Import your escalation policies from Opsgenie as escalation paths in incident.io. Bulk import is available to speed up the process.
+[TODO: EXPAND]: # 
+
+## Terraform provider support
+
+If you use Terraform to manage your on-call configuration, our Terraform provider supports alert sources, alert routes, escalation paths, and schedules.
+
+Terraform is especially helpful for migrating alert sources. For example, if you have many monitors in Datadog that point to Opsgenie, you can quickly update your Terraform config to have those monitors point to incident.io instead.
+
+```hcl
+# Example: Update Datadog monitors to use incident.io
+resource "datadog_monitor" "example" {
+  name    = "Example Monitor"
+  type    = "metric alert"
+  message = "@incident-io-alert-source"
+  # ... other configuration
+}
+```
+[TODO: REVIEW HCL CODE]: # 
+
+See our [Terraform provider documentation](https://registry.terraform.io/providers/incident-io/incident/latest/docs).
+
+
+## Datadog migration tool
+
+If you don't use Terraform and have many Datadog monitors pointing to Opsgenie, our migration tool can automatically update everything to point to incident.io.
+
+See [Datadog monitor migration tool](/migration/datadog-monitor-migration-tool).
+
+## On-call readiness report
+
+You can use the On-call readiness report to understand how prepared your team is to start receiving pages from incident.io. These insights will help you track your migration and onboarding of new responders going on-call. At a glance, you can see responder adoption with different notification methods:
+
+- How people are reachable (via the app, phone, etc.)
+- What percentage of your on-call responders are reachable through different methods
+
+You’ll also be able to drill down into individual responder setups so that you can contact the right people if necessary.
+
+We also have on-call readiness available via the Members tab of your teams page(s), and you can leverage On-call readiness policies to enforce a particular set up.
+
+
+## Preferred provider for manual escalations
+
+If you have Opsgenie connected to your account, individual users can specify whether they want to be paged via Opsgenie or incident.io. This makes phased migrations easier.
+
+When someone manually escalates to a user, incident.io will use that user's preferred paging provider. This removes the guesswork from the person initiating the escalation—they don't need to know which system each responder is set up with.
+
+<Info>
+  Once you remove Opsgenie from incident.io, all escalations will automatically default to incident.io.
+</Info>
+
+See our [manual escalation documentation](https://help.incident.io/articles/8455552499-how-do-i-escalate-manually%3F) for more details.
+
+## Related resources
+
+<CardGroup cols={2}>
+  <Card title="Alert sources" icon="bell" href="/on-call/alert-source-integration">
+    Learn about connecting alert sources
+  </Card>
+  <Card title="Schedules" icon="calendar" href="/on-call/schedules">
+    Set up and manage on-call schedules
+  </Card>
+  <Card title="Escalation paths" icon="stairs" href="/on-call/escalation">
+    Configure escalation policies
+  </Card>
+  <Card title="Catalog" icon="book" href="/catalog/overview">
+    Understand the catalog
+  </Card>
+</CardGroup>

@@ -1,0 +1,31 @@
+---
+title: "How does call transcription work?"
+description: ""
+canonical_article_id: 2
+migrated_at: "2026-01-21T18:57:14Z"
+source_url: "https://help.incident.io/articles/9134017049-how-does-call-transcription-work"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9134017049-how-does-call-transcription-work) on January 21, 2026
+</Info>
+
+## Overview
+
+Our call transcription saves you the work of having to write down what was discussed in an incident call. This can help make sure that no important information, decisions, or context is lost, which can be essential when reviewing the incident later.
+
+If you land in an incident channel where a call is in progress, it can be tricky to build up the picture of what happened and when. The same is true when it comes to your post-incident process: having the context on what happened lets you build up a clear picture of your incident's timeline.
+
+## How does it work?
+
+If you have call transcription enabled, then our bot joins your incident call automatically, once it sees that someone else has joined the call.
+
+When it joins, it has access to the audio and video from that call. It uses this data, in conjunction with the stream of captions from the meeting, to deduce who has said what. This transcription data reaches us in real time, and is stored in our database.
+
+Currently, only Zoom and Google Meet are supported. Currently, for Zoom, the meeting host will have to consent to the meeting being recorded "locally" by our bot. For Google Meet, someone will have to allow access to our bot when it requests to join. We have ways to reduce both of these points of friction, and intend to make this a smoother process in the near future.
+
+## What is is powered by?
+
+We use Recall.ai for raw transcription data, who are a third-party sub-processor that provide call transcription services. In order to transcribe the call, Recall.ai store a recording. This recording is deleted as soon as the last human leaves the call, and Recall.ai don't retain any data after this point.
+
+In the future, we intend to use AI to power other experiences, such as summarising the call, or posting highlights and key moments from the call into incident channels as they occur. For more information on how we use AI, you can read [our "How do we use AI?" article](/help-centre/configure-your-account/how-do-we-use-ai) .

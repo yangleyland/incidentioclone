@@ -1,0 +1,47 @@
+---
+title: "Filter custom fields based on another custom field"
+description: ""
+canonical_article_id: 101
+migrated_at: "2026-01-21T18:19:44Z"
+source_url: "https://help.incident.io/articles/2375926137-filter-custom-fields-based-on-another-custom-field"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2375926137-filter-custom-fields-based-on-another-custom-field) on January 21, 2026
+</Info>
+
+It can be useful to filter on a custom field based on the value of another custom field.
+
+Take the following example, of an organization with multiple divisions, where each division has multiple teams.
+
+An area where this is very useful is in building forms. You can have a form field (say "Affected Teams") to require another field to be previously set (say "Division") before you can set it.
+
+Let's walk through how this works in practice using those example fields.
+
+1. Configure your "Affected Teams" field to filter options based on the value of the "Division" field.
+2. Change the form so that we only show an "Affected Teams" dropdown if an incident has a "Division" set.
+3. Try your new incident form to see how it plays out.
+
+## Configure your "Affected Teams" field
+
+Go to Settings > Custom fields > Edit "Affected Teams".
+
+Set the **Filter options based on the value of another custom field** to the custom field you want to depend on. In this case, we have an attribute "Division" in the catalog entry for "Affected Teams" so that is what we select.
+
+![](/images/help-centre/filter-custom-fields-based-on-another-custom-field/screenshot-1.png)
+
+## Change a form to only show "Affected Teams" when "Division" is set
+
+Say you have the following form setup, which is getting a bit long. What you want is to show the user the picker for "Affected Teams" only when "Division" has been set.
+
+![](/images/help-centre/filter-custom-fields-based-on-another-custom-field/screenshot-2.png)
+
+The way we filter a custom field ("Affected Teams") based on another custom field ("Division") is to edit the "Affected Teams" field so that it only shows when the incident has "Division" set.
+
+![](/images/help-centre/filter-custom-fields-based-on-another-custom-field/screenshot-3.png)
+
+## Try your new incident form to see how it plays out
+
+Below you'll see that "Affected Teams" won't appear until a "Division" has been selected.
+
+<iframe src="https://www.loom.com/embed/05c98749c9e14ee1abe3d66545c9a4b1" width="100%" height="400" allowfullscreen></iframe>

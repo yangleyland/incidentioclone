@@ -1,0 +1,81 @@
+---
+title: "Can we set different user permissions?"
+description: ""
+canonical_article_id: 290
+migrated_at: "2026-01-21T18:40:36Z"
+source_url: "https://help.incident.io/articles/6578562894-can-we-set-different-user-permissions"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6578562894-can-we-set-different-user-permissions) on January 21, 2026
+</Info>
+
+Absolutely! 👌🏼 Let me explain how this works...
+
+---
+
+## Seats
+
+Seats affect how you get billed. There are 2 types of seat:
+
+- **Viewers** can view incidents and declare them, and do not count against your billing plan.
+- **Responders** have the same permission as viewers, and can also participate in incident response. Viewers automatically become responders when they interact with an incident, meaning they start counting against your billing plan (more information [here](/help-centre/account-admin/billing-pricing/seat-types-and-viewers-with-incident.io) ).
+
+## Base roles
+
+Each user has a base role which determines their initial set of permissions.
+
+- **Standard** is the only role a Viewer can have and the default role for Responders. Viewers can view and declare incidents, Responders can additionally participate in incident response.
+- **Admins** can do everything above, and can manage some organisation settings.
+- **Owners** can do everything.
+
+When you set up an account with incident.io, we'll create a default set of permissions for each of these roles:
+
+|   |   |
+| --- | --- |
+| Role | Default permissions |
+| **Standard** | Use [incident.io](http://incident.io/) via Slack and the Dashboard (i.e. view and create incidents) Create and edit Workflows and Announcement Rules View organisation-level settings (except Billing) Edit organisation-level settings View and edit billing settings View all private incidents* (including those they are *not* part of) |
+| **Admins** | Use [incident.io](http://incident.io/) via Slack and the Dashboard (i.e. create and contribute to incidents) Create and edit Workflows and Announcement Rules View organisation-level settings Edit organisation-level settings View and edit billing settings View all private incidents* (including those they are *not* part of) |
+| **Owners** | Use [incident.io](http://incident.io/) via Slack and the Dashboard (i.e. create and contribute to incidents) Create and edit Workflows and Announcement Rules View organisation-level settings Edit organisation-level settings View and edit billing settings View all private incidents* (including those they are *not* part of) |
+
+**Note that any* **Slack** *Workspace Admin will already have access to all private channels, meaning they can also access all private incidents.*
+
+It's possible to tweak these permissions by heading to Settings > Users and clicking the [Roles tab](https://app.incident.io/settings/users?tab=roles) . Hit the edit icon on the base role you'd like to modify. For example, you might choose to restrict your `Admin` role so that only `Owners` can manage billing settings.
+
+![](/images/help-centre/can-we-set-different-user-permissions/screenshot-1.png)
+
+![](/images/help-centre/can-we-set-different-user-permissions/screenshot-2.png)
+
+---
+
+## Custom roles
+
+If there are certain users you wish to grant additional permissions to, you can use custom roles. For example:
+
+- An **Engineer** custom role could grant permission to manage API keys and webhooks
+- A **Finance** custom role could grant permission to manage billing settings and on-call pay reports
+- A **Security** custom role could grant permission to see all private incidents
+
+The permissions granted by a custom role will be in addition to the permissions granted by the user's base role (i.e. we'll take the union of all permissions).
+
+To create a custom role, hit the `Add new` button on the roles tab and follow the instructions for creating your custom role.
+
+![](/images/help-centre/can-we-set-different-user-permissions/screenshot-3.png)
+
+You can then add this role to specific users following the instructions [below](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) .
+
+---
+
+## How can I edit the permissions for a user?
+
+Head to Settings > Users and you'll be able to see all the roles for each user on the [Users tab](https://app.incident.io/settings/users?tab=users) .
+
+![](/images/help-centre/can-we-set-different-user-permissions/screenshot-4.png)
+
+You can edit the permissions for a particular user by hitting the edit icon. You can either change their base role, or add as many custom roles as you like.
+
+## How can I invite a new user?
+
+Head to Settings > Users and you'll see an `Invite user` button on the [Users tab](https://app.incident.io/settings/users?tab=users) . You'll be able to select what base role the new user should have, along with any custom roles.
+
+![](/images/help-centre/can-we-set-different-user-permissions/screenshot-5.png)

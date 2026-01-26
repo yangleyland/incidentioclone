@@ -1,0 +1,44 @@
+---
+title: "Slack Enterprise Grid"
+description: ""
+canonical_article_id: 25
+migrated_at: "2026-01-21T18:57:47Z"
+source_url: "https://help.incident.io/articles/5464024086-slack-enterprise-grid"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5464024086-slack-enterprise-grid) on January 21, 2026
+</Info>
+
+Organizations on our [Enterprise plan](https://incident.io/pricing/) will be able to have our Slack app installed into a Slack Enterprise Grid. By doing so, a single incident.io account can be used for multiple Slack workspaces under the same Slack Enterprise Grid.
+
+## What have we built?
+
+- We have ported all our Slack app features to work the same as a Slack Workspace level install
+- The incident.io Slack app can be accessed in any Slack Workspaces within the same Slack Enterprise Grid. You can also configure which Slack Workspaces do and do not have access.
+- The Web Dashboard experience has been improved to cater for a Slack Enterprise Grid install with the following features:
+  - Organization name and logo is set to Slack Enterprise Grid name and logo
+  - Homepage shows Incidents from workspaces you have access to by default. Also able to view incidents from other workspaces.
+  - Filter by Workspace in Incidents, Followups and Insights pages
+  - Set Incident Workspace as a Workflow condition
+  - Define Incident Workspaces for Incident Triggers (PagerDuty, Opsgenie, etc)
+- Public API
+  - Creating incidents now accept a Slack Team ID to define which Workspace to declare an incident in
+  - Incidents will include Slack Team ID of the Workspace that an incident was declared in
+
+## Criteria for Installing into Slack Enterprise Grid
+
+To enable to install incident.io into a Slack Enterprise Grid, your organization needs to fulfill the following criteria:
+
+1. Be on an incident.io Enterprise plan
+2. Have exactly one Slack Workspace have incident.io installed within a Slack Enterprise Grid. We currently don't support the merging of incident.io accounts.
+
+Please get in touch with us if you are unsure.
+
+## How to install incident.io into a Slack Enterprise Grid
+
+Please contact us to configure Slack Enterprise Grid on your account.
+
+## Can we share an incident channel across all the Slack workspaces where we've installed incident.io on our Grid?
+
+If you're looking to use a single incident channel and share that across all your installed workspaces so that you can collaborate on the incident together, that's totally possible! Please just get in touch and we'll help get this configured for you

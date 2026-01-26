@@ -1,0 +1,153 @@
+---
+title: Glossary of terms
+description: Quick reference guide to terms in incident.io
+author: auto-ai-doc-migration
+icon: "/icons/book.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="DRAFT" />
+
+
+Here are a some terms used throughout incident.io's products and documentation, most should be self-explanatory. Refer to the relevant section for further details.
+
+**@incident** - Chat bot in Slack channels to manage incidents, draft updates, and answer questions
+
+**Action** - Something that needs to be done during the active phase of an incident to mitigate or communicate (cf. Follow-up)
+
+**Alert** - Automated event from a monitoring system signaling something unusual or problematic was detected
+
+**Alert attributes** - Meta-tagging system on alerts, similar to custom fields; can use catalog
+
+**Alert route** - Configuration that determines what to do with incoming alerts
+
+**Alert source** - Integration that sends alerts (monitoring systems, webhooks, email, etc.)
+
+**Alias** - Alternate name for an entry referenced in other systems
+
+**Announcement** - Dynamic post announcing that an incident has happened
+
+**Call routing** - Phone number setup to directly call users or create incidents
+
+**Catalog Attribute** - Information that correlates to an entry (like a column); can be text, number, boolean, or another catalog type
+
+**Catalog Entry** - A single item in a catalog type (like a row)
+
+**Catalog Type** - A list of items in the catalog (like a spreadsheet); e.g., Services, Teams, Products
+
+**Catalog** - Connected map of everything in your organization; integrates context and structure to power automations and reporting
+
+**Components** - Parts of your system displayed on status pages or used in incident attributes
+
+**Condition** - Function that determines when an automation runs (if X then Y)
+
+**Contact methods** - How someone wants to be contacted when paged (e.g., phone, SMS, push)
+
+**Cover request** - Ask for someone on the schedule to take all or part of your shifts
+
+**Custom field** - Additional metadata field on incidents (can be single/multi-select, number, URL, or text)
+
+**Debrief** - Meeting held after an incident is resolved to discuss learnings
+
+**Decision flow** - Decision tree that can be triggered by a workflow
+
+**Deduplication key** - Unique identifier that prevents duplicate alerts from firing multiple times
+
+**Derived attribute** - Automatically filled attribute based on relationships to other types
+
+**Duration metric** - Time between two timestamps (e.g., time to resolution)
+
+**Escalation path** - Series of steps defining how to page people; connected to teams or catalog objects
+
+**Escalation** - Mechanism to page someone; automated or manual request to get a hold of one or more people
+
+**Expression** - Conditions and catalog-based logic that power workflows and dynamic fields
+
+**Follow-up** - Post-incident action item to improve detection, remediation, or prevention for future incidents (cf. Action)
+
+**Form** - Interface for declaring, updating, resolving, or escalating incidents
+
+**Grouping** - Sending related subsequent alerts into an incident based on time and/or attributes
+
+**Handover** - Passing of a role from one person to another
+
+**Incident** - A place for humans and machines to coordinate a response when things break
+
+**Incident Lifecycle** - Set of statuses and timestamps that define incident progression
+
+**Incident Mode** - Classification of an incident: Standard, Test, Tutorial, or Retrospective
+
+**Incident Status** - Current state of an incident within the lifecycle (e.g., Triage, Active, Resolved, Closed)
+
+**Incident Summary** - Detailed description of what the incident is about
+
+**Incident ticket** - Auto-created Jira/Linear/ServiceNow (and many others) ticket associated with an incident that stays in sync
+
+**Incident Timeline** - Events that happened during the incident, including interactions with the app and pinned posts
+
+**Incident Timestamp** - Date/time marking moments in the lifecycle (core or custom)
+
+**Incident Type** - Wrapper of configuration that segments incident use cases and processes
+
+**Incident Update** - Communication on what is happening now in an incident
+
+**Incident Visibility** - Whether an incident is Public or Private
+
+**Insights** - Reporting and analytics dashboards
+
+**Layer** - Concurrent users scheduled at the same time in a single rota
+
+**Observers** - Incident participants not active in the Slack channel
+
+**Override** - Substitute a person on a shift or part of a shift
+
+**Participants** - People involved in an incident; includes roles and active/observer participants
+
+**Policy task** - Task assigned when someone is out of compliance with a policy
+
+**Post-incident task** - Task to complete after Resolution before Closing (e.g., review timeline, create post-mortem)
+
+**Post-mortem** - Document for learnings after an incident (also called Post-Incident Review, RCA)
+
+**Priority** - How important an alert or escalation is; determines if it should be handled during working hours or urgently out of hours
+
+**Query** - Dynamic values powered by catalog; route through attributes to return values
+
+**Role** - Directly responsible person during an incident (e.g., Lead)
+
+**Rota** - A rotation of one person or group; a schedule can have many rotas
+
+**Schedule** - A person or group made available at certain times to be paged or added to a Slack user group
+
+**SCIM** - Use Okta to control provisioning of on-call seats or user roles
+
+**Scribe** - AI note taker that joins incident calls, transcribes, and provides summaries and key moments
+
+**Seat** - License type: Responder or On-call. Refer to Billing.
+
+**Severity** - How bad an incident is; impact and urgency level (e.g., Critical, Major, Minor)
+
+**Shift** - Single duration that a person is on-call before it changes to the next person
+
+**Shoutout** - Kudos or gratitude sent to someone in a Slack channel
+
+**Slack user group** - Group synced with a schedule; adds whoever is currently on-call
+
+**Stream** - Child channel that creates a workstream for large incidents or to segment working groups
+
+**Suggestions** - Context-based AI recommendations in channels and calls (e.g., summaries, follow-ups)
+
+**Template** - Reusable format for incident tickets, follow-ups, or post-mortems
+
+**User role** - Set of permissions in the app (not to be confused with incident roles)
+
+**Variable** - Objects from incidents, alerts, follow-ups, users, and escalations used to dynamically insert text or set conditions
+
+**Webhook** - Fires information when specific events happen
+
+**Workflow** - Automation created to run communications, set roles, escalate, and more
+
+**Working hours** - Days and times for shifts when people should be on-call
+
+**Workload** - Time spent on incidents by responders, calculated from Slack activity and call time

@@ -1,0 +1,161 @@
+---
+title: "Building schedules"
+description: ""
+canonical_article_id: 158
+migrated_at: "2026-01-21T18:29:33Z"
+source_url: "https://help.incident.io/articles/5912776666-building-schedules"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5912776666-building-schedules) on January 21, 2026
+</Info>
+
+Leverage schedules to tell us who should be on-call and when. We'll walk you through all the steps to create schedules that will work for your organization's needs.
+
+## Getting Started
+
+1. First, head to [On-call](https://app.incident.io/incident-io/on-call/escalations) within the incident.io dashboard 2. Go to Schedules and create a new schedule
+
+3. Name your new schedule, set up rotation, and choose the people who should be in that specific schedule. If you select a team, we'll add everyone in the team by default.
+
+4. Preview your schedule and save
+
+<Info>
+
+Read how to get started with On-call and how to connect your schedules to Alert routes [here](/help-centre/on-call/get-started-with-on-call/getting-started-with-on-call) .
+
+</Info>
+
+## Rotation
+
+Rotations are a great way to have a rolling schedule for your team to be on-call. Set up the times and people you want to work on specific times. There's an option for a Daily, Weekly, or Monthly rotations.
+
+![](/images/help-centre/building-schedules/screenshot-1.png)
+
+### Asymmetric schedule
+
+If you are splitting your shifts to be more asymmetric, you can create time intervals within hours days and weeks. By adding a new interval, you can create a rule to have your shifts to work example in 3 and 4 day shifts.
+
+If you create shifts that are asymmetric and the amount of shifts is the same as the people in the schedule, we rotate the people to have a balanced amount of time on-call.
+
+![](/images/help-centre/building-schedules/screenshot-2.png)
+
+## Advanced rotas
+
+Schedules offer a lot of additional customisations that can help with your organization's specific setup. Advanced rotas allow you to bring multiple rotas to your schedule.
+
+For example, in global companies, we often see rotas that support follow-the-sun. Different locations could be on-call during different times during the day which will allow for all day coverage.
+
+We've mapped out an example below where we have created two rotas: One for the US and one for the UK. The UK team is on-call between 9 am to 8 pm daily and the US team is between 8 pm to 9 am GMT.
+
+![](/images/help-centre/building-schedules/screenshot-3.png)
+
+![](/images/help-centre/building-schedules/screenshot-4.png)
+
+### Add a person multiple times to a rota
+
+You can add multiple people to a rota by just choosing the same person multiple times, we'll let you know if the person appears more than once!
+
+![](/images/help-centre/building-schedules/screenshot-5.png)
+
+## Intervals
+
+Intervals are a great tool to use when you have different shifts throughout your week. For example, if some of the teams only on-call in office hours you can choose specific times for your office hours.
+
+![](/images/help-centre/building-schedules/screenshot-6.png)
+
+## Shadow schedules
+
+When you have new joiners in the team, a great way to get them into the product and schedules is to have a shadow schedule. This way the new joiners can follow alerts and incidents to build more context around your product and get used to being on call.
+
+Just add a new rota and name it 'Shadow Schedule' and add people and times you want them to shadow alerts and incidents.
+
+![](/images/help-centre/building-schedules/screenshot-7.png)
+
+## Preview
+
+After setting up your schedules, you will be able to preview what it looks like before saving it. You'll be able to see a before and after preview, so this is a great place to check if the changeover of shifts looks good and the right people are on the schedule. You can preview with different timelines and calendar views too!
+
+![](/images/help-centre/building-schedules/screenshot-8.png)
+
+## Planning changes to a schedule
+
+If you are looking to make changes like...
+
+- Onboarding someone to your schedule from a certain time
+- Changing the working hours of your schedule
+- Changing the rotation's interval
+
+and you want your changes to come into effect from a future date (e.g. from the next shift), you can specify this while editing your schedule:
+
+![](/images/help-centre/building-schedules/screenshot-9.png)
+
+If you want to change who is on your schedule rotation, we suggest changing the handover time to match the effective time for your rotation to start from scratch. This is because we rotate through shifts based on the handover date, not the effective time.
+
+You can use the preview to make sure your changes look right!
+
+## Restoring a previous schedule version
+
+If you make a change to a schedule, and then find you need to restore to a previous version, then you can easily do so from the schedule's drop down menu. You'll be able to see a preview of the schedule with the version you're restoring to.
+
+<Info>
+
+Restoring to a previous version will use the previous version's config to determine what your schedule shifts look like going forward, but it won't change historical shifts.
+
+</Info>
+
+![](/images/help-centre/building-schedules/screenshot-10.png)
+
+![](/images/help-centre/building-schedules/screenshot-11.png)
+
+## Overrides
+
+Sometimes your team member is heading on a holiday or might need to head to a doctor's appointment. In Schedule overrides you don't need to change your current schedule or rotations, but can create one time changes to suit any miscellaneous events that happen during the week.
+
+1. To create an override, click 'Add override' and add details
+
+![](/images/help-centre/building-schedules/screenshot-12.png)
+
+2. After you have created the override, you can see and review it on the Schedule's page and edit it if needed.
+
+![](/images/help-centre/building-schedules/screenshot-13.png)
+
+## Cover me
+
+Cover me allows your team to ask for an override instead of just adding someone in.
+
+1. Go to your #incidents channel in Slack and type `/inc cover me`
+
+2. Choose your shift and choose the times you need cover for
+
+![](/images/help-centre/building-schedules/screenshot-14.png)
+
+3. Add more information and Submit!
+
+![](/images/help-centre/building-schedules/screenshot-15.png)
+
+Then your team members in the same schedule will receive the request both in the mobile app and Slack
+
+![](/images/help-centre/building-schedules/screenshot-16.png)
+
+And receive a confirmation if you accept
+
+![](/images/help-centre/building-schedules/screenshot-17.png)
+
+## Frequently Asked Questions
+
+**What happens when an On-call user who is on a schedule gets deactivated through Slack, Okta or other user provisioning services?**
+
+If you are a responder on the affected schedule with update permissions or have previously edited the affected schedule, you will receive a notification email. You are then recommended to update the schedule to ensure you maintain on-call coverage.
+
+If an escalation reaches a deactivated user, we will automatically escalate to the next escalation level.
+
+![](/images/help-centre/building-schedules/screenshot-18.png)
+
+---
+
+<Warning>
+
+**Something missing?** We're constantly developing new and polishing our current features to help you do your best work. If there's something you'd like to see, send us a message to [support@incident.io](mailto:support@incident.io)
+
+</Warning>

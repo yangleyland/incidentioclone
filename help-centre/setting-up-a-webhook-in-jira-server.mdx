@@ -1,0 +1,63 @@
+---
+title: "Setting up a webhook in Jira Server"
+description: ""
+canonical_article_id: 5
+migrated_at: "2026-01-21T18:57:18Z"
+source_url: "https://help.incident.io/articles/9244587579-setting-up-a-webhook-in-jira-server"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9244587579-setting-up-a-webhook-in-jira-server) on January 21, 2026
+</Info>
+
+Registering a webhook in Jira Server means that changes to follow-ups that have been exported to Jira will sync back quickly.
+
+You'll need to be a Global Administrator in Jira to register a webhook.
+
+## 1. Navigate to System → WebHooks
+
+In Jira, use the cog menu in the top-right to enter System settings.
+
+![](/images/help-centre/setting-up-a-webhook-in-jira-server/screenshot-1.png)
+
+You may need to enter your password to enter 'administrator mode'.
+
+Near the bottom of the left-hand menu, select **WebHooks** under 'Advanced':
+
+![](/images/help-centre/setting-up-a-webhook-in-jira-server/screenshot-2.png)
+
+Near the top-right, click ' **Create a WebHook** ':
+
+![](/images/help-centre/setting-up-a-webhook-in-jira-server/screenshot-3.png)
+
+## 2. Configure the destination
+
+**Name** : 'incident.io'
+
+**Status** : Enabled
+
+**URL** : Check [Settings → Integrations → Jira Server](https://app.incident.io/~/settings/integrations/jira_server) to find your webhook URL
+
+**Description** : Leave blank
+
+![](/images/help-centre/setting-up-a-webhook-in-jira-server/screenshot-4.png)
+
+## 3. Add events
+
+Under 'Issue related events', check 'issue created', 'issue updated', 'issue deleted', 'issue link created' and 'issue link deleted'.
+
+All other events can be left disabled.
+
+![](/images/help-centre/setting-up-a-webhook-in-jira-server/screenshot-5.png)
+
+If you configure a JQL filter here, incident.io will only be able to sync updates to issues matching that filter.
+
+## 4. Create the webhook
+
+At the bottom of the page, ensure ' **Exclude body** ' is **not** checked, and click ' **Create** '.
+
+![](/images/help-centre/setting-up-a-webhook-in-jira-server/screenshot-6.png)
+
+## You're all set up!
+
+If your Jira Server is behind a firewall, you'll need to ensure that the firewall allows outbound traffic to `app.incident.io` . Please contact your customer success manager if we can help with this.

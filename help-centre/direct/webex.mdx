@@ -1,0 +1,65 @@
+---
+title: "Webex"
+description: ""
+canonical_article_id: 4433486777
+migrated_at: "2026-01-23T13:12:17Z"
+source_url: "https://help.incident.io/articles/4433486777-webex"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4433486777-webex) on January 23, 2026
+</Info>
+
+## Webex
+
+We can automatically create a Webex meeting whenever an incident is declared and attach it to the incident.
+
+This helps speed up your incident response and reduces the burden of manual tasks on responders.
+
+## Installation
+
+## 1. Go to Settings → Integrations, find "Webex".
+
+![image.png](/images/help-centre/direct/webex/screenshot-1.png)
+
+## 2. Click "connect" on the Webex integration
+
+![image.png](/images/help-centre/direct/webex/screenshot-2.png)
+
+## 3. Log in using a Webex organizational admin service account
+
+<Warning>
+
+The connecting user must be an organization administrator and have host privileges in your Webex organization.
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it** . Webex connections like this, which use OAuth, belong to a specific user — for this reason, you may wish to set up a dedicated service or "bot" account.
+
+</Warning>
+
+Clicking 'Connect' will redirect you to a Webex login page.
+
+![image.png](/images/help-centre/direct/webex/screenshot-3.png)
+
+Once you've logged in and authorized the connection, you'll be redirected back to the dashboard.
+
+## 4. Enable auto creation of incident calls
+
+With Webex installed, you can now configure it to automatically create Webex meetings for your incidents.
+
+![image.png](/images/help-centre/direct/webex/screenshot-4.png)
+
+## Permissions
+
+`spark-admin:people_read` - Enables us to add Webex users as a catalog type, so that we can link Webex users to incident.io users. `meeting:admin_schedule_write` - Enables us to schedule meetings on behalf of others. This is used to create meetings for the incident lead. `meeting:admin_schedule_read` - Enables us to add an existing meeting to an incident. For example, if you have an ongoing meeting and want to use that as the incident call instead of the automatically created one. `meeting:admin_participants_read` - Enables us to track which users are taking part in the incident call, allowing this to be shown in the incident timeline.
+
+## Enabling Scribe
+
+To enable Scribe transcription for Webex meetings, your Webex administrator must authorize our Service App:
+
+1. Sign in to Webex Admin Hub
+2. Navigate to Management > Apps
+3. Search for " [incident.io](http://incident.io/) Scribe" and select the app
+  1. If you are unable to find it, you can also search by app ID: Plain TextY2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OL0NjZmRiOTU2ZTE3NzUzNDhkMTg0MmRjYWYxZTZkZjg0MjQ1M2YzZjA1NTQyOWJiNTBiMWY1OTM4YmE0MzgyZjJl
+4. Click Authorize to grant the required permissions
+
+Once authorized, [incident.io](http://incident.io/) will automatically detect this and enable Scribe for your Webex meetings.

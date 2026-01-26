@@ -1,0 +1,21 @@
+---
+title: "Understanding priority, urgency, and severity"
+description: ""
+canonical_article_id: 168
+migrated_at: "2026-01-21T18:27:11Z"
+source_url: "https://help.incident.io/articles/6990078692-understanding-priority%2C-urgency%2C-and-severity"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6990078692-understanding-priority%2C-urgency%2C-and-severity) on January 21, 2026
+</Info>
+
+In incident.io, there are three concepts that represent the importance of something.
+
+In alerts and escalations, these are **priorities** , which allow you to configure [branches in your escalation path](/help-centre/on-call/escalation-paths/smart-escalation-paths) .
+
+When you notify someone about an escalation, that's done with an **urgency** , which determines how a user is notified. Users can configure separate notification settings for high and low-urgency notifications.
+
+Lastly, once you create an incident, that has a **severity** . An incident's severity indicates how significant this incident is. These are kept different from alert priorities, as the way you determine incident severity may differ from the priority of a single alert.
+
+For example, you may have an alert with an urgent *priority* that you want someone to look at immediately, therefore sending them a high *urgency* notification. However, the problem may only be impacting a small part of your application, or a single customer in an edge case, so you deem the incident *severity* to be minor.

@@ -1,0 +1,31 @@
+---
+title: "Confluence required permissions"
+description: ""
+canonical_article_id: 218
+migrated_at: "2026-01-21T18:54:02Z"
+source_url: "https://help.incident.io/articles/3245935930-confluence-required-permissions"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3245935930-confluence-required-permissions) on January 21, 2026
+</Info>
+
+To utilize our [Confluence integration](/help-centre/api-and-integrations/collaboration/confluence) to export Post-mortems you need to allow the following permissions for incident.io to create new pages
+
+**View**
+
+- **confluence-content.summary, confluence-space.summary**
+  - Read a summary of the content, which is the content without expansions. Note, APIs using this scope may also return data allowed by read:confluence-space.summary. However, this scope is not a substitute for read:confluence-space.summary.
+  - Read a summary of space information without expansions.
+
+**Search**
+
+- **confluence**
+  - Search Confluence. Note, APIs using this scope may also return data allowed by read:confluence-space.summary and read:confluence-content.summary. However, this scope is not a substitute for read:confluence-space.summary or read:confluence-content.summary.
+
+**Update**
+
+- **confluence-content, confluence-file, confluence-space**
+  - Permits the creation of pages, blogs, comments and questions.
+  - Upload attachments.
+  - Create, update and delete space information.

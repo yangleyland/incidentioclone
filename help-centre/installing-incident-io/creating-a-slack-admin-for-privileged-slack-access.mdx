@@ -1,0 +1,47 @@
+---
+title: "Creating a Slack admin for privileged Slack access"
+description: ""
+canonical_article_id: 23
+migrated_at: "2026-01-21T18:57:45Z"
+source_url: "https://help.incident.io/articles/5227680663-creating-a-slack-admin-for-privileged-slack-access"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5227680663-creating-a-slack-admin-for-privileged-slack-access) on January 21, 2026
+</Info>
+
+If you need to [give incident.io privileged Slack access](/help-centre/installing-incident-io/what-does-incident.io-need-privileged-slack-access-for) , we recommend creating a Slack account just for that purpose, because:
+
+- channels created by this user will still say 'Created by incident.io', keeping things nice and clear
+- if this user is invited to private incidents, it will not expose private data to anyone, since no one should log in with this Slack account
+- this user will receive 'channel archived' notifications for all incidents
+
+Neither incident.io nor Slack will charge for this account. Slack does not charge for accounts that have not been logged in to for more than 14 days (see their [fair billing policy](https://slack.com/intl/en-gb/help/articles/218915077-Slacks-fair-billing-policy) ). This type of account is sometimes referred to as a 'service account' in Slack's documentation.
+
+---
+
+Here's how to create a Slack user for incident.io:
+
+1. **Create a new user in Slack**
+
+Follow Slack's latest guide [here](https://slack.com/intl/en-gb/help/articles/201330256-Invite-new-members-to-your-workspace) . We recommend using an email list address, such as `it+incidentio@example.com` .
+
+2. **Accept the invitation**
+
+Make sure to set the name to "incident.io Admin", so it's clear to everyone what the account is for.
+
+3. **Upgrade the account's role**
+
+Log in as a Workspace Owner or Admin and upgrade the new account's role, using [Slack's guide](https://slack.com/intl/en-gb/help/articles/218124397-Change-a-member%E2%80%99s-role#manage-owner-and-admin-roles) .
+
+4. **Connect the user to incident.io**
+
+Make sure you're logged in to Slack with the `incident.io Admin` account, then open your [Security settings](https://app.incident.io/settings/security) and click "Connect" next to "Privileged Slack access".
+
+![](/images/help-centre/creating-a-slack-admin-for-privileged-slack-access/screenshot-1.png)
+
+Click "Add to Slack", then "Allow".
+
+![](/images/help-centre/creating-a-slack-admin-for-privileged-slack-access/screenshot-2.png)
+
+That's it - you're connected

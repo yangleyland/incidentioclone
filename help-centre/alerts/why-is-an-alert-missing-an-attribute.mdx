@@ -1,0 +1,49 @@
+---
+title: "Why is an alert missing an attribute?"
+description: ""
+canonical_article_id: 137
+migrated_at: "2026-01-21T18:21:15Z"
+source_url: "https://help.incident.io/articles/9658740465-why-is-an-alert-missing-an-attribute"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9658740465-why-is-an-alert-missing-an-attribute) on January 21, 2026
+</Info>
+
+If you're receiving alerts successfully, but some of the attributes aren't getting set correctly, there are a few tools you can use to figure out what the problem is.
+
+### Inspect the original payload
+
+To see exactly what data we received, navigate to the alert and click "Inspect" in the overflow menu:
+
+![image.png](/images/help-centre/why-is-an-alert-missing-an-attribute/screenshot-1.png)
+
+This shows you:
+
+- what the original payload we received was
+- what JavaScript was used to extract attributes from that payload (in case someone has changed them since the alert was received!)
+- what that Javascript returned, and whether that matched any catalog types
+
+### Common issues
+
+**Unexpected payload**
+
+Your alert source might not be sending the same data for all alerts, meaning that an expression that normally returns a value doesn't return anything sometimes!
+
+This will show up in the inspector as the JavaScript returning no value.
+
+You can fix this by:
+
+- changing the configuration inside your alert source, to make sure (for example) all alerts have a `team` label
+- using `||` in your JavaScript to define multiple ways of finding an attribute, for example `$.metadata.team || $.labels.team`
+
+**Missing catalog entry**
+
+For catalog-powered alert attributes, if your JavaScript returns a value that can't be found in Catalog, the attribute won't get set.
+
+This will show up in the inspector as the JavaScript returning a value, but no entry matching.
+
+You can fix this by:
+
+- checking the configuration inside your alert source for typos - for example `team=paymnts` won't find a team called `Payments` !
+- using aliases in Catalog to make a single catalog entry match many different input strings - you can learn more about this [here](/help-centre/on-call/get-started-with-on-call/using-catalog-with-on-call)

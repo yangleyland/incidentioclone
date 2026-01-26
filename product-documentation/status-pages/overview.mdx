@@ -1,0 +1,131 @@
+---
+title: Status pages overview
+description: Keep your users and team informed with real-time status updates during incidents
+icon: "/icons/status-page.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+
+# Status pages overview
+
+Status pages keep your users informed when things go wrong. Whether you're communicating with customers during outages or keeping your internal teams in sync, status pages build trust by showing you're on top of the situation. incident.io offers three types of status pages—public, private, and internal—to match how your organization communicates.
+
+## Status page types
+
+### Public status pages
+
+Public status pages are your front door during incidents. Anyone can view them—no login required. Use public pages to show ongoing incidents, scheduled maintenance, and component uptime for all your users in one unified view.
+
+**Best for:** Communicating with all customers simultaneously, building trust through transparency
+
+**Key features:**
+- Fully public access (no authentication)
+- Real-time incident updates and component status
+- Scheduled maintenance windows
+- Uptime history and calendar view
+- Custom branding (logo, favicon, domain)
+- Subscriber notifications via email, RSS, and Atom feeds
+
+**Optional: Sub-pages for segmentation**
+
+Public pages can optionally include sub-pages if you need different views for different user groups. For example, create regional sub-pages (US, EU, APAC) or product-based pages (Platform, API, Mobile). Each sub-page shows only the components relevant to that group, powered by your [Catalog](/product-documentation/catalog/overview). Learn more about [sub-pages](#sub-pages-for-public-status-pages).
+
+### Customer status pages
+
+Customer pages give specific customers their own authenticated status page. Use these when only certain customers are affected by incidents—like when running dedicated infrastructure or maintaining components for high-value accounts.
+
+**Best for:** B2B companies with per-customer infrastructure, dedicated deployments, or customer-specific services
+
+**Key features:**
+- Email domain-based authentication (allowlists)
+- Per-customer component mapping via Catalog
+- Centrally managed with consistent branding
+- Customer-specific incident visibility
+- Secure access control
+
+**Example use case:** You run dedicated infrastructure for Enterprise customers. When Customer A's deployment has issues, only Customer A sees the incident on their dedicated status page—other customers don't see it.
+
+### Internal status pages
+
+Internal pages share active incidents with your entire organization. Only accessible to your incident.io users, these pages keep everyone from engineering to customer success aligned on what's happening right now.
+
+**Best for:** Organization-wide transparency, cross-team coordination during incidents
+
+**Key features:**
+- Restricted to incident.io users only
+- Real-time incident feed with current status
+- Component health overview
+- Calendar view of past events
+- Integration with internal workflows
+
+**Where to find it:** Navigate to the internal status page from your dashboard's "View internal status" link.
+
+## Sub-pages for public status pages
+
+Sub-pages let you segment a single public status page into multiple connected views. Each sub-page shows different components based on your Catalog structure.
+
+**When to use sub-pages:**
+- **Regional separation**: Global page + individual pages for US, EU, APAC regions
+- **Product segmentation**: Main page + separate pages for Platform, API, Mobile products
+- **Service tiers**: Different views for Free, Pro, and Enterprise services
+
+**How it works:**
+1. Create a public status page with sub-pages enabled
+2. Choose a Catalog type to power segmentation (regions, products, etc.)
+3. Each Catalog entry becomes a sub-page
+4. Map components to specific sub-pages
+5. Users see a unified parent page or navigate to their specific sub-page
+
+Users accessing the parent page see an aggregated view of all sub-pages. Navigating to a specific sub-page shows only that segment's components.
+
+Read more about setting up sub-pages in [External status pages](/product-documentation/status-pages/external-status-pages#sub-pages-for-segmentation).
+
+## Choosing the right type
+
+| Type | Audience | Authentication | Use when |
+|------|----------|----------------|----------|
+| **Public** | All users | None | Communicating with your entire user base |
+| **Public with sub-pages** | Segmented user groups | None | Users need region/product-specific views |
+| **Customer** | Specific customers | Email domain allowlist | Per-customer infrastructure or dedicated deployments |
+| **Internal** | Your organization | incident.io login required | Keeping internal teams informed during incidents |
+
+You can run multiple status pages simultaneously. For example, maintain a public page for all users, customer pages for enterprise accounts, and an internal page for your team.
+
+## Getting started
+
+1. Navigate to **Status Pages** in your sidebar
+2. Choose your page type based on your audience:
+   - **Create public page** for all users
+   - **Create customer page** for authenticated customer access
+   - **Create internal page** for organization-wide visibility
+3. Configure components, branding, and notification settings
+4. Publish incidents to keep your audience updated
+
+For detailed setup instructions:
+- [External status pages](/product-documentation/status-pages/external-status-pages) (public and customer)
+- [Internal status pages](/product-documentation/status-pages/internal-status-pages)
+- [Subscriptions and communication](/product-documentation/status-pages/subscriptions-and-communication)
+- [Importing from Atlassian](/product-documentation/status-pages/importing-status-pages)
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can I have multiple status pages?">
+    Yes! You can create multiple public, customer, and internal status pages. For example, run separate public pages for different products, multiple customer pages for enterprise clients, and a single internal page for your team.
+  </Accordion>
+
+  <Accordion title="Do status pages support templates?">
+    Status pages don't use pre-built templates. Instead, you configure each page with your components, branding, and settings. This gives you full control over what information to display without template constraints.
+  </Accordion>
+
+  <Accordion title="What's the difference between sub-pages and customer pages?">
+    Sub-pages are public and unauthenticated—anyone can view them. They're useful for segmenting by region or product. Customer pages require authentication via email domain allowlists and show customer-specific incidents. Use sub-pages for general segmentation, customer pages for secure per-customer access.
+  </Accordion>
+
+  <Accordion title="How do I migrate from Atlassian Statuspage?">
+    We support direct imports from Atlassian Statuspage, including your page configuration, historical data, and subscribers. See [Importing status pages](/product-documentation/status-pages/importing-status-pages) for the migration process.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,51 @@
+---
+title: "Creating custom incident roles"
+description: ""
+canonical_article_id: 55
+migrated_at: "2026-01-21T18:02:32Z"
+source_url: "https://help.incident.io/articles/2986995165-creating-custom-incident-roles"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2986995165-creating-custom-incident-roles) on January 21, 2026
+</Info>
+
+Incident Lead not enough? Want to add and create your own roles, like Incident Manager, or Communications Lead?
+
+You can!
+
+---
+
+1. **Go to Settings >** [Incident Roles](https://app.incident.io/settings/incident-roles)
+
+![](/images/help-centre/creating-custom-incident-roles/screenshot-1.png)
+
+2. **Click** `Add Role`
+
+This will pop up the Role creation modal
+
+`Name`
+
+What role are you creating? For example, ' *Communications Lead* '.
+
+`Slack reference`
+
+Set the Slack command that will assign this role. For example, `/inc role lead @dinesh` sets [Dinesh] as the [Lead]. The Communication Lead's could be `comms` , such that `/inc role comms @Erlich` assigns Erlich to the Communication Lead role.
+
+`Description`
+
+This is the sub-text that will appear to guide your team in the Roles modal.
+
+![](/images/help-centre/creating-custom-incident-roles/screenshot-2.png)
+
+`Instructions`
+
+This is the instructions we'll send to the **** person that has been assigned to the role, letting them know what they should do.
+
+![](/images/help-centre/creating-custom-incident-roles/screenshot-3.png)
+
+`Require this role to be assigned before an incident is resolved`
+
+When ticked , we won't allow an incident to be marked as resolved without someone having been assigned this role. This is key for debriefs and reporting/compliance.
+
+*The Incident Lead is compulsory by default in incident.io, and thus always required.*

@@ -1,0 +1,135 @@
+---
+title: Incident lifecycle
+description: Track incident progress from triage through resolution with customizable stages and timestamps.
+icon: "/icons/refresh1.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Incident lifecycle
+
+Your incidents move through stages that track their progress from detection through resolution. The lifecycle gives your team shared context about where each incident stands, helping everyone understand what's happening and what comes next.
+
+Configure your lifecycle at **Settings** → **Respond** → **Lifecycle** to match how your organization responds to incidents.
+
+## Lifecycle stages
+
+<Steps>
+  <Step title="Triage">
+    Use triage when you need to investigate whether something is actually an incident. Incidents created automatically from alerts or via the API start in triage. You can also create triage incidents manually if you enable this option in your lifecycle settings.
+
+    While in triage, responders can accept the incident to make it active, decline it if it's not an issue, or merge it with an existing incident.
+
+    Triage incidents don't count toward your metrics until they're accepted, which gives you cleaner data when analyzing incident trends.
+  </Step>
+
+  <Step title="Active">
+    Active incidents have ongoing impact and responders working toward resolution. These statuses show what stage the response is in at any point in time.
+
+    The default active statuses are:
+    - **Investigating** - Diagnosing the problem and understanding impact
+    - **Fixing** - Implementing a solution
+    - **Monitoring** - Watching to confirm the fix resolved the issue
+
+    Customize these statuses to match your process. You can add, remove, or rename statuses to reflect how your team actually works.
+  </Step>
+
+  <Step title="Post-incident">
+    Once immediate impact is over, incidents can enter a post-incident flow where you define tasks for responders to complete. This might include writing an incident review, creating follow-up tasks, or updating documentation.
+
+    Configure your post-incident flow at **Settings** → **Improve** → **Post-incident flow** and set rules for which incidents automatically enter this stage. Responders can always opt in or out.
+  </Step>
+</Steps>
+
+## Status vs timestamps
+
+Statuses and timestamps work together to track incident progress, but they serve different purposes.
+
+**Statuses** indicate the current condition of your incident. When you update an incident status, you're telling your team what phase the response is in right now.
+
+**Timestamps** store when specific events happened during the incident. By default, each status has a corresponding timestamp - for example, "Fixed At" records the first time an incident moved to the Monitoring status.
+
+Timestamps can be set two ways:
+- **Automatically** - Based on status transitions you configure
+- **Manually** - Set by responders from the incident homepage when automatic timestamps don't capture the full story
+
+Manual timestamps are useful when impact started before the incident was declared. For example, you might add an "Impact Started At" timestamp that responders can set to calculate more accurate time to resolution metrics.
+
+Define custom metrics as the difference between two timestamps at **Settings** → **Respond** → **Lifecycle**. These metrics appear in the MTTX tab in Insights.
+
+## Incident modes
+
+incident.io offers four incident modes that serve different purposes:
+
+**Real** - Live incidents when something has gone wrong. Declare these using `/incident` in Slack, from the dashboard, or by turning a Slack message into an incident.
+
+**Test** - For testing new automations and configurations without affecting production systems or metrics. Test incidents aren't announced in your incidents channel and don't appear in Insights. Create them with `/incident test` in Slack or from the dashboard.
+
+**Tutorial** - A 5-minute guided walkthrough for learning incident.io. Run it with `/inc tutorial` in any Slack channel. Tutorial incidents don't count as Responder usage for billing.
+
+**Retrospective** - For recording incidents after they occurred. Create these via the API or from the dashboard. Useful when documenting historical incidents or migrating from another system.
+
+Test incidents by default only show up when you filter by incident mode in the dashboard.
+
+## Pausing incidents
+
+Pause an incident when you're waiting on a third party, it's outside working hours, or you need to temporarily stop work for any reason.
+
+Use `/inc pause` in the incident channel to pause an incident. Set when it should resume and add a message explaining why it's paused.
+
+While paused:
+- Announcements and the dashboard clearly show the incident isn't being worked on
+- Workflows configured for active incidents won't run
+- Nudges to the incident channel are suppressed
+- Time spent paused doesn't count toward duration metrics
+
+The incident automatically resumes at the time you specified and returns to its previous status. You can always resume earlier using `/inc update`.
+
+Quick shortcuts:
+- `/inc pause until tomorrow` - Pauses until 9am the next day
+- `/inc pause until working hours` - Pauses until the nearest weekday at 9am
+- `/inc pause for 45` - Pauses for 45 minutes
+
+## Merging incidents
+
+Merge duplicate incidents to keep your incident history clean and consolidated.
+
+You can merge triage or active incidents into other active incidents. From a triage incident, use the **Merge** button in the channel's triage message or select **Merge** when sharing an update from the dashboard.
+
+For active incidents, use `/inc merge` in Slack or choose **Merge** when updating the incident.
+
+When you merge incidents:
+- The merged incident is marked as merged and no longer appears in insights
+- All attachments move to the target incident
+- A message in the target incident shows another incident was merged into it
+- The target incident keeps all its existing properties (severity, custom fields, etc.)
+
+<AccordionGroup>
+  <Accordion title="Can I rename an incident?">
+    Yes. Use `/inc rename` in the incident channel or open the menu in the top right of the incident homepage and click **Rename incident**.
+  </Accordion>
+
+  <Accordion title="Can I reopen a closed incident?">
+    Yes. Use `/inc update` in the incident channel and change the status back to an active status. You can also reopen from the dashboard by clicking **Share update** on the incident homepage.
+
+    If the incident channel was archived, unarchive it from Slack first, then use the update command.
+  </Accordion>
+
+  <Accordion title="What's the difference between priority, urgency, and severity?">
+    These are three distinct concepts that represent different aspects of importance:
+
+    **Priority** applies to alerts and escalations, letting you configure different escalation paths based on alert priority.
+
+    **Urgency** determines how users are notified about escalations. Users configure separate notification settings for high and low-urgency notifications.
+
+    **Severity** indicates how significant an incident is. You might have an urgent alert that requires immediate attention, but the incident severity could be minor if it only impacts a small part of your application.
+  </Accordion>
+
+  <Accordion title="Can I customize lifecycle stages?">
+    Yes. Navigate to **Settings** → **Respond** → **Lifecycle** to customize your stages. You can add, remove, or rename active statuses, configure triage settings, and set up timestamps and metrics.
+
+    You can also create multiple lifecycles for different incident types at **Settings** → **Respond** → **Types**.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,55 @@
+---
+title: "Sending a Webhook from a Workflow"
+description: ""
+canonical_article_id: 33
+migrated_at: "2026-01-21T17:43:22Z"
+source_url: "https://help.incident.io/articles/4763754804-sending-a-webhook-from-a-workflow"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4763754804-sending-a-webhook-from-a-workflow) on January 21, 2026
+</Info>
+
+You can configure workflows in incident.io to send HTTP webhooks. This allows you to notify external systems or services when an incident matches your criteria — using a custom payload, headers, and method.
+
+This step is useful for:
+
+- Syncing incident data with third-party tools
+- Triggering external automations
+- Creating integrations that aren’t yet supported natively
+
+---
+
+## How to Set Up the “Send a webhook” Step
+
+1. **Add the Step:** Add a “Send a webhook” step to any workflow. This step can be placed after any condition you define, like when an incident is created or when the status changes.
+2. **Configure the Webhook:**
+  - **Endpoint URL:** The destination URL where the webhook should be sent. This must be publicly accessible. Example: `https://eok0t15y9atgyjz.m.pipedream.net`
+  - **HTTP Method:** Choose from `GET` , `POST` , `PUT` , `PATCH` , or `DELETE` . Most webhook consumers expect `POST` .
+  - **Headers (Optional):** You can include any number of custom headers using key-value pairs. These might be needed for authentication or content type. Example:
+    ```plaintext
+    Authorization: Bearer inc_a23
+    ```
+  - **Body (Optional):** This is the payload that will be sent in the request body. It supports workflow variable interpolation, so you can include values like the incident name or ID dynamically. Example body:
+    ```plaintext
+    {"incident_id": "{{incident.id}}","incident_name": "{{incident.name}}"}
+    ```
+
+---
+
+## Example Use Cases
+
+Here are a few examples of how you might use the “Send a webhook” step:
+
+- **Notifying an Internal Tool:** Send a webhook to a custom in-house dashboard to update a real-time incident feed with the latest incident status or metadata.
+- **Triggering a Runbook in an External System:** Use the webhook to start an automated runbook in systems like RunDeck when an incident enters a particular state (e.g. *Critical* or *Resolved* ).
+- **Syncing with a Ticketing System:** Push incident data into a ticketing system to create or update a linked issue whenever an incident is created.
+- **Logging to an Audit Service:** Send a record of key incident lifecycle events (e.g. status changed to *Resolved* , or lead updated) to a logging service or data warehouse.
+- **Broadcasting to a Notification Bot:** Trigger a message via a custom Slack bot or Discord bot that posts structured incident details in a dedicated alerting channel.
+
+---
+
+## Things to Note
+
+- The request will timeout after **15 seconds** if your endpoint doesn’t respond in time.
+- Make sure your endpoint can handle incoming requests reliably — use tools like [Pipedream](https://pipedream.com/) or [RequestBin](https://requestbin.com/) for testing.

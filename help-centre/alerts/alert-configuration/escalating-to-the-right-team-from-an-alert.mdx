@@ -1,0 +1,47 @@
+---
+title: "Escalating to the right team from an alert"
+description: ""
+canonical_article_id: 115
+migrated_at: "2026-01-21T18:19:45Z"
+source_url: "https://help.incident.io/articles/7927643458-escalating-to-the-right-team-from-an-alert"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7927643458-escalating-to-the-right-team-from-an-alert) on January 21, 2026
+</Info>
+
+Now that you have [Alerts sources](https://app.incident.io/~/alerts/sources) set up, and have [extracted all your desired data](/help-centre/api-and-integrations/faqs/extracting-json-alert-data) from the Alert JSON payload, such as Team, Status, etc. We can use this data to:
+
+1. Set catalog-backed custom fields 2. Escalate to a team's escalation path 3. Announce to the team's Slack channel and so much more
+
+In this article, we'll focus on escalating to the responsible team so that only the team responsible for a certain area will be notified, ensuring that the right people are involved from the beginning of an incident.
+
+![](/images/help-centre/escalating-to-the-right-team-from-an-alert/screenshot-1.png)
+
+## Setting the right attribute resource type
+
+Before we can set these attributes, let's take a closer look at the "Team" Attribute. The return type of this attribute should be "Team" [Catalog](/help-centre/configure-your-account/using-the-catalog) type, this is what will allow us to navigate to different attributes such as escalation path, Slack channels, and more.
+
+![](/images/help-centre/escalating-to-the-right-team-from-an-alert/screenshot-2.png)
+
+## Escalating to the right escalation path
+
+In the [Alert route](https://app.incident.io/~/alerts/routes) , you can use these attributes to set values of custom fields, for example, by setting the "Responsible Team" custom field.
+
+![](/images/help-centre/escalating-to-the-right-team-from-an-alert/screenshot-3.png)
+
+Furthermore, you can use the value that was set by this attribute to navigate to this team's escalation path, by taking advantage of the Catalog mapping.
+
+![](/images/help-centre/escalating-to-the-right-team-from-an-alert/screenshot-4.png)
+
+Using the "Account" value that was exacted from the alert source, we can set this value in the custom field by using the catalog entry alias.
+
+![](/images/help-centre/escalating-to-the-right-team-from-an-alert/screenshot-5.png)
+
+That's It!! You have now successfully set a custom field and escalated to the right Team's escalations path by extracting a data point from your alerts payload, setting it to the Team's custom field, and navigating to their escalation path
+
+<Warning>
+
+This will only work if your Catalog type has aliases set for each of their entries.
+
+</Warning>

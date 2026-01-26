@@ -1,0 +1,66 @@
+---
+title: "Syncing incidents with Azure DevOps"
+description: ""
+canonical_article_id: 45
+migrated_at: "2026-01-21T17:57:30Z"
+source_url: "https://help.incident.io/articles/2284850195-syncing-incidents-to-azure-devops"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2284850195-syncing-incidents-to-azure-devops) on January 21, 2026
+</Info>
+
+[incident.io](http://incident.io/) allows you to automatically track your incidents in Azure DevOps by creating and maintaining "Issue" work items.
+
+This is helpful if Azure DevOps is your source of truth, and you need everything to be in one place.
+
+Each issue will be updated in real-time with the latest title and description, and comments will be added for each incident update.
+
+You can also use templates and conditions to create different issues in different projects depending on custom fields and incident types within incident.io. For example:
+
+- Create issues in your Security project where Incident Type = Security
+- Create issues in your Engineering project where Incident Type = Production
+
+## Getting started
+
+First, you'll need to enable the integration. Ensure you are logged in as an Azure DevOps user with access to the relevant projects.
+
+Navigate to Settings > Integrations, locate Azure DevOps via the search bar, and click "Connect".
+
+A modal will appear. Click "Sign in with Microsoft" to be redirected to Microsoft for the authorisation flow.
+
+![Screenshot 2025-06-23 at 15.16.49.png](/images/help-centre/syncing-incidents-to-azure-devops/screenshot-1.png)
+
+<Info>
+
+We do not support authentication via Azure service accounts due to differences in API behaviour. We suggest creating a personal account under a shared "service" email for authentication purposes
+
+</Info>
+
+## Creating a template
+
+Next, we need to define what the contents of each issue should be.
+
+Navigate to Settings > Incident Tickets, and click "+ Add a new template"
+
+The issue template determines which project the issue will be created in, and who it should be assigned to. It also allows for customisation of the issue title and description, using variables and custom fields on the incident.
+
+![Screenshot 2025-02-11 at 17.06.15.png](/images/help-centre/syncing-incidents-to-azure-devops/screenshot-2.png)
+
+## Enabling the feature
+
+Once your template has been configured, use the toggle to 'Create tickets for incidents'.
+
+![Screenshot 2025-02-11 at 17.15.18.png](/images/help-centre/syncing-incidents-to-azure-devops/screenshot-3.png)
+
+If there are no conditions specified we will use the first template in the list and create a ticket for all new, active incidents.
+
+Conditions can be used to control which template should be used for any given incident. For example, incidents of type "Security" may need to be directed to a security-specific Azure DevOps project.
+
+## Private incidents
+
+If you wish to create tickets for private incidents, then tick this checkbox.
+
+![Screenshot 2025-02-11 at 17.30.10.png](/images/help-centre/syncing-incidents-to-azure-devops/screenshot-4.png)
+
+Note: Anyone with access to the chosen Azure DevOps project will be able to see these tickets.

@@ -1,0 +1,35 @@
+---
+title: "Can multi-channel slack guest users interact with the incident.io bot?"
+description: ""
+canonical_article_id: 87
+migrated_at: "2026-01-21T18:15:09Z"
+source_url: "https://help.incident.io/articles/8945916538-can-slack-guest-users-interact-with-the-incident-io-bot"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8945916538-can-slack-guest-users-interact-with-the-incident-io-bot) on January 21, 2026
+</Info>
+
+Organizations often have external contractors, partners, or vendors who are added as guest users in their Slack workspace. These guests may need to participate in incident management, including declaring incidents, being assigned roles, or being part of on-call rotations.
+
+Currently, Slack guest users (including multi-channel guests) have limited functionality within incident.io:
+
+**What guest users CAN do** (if [SAML](/help-centre/account-admin/security-data-privacy/sign-in-with-saml) authentication is configured for them) **:**
+
+- Log into the incident.io platform
+- Declare incidents
+- View incidents
+
+**What guest users CANNOT do:**
+
+- Become a [responder](/help-centre/account-admin/billing-pricing/seat-types-and-viewers-with-incident.io) / take any responder actions.
+- Use the /inc command or interact with the incident.io Slack bot
+- Be assigned incident roles (such as Incident Lead)
+- Be added to incident workflows that auto-invite users
+- Be part of on-call rotations
+
+<Info>
+
+Support for having guest users as responders is being tracked as a feature request. If you'd like to add your vote, just let us know at [help@incident.io](mailto:help@incident.io)
+
+</Info>

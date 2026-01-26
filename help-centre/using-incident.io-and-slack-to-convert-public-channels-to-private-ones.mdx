@@ -1,0 +1,31 @@
+---
+title: "Using incident.io and Slack to convert public channels to private ones"
+description: ""
+canonical_article_id: 6
+migrated_at: "2026-01-21T18:57:16Z"
+source_url: "https://help.incident.io/articles/2738866712-using-incident.io-and-slack-to-convert-public-channels-to-private-ones"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2738866712-using-incident.io-and-slack-to-convert-public-channels-to-private-ones) on January 21, 2026
+</Info>
+
+When you discover that an incident should be private, you want to get it locked down, quick. In some organisations, not many people have the permissions to convert a channel to private, so finding the person with the right permissions can waste valuable time while trying to contain information.
+
+Unfortunately, Slack only allows us to access these permissions if your workspace is inside an **Enterprise Grid** . If you aren't part of a Grid, this flow won't work for you.
+
+## Using Privileged Slack Access
+
+To make the flow work, you'll need to connect our app via `Privileged access` to your Grid workspace. You can find this in [Security → Settings](https://app.incident.io/~/settings/security) .
+
+![](/images/help-centre/using-incident.io-and-slack-to-convert-public-channels-to-private-ones/screenshot-1.png)
+
+We recommend using a dedicated Service Account when connecting to Slack via this flow: you can find out more [here](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access) .
+
+The account that you connect with **also** needs to have access to 'manage public channels for the whole organization'. That means they need to be either an Org Owner or an Org Admin (note that this permission is controlled for the whole grid, not just a single workspace).
+
+This can be configured at the Enterprise Grid level, in Settings → Channel Management:
+
+![](/images/help-centre/using-incident.io-and-slack-to-convert-public-channels-to-private-ones/screenshot-2.png)
+
+Once you've taken those two steps, you can then make a channel private from Slack by doing `/inc private` in an incident channel. We'll make the channel private on your behalf, as well as making the incident private.

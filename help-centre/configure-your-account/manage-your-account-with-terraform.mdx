@@ -1,0 +1,60 @@
+---
+title: "Manage your account with Terraform"
+description: ""
+canonical_article_id: 34
+migrated_at: "2026-01-21T17:39:44Z"
+source_url: "https://help.incident.io/articles/8918864488-manage-your-account-with-terraform"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8918864488-manage-your-account-with-terraform) on January 21, 2026
+</Info>
+
+We maintain an [official Terraform provider](https://registry.terraform.io/providers/incident-io/incident/latest) for incident.io. With this provider you can manage account configuration such as:
+
+- Custom fields
+- Incident severities
+- Incident roles
+- Incident statuses
+- Schedules
+- Escalation paths
+
+This allows you to bring incident.io account configuration into the same code review and approval cycle as you'd use for other key infrastructure and allows syncing information about your infrastructure or organisation into incident.io, such as a list of services or teams.
+
+As an example, this is how you might configure a custom field for affected services:
+
+```plaintext
+provider "incident" {}
+
+resource "incident_custom_field" "impacted_services" {
+  name        = "Impacted Services"
+  description = "The services that are impacted by this incident."
+  field_type  = "multi_select"
+  required    = "always"
+
+  show_before_creation      = true
+  show_before_closure       = true
+  show_before_update        = true
+  show_in_announcement_post = true
+}
+
+resource "incident_custom_field_option" "impacted_services" {
+  # Load this from your service catalog, config file, or anywhere.
+  for_each = toset([
+    "Payments Service",
+    "API Gateway",
+    "Transaction Ledger",
+  ])
+
+  custom_field_id = incident_custom_field.impacted_services.id
+  value           = each.value
+}
+```
+
+Full documentation on how to use the provider and all its resources can be found in the Terraform registry at [incident-io/incident](https://registry.terraform.io/providers/incident-io/incident/latest) . This includes example code and attribute definitions.
+
+![Example usage for incident custom fields](/images/help-centre/manage-your-account-with-terraform/screenshot-1.png)
+
+If you need a refresher on how to provision your infrastructure with Terraform, check out Hashicorp's [tutorials and documentation](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) .
+
+In the meantime, if you run into any issues or if you have any feedback, please [get in touch](http://incident.io/community)

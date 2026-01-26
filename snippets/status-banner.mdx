@@ -1,0 +1,130 @@
+---
+---
+
+export const StatusBanner = ({ status }) => {
+
+  const HIDE_STATUS_BANNERS = false;
+  if (!status || HIDE_STATUS_BANNERS) return null;
+
+  const statusUpper = status.toUpperCase();
+
+  if (statusUpper === 'DRAFT') {
+    return (
+      <div style={{
+        backgroundColor: '#FEF3C7',
+        border: '2px solid #F59E0B',
+        borderRadius: '8px',
+        padding: '16px 20px',
+        marginBottom: '24px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px'
+      }}>
+        <div style={{
+          fontSize: '24px',
+          fontWeight: 'bold',
+          color: '#B45309'
+        }}>
+          ⚠️
+        </div>
+        <div>
+          <div style={{
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#B45309',
+            marginBottom: '4px'
+          }}>
+            DRAFT
+          </div>
+          <div style={{
+            fontSize: '14px',
+            color: '#92400E'
+          }}>
+            Someone has drafted this, but it needs review.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (statusUpper === 'STUB') {
+    return (
+      <div style={{
+        backgroundColor: '#DBEAFE',
+        border: '2px solid #3B82F6',
+        borderRadius: '8px',
+        padding: '16px 20px',
+        marginBottom: '24px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px'
+      }}>
+        <div style={{
+          fontSize: '24px',
+          fontWeight: 'bold',
+          color: '#1E40AF'
+        }}>
+          🧪
+        </div>
+        <div>
+          <div style={{
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#1E40AF',
+            marginBottom: '4px'
+          }}>
+            Stub
+          </div>
+          <div style={{
+            fontSize: '14px',
+            color: '#1E3A8A'
+          }}>
+            This page is a stub only and needs to be written up
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (statusUpper === 'PLACEHOLDER') {
+    return (
+      <div style={{
+        backgroundColor: '#FEE2E2',
+        border: '2px solid #DC2626',
+        borderRadius: '8px',
+        padding: '16px 20px',
+        marginBottom: '24px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px'
+      }}>
+        <div style={{
+          fontSize: '24px',
+          fontWeight: 'bold',
+          color: '#991B1B'
+        }}>
+          ⚠️
+        </div>
+        <div>
+          <div style={{
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#991B1B',
+            marginBottom: '4px'
+          }}>
+            PLACEHOLDER
+          </div>
+          <div style={{
+            fontSize: '14px',
+            color: '#7F1D1D'
+          }}>
+            Placeholder content created by AI, needs rewriting and careful review.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
+  return null;
+};

@@ -1,0 +1,81 @@
+---
+title: Metrics tracking and insights
+description: Coming soon
+icon: "/icons/chart.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+Insights gives you analytics across your incidents, follow-ups, and on-call activity. You can filter data by date ranges, incident attributes, and custom fields, and save frequently used filter combinations as shared views.
+
+You can access Insights at the [Insights homepage](https://app.incident.io/~/insights).
+
+## Date range filtering
+
+When filtering for date range inside Insights, you can choose from preset ranges or define custom relative ranges:
+
+**Include current period** - You can include data from the current Week/Month/Quarter by selecting the "Include this Week/Month/Quarter" option under custom relative range.
+
+**Compare with previous period** - You can also compare with the previous period by toggling it on. For example, you might compare this month's incidents with last month's to spot trends.
+
+Custom relative ranges let you define rolling windows (like last 30 days, or last quarter) that automatically update as time progresses.
+
+## Data refresh frequency
+
+Insights data is refreshed roughly every three hours. This means that recently created or updated incidents will not show up in Insights immediately.
+
+If you're scheduling reports or doing analysis, it's worth keeping this refresh cadence in mind to ensure you're working with the latest data.
+
+## Saved views
+
+You can use filters to drill down into specific data when on the follow-ups, incidents, or insights pages. **Saved views** allow you to save these filters and share them with others in your organization.
+
+To create a saved view, add some filtering and sorting of your choice. You can choose from any of these options:
+- Include/exclude private incidents
+- Filter by incident attribute or custom field
+- Split results by severity, incident type, or a custom field
+- Filter by a particular follow-up status
+- Sort by an incident attribute
+
+Once you've filtered the view as you want, click on the **Save View** button in the top right corner of the screen. Give your view a name and click **Save**.
+
+<Note>
+Your view will be visible to everyone in your organization.
+</Note>
+
+### Managing saved views
+
+To rename, share, or delete your view, click on its name. If you want to go back to the default view, click on the page name above your view's name (like "Follow-ups" or "Incidents").
+
+## Workload metrics
+
+### Calculating workload
+
+We generate workload by watching activity taken in an incident — inferring activity as a signal that someone was actively working on that incident.
+
+The rules are:
+
+1. If we see incident activity, such as a message in the incident channel, or work in integrations like issue trackers, we'll assume the related person has spent 10 minutes working on this incident.
+2. If the same user takes another action for the same incident within 20 minutes of the last, we'll assume they've been working on this incident continuously since the last time we saw them.
+
+As an example, if we see someone message the incident channel at 10:11 am, we'll immediately assign them 10 minutes of workload. When we have access to participant data, we also include being a participant in an incident call as workload.
+
+If that person were to update a Zendesk ticket attached to this incident at 10:15 am, we'll adjust to assume 4 min of activity (from 10:11 to 10:15) and allocate another 10 minutes after, for a total sum of 14 mins of work.
+
+For the average responder focused on specific incidents, this provides an accurate picture of their time. But for incident managers who work across many incidents at a time, we apply a final calculation to trim their workload to ensure we never overlap workloads across incidents, preventing us from calculating more than one hour of work in any hour.
+
+We're confident this calculation is representative of individual contributions and can be used as a valuable proxy for effort put into an incident.
+
+### Calculating working hours
+
+The workload chart splits hours by:
+
+- Working: 8 am-7 pm
+- Late: 7 pm-11 pm
+- Sleeping: 11 pm-8 am
+
+This is a dimension we apply to the calculated workload to understand when a period of work happened relative to the user's timezone, which we align with their Slack timezone at the point this workload is seen to have occurred.
+
+Note: Working hours are not customizable.

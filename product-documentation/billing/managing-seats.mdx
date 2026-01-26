@@ -1,0 +1,26 @@
+---
+title: 'Managing seats'
+description: 'How seat assignment and billing works in incident.io'
+icon: "/icons/cog.svg"
+status: draft
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="DRAFT" />
+
+## Automatic seat assignment
+
+We automatically graduate users to a Response seats when they take any response-related action (like changing an incident status or posting an update).
+
+For On-call seats, we'll ask you to confirm before upgrading a user when you:
+- Add them to a schedule
+- Add them to an escalation path
+
+## Removing seats
+
+Users are only removed from Response or On-call seats if:
+- You manually downgrade them in [Settings > Users ](https://app.incident.io/settings/users)
+- Their Slack account is deleted
+
+They won't lose their seat if they stop taking actions - you have to explicitly downgrade them.

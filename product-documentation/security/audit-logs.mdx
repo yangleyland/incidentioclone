@@ -1,0 +1,46 @@
+---
+title: Audit logs
+icon: "shield"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="DRAFT" />
+
+Audit logs give you visibility into changes made within your incident.io account. They track configuration changes, permission updates, and system actions, providing a complete record of who changed what and when.
+
+Use audit logs to meet compliance requirements, investigate unexpected changes, or understand how your incident.io setup evolved over time. Available on the [Enterprise plan](https://incident.io/pricing), logs are powered by [WorkOS](https://workos.com/) and retained for one year.
+
+Access audit logs at **Settings → Security**. View entries in the dashboard, export to CSV, or stream to your SIEM provider.
+
+<Note>
+Audit log entries are available from April 18, 2023 onwards. You must be an Owner or Admin to access audit logs.
+</Note>
+
+## What's tracked
+
+Audit logs track configuration changes across incident.io, including:
+- Alert sources, routes, and escalation paths
+- Schedule and on-call configuration changes
+- User role assignments and permission updates
+- Access grants to private incidents
+- Workflow and automation changes
+- Integration configurations
+
+Each entry captures the actor (person or system making the change), the target (what was modified), and contextual details like location and user agent. Entries conform to a versioned schema documented in the [API reference](https://api-docs.incident.io/tag/Audit-logs), ensuring consistent parsing as the format evolves.
+
+## Viewing audit logs
+
+View audit logs in the [security settings](https://app.incident.io/settings/security) dashboard. Filter entries by target, event type, actor, and date. Export to CSV for a specific time period, or set up continuous streaming to your SIEM provider.
+
+## Streaming to SIEM providers
+
+Stream audit logs directly to your security information and event management (SIEM) platform. incident.io supports streaming to:
+- Datadog
+- Splunk
+- Amazon S3 buckets
+- Other WorkOS-compatible providers
+
+## API access
+
+Access audit log entries programmatically via the incident.io API. See the [Audit logs API documentation](https://api-docs.incident.io/tag/Audit-logs) for available endpoints and schema details.

@@ -1,0 +1,45 @@
+---
+title: "Merging incidents"
+description: ""
+canonical_article_id: 95
+migrated_at: "2026-01-21T18:15:35Z"
+source_url: "https://help.incident.io/articles/4164466220-merging-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4164466220-merging-incidents) on January 21, 2026
+</Info>
+
+Triage and active incidents can be merged into other active incidents. Read up on [how to use triage incidents](/help-centre/creating-and-running-incidents/creating-a-new-incident/triaging-your-incidents) if you've not come across these before.
+
+## How can I merge a triage incident?
+
+In the incident channel, you'll see a message saying that the incident is in triage. If you select "Merge", you'll be asked which incident you would like to merge the incident into.
+
+The message looks like this:
+
+![Screenshot showing accept, merge and decline buttons](/images/help-centre/merging-incidents/screenshot-1.png)
+
+You can also do this from our Dashboard, by selecting "Share update", and then choosing the "Merge" option.
+
+![](/images/help-centre/merging-incidents/screenshot-2.png)
+
+## How can I merge an active incident?
+
+You can merge an active incident when doing an incident update (as above), or by using the `/inc merge` Slack command.
+
+![](/images/help-centre/merging-incidents/screenshot-3.png)
+
+## What happens to merged incidents?
+
+First, we update the incident to say it's been merged:
+
+![](/images/help-centre/merging-incidents/screenshot-4.png)
+
+We then move across all attachments from the old incident to the new one, and then post a message into the new incident to say it has had another incident merged into it.
+
+The old incident will no longer appear in insights, and other incident statistics.
+
+## Do severities or custom fields get moved across?
+
+Currently, we don't do anything with properties of the old incident (e.g. severities, custom fields) — the new incident will retain all of its existing properties.

@@ -1,0 +1,41 @@
+---
+title: "Rotation calculation in Schedules"
+description: ""
+canonical_article_id: 160
+migrated_at: "2026-01-21T18:29:18Z"
+source_url: "https://help.incident.io/articles/4186025466-rotation-calculation-in-schedules"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4186025466-rotation-calculation-in-schedules) on January 21, 2026
+</Info>
+
+Understanding how Rotations work is important when it comes to adding or removing users from an On-call schedule.
+
+## How are Rotations calculated?
+
+Rotations are calculated based on the Handover time of a Schedule's rota, this means that if you add a new user to a schedule, it may affect the order of the users on the schedule.
+
+![](/images/help-centre/rotation-calculation-in-schedules/screenshot-1.png)
+
+You can see below that if I try to add two new users to this schedule it changes the person that is currently on-call.
+
+![](/images/help-centre/rotation-calculation-in-schedules/screenshot-2.png)
+
+To offset this change, you need to change the handover time back 2 weeks as we are generating the new rotation based on the handover time.
+
+![](/images/help-centre/rotation-calculation-in-schedules/screenshot-3.png)
+
+## How to delay changes?
+
+![](/images/help-centre/rotation-calculation-in-schedules/screenshot-4.png)
+
+Alternatively, and the recommended way, to make sure the current on-call user is not affected by adding a new user, you can delay the change to happen after the current rotation has ended. Using the example above, we will prompt you to delay changes as this will affect the current user on-call, and we will automatically set the delay for you.
+
+![](/images/help-centre/rotation-calculation-in-schedules/screenshot-5.png)
+
+## Using Terraform to manage your schedule?
+
+If you are using Terraform to manage your schedules it can be a bit hard to see what your upcoming changes will do, so to best utilize delaying your changes to make sure the current on-call user is not affected, use `effective_from` to delay changes. More details in our [Terraform provider](https://registry.terraform.io/providers/incident-io/incident/latest/docs/resources/schedule#example-usage) .
+
+![](/images/help-centre/rotation-calculation-in-schedules/screenshot-6.png)

@@ -1,0 +1,89 @@
+---
+title: "Where should I write my post-mortem?"
+description: ""
+canonical_article_id: 347
+migrated_at: "2026-01-21T18:55:31Z"
+source_url: "https://help.incident.io/en/articles/10139050-where-should-i-write-my-post-mortem"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/en/articles/10139050-where-should-i-write-my-post-mortem) on January 21, 2026
+</Info>
+
+After a high severity incident, it's good practice to spend some time documenting what you've learned and how you can stop this kind of incident from happening again. This usually takes the form of a post-mortem document.
+
+You can either write this:
+
+1. **Within incident.io itself** (and export a copy to your document provider like Google Docs or Confluence later)
+2. Directly in your **document provider**
+
+---
+
+## Writing within incident.io
+
+To write your post-mortem, head to the `Post-incident` tab on the incident homepage and click `Create post-mortem` .
+
+![CleanShot 2025-12-19 at 15.41.31@2x.png](/images/help-centre/where-should-i-write-my-post-mortem/screenshot-1.png)
+
+You'll then be prompted to select a post-mortem template. Provided that you select one which is configured to be written within incident.io (more on this later!), we'll render the template you selected and mark the post-mortem as `In progress` :
+
+![CleanShot 2025-12-19 at 15.40.01@2x.png](/images/help-centre/where-should-i-write-my-post-mortem/screenshot-2.png)
+
+Most post-mortem templates include the incident summary, timeline and follow-ups so you'll notice these in the example above. You'll also notice another section below called `Contributors` which is a custom section that responders will need to fill out.
+
+Each of these custom sections can contain a few things:
+
+- **Custom fields associated with the section** . This encourages responders to check that important fields have been set correctly.
+- **Help text** . This highlights what responders should be thinking about when completing the section.
+- **Template text.** This is the starting text for the section, which can dictate the structure of the section. We'll interpolate any variables in the starting section, for example you might configure this text to include the name of the incident lead, and relevant timestamp values.
+
+![CleanShot 2025-12-19 at 15.52.34@2x.png](/images/help-centre/where-should-i-write-my-post-mortem/screenshot-3.png)
+
+If you use one of our suggested post-mortem templates, we'll create sections with some sensible defaults for help text etc, but templates are entirely configurable so you can edit this as much as you like!
+
+## What's the benefit of this?
+
+1. **Data is in one place.** If the post-mortem was written in an external system, data would be duplicated which means that updates to the incident summary, metadata or follow-ups wouldn't be reflected within incident.io, which has a knock on effect on other features like Insights or auto-export of follow-ups to an issue tracker.
+2. **Smarter AI suggestions.** Ingesting post-mortem data can massively improve our AI suggestions in future incidents.
+3. **Richer experience.** We can render data like the incident timeline much more effectively on the dashboard, making it easier for responders to get the "full picture" about what happened.
+
+## What if I still want to export a copy?
+
+You might want to do this for archival purposes; exporting a copy of the completed post-mortem to your knowledge base like Confluence or Notion can be helpful for search ability in the future.
+
+To do this, just hit `Export` at the top of a post-mortem which was written in-house and choose your destination. All the sections on the post-mortem will be moved into the external document, but we'll still show the follow-ups and timeline on the post-incident tab.
+
+<video controls>
+  <source src="/videos/exporting-post-mortem.mp4" type="video/mp4" />
+</video> 
+
+## So how can I get set up?
+
+Head to [Settings → Post-mortems](https://app.incident.io/settings/post-mortem) and click `Edit` on the post-mortem template you want to be written within incident.io. Make sure to select the option to write within incident.io.
+
+![CleanShot 2025-12-19 at 16.03.58@2x.png](/images/help-centre/where-should-i-write-my-post-mortem/screenshot-4.png)
+
+<Warning>
+
+**Pro tip:** if you want to check out the in-house writing experience *before* making the change, hit `Add template` and duplicate your existing template first!
+
+</Warning>
+
+## How does this work with the post-incident flow?
+
+If you want incidents which enter your [post-incident flow](/help-centre/configure-your-account/define-your-post-incident-process-using-the-post-incident-flow) to use this template when writing a post-mortem, you'll probably also want to update the tasks in your post-incident flow. If you:
+
+- **Only want post-mortems to be written in-house and never externally** , replace your `Export the post-mortem` task with the `Draft the post-mortem` task. This task will get checked off automatically when the post-mortem status is `In review` or `Completed` .
+- **Want post-mortems to be written in-house and later exported** , just add the `Draft the post-mortem` suggested task earlier in your flow, and move the `Export the post-mortem` task so it's one of the last steps responders have to do, perhaps after running a [debrief](/help-centre/learning-from-incidents/what-is-a-debrief) . This will ensure that responders export the most up-to-date version of the post-mortem.
+
+---
+
+## Writing externally
+
+If you are more comfortable writing your post-mortem in an external system like Confluence, Notion or Google Docs, you can always write it there instead. Doing this means we'll export the template including with the pre-filled incident data like the incident summary and timeline, which means responders just need to fill in the sections like `Impact` etc.
+
+Just head to [Settings → Post-mortems](https://app.incident.io/settings/post-mortem) and click `Edit` on the post-mortem template you want to be written within incident.io. Make sure to select the option to write within an external provider.
+
+![CleanShot 2025-12-19 at 16.04.49@2x.png](/images/help-centre/where-should-i-write-my-post-mortem/screenshot-5.png)
+
+If you do this, you'll probably want to ensure that your [post-incident flow](/help-centre/configure-your-account/define-your-post-incident-process-using-the-post-incident-flow) involves the `Export the post-mortem` task, which is one of our suggested tasks. By including this, responders must export the post-mortem before the incident can be closed.

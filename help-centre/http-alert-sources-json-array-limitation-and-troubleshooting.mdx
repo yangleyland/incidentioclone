@@ -1,0 +1,64 @@
+---
+title: "HTTP Alert Sources and Array Payloads"
+description: ""
+canonical_article_id: 338
+migrated_at: "2026-01-21T18:55:15Z"
+source_url: "https://help.incident.io/articles/4383016694-http-alert-sources-json-array-limitation-and-troubleshooting"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4383016694-http-alert-sources-json-array-limitation-and-troubleshooting) on January 21, 2026
+</Info>
+
+When using HTTP alert sources, only JSON objects are accepted at the root level. JSON arrays at the top level are not supported and will cause issues with alert processing.
+
+## What happens when you send a JSON array?
+
+If you send a JSON array as the root payload to an HTTP alert source, you may experience the following behavior:
+
+- Your transform function will have no effect
+- An empty alert will be created with no data
+
+This is because we don't expect an array here, so the processing fails when trying to map the payload.
+
+## Supported JSON structure
+
+HTTP alert sources expect a single JSON object at the root level, like this:
+
+```plaintext
+{
+  "alert_name": "Server Down",
+  "severity": "critical",
+  "message": "Web server is not responding"
+}
+```
+
+Arrays at the root level are **not supported** :
+
+Markdown 
+
+```markdown
+[
+  {
+    "title": "Database Connection Failed",
+    "status": "firing",
+    "description": "Unable to connect to primary database",
+    "severity": "critical"
+  },
+  {
+    "title": "High Memory Usage", 
+    "status": "firing",
+    "description": "Memory usage above 90%",
+    "severity": "warning"
+  }
+]
+```
+
+## Workarounds
+
+If your monitoring service sends JSON arrays (like updown.io), you'll need to:
+
+- Check if your monitoring service offers an alternative webhook format that sends single objects
+- Use a middleware service to transform the array into individual object requests
+
+This limitation affects services that send arrays "for future use" where multiple alerts might be included in a single request, even if they currently only send one alert at a time.

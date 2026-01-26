@@ -1,0 +1,33 @@
+---
+title: "Why are some of my Datadog alerts not appearing in incident.io?"
+description: ""
+canonical_article_id: 134
+migrated_at: "2026-01-21T18:21:15Z"
+source_url: "https://help.incident.io/articles/3875271988-why-are-some-of-my-datadog-alerts-not-appearing-in-incident-io"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3875271988-why-are-some-of-my-datadog-alerts-not-appearing-in-incident-io) on January 21, 2026
+</Info>
+
+## Context
+
+When using the Datadog integration with incident.io, some alerts from Datadog monitors may not appear to create incidents in incident.io, even though the webhook integration is properly configured. This behavior is often related to the key being used for the deduplication key.
+
+## Answer
+
+By default, we use Datadog's `$AGGREG_KEY` as the deduplication key for alerts. This means that multiple alerts with the same aggregation key will be deduplicated if there is an existing alert in a firing state, which will lead to other alert events to be deduplicated into that firing alert.
+
+If you need to create multiple alerts at the same time from the same monitor, you can modify the deduplication key in your Datadog webhook configuration to make it unique. Here's how:
+
+1. In your Datadog webhook configuration, customize the deduplication_key field
+2. Combine the `$AGGREG_KEY` with another unique identifier, such as `$ALERT_CYCLE_KEY`
+3. Use this format: `"deduplication_key": "$AGGREG_KEY-$ALERT_CYCLE_KEY"`
+
+This approach ensures that each alert creates a unique key so that alerts are not deduplicated while you still have firing alerts from that monitor.
+
+<Info>
+
+For more information about available variables in Datadog webhooks, refer to the [Datadog webhook variables documentation](https://docs.datadoghq.com/integrations/webhooks/#variables) .
+
+</Info>

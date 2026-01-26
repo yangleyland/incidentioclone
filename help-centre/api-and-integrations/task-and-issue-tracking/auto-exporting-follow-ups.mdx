@@ -1,0 +1,69 @@
+---
+title: "Auto-exporting follow-ups"
+description: ""
+canonical_article_id: 348
+migrated_at: "2026-01-21T18:55:33Z"
+source_url: "https://help.incident.io/en/articles/8447561-auto-exporting-follow-ups"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/en/articles/8447561-auto-exporting-follow-ups) on January 21, 2026
+</Info>
+
+Eliminate the hassle of manually exporting follow-ups by configuring them to export automatically to your issue tracker.
+
+This guide walks through the configuration process and demonstrates how to auto-export follow-ups to specific projects based on incident details, like custom field values.
+
+## Setup Integrations
+
+Before configuring the auto-export rules, ensure that you have the correct issue tracker providers installed as integrations.
+
+Navigate to [Settings → Integrations](https://app.incident.io/~/settings/integrations) , and install your issue tracker.
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-1.png)
+
+## Configure Export Templates
+
+When auto-exporting a follow-up, an **export template** will be used to set certain properties of the issue, for example:
+
+- The project the issue is assigned to
+- The user that owns the issue
+- Labels that are added to the issue
+
+Navigate to [Settings → Follow-ups](https://app.incident.io/~/settings/follow-ups) , and add a new **export template** .
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-2.png)
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-3.png)
+
+## Configure Conditions
+
+Navigate to [Settings → Follow-ups](https://app.incident.io/~/settings/follow-ups) , and enable **auto-export** .
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-4.png)
+
+Out of the box, the **export template** you just created will be used to automatically export all follow-ups from all non-private incidents.
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-5.png)
+
+If you would like to configure when follow-ups should be automatically exported, and which **export template** should be used, then you will need to add a new condition.
+
+In the example below:
+
+- If the incident's `Affected Team` custom field is set to `ProductOps`
+- Then automatically export the incident's follow-ups using the `ProductOps Team Export Template`
+- If the custom field does not match, then do not automatically export follow-ups for the incident
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-6.png)
+
+## Fallback Behaviour
+
+The example above has configured the fallback behaviour to not automatically export follow-ups if conditions do not match, however you can instead select a default template to be used.
+
+This will ensure that follow-ups will always be automatically exported for each incident.
+
+![](/images/help-centre/auto-exporting-follow-ups/screenshot-7.png)
+
+## Private Incidents
+
+By default, auto-exporting of follow-ups is disabled for private incidents, however you can enable this on the [Settings → Follow-ups](https://app.incident.io/~/settings/follow-ups) page.

@@ -1,0 +1,99 @@
+---
+title: "What does incident.io need privileged Slack access for?"
+description: ""
+canonical_article_id: 22
+migrated_at: "2026-01-21T18:57:37Z"
+source_url: "https://help.incident.io/articles/7428307766-what-does-incident.io-need-privileged-slack-access-for"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7428307766-what-does-incident.io-need-privileged-slack-access-for) on January 21, 2026
+</Info>
+
+Depending on your Slack workspace settings, bots and regular users may be restricted from taking certain actions and one should ensure two sections of settings are set in a specific way: **Channel Management** and **User Groups** . Let's tackle them one at a time below!
+
+## Channel Management
+
+You can check these settings at [https://app.slack.com/admin/permissions/account-types](http://slack.com/admin/permissions/account-types) .
+
+Alternatively you can access the settings directly from Slack if you click on the workspace per se -> **Tools&settings** -> **Workspace settings.** On the left side of the screen select **Administration** -> **Manage permissions** . Proceed with selecting **Account types** .
+
+Using the filtering option on the right side, you should search for:
+
+- Create private channels - Workspace admins and owners only
+- Create public channels - Everyone (except guests by default)
+
+![image.png](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-1.png)
+
+- Archive channels - Workspace admins and owners only
+
+![image.png](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-2.png)
+
+- Remove users from private channels - Workspace admins and owners only
+- Remove users from public channels - Workspace admins and owners only (by default)
+
+![image.png](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-3.png)
+
+- Edit channel posting permissions - Everyone (except guests by default)
+
+![image.png](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-4.png)
+
+In this section the most relevant settings for [incident.io](http://incident.io/) are:
+
+## People who can create private channels
+
+If this is set to "Workspace admins and owners only" or "Workspace owners only", we won't be able to create private incident channels. If you'd like to use [private incidents](/help-centre/creating-and-running-incidents/faqs/can-we-mark-incidents-as-sensitive-and-restrict-access) you'll need to connect a Slack Workspace Owner.
+
+The connected user will be invited all private incidents, so we recommend creating a Slack user just for this purpose. [Learn how here](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access) .
+
+## People who can create public channels
+
+If this is set to "Workspace admins and owners only" or "Workspace owners only", we won't be able to create incident channels. You'll need to connect a Slack Workspace Admin or Workspace Owner to get started.
+
+The connected user will be invited to all incidents, and appear as the "channel creator" in Slack:
+
+![](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-5.png)
+
+To avoid confusion, we recommend creating a Slack user just for this purpose. [Learn how here](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access) .
+
+## People who can archive channels
+
+If this is set to "Workspace admins and owners only" or "Workspace owners only", we won't be able to automatically archive old incident channels. Connect a Slack admin or owner to enable this feature.
+
+The connected Slack admin will be added to incident channels to archive them, so we recommend creating a Slack user just for this purpose. [Learn how here](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access) .
+
+The connected Slack user will only be invited to private incidents if they are a Slack Workspace Owner.
+
+## People who can remove users from private channels
+
+If this is set to "Workspace admins and owners only" or "Workspace owners only" the incident.io bot won't be able to remove access to private incidents automatically: they must be removed from the channel first, either by an admin, or by leaving voluntarily.
+
+Connect a Slack Workspace Owner to have incident.io automatically remove private incident participants with `/incident revoke` .
+
+Note that the connected Workspace Owner will be invited to private incidents. We recommend creating a Slack user just for this purpose. [Learn how here](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access) .
+
+---
+
+## User groups
+
+You can check these settings at [https://app.slack.com/admin/user_groups](http://slack.com/admin/user_groups)
+
+Alternatively you can access the settings directly from Slack if you click on the workspace per se -> **Tools&settings** -> **Workspace settings.** On the left side of the screen select **Administration** -> **User groups** .
+
+![image (23).png](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-6.png)
+
+![Screenshot 2025-12-22 at 10.47.17.png](/images/help-centre/what-does-incident.io-need-privileged-slack-access-for/screenshot-7.png)
+
+The settings under User groups are also relevant to [incident.io](http://incident.io/) :
+
+## People who can create and disable user groups
+
+If this is set to "Workspace admins and owners only" or "Workspace owners only", we won't be able to create user groups that reflect the responders currently on call for a schedule.
+
+You'll need to connect a Slack admin or owner to enable [this feature](/help-centre/on-call/schedules/how-to-sync-your-on-call-schedules-with-slack-user-groups) .
+
+## People who can can modify/edit user groups
+
+If this is set to "Workspace admins and owners only" or "Workspace owners only", we won't be able to sync the user groups that reflect the current on call responders when there's a shift change.
+
+You'll need to connect a Slack admin or owner to enable [this feature](/help-centre/on-call/schedules/how-to-sync-your-on-call-schedules-with-slack-user-groups) .

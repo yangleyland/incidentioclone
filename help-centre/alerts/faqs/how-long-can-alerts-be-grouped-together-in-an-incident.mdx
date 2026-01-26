@@ -1,0 +1,28 @@
+---
+title: "How long can alerts be grouped together in an incident?"
+description: ""
+canonical_article_id: 132
+migrated_at: "2026-01-21T18:21:17Z"
+source_url: "https://help.incident.io/articles/1282125735-how-long-can-alerts-be-grouped-together-in-an-incident"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1282125735-how-long-can-alerts-be-grouped-together-in-an-incident) on January 21, 2026
+</Info>
+
+## Context
+
+When multiple alerts are received with the same deduplication key, incident.io groups them together within a specific time window. This grouping window works is important for managing ongoing incidents, especially those that span longer periods.
+
+## Answer
+
+Alert grouping in incident.io works with a rolling 48-hour window. The grouping functionality works as follows:
+
+- Alerts with the same deduplication key will be grouped together if they arrive within 48 hours of the most recent alert in the group
+- The 48-hour window is rolling, meaning it resets each time a new alert in the group is received
+- If a new alert arrives after the 48-hour window has expired, a new incident will be created
+
+If you need to track updates beyond the 48-hour window, you may need to consider alternative approaches such as:
+
+- Creating a separate alerts route with different grouping rules
+- Using the incident.io API to update incident summaries programmatically

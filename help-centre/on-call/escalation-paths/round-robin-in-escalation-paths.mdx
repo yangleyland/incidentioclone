@@ -1,0 +1,59 @@
+---
+title: "Round Robin in Escalation paths"
+description: ""
+canonical_article_id: 165
+migrated_at: "2026-01-21T18:29:19Z"
+source_url: "https://help.incident.io/articles/5929576923-round-robin-in-escalation-paths"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5929576923-round-robin-in-escalation-paths) on January 21, 2026
+</Info>
+
+When setting up Escalation paths you might want to balance the load between people or ensure someone from a specific schedule acknowledges the page. This is where Round Robin comes in handy. We offer two kinds of Round Robins that solve both cases
+
+## Round Robin - Select one user per escalation
+
+In a classic Round Robin everyone chosen in the level or schedule will take turns for each incoming escalation. We always start with the user who was paged longest ago for this escalation path.
+
+Example being that we have a schedule that has Josh, Eric and Tanya. In Escalation A, Josh will get paged, Escalation B it will be Eric and then in C it will be Tanya. If Josh misses the escalation or nacks, the escalation will continue to the next level.
+
+1. Head to Escalation paths
+
+2. Choose a level and either a schedule or people from the dropdown 3. Choose 'Currently On-call' or 'Everyone'
+
+4. Click 'All at once' and then Round Robin
+
+5. Choose Default
+
+![](/images/help-centre/round-robin-in-escalation-paths/screenshot-1.png)
+
+## Round Robin - Cycle responders
+
+In level specific Round Robin we keep trying people for a single incoming alert, so it will page each person in that level with every chosen minutes. We always start with the user who was paged longest ago for this escalation path.
+
+Example being that in a Schedule we have Lucas, Leo and Martha. Cycling responders every 3 minutes means that first Lucas will be paged, then waiting for 2 minutes and if Lucas misses an escalation or nacks, we will try Leo next and then 2 minutes later we will try Martha. When next escalation comes in, we will start from Leo.
+
+1. Head to Escalation paths
+
+2. Choose a level and either a schedule or people from the dropdown 3. Choose 'Currently On-call' or 'Everyone'
+
+4. Click 'All at once' and then Round Robin
+
+5. Choose 'Cycle responders' and then the time between cycling
+
+<iframe src="https://www.loom.com/embed/5beb3ccd7d414cf7a67bd34e9353b0af" width="100%" height="400" allowfullscreen></iframe>
+
+---
+
+## Read more about Escalation paths
+
+[Smart escalation paths](/help-centre/on-call/escalation-paths/smart-escalation-paths) ​ [Dynamically setting an escalation path](/help-centre/alerts/alert-configuration/dynamically-setting-an-escalation-path)
+
+[Escalating to the right team from an alert](/help-centre/alerts/alert-configuration/escalating-to-the-right-team-from-an-alert)
+
+<Warning>
+
+If you have any feedback or feature requests on the feature, please send us a message to [support@incident.io](mailto:support@incident.io) - we'd love to hear from you!
+
+</Warning>

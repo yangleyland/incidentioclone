@@ -1,0 +1,202 @@
+---
+title: Internal status pages
+description: Keep your entire organization informed with real-time incident updates for internal teams
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+
+# Internal status pages
+
+Internal status pages give your entire organization visibility into active incidents. From engineering to customer success, everyone sees the same real-time view of what's happening with your systems. Internal pages are your live incident dashboard—accessible only to your team, automatically updated as incidents progress.
+
+## What is an internal status page?
+
+An internal status page is a live dashboard showing current incidents and system status for your organization. Think of it as your team's incident command center—anyone at your company can visit it to see what's broken, what's being worked on, and how it's progressing.
+
+**Key characteristics:**
+- **Organization-only access** - Only incident.io users in your organization can view it
+- **Real-time updates** - Shows active incidents and current component status
+- **Automatic publishing** - Configure rules to publish incidents automatically
+- **Calendar view** - Browse historical incidents and maintenance windows
+- **No external visibility** - Never visible to customers or external users
+
+**Where to find it:** Access your internal status page from the dashboard's "View internal status" button, or navigate directly to your internal status page URL (e.g., `app.incident.io/yourorg/status`).
+
+## When to use internal status pages
+
+**Best for:** Keeping all teams aligned during incidents, providing non-technical stakeholders with incident visibility, and creating a single source of truth for "what's happening right now."
+
+**Common use cases:**
+- Customer success team checking if current support tickets relate to known incidents
+- Leadership viewing real-time incident status without joining Slack channels
+- Engineering teams in different time zones staying informed about overnight incidents
+- Post-incident review preparation (historical incident timeline)
+
+## Setting up an internal status page
+
+Navigate to **Status Pages** → **Create internal page** and configure:
+
+1. **Page title** - Name your internal status page (e.g., "Engineering Status" or "Internal Incidents")
+2. **URL** - Choose your status page URL path (uses format: `app.incident.io/yourorg/status/[path]`)
+3. **Incident summary** - Enable to show high-level incident summary on the page
+4. **Components** - Add systems or services to track (optional—you can publish incidents without components)
+5. **Branding** - Upload logo and favicon for consistency
+
+Unlike external status pages, internal pages don't need custom domains or complex access control—they're automatically restricted to your incident.io users.
+
+## Publishing incidents
+
+### Manual publishing
+
+Publish an incident to your internal status page from the incident details page or using the `/inc sp` Slack command:
+
+1. Navigate to the incident or use `/inc sp` in the incident Slack channel
+2. Choose "Internal page" when prompted
+3. Select your internal status page
+4. Click **Publish**
+
+The incident appears immediately on your internal status page. All subsequent incident updates (via `/inc update` or the dashboard) automatically appear on the status page.
+
+**Unpublishing:** Remove an incident from the internal status page via the incident's status page dashboard.
+
+### Automated publishing
+
+Set up automation rules to publish incidents automatically based on criteria like severity, affected components, or custom fields.
+
+**Example rules:**
+- "Publish all Critical and Major severity incidents"
+- "Publish incidents affecting Production components"
+- "Publish all incidents (full transparency)"
+
+**Configuring automation:**
+
+<Steps>
+  <Step title="Open status page settings">
+    Navigate to your internal status page settings.
+  </Step>
+
+  <Step title="Access automation">
+    Go to **Automation** tab and click **Add automation rule**.
+  </Step>
+
+  <Step title="Choose criteria">
+    Select which incidents to publish automatically:
+    - **All live incidents** - Publish everything
+    - **Incidents affecting specific components** - Only publish if certain components are affected
+    - **Custom conditions** - Severity, custom fields, tags, etc.
+  </Step>
+
+  <Step title="Apply rules">
+    Rules apply immediately. Incidents matching the criteria are published automatically when declared, and unpublished when closed.
+  </Step>
+</Steps>
+
+**Manual overrides:** If you manually unpublish an incident that matches automation rules, it won't be automatically re-published. You'll need to publish it manually again if needed.
+
+## Access control
+
+Internal status pages are restricted to incident.io users in your organization. No additional authentication or access control is needed—if someone can log into incident.io, they can view your internal status pages.
+
+**Who can view:**
+- All incident.io users in your organization
+- Users with any role (viewer, responder, admin)
+
+**Who cannot view:**
+- External users (customers, partners)
+- Users from other incident.io organizations
+- Unauthenticated visitors
+
+**Publishing permissions:** By default, anyone who can update incidents can publish to internal status pages. Restrict publishing permissions in Settings → Status Pages → Permissions if you want tighter control.
+
+## Subscription differences
+
+Internal status page subscriptions work differently from public status pages:
+
+**For internal users:**
+- Subscriptions are managed through **User Preferences** → **Incident Subscriptions**
+- Users can set up auto-subscribe rules based on severity, components, or other criteria
+- Notifications sent via Slack DM, email, SMS, or mobile app (based on user preferences)
+- Subscribing to the status page itself subscribes to all incidents published there
+
+**vs. Public status pages:**
+- Public pages use email-only subscriptions (no Slack integration)
+- External users must manually subscribe via the status page
+- No auto-subscribe rules for external users
+- RSS and Atom feeds available (internal pages don't support RSS/Atom)
+
+See [Subscriptions and communication](/product-documentation/status-pages/subscriptions-and-communication) for detailed subscription management.
+
+## Internal status page features
+
+### Live incident feed
+
+Your internal status page shows all active incidents with:
+- Current status (Investigating, Identified, Monitoring, Resolved)
+- Affected components and their status levels
+- Latest update timestamp and message
+- Incident severity and assigned responders
+
+### Component status overview
+
+Components show overall health status:
+- **Operational** (green) - No issues
+- **Degraded Performance** (yellow) - Slower than usual
+- **Partial Outage** (orange) - Some functionality down
+- **Major Outage** (red) - Completely unavailable
+
+The page displays the worst status among all components prominently.
+
+### Calendar view
+
+Browse historical incidents and maintenance windows by date. The calendar shows:
+- Days with incidents (color-coded by severity)
+- Scheduled maintenance windows
+- Incident summaries when clicking on dates
+
+Switch between calendar and list view based on preference.
+
+### Incident summary
+
+Enable "Incident summary" to show a high-level overview at the top of your page:
+- Number of active incidents
+- Overall system status
+- Quick links to incident details
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can I have multiple internal status pages?">
+    Yes! Create separate internal status pages for different teams or purposes. For example, one for Engineering, one for Customer Success, one for Executive leadership with only Critical incidents.
+  </Accordion>
+
+  <Accordion title="How do internal subscriptions differ from public subscriptions?">
+    Internal subscriptions use your incident.io user preferences and support multiple channels (Slack, email, SMS, mobile app). Public subscriptions are email-only and managed per-user on the status page itself. Internal users can also set up auto-subscribe rules based on criteria.
+  </Accordion>
+
+  <Accordion title="Can I control who publishes to internal status pages?">
+    Yes. By default, anyone who can update incidents can publish to internal status pages. Configure publishing permissions in Settings → Status Pages → Permissions to restrict to specific roles.
+  </Accordion>
+
+  <Accordion title="Do internal status pages support components?">
+    Yes, but they're optional. You can publish incidents to internal pages without mapping them to components. Components help organize incidents and show system-wide health, but aren't required for basic incident visibility.
+  </Accordion>
+
+  <Accordion title="Can I share my internal status page URL with external users?">
+    No. Internal status pages require incident.io authentication. External users cannot access them, even if they have the URL. Use [external status pages](/product-documentation/status-pages/external-status-pages) for customer communication.
+  </Accordion>
+
+  <Accordion title="Do internal status pages work offline?">
+    No. Internal status pages are web-based and require internet access. They're designed for real-time incident communication, not offline reference.
+  </Accordion>
+
+  <Accordion title="Can I customize the internal status page appearance?">
+    Customization is limited to logo and favicon. Unlike external status pages, you cannot use custom domains or extensive theming options for internal pages. They use your organization's incident.io theme.
+  </Accordion>
+
+  <Accordion title="Do updates from Slack appear on the internal status page?">
+    Yes. Any incident update made via `/inc update` in Slack or through the dashboard appears automatically on the internal status page (if that incident is published to the page).
+  </Accordion>
+</AccordionGroup>

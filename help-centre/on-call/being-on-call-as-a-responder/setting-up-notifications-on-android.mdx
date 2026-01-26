@@ -1,0 +1,95 @@
+---
+title: "Setting up notifications on Android"
+description: ""
+canonical_article_id: 151
+migrated_at: "2026-01-21T18:29:10Z"
+source_url: "https://help.incident.io/articles/9227964371-setting-up-notifications-on-android"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9227964371-setting-up-notifications-on-android) on January 21, 2026
+</Info>
+
+<Info>
+
+**Download our mobile app**
+
+If you'd like the best possible experience as a responder, download our mobile app [here](https://play.google.com/store/apps/details?id=com.incidentio.incidentio) .
+
+</Info>
+
+When you are paged, we'll try and contact you according to your [notification rules](https://app.incident.io/~/user-preferences/on-call-notifications) .
+
+By default, assuming you've enabled them, this will include:
+
+- Push notification
+- Phone call
+- SMS
+- Email
+- Slack direct message
+
+For both push notifications, phone calls and SMS messages, there are steps you can take to ensure you get notified, regardless of what your phone's silent mode and do-not-disturb settings are set up like.
+
+---
+
+## Phone calls + SMS
+
+1. Save [the incident.io contact card](https://app.incident.io/api/mobile/responder_vcard) to your contacts.
+2. Open the Contacts app and find the contact you've just saved.
+3. Favourite the contact by tapping on the star icon
+4. Open the Settings app and search for Do Not Disturb
+5. If you have Do Not Disturb enabled, make sure you go under Exceptions > Calls and/or Messages and ensure you allow DND exceptions for **Favorite contacts only** (this should have been done in step 3)
+
+<Warning>
+
+Depending on your Android version, you may need to Tap on People and then for both Message and Calls, ensure that Starred contacts can interrupt your Do Not Disturb.
+
+</Warning>
+
+<Info>
+
+Please note that Android's "interrupting Do Not Disturb" setting for a contact only refers to whether calls and SMS are displayed while in Do Not Disturb. It does not bypass your mute switch or volume settings.
+
+</Info>
+
+## Push notifications
+
+When you receive a push notification on Android, incident.io will try to make it audible regardless of whether your phone is on silent or not.
+
+To ensure that you receive push notifications, **we recommend enabling the "Do Not Disturb access" permission** when prompted during onboarding.
+
+We also strongly recommend checking these settings to make sure your push notifications work as expected:
+
+1. Disable **Pause app activity if unused** . By default, Android typically will allow the incident.io app to be paused if the app is unused - which may be typical if you're not on call very often. You can find this by opening the Settings app, tapping on Applications, incident.io and then scrolling down to find the toggle at the bottom.
+2. Enabling **Unrestricted battery usage** . By default, Android will enable "Optimized" battery usage for the incident.io app. We don't perform any background work that should drain your battery, other than receiving push notifications and updating your volume temporarily, which should have little affect on your battery. You can find this by opening the Settings app, tapping on Applications, incident.io, App battery usage, and then enabling **Unrestricted** .
+
+**Work profiles**
+
+If you've installed the app in a work profile, Android will not let you allow this permission. In these cases, we will try and play a noise using your alarm volume stream as a fallback.
+
+However, if you'd rather use the mute switch bypass in a work profile, there's a workaround available. Install incident.io in a personal profile and grant Do Not Disturb access to the app in that profile (there's no need to sign in on the personal profile). This should allow the work profile to get that permission as well.
+
+**How do the push notifications work?**
+
+When you receive a critical notification, provided we have Do Not Disturb access, we'll temporarily unmute your phone and then send the notification. We'll re-mute your phone 60 seconds later. If we don't have Do Not Disturb access, we'll fall back to playing the sound using your alarm volume.
+
+<Info>
+
+Please note that if your phone was previously on silent, rather than reverting it back to silent, incident.io will be revert it to vibrate. This is due to an unfortunate bug in Android where incident.io cannot set your phone back to silent, as the system will inadvertently enable Do Not Disturb, even though the app never asks it to. To avoid this, we revert your phone to vibrate rather than silent.
+
+</Info>
+
+<Info>
+
+Please note that unmuting your device only applies to push notifications - incident.io has no access to your system mute switch or volume when SMS and phone calls are received. ​ You may audibly hear phone calls and SMS, whilst on silent, if they are received within 60s of the push notification being received, as the incident.io app unmutes your phone for 60s upon receiving that notification. However, we offer no guarantees for SMS and phone calls ringing - Android does not offer a way for the incident.io app to temporarily unmute your phone specifically for those usecases.
+
+</Info>
+
+**Device limitations**
+
+- If using a **OnePlus** device which has a physical mute switch, we cannot guarantee that push notifications will play a sound, whether that's in do not disturb or not. This is due to OnePlus limitations. We recommend leaving your OnePlus in "Ring" for notifications to work both in Do Not Disturb and normal mode.
+- Some **Samsung** devices have a feature called Focus modes which can add additional rules to your do-not-disturb settings. If you're not receiving notifications whilst in a Focus mode (such as "Work") then you need to edit the Do Not Disturb settings for the Focus mode specifically and whitelist **incident.io** in the Allowed Apps section.
+
+**Custom notification sounds**
+
+You can customise sounds for each notification channel through your device settings from ringtones installed on your phone. To do this, head to the mobile app. In your personal preferences, under "Notifications" you can click on each notification channel to customise the sound through your device settings.

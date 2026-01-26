@@ -1,0 +1,61 @@
+---
+title: "Incident Modes"
+description: ""
+canonical_article_id: 50
+migrated_at: "2026-01-21T18:00:51Z"
+source_url: "https://help.incident.io/articles/3659808390-incident-modes"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3659808390-incident-modes) on January 21, 2026
+</Info>
+
+incident.io offers four incident modes to help your team effectively manage and respond to various situations. These are different to [Incident types](/help-centre/creating-and-running-incidents/creating-a-new-incident/incident-types) , which can be used to tailor your response process to the situation you're responding to e.g. you could create a security incident type with a completely different incident lifecycle & form to your standard default incidents.
+
+Below, we'll explore the details of each incident mode:
+
+## Tutorial Incident
+
+The Tutorial Incident mode is a quick 5-minute guide to cover the basics of using incident.io and is an excellent way for users to familiarize themselves with the platform and its features. ​ To initiate a Tutorial Incident, simply type `/inc tutorial` in any of your Slack channels.
+
+Learning is free at incident.io. Everyone in your company can - and should! - learn the ropes of incident.io without you getting penalized by it and billed.
+
+So, don't worry: your teammates [won't be considered Responders](/help-centre/account-admin/billing-pricing/seat-types-and-viewers-with-incident.io) (paid users) if they go through our tutorial flow
+
+## Test Incident
+
+The [Test Incident mode](/help-centre/creating-and-running-incidents/faqs/can-we-run-fake-incidents-to-sandbox-incident.io) is designed for testing new automations and conducting dry runs with your configuration without affecting production systems or unnecessarily bothering your colleagues. To create a Test Incident, type `/incident test` from any Slack channel or use the declare incident button in our dashboard and switch to the Test incident tab.
+
+![](/images/help-centre/incident-modes/screenshot-1.png)
+
+While Test Incidents share similarities with normal incidents, they are distinguished by the fact that they won't be announced in the `#incidents` channel, won't be included in your incident library, and won't be calculated as part of Insights.
+
+## Real Incident
+
+The Real Incident mode is used for live incidents when something has gone wrong, and immediate response is required. There are three ways to manually declare a Real Incident:
+
+**Slack Command** : Type `/incident` or `/inc` from any Slack channel.
+
+**Slack Message** : Turn a Slack message into an incident by clicking the three built-in dots and selecting 'create an incident.'
+
+**Dashboard** : Create an incident directly from the incident.io dashboard.
+
+## Retrospective Incident
+
+[Retrospective Incidents](/help-centre/creating-and-running-incidents/creating-a-new-incident/can-i-create-retrospective-incidents) are used to record incidents after they have occurred and can only be declared [via the API](https://api-docs.incident.io/tag/Incidents-V2#operation/Incidents%20V2_Create) or our dashboard.
+
+To declare a Retrospective Incident, use the 'Declare Incident' button on your dashboard and click on the Retrospective incident tab.
+
+![](/images/help-centre/incident-modes/screenshot-2.png)
+
+## FAQs
+
+#### Why can't I find test incidents in the dashboard?
+
+To keep things tidy, we only show your real incidents by default within the incidents section of the dashboard. To view a list of incidents in any other mode, you can simply filter by incident mode wherever appropriate:
+
+![](/images/help-centre/incident-modes/screenshot-3.png)
+
+#### How do I create these incident modes via the API?
+
+You can create an incident in any of these modes [via the API](https://api-docs.incident.io/tag/Incidents-V2#operation/Incidents%20V2_Create) by passing the `mode` parameter.

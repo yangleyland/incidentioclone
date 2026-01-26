@@ -1,0 +1,43 @@
+---
+title: "Exporting your data using a Singer tap"
+description: ""
+canonical_article_id: 196
+migrated_at: "2026-01-21T18:29:22Z"
+source_url: "https://help.incident.io/articles/1947356017-exporting-your-data-using-a-singer-tap"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1947356017-exporting-your-data-using-a-singer-tap) on January 21, 2026
+</Info>
+
+Incident data can be incredibly powerful and while we provide [our own insights](https://app.incident.io/~/insights) within the dashboard we understand that joining this data with your own can help to improve your understanding even more.
+
+One method for extracting your incident data is to [query our API](https://api-docs.incident.io/) . We provide endpoints for things like incidents, roles, severities, and much more.
+
+Often though you will want to regularly take that data and store it in a data warehouse such as BigQuery, Redshift, or Snowflake. This can take time to build, test and maintain. To save you that effort we have now released a Singer tap which you can easily install and run on your own infrastructure.
+
+## What is Singer?
+
+[Singer is an open-source specification](https://www.singer.io/) for building processes to extract and load data. You can run "taps" that extract from different sources and "targets" that import data from those taps into your data warehouse. The great part about Singer is that a lot of people have already built taps and targets for you - allowing you to simply put the parts together that you need.
+
+## Getting Started
+
+To get started using our Singer tap see the project documentation here:
+
+[https://github.com/incident-io/singer-tap/](https://github.com/incident-io/singer-tap/)
+
+As a quick start you can try using the [BigQuery Target](https://github.com/z3z1ma/target-bigquery) to load data into some BigQuery tables.
+
+You install our tap, the target, add some config json files, and then all that's left to extract data from our incident.io account and store it in BigQuery is one simple command!
+
+```plaintext
+tap-incident --config tmp/config.json --catalog tmp/catalog.json | target-bigquery --config tmp/bigquery-config.json
+```
+
+Once it finishes, we will get the following tables and schema within BigQuery allowing you to join this against other data in your warehouse. Great!
+
+![](/images/help-centre/exporting-your-data-using-a-singer-tap/screenshot-1.png)
+
+BigQuery is not the only data warehouse available - as mentioned before there are a lot of targets that people have built already. You can even build your own if you really need something bespoke.
+
+If you use [Stitch](https://www.stitchdata.com/) to run your data sync processes, please use the ' **Suggest Integration** ' button on the Integrations page within your account to request that they add the incident.io tap to their platform.

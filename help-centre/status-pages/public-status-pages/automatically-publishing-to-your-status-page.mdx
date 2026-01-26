@@ -1,0 +1,71 @@
+---
+title: "Automatically publishing to your status page"
+description: ""
+canonical_article_id: 261
+migrated_at: "2026-01-21T18:40:37Z"
+source_url: "https://help.incident.io/articles/8560372373-automatically-publishing-to-your-status-page"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8560372373-automatically-publishing-to-your-status-page) on January 21, 2026
+</Info>
+
+Automatically updating your status page means you can make your customers aware of problems immediately, and remove a step from your incident response process.
+
+With [Workflows](/help-centre/configure-your-account/workflows/getting-started-with-workflows) , you can automatically publish to your status page when an incident is updated. Let’s have a look at how it’s done.
+
+---
+
+To automatically publish to your status page, we'll use Workflows. If this is your first time setting up a workflow, take a look at our [starter guide](/help-centre/configure-your-account/workflows/getting-started-with-workflows) .
+
+To automate status page updates, create a workflow with the trigger and conditions you want to cause an update to your status page. If you want to update your status page whenever an incident changes, we recommend using *When an incident is created or changed* as your trigger.
+
+Next, add a workflow step, and select "Create or update a status page incident".
+
+You’ll see a form like this:
+
+![](/images/help-centre/automatically-publishing-to-your-status-page/screenshot-1.png)
+
+1. **Status page components**
+
+Which components do you want to mark as affected by this incident? This will show up on your status page and in emails to subscribers.
+
+If you'd like this to be set dynamically, you can [use an expression](/help-centre/configure-your-account/workflows/how-to-use-workflow-expressions) based on your incident fields.
+
+2. **Component impact**
+
+This will be marked as the impact for all affected components referenced in your workflow. Once responding to an incident, you can update this, but all components must have the same impact to start with.
+
+Just like status page components, you can use an expression to set this dynamically. For example mapping your incident severity to component impact.
+
+3. **Name**
+
+This is the public name of your incident and will be visible on your status page.
+
+If you don't want a static incident name, you can use variables as part of the name. Just remember that your internal incident name may not be what you want to publish!
+
+![](/images/help-centre/automatically-publishing-to-your-status-page/screenshot-2.png)
+
+4. **Status**
+
+Select the status you want us to set on your status page incident.
+
+5. **Message**
+
+This is a longer-form update you can use to communicate in more detail with your customers.
+
+As with other fields, you can use expressions to insert dynamic variables into your message.
+
+6. **Automatic resolution**
+
+Resolving your status page incident is easily forgotten once an incident is closed, so if you want, we can do that for you. Set a message for auto-resolution, and we’ll publish that and mark your status page incident as resolved when you mark your internal incident as resolved.
+
+This will show up as an update on your status page incident, and will also mark the incident as resolved and all affected components as operational.
+
+![](/images/help-centre/automatically-publishing-to-your-status-page/screenshot-3.png)
+
+### When will this workflow create a new incident vs update an existing one?
+
+We decide this based on the linked internal incident. If there is a status page incident that has your trigger incident linked to it, we will update that status page incident. Otherwise, we will create a new one.
+
+This also means that if you have two workflows that both update status page incidents, they will update the same incident if they are triggered by the same internal incident.

@@ -1,0 +1,59 @@
+---
+title: "Team roles"
+description: ""
+canonical_article_id: 344
+migrated_at: "2026-01-21T19:19:51Z"
+source_url: "https://help.incident.io/articles/2678929802-team-roles"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2678929802-team-roles) on January 21, 2026
+</Info>
+
+[Team roles](https://app.incident.io/~/settings/permissions/team) allow you to give teams the ability to manage their own config (escalation paths, schedules, alert routes, and alert sources) without letting them make changes to a different team's config. Each resource can be owned by different teams - for example, one alert route could be managed by Team A while another alert route is managed by Team B.
+
+<Frame caption="Creating a team role">
+  ![create-team-role.png](/images/help-centre/team-roles/screenshot-1.png)
+</Frame>
+
+Team roles have a configurable set of permissions assigned to them, and you can configure multiple team roles (for example Members and Admins) so that you can give certain people on the team additional roles that you don't give to all team members.
+
+**Team roles are in addition to** [account-level roles](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) **, so if someone has permission to manage something at the account level, they'll be able to make changes even if they're not on the team that owns it** .
+
+Who has which team role is controlled via the catalog. Each team role corresponds to an attribute on your Team catalog type (you can [configure which catalog type represents your teams here](https://app.incident.io/~/settings/teams) ).
+
+Users can have multiple roles on a team, and if they do, they have the union of permissions across all their roles.
+
+<Info>
+
+If your teams are controlled externally (for example via Linear, GitHub, the catalog importer, Terraform), then anyone who has permission to update teams in the external system will be able to control which users have team roles within incident.io
+
+</Info>
+
+## Example: Team-owned schedules
+
+This example shows the steps needed to make it so that everyone on a team can set up schedule overrides but only the manager of the team can edit the schedule.
+
+First, make sure that schedules are owned by the correct team:
+
+<Frame caption="Configuring which team owns a schedule">
+  ![Screenshot 2025-12-08 at 12.41.35.png](/images/help-centre/team-roles/screenshot-2.png)
+</Frame>
+
+Next, [create new team roles](https://app.incident.io/~/settings/permissions/team/create) for members and admins:
+
+<Frame caption="Viewing team roles">
+  ![Screenshot 2025-12-08 at 12.55.19.png](/images/help-centre/team-roles/screenshot-3.png)
+</Frame>
+
+Lastly, you can view and control who has what roles on the Members tab of the team's page:
+
+<Frame caption="Viewing a team's members and their roles">
+  ![Screenshot 2025-12-08 at 12.57.45.png](/images/help-centre/team-roles/screenshot-4.png)
+</Frame>
+
+<Frame caption="Editing a team member's roles">
+  ![Screenshot 2025-12-08 at 13.01.40.png](/images/help-centre/team-roles/screenshot-5.png)
+</Frame>
+
+Now all members of teams will be able to create overrides for schedules they're on, but only admins of those teams will be able to make changes to the schedule (for example working hours, when shift handovers happen, etc).

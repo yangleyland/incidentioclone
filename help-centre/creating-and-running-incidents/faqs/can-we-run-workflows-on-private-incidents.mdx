@@ -1,0 +1,45 @@
+---
+title: "Can we run workflows on private incidents?"
+description: ""
+canonical_article_id: 72
+migrated_at: "2026-01-21T18:11:13Z"
+source_url: "https://help.incident.io/articles/4723702668-can-we-run-workflows-on-private-incidents"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4723702668-can-we-run-workflows-on-private-incidents) on January 21, 2026
+</Info>
+
+Workflows can be used to automate parts of your incident response, such as sending email communications or escalating to an on-call rota.
+
+By default, workflows won’t run on [private incidents](/help-centre/creating-and-running-incidents/faqs/can-we-mark-incidents-as-sensitive-and-restrict-access) . This is because certain workflow steps – like emailing information about an incident to a mailing list, or inviting people to the channel – could bypass the membership protections that apply to private incidents.
+
+However, you can enable this feature as an account [Owner](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) .
+
+---
+
+## Turning on workflows on Private Incidents
+
+If you’re sure you want to run a workflow against private incidents, we permit account owners to create private workflows.
+
+All the owner needs to do is open "Advanced settings" and press the “ *Run on private incidents* ” toggle:
+
+![](/images/help-centre/can-we-run-workflows-on-private-incidents/screenshot-1.png)
+
+Once enabled, this workflow will apply to both private and public incidents.
+
+**The responsibility is on the account owner to ensure the workflow is safe, and doesn’t expose more of the private incident than they intend.**
+
+---
+
+## What do non-Owners see?
+
+We restrict this feature to account owners as only those users are able to see all incidents, irrespective of privacy settings.
+
+Other users will be able to see the private workflows, but will be presented with a banner warning that only account owners may modify them:
+
+![](/images/help-centre/can-we-run-workflows-on-private-incidents/screenshot-2.png)
+
+If they mouseover any of the buttons, they’ll be presented with a clear warning, to make it obvious why they can’t take this action:
+
+![](/images/help-centre/can-we-run-workflows-on-private-incidents/screenshot-3.png)

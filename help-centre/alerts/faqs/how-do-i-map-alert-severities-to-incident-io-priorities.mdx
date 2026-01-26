@@ -1,0 +1,35 @@
+---
+title: "How do I map alert severities to incident.io alert priorities?"
+description: ""
+canonical_article_id: 131
+migrated_at: "2026-01-21T18:21:13Z"
+source_url: "https://help.incident.io/articles/7463641881-how-do-i-map-alert-severities-to-incident-io-priorities"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7463641881-how-do-i-map-alert-severities-to-incident-io-priorities) on January 21, 2026
+</Info>
+
+When integrating external alerting systems (like Alertmanager, Grafana, or other monitoring tools) with incident.io, you may need to map incoming alert severities to incident.io alert priorities. For example, you might want alerts marked as "critical" or "error" to automatically map to your P1 priority in incident.io.
+
+You can map external alert severities to incident.io priorities using priority aliases. This allows you to match incoming severity values without modifying the alert payload or writing complex parsing logic.
+
+To set up priority aliases:
+
+1. Navigate to your Alert Configuration page
+2. Click on the gear (settings) icon - this should take you [here](https://app.incident.io/~/alerts/configuration/priorities)
+3. Click edit on the priority you want to add aliases for
+
+For example, you could set up the following aliases:
+
+- For P1/Urgent priority: add aliases like "critical", "error", "p1", "urgent"
+- For P2 priority: add aliases like "high", "p2", "major"
+- For P3 priority: add aliases like "medium", "p3", "warning"
+
+Once aliases are configured, incident.io will automatically match the incoming severity value from your alert payload to the appropriate priority. The severity value should be passed in your alert payload (commonly found in fields like "$.labels.severity" or similar JSON paths).
+
+<Info>
+
+Note: Priority matching is case-sensitive. Make sure your aliases match the exact case of your incoming alert severities. For example, if your alerts use "High", you'll need "High" as an alias, not just "high".
+
+</Info>

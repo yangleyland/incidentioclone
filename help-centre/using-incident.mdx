@@ -1,0 +1,46 @@
+---
+title: "Using @incident"
+description: ""
+canonical_article_id: 323
+migrated_at: "2026-01-21T18:54:52Z"
+source_url: "https://help.incident.io/articles/1272363803-using-incident"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1272363803-using-incident) on January 21, 2026
+</Info>
+
+## What is @incident?
+
+You can tag @incident in any incident channel in Slack and chat with us directly to draft updates, create follow-ups, pause incidents and more. Essentially, any action you currently do via a command, you can do with @incident instead.
+
+@incident can also answer questions about the incident you’re in, connected alerts, and attachments.
+
+### Examples to get started
+
+- **Draft updates and summaries:** Does the current summary or update not reflect the state of the incident? You can update both using @incident - try `@incident can you move this to monitoring?` or `@incident can you draft an update for the summary to reflect the current state?`
+- **Pausing incidents:** Need to put something down for a few hours or days as it's not pressing? Try `@incident pause this til monday` and we'll take care of the rest.
+- **Decline and follow-up:** If an incident fires, doesn't require any further investigation, but maybe the alert shouldn't fire, try `@incident can you decline this and create a follow up to stop it paging?` .
+- **Answer questions about the incident** , connected alerts, and attachments.
+- **Answer general engineering questions:** Ask @incident general engineering questions whenever you need it. This includes things like: `@incident what does 'skip locked' mean in postgres?` or `@incident can you rewrite this query to group by customer_id`
+
+### What happens when it can't do something?
+
+If @incident can’t complete your request, it will say “I can’t do that yet.” and prompt you with the relevant slash command (e.g., `/inc escalate` ).
+
+## Who can use @incident & how to enable it in your account?
+
+- Available to all **Pro and Enterprise** customers using Slack. It is **not** available for Basic, Team plan, MS Teams users, on-call–only participants, or workspaces that opted out of AI features/required sub-processors.
+- If it isn't working for you, it's probably because your account doesn't store all Slack messages [.](http://messages.to/) To enable this, you'll need to update your message storage settings to 'Enabled' at [Settings → Security](https://app.incident.io/~/settings/security) .
+
+## Privacy, Permissions & Data Use
+
+### Do you train models based on our data?
+
+No, we never train or fine tune AI models based on your data. Additionally, we have zero data retention agreements in place with the sub-processors we use to provide our AI features, including OpenAI and Anthropic. You can read more detail in our AI Privacy Guidance in our [trust centre](https://trust.incident.io/) .
+
+More generally, all of the same controls outlined in our Trust Centre and Privacy Policy apply here, such as encryption.
+
+### Do you use data from private incidents?
+
+By default, all AI features are disabled in private incidents. Optionally, you can opt-in to AI features in private incidents in [Settings → Security](https://app.incident.io/~/settings/security) [.](https://app.incident.io/~/settings/security)

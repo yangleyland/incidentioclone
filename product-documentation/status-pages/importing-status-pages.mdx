@@ -1,0 +1,168 @@
+---
+title: Importing status pages
+description: Migrate from Atlassian Statuspage or other providers without losing history or subscribers
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Importing status pages
+
+Migrating status pages shouldn't mean starting from scratch. Whether you're moving from Atlassian Statuspage or another provider, incident.io helps you bring your configuration, historical incidents, and subscribers along—so your users see continuity during the transition.
+
+## Atlassian Statuspage migration
+
+incident.io offers direct import from Atlassian Statuspage to public status pages. The migration brings over your page setup, components, incident history, maintenance windows, and subscribers.
+
+**What gets imported:**
+- Page configuration (name, branding, components)
+- Historical incidents with all updates and timestamps
+- Maintenance window history
+- Email subscribers and their component preferences
+- Uptime data and status history
+
+**What doesn't migrate:**
+- Webhook subscribers (must be manually reconfigured)
+- Slack subscribers (use incident.io's native Slack integration instead)
+- SMS subscribers (must subscribe again via incident.io)
+- Customer or internal status pages (Atlassian import creates public pages only)
+
+### Prerequisites
+
+Before starting the migration:
+
+1. **Enable Atlassian Statuspage integration** - Navigate to **Settings** → **Integrations** → **Atlassian Statuspage** and connect your account
+2. **Admin access to Atlassian** - You'll need API credentials from your Atlassian Statuspage account
+3. **Decide on timing** - Plan when to switch over (subscribers aren't imported until you go live)
+
+### Migration process
+
+Navigate to **Status Pages** and click **Import from Atlassian Statuspage** to begin. The migration happens in three phases:
+
+<Steps>
+  <Step title="Import configuration and history">
+    The import wizard fetches your Atlassian status page setup:
+    - Components are mapped to incident.io components
+    - Historical incidents appear with original timestamps
+    - Page branding (logo, colors) is preserved where possible
+    - Maintenance windows populate the calendar view
+
+    This phase completes in minutes for most pages. Your Atlassian status page continues operating normally—nothing changes for subscribers yet.
+  </Step>
+
+  <Step title="Verification">
+    Review the imported page in incident.io before going live:
+    - Check component mappings are correct
+    - Verify historical incidents display accurately
+    - Test the page appearance and branding
+    - Configure any incident.io-specific settings (custom domain, additional branding)
+
+    Your status page shows a banner indicating it's in preview mode and not yet live.
+  </Step>
+
+  <Step title="Go live">
+    When ready to switch, click **Go live** in the banner. This triggers subscriber migration:
+    - All email subscribers from Atlassian are imported with their preferences
+    - Subscribers receive their next notification from incident.io (no confirmation email)
+    - Your incident.io status page becomes the active source of truth
+    - Update DNS if using a custom domain to point to incident.io
+
+    **Important:** Subscriber import happens at go-live to avoid double notifications. If you delay going live, new subscribers added to Atlassian after the initial import won't transfer automatically—you'll need to export and import them manually.
+  </Step>
+</Steps>
+
+### Post-migration steps
+
+After going live:
+
+1. **Update status page links** - Change links in your app, docs, and support portal to the new URL
+2. **Configure custom domain** - Set up `status.yourcompany.com` if not already configured (see [External status pages](/product-documentation/status-pages/external-status-pages))
+3. **Sunset Atlassian page** - Mark your old Atlassian page as deprecated or redirect to incident.io
+4. **Reconfigure webhooks** - If you had webhook subscribers, set up equivalent integrations in incident.io
+5. **Test incident publishing** - Publish a test incident to confirm subscribers receive notifications
+
+## Importing from other providers
+
+Migrating from providers other than Atlassian Statuspage (like StatusCast, Sorry™, or custom solutions) requires manual import.
+
+### Configuration and history
+
+Most providers don't offer direct import. You'll need to manually:
+- Create your status page in incident.io
+- Set up components matching your old page
+- Optionally import historical incident data via CSV (contact help@incident.io for assistance)
+
+Historical incidents aren't essential—most users care about current status and future updates, not old incident history.
+
+### Subscriber migration
+
+Import subscribers from any provider via CSV upload:
+
+1. **Export subscribers** from your current provider as CSV
+2. **Navigate to your status page** in incident.io → **Settings** → **Subscribers**
+3. **Click Import subscribers** and upload the CSV
+4. **Map columns** - Match CSV fields to incident.io's required fields (email, component subscriptions)
+5. **Complete import** - Subscribers are added silently (no confirmation emails sent)
+
+**CSV format requirements:**
+- Email addresses (required)
+- Component subscriptions (optional—specify which components each subscriber follows)
+- One subscriber per row
+
+**Important:** Only import subscribers who previously consented to status page notifications. Anti-spam regulations (CAN-SPAM, GDPR) require explicit opt-in. Don't add new addresses during migration.
+
+### Timing considerations
+
+Run both status pages in parallel during transition:
+1. Set up incident.io status page completely
+2. Publish test incidents to verify everything works
+3. Import subscribers as the last step before switching
+4. Update all links to point to incident.io
+5. Deprecate old status page
+
+This approach minimizes risk—if something goes wrong with incident.io, your old page still operates.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can I import to customer or internal status pages?">
+    Atlassian Statuspage import only creates public status pages. If you need customer or internal pages, create those separately in incident.io after importing your public page.
+  </Accordion>
+
+  <Accordion title="What happens to subscribers during migration?">
+    Subscribers aren't imported until you click "Go live" in the Atlassian import flow. This prevents double notifications if you're running both pages in parallel. Once you go live, email subscribers transfer automatically with their component preferences intact.
+  </Accordion>
+
+  <Accordion title="Can I import webhook or Slack subscribers from Atlassian?">
+    No. Only email subscribers migrate. Webhook subscribers need manual reconfiguration in incident.io. For Slack notifications, use incident.io's native Slack integration instead of Atlassian's webhook approach.
+  </Accordion>
+
+  <Accordion title="How long does the import take?">
+    The initial import (configuration and history) typically completes in 5-15 minutes depending on your incident history size. Subscriber import at go-live takes 1-5 minutes for most pages.
+  </Accordion>
+
+  <Accordion title="What if new subscribers join Atlassian after I start the import?">
+    New subscribers added to Atlassian between starting the import and going live won't automatically transfer. Export them from Atlassian and manually import via CSV after going live, or go live quickly to minimize the gap.
+  </Accordion>
+
+  <Accordion title="Can I preview the imported page before going live?">
+    Yes! After the initial import completes, your status page is accessible in incident.io but shows a preview banner. Subscribers still see your Atlassian page. Review everything, then click "Go live" when ready to switch.
+  </Accordion>
+
+  <Accordion title="Will my uptime percentages carry over?">
+    Yes. Historical uptime data imports with your incident history, so uptime percentages reflect your actual service reliability from before the migration.
+  </Accordion>
+
+  <Accordion title="Can I migrate multiple Atlassian status pages?">
+    Yes. Repeat the import process for each Atlassian page you want to migrate. Each becomes a separate public status page in incident.io.
+  </Accordion>
+
+  <Accordion title="What happens to my Atlassian page after migration?">
+    Your Atlassian status page continues operating until you decide to shut it down. incident.io doesn't automatically disable or modify your Atlassian page. You control when to deprecate it.
+  </Accordion>
+
+  <Accordion title="Can I test incident publishing before going live?">
+    Yes. Publish test incidents to your imported page while it's in preview mode. These won't notify subscribers (since they haven't been imported yet). Delete test incidents before going live.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,37 @@
+---
+title: "How do I set up a workflow trigger for Slack emoji reactions?"
+description: ""
+canonical_article_id: 27
+migrated_at: "2026-01-21T18:57:49Z"
+source_url: "https://help.incident.io/articles/1764995259-how-do-i-set-up-a-workflow-trigger-for-slack-emoji-reactions"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1764995259-how-do-i-set-up-a-workflow-trigger-for-slack-emoji-reactions) on January 21, 2026
+</Info>
+
+## Context
+
+When setting up workflow triggers for Slack emoji reactions, you'll need to make sure you do it in the correct way to configure the trigger conditions for emoji reactions to messages in Slack channels.
+
+## Answer
+
+To set up a workflow trigger for Slack emoji reactions, follow these guidelines:
+
+1. In the workflow trigger conditions, use the text version of the emoji rather than the emoji symbol itself. For example, use "ticket" instead of " " or ":ticket:"
+2. The workflow will only trigger for reactions to regular messages in Slack
+3. The workflow will not trigger for reactions to:
+  - Incident updates
+  - Messages created via the `/inc update` command
+
+**For example:**
+
+![image-5bb32de4.png](/images/help-centre/how-do-i-set-up-a-workflow-trigger-for-slack-emoji-reactions/screenshot-1.png)
+
+![image-53f18d74.png](/images/help-centre/how-do-i-set-up-a-workflow-trigger-for-slack-emoji-reactions/screenshot-2.png)
+
+<Info>
+
+Using the actual emoji symbol (like ) or the emoji code (like :ticket:) in the trigger condition will result in unpredictable behaviour. Always use the plain text name of the emoji (e.g., "ticket") for reliable results.
+
+</Info>

@@ -1,0 +1,38 @@
+---
+title: "What determines if you're on call?"
+description: ""
+canonical_article_id: 149
+migrated_at: "2026-01-21T18:21:15Z"
+source_url: "https://help.incident.io/articles/2878728417-what-determines-if-you%27re-on-call"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2878728417-what-determines-if-you%27re-on-call) on January 21, 2026
+</Info>
+
+In our mobile app and our dashboard, we'll indicate whether you're on-call or not. However, if you're using working hours across schedules and escalation paths, it can be unclear how this works. Below, we've outlined how we determine whether you're on call.
+
+![](/images/help-centre/what-determines-if-you're-on-call/screenshot-1.png)
+
+In short, we will consider you as on-call if you *can currently receive high urgency notifications for an escalation, before anyone else.*
+
+**You're only on call if you're on an escalation path**
+
+The only way to be escalated to (paged) through incident.io is via an escalation path, or directly. There is no way to escalate to a schedule. Therefore, if you're on a schedule but no escalation path, we'll tell you that you're not on call.
+
+We'll account for you being on this escalation path either through a schedule, or
+
+**If you're on an escalation path through a schedule, you must be currently active on that schedule**
+
+If you're on call through a schedule, you must be active on that schedule. Additionally, the current time must be within the working hours defined, if it's not a 24/7 schedule.
+
+This also means that you will *not* be considered to be on call if you are on a schedule but not currently active on it, even if your level in the escalation path escalates via round-robin, or to all users on the schedule.
+
+**You are currently the first reachable person on the path, with high-urgency notifications**
+
+Lastly, we look at the path itself. We will only consider you to be on call if you are on the first reachable level, that level is currently active with respect to working hours (if you branch by working hours), and the level is configured to send high-urgency notifications.
+
+This means that:
+
+- If you are on level 2 with high urgency, but no one is currently on call for level 1, you are considered on call, as you would be the first person to be notified.
+- If you are on level 1 *outside working hours* , and the current time is within working hours, you are not on call.

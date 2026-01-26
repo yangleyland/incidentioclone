@@ -1,0 +1,80 @@
+---
+title: Nudges
+description: Keep incident response on track with automated reminders that adapt to your team's activity.
+icon: "/icons/redo.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Nudges
+
+Nudges send automated reminders to incident channels, prompting responders to take important actions like providing updates, assigning roles, or resolving inactive incidents. They help maintain momentum during incidents by ensuring critical tasks don't get forgotten when teams are focused on resolution.
+
+incident.io includes 8 default nudges that cover common incident response actions. These nudges use smart scheduling to adapt their timing based on incident activity, minimizing noise while keeping teams on track.
+
+## Default nudges
+
+incident.io comes with 8 pre-configured nudges that prompt responders to complete essential incident tasks:
+
+- **Prompt to resolve inactive incidents** - Reminds teams to close incidents when the channel has been inactive
+- **Prompt to assign the Incident Lead role** - Ensures incidents have a designated lead
+- **Prompt to send an internal incident update** - Encourages regular status updates for stakeholders
+- **Prompt to update public status page** - Reminds teams to keep external communications current (if you have a status page)
+- **Prompt to set a summary** - Prompts for a summary of what happened and current status
+- **Prompt to accept or decline a triage incident** - Ensures triaged incidents are reviewed and classified
+- **Prompt to ask for help** - Suggests escalating or requesting assistance in Slack
+- **Prompt to create a stream** - Reminds teams to organize related activities into streams
+
+These nudges run automatically during incidents without requiring configuration.
+
+## Smart scheduling
+
+Nudges use smart scheduling to minimize noise in incident channels. Rather than running on fixed intervals, incident.io adapts when nudges appear based on channel activity.
+
+For example, if another nudge was just sent, the system delays the next nudge by a few minutes to avoid overwhelming the channel. This context-aware timing helps nudges feel helpful rather than intrusive, especially during high-activity incidents when responders are actively coordinating.
+
+Smart scheduling is enabled by default and runs automatically across all nudges.
+
+## Customizing nudges
+
+On Pro or Enterprise plans, you can edit existing nudges, create new ones, or disable default nudges entirely.
+
+**To customize nudges:**
+
+1. Navigate to **Settings → Nudges**
+2. Select the nudge you want to edit or click **Add nudge** to create a new one
+3. Configure the nudge settings:
+   - **Message**: Customize the text sent to incident channels
+   - **Frequency**: Adjust how often the nudge repeats
+   - **Conditions**: Define when the nudge should trigger based on incident attributes or state
+
+Custom nudges let you tailor reminders to your team's specific workflows and incident response practices.
+
+<Tip>
+You can use incident attributes and custom fields in nudge messages to make them more contextual. For example, reference the Incident Lead using `Incident->Incident Lead` to @mention them in Slack.
+</Tip>
+
+## Related features
+
+- [Incident actions](/product-documentation/incident-response/incident-actions) - Manual actions responders can take during incidents
+- [Workflows](/product-documentation/workflows/overview) - Build automated workflows that trigger based on incident events
+
+---
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How do I mention the Incident Lead in a nudge message?">
+    Use `Incident->Incident Lead` in your nudge message configuration. The system automatically handles Slack mention formatting - no need to add the `@` symbol.
+  </Accordion>
+
+  <Accordion title="Can I disable default nudges?">
+    Yes, on Pro or Enterprise plans, you can disable any default nudge by navigating to **Settings → Nudges** and editing the nudge settings. You can also adjust their frequency or conditions to better match your workflow.
+  </Accordion>
+
+  <Accordion title="Can I set custom reminders during incidents?">
+    Nudges are automated prompts configured in settings. For custom, one-time reminders during specific incidents, use [Workflows](/product-documentation/workflows/overview) to create time-based triggers or manual actions.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,27 @@
+---
+title: "How do I tag a Slack user using their Slack username in a workflow?"
+description: ""
+canonical_article_id: 26
+migrated_at: "2026-01-21T18:57:48Z"
+source_url: "https://help.incident.io/articles/6545033113-how-do-i-tag-a-slack-user-using-their-slack-username-in-a-workflow"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6545033113-how-do-i-tag-a-slack-user-using-their-slack-username-in-a-workflow) on January 21, 2026
+</Info>
+
+## Context
+
+When creating a workflow that needs to mention or tag a specific user in Slack, they need to have an incident role and you have to reference their incident role in the workflow rather than their full name. This is particularly useful when automating notifications or mentions to role-specific team members, such as a Communications Lead.
+
+## Answer
+
+To properly tag a Slack user in a workflow, simply use the direct role reference without selecting additional user attributes. For example:
+
+1. In your workflow builder, when you need to reference a user, select the role directly (e.g., "Incident → Communications Lead")
+2. Do not select additional attributes like "Slack User" and "Name" - this will return their full name instead of their Slack handle
+3. The system will automatically convert the role reference into a proper Slack mention (@username) when the workflow executes
+
+![Screenshot 2025-06-24 at 9.17.15 AM.png](/images/help-centre/how-do-i-tag-a-slack-user-using-their-slack-username-in-a-workflow/screenshot-1.png)
+
+Unfortunately, it's also worth mentioning that it's not possible to mention a slack group at the moment.

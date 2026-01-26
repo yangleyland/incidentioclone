@@ -1,0 +1,120 @@
+---
+title: ServiceNow
+description: Connect incident.io with ServiceNow to bring your user groups and services from CMDB into Catalog
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# ServiceNow
+
+Connect incident.io with ServiceNow to bring your user groups and services from CMDB into Catalog.
+
+## Connecting ServiceNow
+
+incident.io connects to ServiceNow using a **OAuth app** and **Web Service user account**. Let's get started with the OAuth app.
+
+<Note>
+You will need a ServiceNow Admin to complete these steps.
+</Note>
+
+### 1. Create an OAuth App
+
+Log in to ServiceNow and search for "**OAuth**" in the filter navigation:
+
+<img src="/images/integrations/servicenow/servicenow-oauth-search.png" alt="Search for OAuth in ServiceNow" />
+
+Select **Application Registry**, and click **New**.
+
+<img src="/images/integrations/servicenow/servicenow-new-app.png" alt="Create new application registry" />
+
+Select **Create an OAuth API endpoint for external clients**.
+
+Enter 'incident.io' for the name, and add 'useraccount' to the Auth Scopes section. Leave other options as the defaults:
+
+<img src="/images/integrations/servicenow/servicenow-oauth-config.png" alt="Configure OAuth app" />
+
+Find the app you've just created in the list. Copy the **Client ID** and **Client Secret** values: we'll need them later!
+
+### 2. Create a Web Service Account
+
+<Note>
+Any ServiceNow user account can be used so long as it has the relevant roles assigned. However, any actions taken by incident.io in ServiceNow will appear as being taken by this user account, so we strongly recommend creating a user for this purpose only.
+</Note>
+
+In ServiceNow, search for '**User Administration**' in the filter navigation:
+
+<img src="/images/integrations/servicenow/servicenow-user-admin.png" alt="User Administration" />
+
+Select **Users**, then click **New** in the top-right.
+
+Select a **username** and **email**, for example 'incident.io' and 'incidentio-service@my-domain.com':
+
+<img src="/images/integrations/servicenow/servicenow-new-user.png" alt="Create new user" />
+
+Make sure **Password needs reset** and **Locked out** are not selected, and **Active** and **Web service access only** are selected.
+
+Click **Submit**, then navigate to the newly-created user.
+
+At the bottom, select the **Roles** tab, then **Edit...**. Add the following roles:
+
+- `cmdb_read`: allows us to read data from your Configuration Management Database
+- `sn_cmdb_user`: allows us to read information about users and groups in your ServiceNow account
+- `incident_manager`: allows us to sync incident data in to ServiceNow incident records
+
+<img src="/images/integrations/servicenow/servicenow-user-roles.png" alt="Add user roles" />
+
+Click **Save** to apply these changes and return to the user page.
+
+Click **Set Password**, then **Generate**, then **Save Password**.
+
+<img src="/images/integrations/servicenow/servicenow-set-password.png" alt="Set password for service account" />
+
+Copy the newly-generated password, we'll need it shortly!
+
+### 3. Installing the integration
+
+We're now ready to install the ServiceNow integration in incident.io.
+
+Go to [Settings → Integrations](https://app.incident.io/~/settings/integrations/servicenow), and click on **ServiceNow**, then **Connect**.
+
+<img src="/images/integrations/servicenow/servicenow-connect.png" alt="Connect ServiceNow integration" />
+
+Use the following details:
+
+- Your **subdomain** is the part of the URL where you log in to ServiceNow. For example, if your ServiceNow instance is accessed at `hyper-payments.service-now.com`, your subdomain is `hyper-payments`.
+- Your **OAuth Client ID** and **OAuth Client Secret** are the credentials you created in [part 1](#1-create-an-oauth-app) above.
+- Your **Username** and **Password** are the credentials for the service account you created in [part 2](#2-create-a-web-service-account).
+- Click **Connect** to verify your credentials and complete the connection
+
+If you have any issues, please get in touch.
+
+## Data flows
+
+- Incident created/updated: writes to (or updates) incident table.
+- Follow-up created/updated: writes to (or updates) task table.
+- Add comment: appends to work notes field on timeline events
+
+## Field mappings
+
+### Incidents
+
+- Incident name: `short_description`
+- Description is as set in your template
+- `state`: fixed value 1 (New)
+- `urgency`: fixed value 2 (Medium)
+- `impact`: fixed value 2 (Medium)
+- `opened_by`: fixed value integration_user
+
+### Follow-ups
+
+- Follow-up title: `short_description`
+- Follow-up description: `description`
+- Linked incident's `external_issue_reference`: `parent`
+- `state`: fixed value 1 (Open)
+
+## State mappings
+
+- 1 (New), 2 (InProgress), 3 (OnHold), 4 (Pending), 5 (AwaitingProblem), all become "Open" in incident.io.
+- 6 (Resolved), 7 (Closed) become "Completed"

@@ -1,0 +1,38 @@
+---
+title: "Closing incidents via the API"
+description: ""
+canonical_article_id: 363
+migrated_at: "2026-01-21T12:35:59Z"
+source_url: "https://incident-io-knowledge-base.help.usepylon.com/articles/2125146787-closing-incidents-via-the-api"
+---
+
+<Info>
+Content migrated from [original help article](https://incident-io-knowledge-base.help.usepylon.com/articles/2125146787-closing-incidents-via-the-api) on January 21, 2026
+</Info>
+
+Incidents in a post-incident status can be closed via [our API](https://api-docs.incident.io/).
+
+This is particularly useful for teams that carry out follow-up actions from incidents in external tools, and want to automatically close the incident in [incident.io](http://incident.io) once those tasks are complete.
+
+### Prerequisites
+
+To use this feature, you must use an API Key with a specific scope. This ensures that incidents aren't accidentally closed without a proper review unless explicitly authorized.
+
+
+1. Navigate to **Settings > Integrations > API Keys**
+2. Create a new API Key
+3. Ensure the key has the **Close incidents by opting out of the post-incident flow** permission enabled
+
+### How to use it
+
+You can transition the incident by using the [Edit Incident endpoint](https://www.google.com/search?q=https://api-docs.incident.io/%23operation/Incidents_Update) (`PATCH /v1/incidents/{id}`).
+
+
+- **From:** The incident must currently be in a valid post-incident status (e.g., `Resolved`, `Fixing`)
+- **To:** The target status must be `Closed`
+
+When you successfully close an incident via the API:
+
+
+- The incident status moves to **Closed**
+- The incident is marked as "opted" of the post-incident flow

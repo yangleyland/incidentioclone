@@ -1,0 +1,71 @@
+---
+title: "Housekeeping and tidy up"
+description: "Close incidents properly to maintain clean records and move to post-incident learning"
+icon: "/icons/sparkles.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Housekeeping and tidy up
+
+When the immediate impact is over, closing your incident properly keeps your records clean and helps your team move into post-incident learning and improvement.
+
+## Resolving incidents
+
+Once you've fixed the issue and confirmed there's no more ongoing impact, you'll want to resolve the incident. This moves it from active response mode into either the post-incident flow or closed state.
+
+**From Slack:**
+- In your incident channel (`#inc-...`), use `/incident status` and update to your resolution status
+- Or use `/inc resolve` to directly mark the incident as resolved
+
+**From the dashboard:**
+- Go to the incident's homepage
+- Click **Share update** in the top right
+- Update the status to your resolution status
+
+When you resolve an incident, you'll be prompted about whether to enter the post-incident flow. This is where your team can complete tasks like writing post-mortems, scheduling debriefs, and reviewing follow-ups.
+
+## Moving to post-incident
+
+After resolving, you have two options:
+
+**Enter the post-incident flow** - Choose this if you want to learn from the incident. You'll be guided through tasks like reviewing the timeline, creating a post-mortem document, and scheduling a debrief. The incident automatically progresses through these tasks and closes when complete.
+
+**Skip to closed** - Choose this for minor incidents that don't need reflection. The incident closes immediately without going through post-incident tasks.
+
+Your organization can configure which incidents automatically require the post-incident flow (like all major incidents) in **Settings > Respond > Lifecycle**. Even if it's not required, responders can always opt in or out.
+
+## What happens after resolution
+
+Once an incident is resolved (and any post-incident tasks are complete), a few things happen automatically:
+
+- The incident timeline is preserved with all events, updates, and timestamps
+- The incident channel can be archived according to your team's configuration
+- All incident data remains searchable and available for reporting in Insights
+- Follow-ups you've created remain tracked and can be exported to tools like Jira
+
+The incident remains in your system permanently for learning and analysis, even after the channel is archived.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I reopen an incident after it's closed?">
+    Yes. From the incident Slack channel, use `/inc update` and change the status back to an active status. You can also do this from the dashboard by clicking **Share update** on the incident's homepage.
+
+    If your incident channel has been archived, you'll need to unarchive it in Slack first (go to the channel settings and click "Unarchive"), then update the status.
+  </Accordion>
+
+  <Accordion title="Can I edit the incident timeline after closing?">
+    Yes. The timeline is completely customizable even after an incident is closed. You can add your own narrative or events that happened in external systems. Learn more in the [Timeline documentation](/product-documentation/incident-response/timeline).
+  </Accordion>
+
+  <Accordion title="How do I opt out of the post-incident flow?">
+    If an incident enters the post-incident flow but you decide it's not worthwhile, type `/inc close` in the incident channel or select **Opt out of post-incident** in the overflow menu on the dashboard. You'll need to provide a reason, which will be included in the message sent to the Slack channel.
+  </Accordion>
+
+  <Accordion title="What if I want to rename an incident after closing?">
+    You can rename an incident at any time, even after it's closed. From the incident's Slack channel, use `/inc rename`, or from the Incident Homepage, open the menu in the top right and click "Rename incident".
+  </Accordion>
+</AccordionGroup>

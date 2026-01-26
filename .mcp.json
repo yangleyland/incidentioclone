@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "/Users/pietro/Documents/help_docs/agents/playwright/data",
+        "DEMO_BASE_URL": "https://app.incident.io/incidentiopietrodemo/"
+      }
+    }
+  }
+}

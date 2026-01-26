@@ -1,0 +1,29 @@
+---
+title: "Why does incident.io require a communications platform?"
+description: ""
+canonical_article_id: 319
+migrated_at: "2026-01-21T18:54:45Z"
+source_url: "https://help.incident.io/articles/7191573344-why-does-incident.io-require-a-communications-platform"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7191573344-why-does-incident.io-require-a-communications-platform) on January 21, 2026
+</Info>
+
+In order to use incident.io, you must have either Slack or Microsoft Teams connected. This is true whether you are using our Response product, our On-call product, or both. Even if you are not creating channels for incidents, we use these platforms to communicate with users, so we still require our bot to be installed to one of these two platforms.
+
+For **On-call,** there are a number of features which make use of these communications platforms, for example:
+
+- Being able to have Slack channels a destination for on-call escalations. For example, configuring low severity alerts to route to a Slack channel during office hours.
+- Configuring Slack or Microsoft Teams DMs as a notification mechanism on top of SMS, push notification and email. This method is incredibly convenient for dealing with escalations with minimal friction. This comes as a default for all users.
+- Sending shift reminders for users before their shifts
+- Linking On-call schedules to Slack groups, where we keep the members in the group fully in-sync with whoever is on-call. This allows users across your organisation to interface with people that are on-call natively in Slack (e.g. `@platform-on-call can you help here?` ).
+- Requesting cover, by using our `/inc cover` command within Slack, as well as having users respond to those cover requests, which are sent as DMs.
+- Creating channels for incidents, if your alert route is configured to do this.
+
+For **Response,** this also includes (but is not limited to):
+
+- Creating public and private channels for incidents.
+- Being able to post messages into those channels.
+- Being able to DM users with notifications about role assignments, actions, follow-ups, and much more.
+- Populating data from Slack and Microsoft Teams into Catalog types.

@@ -1,0 +1,37 @@
+---
+title: "Scribe and incident calls"
+description: ""
+canonical_article_id: 334
+migrated_at: "2026-01-21T18:55:15Z"
+source_url: "https://help.incident.io/articles/1719396062-scribe-and-incident-calls"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1719396062-scribe-and-incident-calls) on January 21, 2026
+</Info>
+
+## Errors
+
+This page gives extra detail on errors that you might see when using [incident.io](http://incident.io/) to manage your incident calls, or when using Scribe to transcribe your incident calls.
+
+## Call not found
+
+No call could be found for the given incident, and so Scribe was unable to find a call to join. To fix this, you can start a new call, or update the call link to the URL of an existing call, and Scribe will join that instead.
+
+## Scribe cannot join multiple calls
+
+This error is shown when there are multiple active calls for an incident. If this happens, please attempt to end one of these calls. If the error persists after trying this, please contact us.
+
+## Scribe was blocked
+
+You'll see this error when Scribe was blocked from joining the meeting. This might be because your Google Meet or Zoom account has restrictions around allowing guests into calls. Please check that this is configured correctly.
+
+## Scribe was removed
+
+You'll see this error when the Scribe bot was removed from the call by the host. You can add Scribe again from the incident dashboard.
+
+## Rate limited
+
+Some providers impose a rate limit on the number of calls that can be created in a given period. As an example, Zoom (in some cases) imposes a limit of 100 calls per day for a given user. In this case, the user is the one used to connect Zoom when setting up the integration.
+
+If you hit this limit, you may want to consider turning off automatic incident call creation.

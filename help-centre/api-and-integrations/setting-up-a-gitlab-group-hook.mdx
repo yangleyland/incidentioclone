@@ -1,0 +1,63 @@
+---
+title: "Setting up a GitLab Group Hook"
+description: ""
+canonical_article_id: 248
+migrated_at: "2026-01-21T18:39:41Z"
+source_url: "https://help.incident.io/articles/6595289358-setting-up-a-gitlab-group-hook"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6595289358-setting-up-a-gitlab-group-hook) on January 21, 2026
+</Info>
+
+We rely on a GitLab Group Hook to enable:
+
+1. **Syncing changes to follow-ups in GitLab back to incident.io**
+
+2. **Linking merge requests to incidents automatically** when you mention the incident reference (e.g. `INC-123` ) in a merge request.
+
+3. **Posting updates to merge requests in the incident channel** , for example when a linked MR is merged.
+
+## Setting up
+
+<Warning>
+
+You'll need a GitLab Group Owner to do this setup.
+
+</Warning>
+
+#### 1. Find your secret token
+
+Under [Settings → Integrations → GitLab](https://app.incident.io/~/settings/integrations/gitlab) , you'll find a unique secret token. Copy this down - you'll need it to successfully configure the hook.
+
+![](/images/help-centre/setting-up-a-gitlab-group-hook/screenshot-1.png)
+
+#### 2. Create the hook
+
+Within your top-level group, click **Settings** then **Webhooks** :
+
+![](/images/help-centre/setting-up-a-gitlab-group-hook/screenshot-2.png)
+
+Then ' **Add new webhook** '.
+
+For the **URL** use `https://app.incident.io/webhooks/gitlab` .
+
+For the **Secret token** , paste in the secret token from the incident.io dashboard.
+
+Under **Trigger** , select:
+
+Issues events
+
+Merge request events
+
+![](/images/help-centre/setting-up-a-gitlab-group-hook/screenshot-3.png)
+
+Everything else can be left as the default. Click **Add webhook** .
+
+#### 3. Verify the connection
+
+In [Settings → Integrations → GitLab](https://app.incident.io/~/settings/integrations/gitlab) , you can see when the last webhook was received. Make a small change to an issue to trigger a webhook:
+
+![](/images/help-centre/setting-up-a-gitlab-group-hook/screenshot-4.png)
+
+**You're all set**

@@ -1,0 +1,67 @@
+---
+title: "Live call routing"
+description: ""
+canonical_article_id: 175
+migrated_at: "2026-01-21T18:29:13Z"
+source_url: "https://help.incident.io/articles/6647601278-live-call-routing"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6647601278-live-call-routing) on January 21, 2026
+</Info>
+
+Live call routing lets you set up a phone number that can be used to get hold of someone on-call.
+
+## Request a number
+
+To get started, go to Settings → Call routes, click ' **Request number** '.
+
+Set a name for the number for your internal use - e.g. "Urgent support" or "Regulatory line". Select the country code, phone number type and let us know any other requirements for the number, for example an area code.
+
+Depending on the type of phone number you've requested, you might have to enter additional information so we can provision your number. The form will take you through the required steps.
+
+Once you've requested a number and your information has been reviewed, we'll get to work setting your number up. We'll be in touch within a couple of days about any specific requests.
+
+## Configure who to call
+
+Calls to your phone number can be routed to the people currently on-call for a schedule, everyone on a schedule, specific individuals, or a mix of all three.
+
+On each level, we'll try calling each person for 30 seconds. If they don't pick up, we'll try the next person. Once we've tried everyone on level 1, we'll try the next level, until we run out of options.
+
+![SCR-20260113-kihp.png](/images/help-centre/live-call-routing/screenshot-1.png)
+
+## Configuring the call experience
+
+You can customise your call route such that:
+
+- Only whitelisted numbers are able to call
+- A key needs to be pressed for the person to be connected (e.g. "Press 1 to connect"). This includes the ability to write a custom prompt to be said.
+- We use a different voice language. If you would like a language that is not listed in the form, please get in touch!
+
+## Creating an incident
+
+Once you've requested your first live call routing number, a new 'Incoming calls' alert source will appear under **Alerts → Configuration** . You can use this to declare an incident whenever a call comes in. Anyone we route the call to will automatically be invited to the incident channel.
+
+![](/images/help-centre/live-call-routing/screenshot-2.png)
+
+[Learn more about configuring alerts](https://intercom.help/incidentio-docs/en/articles/10072707-creating-incidents-automatically-via-alerts)
+
+**Note** : Incoming call alerts will resolve when the call ends. We recommend disabling ' **Decline triage incidents if the linked alerts are resolved** ' for alert routes using this source.
+
+## Frequently asked questions
+
+### What does my customer see when calling me?
+
+Your customer only sees the phone number we purchase on your behalf. If you have specific requirements for this number (e.g. a specific country or area code, a toll-free number), please let us know when requesting a number.
+
+### What will I see when I am being connected to a call?
+
+Calls routed to responders will come from your live call routing number. We recommend [adding this number to your phone's do-not-disturb bypass](/help-centre/on-call/being-on-call-as-a-responder/setting-up-notifications-on-ios-and-android) settings.
+
+### Is there an extra charge for live call routing?
+
+Please see our [Pricing](https://incident.io/pricing) page for details on how many numbers are included on each of our plans. Anyone on a call route needs an On-call seat. Please get in touch with your customer success manager if you require more numbers.
+
+### What countries do you support for call route numbers?
+
+All the countries we support are listed within the form. Some countries have regulatory requirements that your business will need to meet for us to be able to provision a number. If you've got a request for another type of number, please select "Other" for the country, write in your request details, and we'll be in touch!

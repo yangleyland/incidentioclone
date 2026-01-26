@@ -1,0 +1,40 @@
+---
+title: "Can we run fake incidents to sandbox incident.io?"
+description: ""
+canonical_article_id: 85
+migrated_at: "2026-01-21T18:15:10Z"
+source_url: "https://help.incident.io/articles/6361462868-can-we-run-fake-incidents-to-sandbox-incident.io"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6361462868-can-we-run-fake-incidents-to-sandbox-incident.io) on January 21, 2026
+</Info>
+
+Sometimes, you just want to practice with [incident.io](http://incident.io/) without the whole company knowing, and without messing up your lovely incident library with fake data
+
+Luckily, we support test incidents for exactly this use case!
+
+---
+
+## What is a test incident?
+
+Test incidents are almost exactly the same as normal incidents: you can set summaries, leads, escalate to others, create [workflows](http://app.incident.io/settings/workflows) , and receive nudges.
+
+The only differences are:
+
+- We won't announce it publicly in any announcement channels
+- It won’t appear in your dashboard in either the list of incidents, or your insights
+- You won't be able to update your status page
+- Workflows will not automatically run but they can be configured to run on a case by case basis within the advanced settings within a workflow
+
+![](/images/help-centre/can-we-run-fake-incidents-to-sandbox-incident.io/screenshot-1.png)
+
+️ **Our Statuspage integration is disabled in a test incident** . This is a safety measure to avoid people updating public Statuspages when you're just trying the tool out.
+
+---
+
+## Creating a test incident
+
+Type `/incident test` from any Slack channel to start a test incident 👇🏼
+
+![](/images/help-centre/can-we-run-fake-incidents-to-sandbox-incident.io/screenshot-2.png)

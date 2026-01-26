@@ -1,0 +1,97 @@
+---
+title: "Debrief placeholders"
+description: ""
+canonical_article_id: 206
+migrated_at: "2026-01-21T18:39:31Z"
+source_url: "https://help.incident.io/articles/9278058354-debrief-placeholders"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9278058354-debrief-placeholders) on January 21, 2026
+</Info>
+
+By default, we help responders schedule a debrief by pushing them to a pre-filled Google Calendar event with the [right people on the invite list](/help-centre/api-and-integrations/communication/customising-your-debrief-invitees) . This means that a responder is responsible for finding a time that works for everyone, using the Google Calendar interface.
+
+If your attendees are on different timezones, or have very busy schedules, this can be tricky to do. You might want to pre-emptively invite everyone to regular placeholder events to keep time available for debriefs. If you don't have any incidents that require a debrief, then great, everyone gets the time back!
+
+![](/images/help-centre/debrief-placeholders/screenshot-1.png)
+
+## How does it work?
+
+Let's say you've followed the instructions below to get set up. When a responder clicks the `Schedule debrief` button from the incident homepage, they'll be presented with upcoming placeholders that are available:
+
+![](/images/help-centre/debrief-placeholders/screenshot-2.png)
+
+If a debrief is already scheduled during a particular placeholder, you won't see it in this list.
+
+Once the responder chooses the best option, we'll schedule the event for you, using your default title and description etc. The event will get attached to the incident immediately, so everyone knows when it is. Neat!
+
+<Warning>
+
+If you ever need to schedule a debrief outside one of these placeholders, you can still do that by hitting the `Schedule manually` option.
+
+</Warning>
+
+## How do I get set up?
+
+<Info>
+
+Debrief placeholders are an **Enterprise** feature.
+
+</Info>
+
+Here, we've provided instructions for getting set up if either: A. You have an existing placeholder you want to use
+
+B. You want to create a new placeholder
+
+## A. How do I use my existing placeholder event?
+
+#### 1. Step 1: Subscribe to the calendar which holds the placeholder
+
+Note the calendar which holds your placeholder event:
+
+![](/images/help-centre/debrief-placeholders/screenshot-3.png)
+
+Then add this as a subscribed calendar within our app following the instructions in [this article](/help-centre/api-and-integrations/communication/google-calendar) .
+
+#### 2. Step 2: Make sure your event meets the requirements
+
+For us to recognise that the event is a placeholder, it must:
+
+- Be a recurring event (e.g. it repeats weekly / monthly / etc)
+- Contain `#incident-io-debrief-placeholder` in the event description
+
+Once you've made these changes, you should notice the event appear in the `Placeholders` section on the [Settings -> Debriefs page](https://app.incident.io/settings/debriefs) .
+
+![](/images/help-centre/debrief-placeholders/screenshot-4.png)
+
+Then you're good to go! You'll now see the time-slot options for this placeholder when scheduling a debrief.
+
+## B. How do I create a new placeholder?
+
+#### 1. Step 1: Subscribe to the calendar you want to create the placeholder in
+
+If you know what calendar you'd like your repeating event to exist in, you'll need to add it as a subscribed calendar within our app, by following the instructions in [this article](/help-centre/api-and-integrations/communication/google-calendar) .
+
+#### 2. Step 2: Create the placeholder
+
+We can help you create a placeholder event. Just choose `Add placeholder ` from the [Settings -> Debriefs page](https://app.incident.io/settings/debriefs) and click "Create with Google Calendar".
+
+![](/images/help-centre/debrief-placeholders/screenshot-5.png)
+
+We'll take you to a Google Calendar event which has been pre-filled with some information:
+
+![](/images/help-centre/debrief-placeholders/screenshot-6.png)
+
+You'll need to:
+
+- Pick the calendar you want the placeholder to be created in, using the dropdown
+- Ensure that the event repeats on a frequency that suits you (e.g. weekly / monthly)
+- Fill in any other details, like the time, guests, location and description
+- Ensure that `#incident-io-debrief-placeholder` stays in the description
+
+Once you've created the placeholder event, you should notice it appear on the [Settings -> Debriefs page](https://app.incident.io/settings/debriefs) .
+
+![](/images/help-centre/debrief-placeholders/screenshot-4.png)
+
+Then you're good to go! You'll now see the timeslot options for this placeholder when scheduling a debrief.

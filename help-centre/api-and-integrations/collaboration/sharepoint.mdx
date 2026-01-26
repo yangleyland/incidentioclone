@@ -1,0 +1,55 @@
+---
+title: "SharePoint"
+description: ""
+canonical_article_id: 365
+migrated_at: "2026-01-21T13:15:42Z"
+source_url: "https://help.incident.io/articles/9507324950-sharepoint"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9507324950-sharepoint) on January 21, 2026
+</Info>
+
+After your incident is over, it can be useful to dig into what happened in an incident, why, and how it can be prevented in future.
+
+Our SharePoint Integration allows you to export post-mortems into SharePoint. Which you can then use to collaborate with your team.
+
+<Warning>
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it**. Sharepoint connections like this, which use OAuth, belong to a specific user — for this reason, you may wish to set up a dedicated service or "bot" account. We use the same user account connection for all our Microsoft integrations. Therefore, the account you use to connect this integration will need to be the same for Microsoft Teams and Outlook.
+</Warning>
+
+## 1. Installing the Integration
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations), find "SharePoint".
+
+Click "Install" and you'll be redirected to the Microsoft installation flow. Review the permissions we're requesting and click "Accept":
+
+![SharePoint integration permissions](/images/help-centre/api-and-integrations/collaboration/sharepoint/sharepoint-integration-permissions.png)
+
+Once you've completed the Microsoft authentication flow, you'll be redirected back to incident.io:
+
+![Integration overview](/images/help-centre/api-and-integrations/collaboration/sharepoint/integration-overview.png)
+
+## 2. Setting up a Postmortem Destination
+
+incident.io has now been connected to SharePoint. Next, we need to specify where in your SharePoint you'd like to export postmortems to.
+
+Go to [Settings → Postmortems](https://app.incident.io/settings/post-mortem), then click "Add destination"
+
+![Postmortem settings](/images/help-centre/api-and-integrations/collaboration/sharepoint/postmortem-settings.png)
+
+Within your web browser, navigate to the folder in SharePoint where you'd like to export postmortems to.
+
+![Navigate SharePoint folder](/images/help-centre/api-and-integrations/collaboration/sharepoint/navigate-sharepoint-folder.png)
+
+Click the share button
+
+![Share button](/images/help-centre/api-and-integrations/collaboration/sharepoint/share-button.png)
+
+Click "Copy link".
+
+![Copy link](/images/help-centre/api-and-integrations/collaboration/sharepoint/copy-link.png)
+
+Paste the link in, give it a sensible name, and click "Create".
+
+You should now be good to go!

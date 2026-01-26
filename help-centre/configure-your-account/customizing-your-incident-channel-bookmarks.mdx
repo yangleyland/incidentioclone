@@ -1,0 +1,51 @@
+---
+title: "Customizing your incident channel bookmarks"
+description: ""
+canonical_article_id: 35
+migrated_at: "2026-01-21T17:52:18Z"
+source_url: "https://help.incident.io/articles/5966305530-customizing-your-incident-channel-bookmarks"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5966305530-customizing-your-incident-channel-bookmarks) on January 21, 2026
+</Info>
+
+You can create custom bookmarks within your incident channels, to give snapshot information and easy-to-find links.
+
+---
+
+1. To create a custom bookmark, first navigate to [Settings](https://app.incident.io/settings/slack-channel) → [Slack Channel](https://app.incident.io/settings/slack-channel) .
+
+![](/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-1.png)
+
+2. Click the "+ Add New button", and create. You will have three options for the kind of bookmark you'd like to add:
+
+![](/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-2.png)
+
+"Pre-defined property" is a field that contains useful information about the incident (i.e. the status of the severity), and will update as it is changed.
+
+"Pre-defined link" lets you choose from our pre-defined bookmarks which link you to a page related to the incident (i.e. a Jira issue ticket).
+
+"Custom link" gives you the ability to bookmark to a link. This can be useful if you have documentation that is commonly accessed during an incident.
+
+3. You can also choose under what condition a bookmark appears (i.e. a link to a critical incident doc only appears on critical incidents).
+
+![](/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-3.png)
+
+4. Next click "Create", and your bookmarks will appear at the top of the incident channel when the conditions you selected are met.
+
+![](/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-4.png)
+
+---
+
+Bookmarks are a great way to give at-a-glance information to team members when they join an incident.
+
+## Why are my bookmarks showing up in the wrong order?
+
+The [Slack API](https://api.slack.com/methods/bookmarks.add) limits what we're able to do with the bookmarks in your incident channel. Currently, we're only able to append bookmarks to the end of the list. This might mean that sometimes, you see bookmarks end up in a different order than the one you've set up.
+
+The alternative here is for us to individually remove and re-add all of the bookmarks that we've created. This turned out to be visually much more jarring, and it also resulted in the reordering of any bookmarks that had been manually added to the channel. Although having bookmarks out of order isn't ideal, we feel like this is the best option for now.
+
+Some actions, such as creating a call for your incident, happen in the background after we've created your incident channel. In these cases, you're likely to see the "Join the call" button show up at the end of your list of bookmarks. We've got much more control over announcement messages: you'll see that the order here will always be what you expect.
+
+We always keep an eye out for improvements to the Slack API, and we hope to be able to improve this in the future.

@@ -1,0 +1,21 @@
+---
+title: "What happens if I migrate to another SAML provider?"
+description: ""
+canonical_article_id: 2019353750
+migrated_at: "2026-01-23T13:12:46Z"
+source_url: "https://help.incident.io/articles/2019353750-what-happens-if-i-migrate-to-another-saml-provider"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2019353750-what-happens-if-i-migrate-to-another-saml-provider) on January 23, 2026
+</Info>
+
+We use WorkOS to provide SAML, and as part of that process, you will be guided through "Attribute mapping". There are two fields that we rely on here: the ID, and the email address.
+
+Initially, you should follow the instructions given by WorkOS in the SAML configuration flow, which will tell you how to map these fields for whichever provider you use.
+
+When logging in via SAML, we get the user's profile back from WorkOS. First, we check to see if the ID of the user is one that we recognise. If it is, you will be logged in as that user. If we don't find a user with that ID, we will look them up using their email address. If this succeeds, we then associate that user with the given ID, for any subsequent logins.
+
+This means that if (during a migration to another SAML provider) the ID changes, but the email remains the same, that no duplicate users will be created, and the migration will be seamless: no additional users will be created, and no further action is required.
+
+This is also true outside of any migrations. For example, if someone's surname changes and both the ID and the email address change, they will end up as a **new user** in incident.io. In these cases, is it not possible for us to merge these users.

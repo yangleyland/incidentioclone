@@ -1,0 +1,71 @@
+---
+title: "What Slack permissions and access scopes do you require?"
+description: ""
+canonical_article_id: 310
+migrated_at: "2026-01-21T18:54:31Z"
+source_url: "https://help.incident.io/articles/7858062198-what-slack-permissions-and-access-scopes-do-you-require"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7858062198-what-slack-permissions-and-access-scopes-do-you-require) on January 21, 2026
+</Info>
+
+As a workspace app, you can interact with [incident.io](http://incident.io/) from anywhere within Slack, but we’re careful with the permissions and scopes we require and request the minimum we need to function.
+
+You can find the [up-to-date list of permissions in Slack here](https://incident-io.slack.com/apps/A01DEGPUHHC-incidentio?tab=settings&next_id=0) .
+
+## Required scopes on installation
+
+All of the following scopes are requested on first installation of our Slack bot, and are required for our app to run.
+
+- `app_mentions:read` to respond to direct mentions to our bot from Slack users
+- `bookmarks:read` to see the bookmarks we set within incident channels
+- `bookmarks:write` to set bookmarks in incident channels (such as the alert that triggered the incident)
+- `canvases:write` to create canvases in incident channels
+- `channels:history` - to read content in Slack channels we're added to, including messages users pin in their incident channel
+- `channels:manage` - to create incident channels
+- `channels-read` - to read incident channel names
+- `chat:write` - to write messages and updates in channels we have access to
+- `chat:write.public` to send announcements to public channels we haven't been added to (such as the incident announcement channel)
+- `commands` to add slash commands, such as `/inc` so you can interact with our bot
+- `files:read` to read files shared in channels we have access to (such as images in incident channels)
+- `files:write` to upload files to channels we have access to so we can share insights reports and other materials
+- `groups:read` to see private incident channels we are part of
+- `groups:write` to post to private incident channels we are part of
+- `groups:history` to read messages in private incident channels we're added to
+- `im:history` to read DMs that are sent to the incident bot
+- `links:read` to view URLs in messages
+- `links:write` to show previews of URLs in messages from our bot
+- `pins:read` to read pinned messages so we can save them to the incident timeline
+- `pins:write` to write new pins to a Slack channel, such as the incident welcome message
+- `reactions:read` to see when users have reacted to messages to trigger an action such as creating followups with
+- `reactions:write` to add reactions to messages, such as marking GitHub pull requests as reviewed
+- `teams:read` to read your organisations name and icon
+- `users:read` to read your organisations users
+- `users:read.email` to match user accounts with other services, such as GitHub
+- `users.profile:read` to read user avatars so they can be displayed in our UI
+- `usergroups:read` to list all user groups for syncing schedules
+- `usergroups:write` to sync On-call schedules into your Slack user groups
+
+## Optional additional scopes
+
+We don't request any of these on installation, but you can choose to provide them later
+
+- `channels:join` - to rejoin incident or announcement channels if we lose access. If this isn't granted, users will have to manually add our bot to any channel they want to interact with us in. If you'd like to configure this, chat to us.
+
+## Privileged access scopes
+
+Depending on your Slack workspace settings, bots and regular users may be restricted from taking certain actions. If your organisation's Slack configuration requires admin access for certain operations, you can choose to additionally provide these scopes, otherwise some incident.io features may be degraded.
+
+You can find out more [details about each of those scopes here](/help-centre/installing-incident-io/what-does-incident.io-need-privileged-slack-access-for)
+
+These scopes are **User Scopes** , which means you're granting us permission to use them on behalf of a specific user, rather than as our bot.
+
+To use any of these, you need to [configure a Slack admin for our bot](/help-centre/installing-incident-io/creating-a-slack-admin-for-privileged-slack-access)
+
+These include:
+
+- `channels:write` to create and archive public incident channels, if this requires admin access in your Slack workspace
+- `groups:write` to create and archive private incident channels, and remove member's access to them if it's revoked within incident.io
+- `usergroups:write` to sync On-call schedules into your Slack user groups, if this requires admin access in your Slack workspace
+- `admin.conversations:write` to convert channels between public and private, to match the visibility of an incident.

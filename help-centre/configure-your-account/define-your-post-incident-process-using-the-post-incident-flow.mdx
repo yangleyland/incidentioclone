@@ -1,0 +1,99 @@
+---
+title: "Define your post-incident process using the Post-incident Flow"
+description: ""
+canonical_article_id: 37
+migrated_at: "2026-01-21T17:55:31Z"
+source_url: "https://help.incident.io/articles/8569345926-define-your-post-incident-process-using-the-post-incident-flow"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8569345926-define-your-post-incident-process-using-the-post-incident-flow) on January 21, 2026
+</Info>
+
+After an incident is resolved, there are usually steps you can take to learn from it and improve for the future. By doing so, you may be able to prevent the incident from happening again or improve your response to similar incidents.
+
+The Post-Incident Flow provides a way to define a set of tasks that should be completed after an incident is resolved, but before it is closed. You can also choose which types of incidents should go through this process. For example, you may only want to use this flow for major incidents.
+
+---
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-1.png)
+
+## Configuring the Post-Incident Flow
+
+To define the steps that you'd like to take to learn from your incidents, head into your [Settings > Improve > Post-incident flow](https://app.incident.io/~/settings/post-incident-flow) . By default, we create a flow with two parts: `Documenting` and `Reviewing` .
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-2.png)
+
+<Info>
+
+Statuses in the post-incident section are unlike other statuses. They have the following key differences: 1. Post-incident statuses have tasks associated with them. These are things like "Create a post-mortem", or "Schedule a debrief". 2. Users don't manually move through post-incident statuses using `/inc update` . Instead, incidents are automatically moved through the statuses as their tasks are complete, or marked as 'Not doing'.
+
+</Info>
+
+To configure the tasks for the post-incident flow, you can either add or edit an existing task. Each task has a customizable description that you can use to give instructions to your responders.
+
+<Info>
+
+**Customers on our Enterprise plan can also:** 1. Configure different post-incident flows, which can be used for different incident types. 2. Create fully-custom tasks, with their title and description.
+
+</Info>
+
+By default, there are several suggested tasks. Several of these are automatically resolved in response to actions in incident.io, such as 'Marking a post-mortem document as complete'. Currently, the suggested tasks we support are:
+
+- **Reviewing the incident timeline** - which contains a link to jump to the incident timeline.
+- **Creating a post-mortem document** - which will be automatically completed when a post-mortem document is attached to the incident.
+- **Schedule the debrief** - which contains a button to create a Google calendar event with all the users involved in the incident.
+- **Mark the post-mortem document as complete** - which will be automatically completed when the post-mortem document is marked as complete
+- **Share the debrief document** - which is automatically completed when you share the post-mortem to a Slack channel
+- **Review follow-ups** - which contains a link to open the incident's follow-ups
+- **Assign the \{insert role\} role** - which allows you to choose an incident role that must be assigned
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-3.png)
+
+<Info>
+
+Please note that if you add new tasks, these will only apply to future incidents going into the post-incident flow. Existing incidents will only contain tasks that were defined when that incident entered the post-incident flow. If an incident's post-incident tasks are deleted, it'll no longer automatically move to the next status. In these cases, you can manually move the incident to the next status via the dashboard.
+
+</Info>
+
+## Requiring incidents to go through the post-incident flow
+
+When closing an incident, users will get the option to opt-in to the post-incident flow. However, you can choose to automatically enter certain types of incidents into the post-incident flow.
+
+In [Settings > Respond > Lifecycle](https://app.incident.io/~/settings/lifecycle) , click 'edit' on the post-incident section. Enable the toggle to automatically put **all** incidents through the post-incident flow, then configure your conditions if you'd like this to only apply to certain kinds of incidents.
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-4.png)
+
+For customers on our Enterprise plan, this is where you configure which post-incident flow is used for each lifecycle.
+
+## Using the post-incident flow
+
+When closing an incident, responders will be prompted as to whether or not they'd like to go through the post-incident flow for this incident.
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-5.png)
+
+If you've enabled the option to automatically enter the post-incident flow, and the incident matches your conditions, you'll instead be entering the post-incident flow.
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-6.png)
+
+After confirming that, you'll enter your first status in your post-incident phase. We'll notify the incident Slack channel about this.
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-7.png)
+
+Similarly, if you open the incident in the dashboard, you'll see the details of each of these tasks. From here, you can mark tasks as completed, skip them, or assign them to a user. When a user is assigned a task, we'll send them a notification to let them know.
+
+Once you've completed all the tasks in a post-incident status, we'll automatically move the incident to the next post-incident status. If it's your final post-incident status, then we'll mark the incident as closed.
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-8.png)
+
+## Opting an incident out of the post-incident flow
+
+If an incident enters the post-incident flow, but you've decided that it's not worthwhile for this incident, you can opt-out. You can do this by typing in `/inc close` into your incident channel, or by selecting **Opt out of post-incident** in the overflow menu at the top right of the incident in the dashboard.
+
+When you opt-out, you have to provide a reason about why you're opting out, which we'll include in the message we send to its Slack channel about the incident now being closed.
+
+![](/images/help-centre/define-your-post-incident-process-using-the-post-incident-flow/screenshot-9.png)
+
+## Hiding the post-incident flow
+
+If you don't want to use the post-incident flow you can [remove all your post-incident statuses](https://app.incident.io/~/settings/post-incident-flow) and you won't be prompted about it when closing incidents.

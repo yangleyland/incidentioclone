@@ -1,0 +1,137 @@
+---
+title: "Incident streams"
+description: ""
+canonical_article_id: 69
+migrated_at: "2026-01-21T18:10:56Z"
+source_url: "https://help.incident.io/articles/7634152236-incident-streams"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7634152236-incident-streams) on January 21, 2026
+</Info>
+
+Major incidents can have hundreds of responders, and even more following updates along the way. In incidents like these there are lots of moving parts:
+
+- Teams like engineering, communications, legal...
+- Different impacts across products, services or regions with different groups working on mitigations
+- Groups exploring independent approaches towards resolution, or investigations on root causes
+
+Manage the complexity by breaking large scale incidents into 'Streams', each of which will have it's own Slack channel, Zoom/Meet call, and distinct leads and participants.
+
+---
+
+## Creating a stream
+
+To create a stream, simply type `/incident stream` in an incident channel.
+
+You'll be presented with a modal to:
+
+- Set a **name** for the stream
+- Assign someone as the **stream lead** - this will usually be a different person to the main incident lead to avoid splitting their focus
+- Invite anyone else who should collaborate on the stream
+
+![](/images/help-centre/incident-streams/screenshot-1.png)
+
+You can also create streams from the incident dashboard.
+
+![](/images/help-centre/incident-streams/screenshot-2.png)
+
+We'll create a new Slack channel for the stream, and invite the stream lead and any participants.
+
+<Info>
+
+If you've [configured automatic call links](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/creating-and-linking-video-call-urls-for-digital-'war-rooms') we'll also create one for your stream. If not, you can also manually link a video call from the stream channel, just [like in an incident channel](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/creating-and-linking-video-call-urls-for-digital-'war-rooms') .
+
+</Info>
+
+---
+
+## Updating a stream
+
+To create an update, simply type `/incident update` in a stream channel, just like you would in an incident channel.
+
+You'll be presented with a modal that:
+
+- Allows you to provide a **short message** to update people with what's going on (' *Can you share any more details* ')
+- Lets you **set a reminder** for your next update: no need to remind yourself manually! We will come back and remind you when an update is due.
+
+![](/images/help-centre/incident-streams/screenshot-3.png)
+
+Alternatively, you can share an update from the stream in the dashboard.
+
+Any updates shared here will be posted in the stream channel, and also announced in the incident channel for anyone following along there.
+
+---
+
+## Closing a stream
+
+Once a stream of work is complete, type `/incident close` in the stream channel.
+
+You'll be presented with a modal that asks you to provide a final update on the stream.
+
+The stream will be marked as as closed, and the final update will be posted in the incident channel to keep everyone up to speed.
+
+![](/images/help-centre/incident-streams/screenshot-4.png)
+
+You can also close a stream from the dashboard the same way you provide an update.
+
+---
+
+## Roles in streams
+
+Just like incidents, you should nominate a person to lead each stream. We recommend you have a separate lead for each stream to the incident, as they cover different areas of work in different Slack channels.
+
+If you have set up [custom incident roles](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/creating-custom-incident-roles) , we’ll also make those available in streams. Any role available in the parent will be available in its streams.
+
+From within the stream channel you can use commands such as `/inc lead` and `/inc handover` just as you would in an incident to reassign the roles in that stream.
+
+![](/images/help-centre/incident-streams/screenshot-5.png)
+
+---
+
+## Streams in your incident timeline
+
+Activity that occurred in a stream will be included in your [incident timeline](/help-centre/learning-from-incidents/generating-your-incident-timeline) in both the dashboard, and your exported postmortem. We’ll highlight which stream each item occurred in.
+
+![](/images/help-centre/incident-streams/screenshot-6.png)
+
+We’ll detect the same types of events automatically as incidents, for example updates and role changes within a stream. You can also pin messages in a stream channel and these will be pinned to the incident timeline.
+
+---
+
+## Restricting access to streams
+
+This can be done by making a private stream from a public incident. Read more about that [here](/help-centre/creating-and-running-incidents/incident-streams/private-incident-streams) .
+
+---
+
+## ️ Streams shortcuts cheatsheet
+
+If you've [learnt just one command](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/shortcuts-cheatsheet) you can use it in streams too!
+
+`/inc` while in a stream's Slack channel will pop up a menu of all the actions you can run in a stream.
+
+## Emojis
+
+From an stream's Slack channel, you can react to messages with:
+
+|   |   |
+| --- | --- |
+| `:pushpin:` `:bookmark:` `:round_pushpin:` `:star:` | Pins the message from the stream to the incident's [timeline](/help-centre/learning-from-incidents/generating-your-incident-timeline) |
+| `:mega:` `:speech_balloon:` | Turns the message into an [Update](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/sharing-status-updates-with-your-team) |
+
+## Slack Commands
+
+|   |   |
+| --- | --- |
+| **ROLES** |  |
+| `/incident lead` | Make someone the stream lead `/incident lead [me|@user]` to auto-fill the lead |
+| `/incident roles` `/incident role` | View, assign and unassign roles in the stream |
+| `/inc handover` | Hand over responsibilities in a stream to another user. |
+| **COMMUNICATION** |  |
+| `/incident update` | Provide an internal status update to your team about the stream |
+| `/incident close` | Provide a closing update, and mark the stream as closed |
+| `/incident request` `/incident request-update` | Request an internal status update from the stream lead |
+| `/incident escalate` `/incident page` | Pull in other teammates for help |
+| `/incident call` | Set a call link `/incident call [link]` to auto-fill the link |
+| `/incident statuspage` | Post or update an incident on your status page |

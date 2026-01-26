@@ -1,0 +1,115 @@
+---
+title: "Our API"
+description: ""
+canonical_article_id: 194
+migrated_at: "2026-01-21T18:29:21Z"
+source_url: "https://help.incident.io/articles/3838115863-our-api"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3838115863-our-api) on January 21, 2026
+</Info>
+
+We’re building [incident.io](http://incident.io/) as the single place you turn to when things go wrong. When an issue is disrupting your business-as-usual, the last thing you want is to start opening ten different tools to diagnose and fix it!
+
+As your central incident hub, we need to give you two powers:
+
+1. Replicating (and possibly automating) your existing processes in [incident.io](http://incident.io/) ; and
+2. Embedding [incident.io](http://incident.io/) in your existing tool stack.
+
+We do the former with [Workflows](https://incident.io/blog/workflows-your-process-automated) . We do the latter with our API and our [native integrations](/help-centre/api-and-integrations) .
+
+<Info>
+
+[API docs](https://api-docs.incident.io/)
+
+</Info>
+
+---
+
+## What does the incident.io API do?
+
+At the highest level, [our API](https://api-docs.incident.io/) lets you connect [incident.io](http://incident.io/) to any tool in your stack (or even to your own application), and give us instructions via that connection.
+
+The API currently allows for:
+
+1. **Automatically creating an incident from another system** , such as a monitoring tool like Datadog, or a ticketing system like Zendesk
+2. **Exporting incidents and** [their to-dos](https://app.intercom.com/a/apps/e2bwytl0/articles/articles/5948204/show) **into a data warehouse or BI tool** (Looker, Tableau etc.) to analyse.
+
+Needless to say though, we’ll be extending this over time, so we’d [love to hear](http://incident.io/community) what you’d like to use our API for!
+
+---
+
+## Where can I find the API Keys?
+
+You can create your API Keys from the [API section](https://app.incident.io/settings/api-keys) of your incident.io Settings if you are on a Pro or Enterprise plan.
+
+---
+
+## Example use case: declaring an incident from Zendesk
+
+You might use a ticketing system like Zendesk (or Freshservice; or Intercom) to manage your customer support. Inbound tickets are typically triaged by customer support teammates, and escalated to engineering teams based on specific criteria (e.g. a certain severity, or a particular incident type such as data breaches).
+
+With our API, a support agent can declare an incident with one click, straight from within Zendesk. We’ll take care of the rest, from declaring the incident in [incident.io](http://incident.io/) to pulling in the right teammates, notifying the relevant internal and external stakeholders, spinning up your public Statuspage and much more.
+
+Here are the few key steps to bringing this flow to life.
+
+1. [Generate an API Key](https://app.incident.io/settings/api-keys) **in incident.io**
+
+You’ll want to generate a key with `Create incidents` enabled. Keep this safe - we’ll need it in a minute.
+
+![](/images/help-centre/our-api/screenshot-1.png)
+
+2. [Configure a Zendesk Support trigger](https://support.zendesk.com/hc/en-us/articles/4408886797466)
+
+This lets you choose when Zendesk should escalate a ticket. In this case, we might use a checkbox custom field, which will declare an incident when it’s ticked.
+
+3. **Add a** [Zendesk webhook](https://support.zendesk.com/hc/en-us/articles/4408839108378#topic_dlc_lsz_2pb) **as the action to take when the trigger fires**
+
+Configure it to make an HTTP POST request to `https://api.incident.io/v1/incidents` . The API Key we generated earlier is used for Bearer token authentication. The request body needs to be JSON that looks like:
+
+![](/images/help-centre/our-api/screenshot-2.png)
+
+There’s a couple of special IDs in there you’ll need:
+
+1. The `custom_field_id` references a “Zendesk Ticket Link” custom field we’ve configured. You can find the IDs of your custom fields using the [List Custom Fields API](https://api-docs.incident.io/#operation/Custom%20Fields_List) .
+2. The `severity_id` references our “Minor” severity. You can find the IDs of your severities using the [List Severities API](https://api-docs.incident.io/#operation/Severities_List) .
+
+**That’s it!** Whenever that trigger fires, you’ll get a new incident declared in Slack. Nice.
+
+Even nicer: you can **configure workflows that only run on your API-generated incidents.**
+
+For example, you could build a workflow that automatically adds the support agent that declared the incident in Zendesk to the incident’s Slack channel. To do that, add a Condition based on the API Key that reported the incident. This would look like:
+
+![](/images/help-centre/our-api/screenshot-3.png)
+
+---
+
+## Exporting incident data to your warehouse
+
+Data is always more powerful when you can link it together, which is why most organisations want to have all their different systems synced into a data warehouse where things can be analysed in one place.
+
+With our API, you can get all your incident, action, and follow-up data out of [incident.io](http://incident.io/) and into your warehouse. There are two key APIs here:
+
+1. [Listing all your incidents](https://api-docs.incident.io/#operation/Incidents_List) ; and
+2. [Listing actions](https://api-docs.incident.io/#operation/Actions_List) (which includes follow-ups!)
+
+By scraping each of these once an hour, you can pull in everything we know about all your incidents and link that with any other data in your warehouse. If you have your Jira data there you can link followups in [incident.io](http://incident.io/) with the corresponding ticket in Jira, for example.
+
+---
+
+## Keeping in sync with your service catalog
+
+One of the most common uses of custom fields is to tag incidents with which teams and services were involved. You can keep those lists in sync with your service catalog, using the [Custom Field Options API](https://api-docs.incident.io/#operation/Custom%20Field%20Options_List) .
+
+This API lets you manage options for any custom field. Beyond Custom Fields, you can also manage custom [Incident Roles](https://api-docs.incident.io/#operation/Incident%20Roles_Update) and [Severities](https://api-docs.incident.io/#operation/Severities_Update) using the API, if you want to keep all your configuration in a central location, for example using Terraform.
+
+---
+
+## Over to you!
+
+We built our API around these two use-cases for now, but we’ll be expanding it, for example to customise and configure your [incident.io](http://incident.io/) incidents (e.g. uploading your service catalogue).
+
+We’d absolutely love to hear what you build with it, and how you’d like us to extend it.
+
+There’s an `#api` channel in the [incident.io Community](https://incident.io/community) . See you there

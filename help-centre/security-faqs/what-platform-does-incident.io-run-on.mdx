@@ -1,0 +1,17 @@
+---
+title: "What platform does incident.io run on?"
+description: ""
+canonical_article_id: 304
+migrated_at: "2026-01-21T18:54:17Z"
+source_url: "https://help.incident.io/articles/2111206846-what-platform-does-incident.io-run-on"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2111206846-what-platform-does-incident.io-run-on) on January 21, 2026
+</Info>
+
+Our primary web application, Slack integration, and other related components are deployed onto the [Google Cloud Platform](https://cloud.google.com/) (GCP).
+
+Any data we store is kept either in our PostgreSQL database (also securely hosted and managed by GCP) or in GCP's BigQuery platform. All data is encrypted at rest in both Postgres and BigQuery.
+
+Two-factor authentication and IAM policies are applied to restrict access to resources within the Google Cloud Platform.

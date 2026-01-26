@@ -1,0 +1,19 @@
+---
+title: "Can we change the user sending PagerDuty emails?"
+description: ""
+canonical_article_id: 235
+migrated_at: "2026-01-21T18:39:26Z"
+source_url: "https://help.incident.io/articles/8132735763-can-we-change-the-user-sending-pagerduty-emails"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8132735763-can-we-change-the-user-sending-pagerduty-emails) on January 21, 2026
+</Info>
+
+Unfortunately, no.
+
+If you [added PagerDuty to incident.io](/help-centre/api-and-integrations/alternative-on-call-management-solutions/pagerduty) , you probably realised all escalations appear to be sent by the same user. Unfortunately, we currently don't have a way to change the sender of the email: due to a limitation of the PagerDuty API, all escalations will originate from the email of the user that connected PagerDuty to your [incident.io](http://incident.io/) account.
+
+When you create an incident, it must always be associated with the email of a valid PagerDuty user, as bots (i.e., us) are not allowed to create incidents on their own.
+
+If you'd rather not have incidents attached to a user's email, **you could create a dedicated account in PagerDuty** and connect that to [incident.io](http://incident.io/) . However, be aware PagerDuty will charge you for the extra seat.

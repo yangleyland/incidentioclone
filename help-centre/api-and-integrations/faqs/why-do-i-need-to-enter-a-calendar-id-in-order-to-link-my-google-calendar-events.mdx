@@ -1,0 +1,31 @@
+---
+title: "Why do I need to enter a calendar ID in order to link my Google Calendar events?"
+description: ""
+canonical_article_id: 236
+migrated_at: "2026-01-21T18:39:37Z"
+source_url: "https://help.incident.io/articles/4269648442-why-do-i-need-to-enter-a-calendar-id-in-order-to-link-my-google-calendar-events"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4269648442-why-do-i-need-to-enter-a-calendar-id-in-order-to-link-my-google-calendar-events) on January 21, 2026
+</Info>
+
+<Info>
+
+For a full breakdown of our Google Calendar integration; including how it works and how to install it, head over to [this article](/help-centre/api-and-integrations/communication/google-calendar) .
+
+</Info>
+
+Our [Google Calendar integration](https://app.incident.io/settings/integrations/google-calendar/configure) allows incident.io to listen for relevant meetings that are created within Google calendars, which we are subscribed to. Simply referencing an incident ID (e.g. `INC-108` ) within a meeting title or description, will result in the meeting being attached to the relevant incident.
+
+To set this integration up, we require the ID of the Google calendar so that we can create the subscription and listen for new events being created.
+
+We deliberately took this path to protect our customers' privacy, and limit the amount of permissions that we request from your Google account. The only permission we request is:
+
+```plaintext
+https://www.googleapis.com/auth/calendar.events
+```
+
+This allows us to read details about events in a specific calendar, and create new events (e.g. [generating a Google Meet](/help-centre/api-and-integrations/communication/google-meet) call when an incident is created).
+
+Therefore, it is in your control which calendars we are allowed to look at for incident-related events, rather than have us check all calendars the connected user is subscribed to.

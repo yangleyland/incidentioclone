@@ -1,0 +1,36 @@
+---
+title: "Status Pages: How we calculate uptime"
+description: ""
+canonical_article_id: 254
+migrated_at: "2026-01-21T18:40:27Z"
+source_url: "https://help.incident.io/articles/4875400151-status-pages%3A-how-we-calculate-uptime"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4875400151-status-pages%3A-how-we-calculate-uptime) on January 21, 2026
+</Info>
+
+Uptime is the amount of time that a component (ie. API, website) is available and working properly. The possible statuses for components are:
+
+- Full outage
+- Partial outage
+- Under maintenance
+- Degraded performance
+- Operational
+
+To calculate uptime, we consider how much time is spent in a status that we consider "down".
+
+Component statuses considered "down":
+
+- Full outage
+- Partial outage
+
+Component statuses considered "up"
+
+- Under maintenance
+- Degraded performance
+- Operational
+
+The uptime percentage is the percentage of a given time period that the component is in a status we consider "up". For example, if a component is operational between 09:00am at 09:10am, then degraded performance from 09:10am to 09:40am, then full outage from 09:40 to 10:00am, its uptime percentage from 9am to 10am would be 66% (40 minutes ‘up’ and 20 minutes ‘down’).
+
+When displaying aggregate uptime for a group, we consider only components in it which are configured to display uptime. A group is only considered "up" if all components in it are in an "up" status.

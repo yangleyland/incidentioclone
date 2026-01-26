@@ -1,0 +1,84 @@
+---
+title: 'Seat types and capabilities'
+description: 'Understanding Viewer, Response, and On-call seats in incident.io'
+icon: "/icons/box.svg"
+status: draft
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="DRAFT" />
+
+Our [pricing](https://incident.io/pricing) is based on the number of Response and On-call seats in your company. Here's what you get with each seat type.
+
+## Seat types at a glance
+
+incident.io has three seat types:
+
+- **Viewer seats** (free) - Unlimited seats for everyone who needs to declare incidents and contribute during response
+- **Response seats** (paid) - For people actively managing incidents: changing status, posting updates, assigning roles, and writing post-mortems
+- **On-call seats** (paid) - For people who need to be paged, with access to schedules, mobile notifications, and escalation paths
+
+You can combine Response and On-call seats for users who need both capabilities.
+
+## Full capability matrix
+<Info>
+**Note:** A checkmark (✓) means this capability is available for that seat type. We have roles and permissions to further configure or restrict what users can do. Some capabilities are only available on paid plans.
+</Info>
+
+Here's exactly what each seat type can do:
+
+<div id="capability-matrix">
+
+| Capability | Viewer<br/>(Free) | Response<br/>(Paid) | On-call<br/>(Paid) | On-call +<br/>Response<br/>(Paid) |
+|------------|:---:|:---:|:---:|:---:|
+| **Participating in incidents** | | | | |
+| Declare incidents | ✓ | ✓ | ✓ | ✓ |
+| Join incident channels & contribute | ✓ | ✓ | ✓ | ✓ |
+| Post in incident channels in Slack or Teams | ✓ | ✓ | ✓ | ✓ |
+| [Decline an incident](https://help.incident.io/en/articles/6878776-triaging-your-incidents) | ✓ | ✓ | ✓ | ✓ |
+| [Add attachments](https://help.incident.io/en/articles/6601070-how-do-i-add-attachments-to-incidents) (e.g., GitHub, Zendesk) | ✓ | ✓ | ✓ | ✓ |
+| View alerts, escalations & schedules | ✓ | ✓ | ✓ | ✓ |
+| [Escalate to someone](https://help.incident.io/en/articles/5948216-escalating-incidents) (On-call / Opsgenie / PagerDuty) | ✓ | ✓ | ✓ | ✓ |
+| Access the mobile app to view incidents and escalate | ✓ | ✓ | ✓ | ✓ |
+| View [internal status pages](https://help.incident.io/articles/8552190577-introduction-to-status-pages#internal-status-pages-19) | ✓ | ✓ | ✓ | ✓ |
+| [Tutorial](https://incident.io/changelog/2021-12-20-tutorial) access | ✓ | ✓ | ✓ | ✓ |
+| **Managing and running incidents** | | | | |
+| Change incident status (Accept / Mitigate / Resolve – etc.) | - | ✓ | - | ✓ |
+| Change severity | - | ✓ | - | ✓ |
+| Change [incident type](https://help.incident.io/en/articles/6220240-incident-types) | - | ✓ | - | ✓ |
+| Update [incident summary](https://help.incident.io/en/articles/8795209-ai-feature-suggested-summaries) | - | ✓ | - | ✓ |
+| Post an [incident update](https://help.incident.io/en/articles/5948197-sharing-status-updates-with-your-team) | - | ✓ | - | ✓ |
+| Assign or reassign [roles](https://help.incident.io/en/articles/5948210-knowing-who-s-in-charge) (Lead, Comms, etc.) | - | ✓ | - | ✓ |
+| Hand over Lead role | - | ✓ | - | ✓ |
+| Create/assign/update/complete [actions](https://help.incident.io/en/articles/5948204-keeping-track-of-who-s-doing-what) & [follow-ups](https://help.incident.io/en/articles/7172472-follow-ups) | - | ✓ | - | ✓ |
+| Pin Slack messages to [timeline](https://help.incident.io/en/articles/5947891-generating-your-incident-timeline) | - | ✓ | - | ✓ |
+| Rename an incident | - | ✓ | - | ✓ |
+| Revoke access to [private incidents](https://help.incident.io/en/articles/5947963-can-we-mark-incidents-as-sensitive-and-restrict-access) | - | ✓ | - | ✓ |
+| [Merge incidents](https://help.incident.io/en/articles/9815062-merging-incidents) | - | ✓ | - | ✓ |
+| Change [call URL](https://help.incident.io/en/articles/5963606-creating-and-linking-video-call-urls-for-digital-war-rooms) | - | ✓ | - | ✓ |
+| **Documenting incidents** | | | | |
+| Create or edit [post-mortems](https://help.incident.io/en/articles/10139050-where-should-i-write-my-post-mortem) | - | ✓ | - | ✓ |
+| Set manual [timestamps](https://help.incident.io/en/articles/6541971-incident-lifecycle) | - | ✓ | - | ✓ |
+| Remove [attachments](https://help.incident.io/en/articles/6601070-how-do-i-add-attachments-to-incidents) | - | ✓ | - | ✓ |
+| **Communicating with customers** | | | | |
+| Publish [incident.io Status Page](https://help.incident.io/en/articles/7228285-how-to-publish-an-incident-to-your-status-page) updates | - | ✓ | - | ✓ |
+| Publish Atlassian [Statuspage](https://help.incident.io/en/articles/5948011-statuspage) updates | - | ✓ | - | ✓ |
+| **Being On-call** | | | | |
+| Receive paging via phone / SMS / Slack / mobile app | - | - | ✓ | ✓ |
+| Access mobile app for incidents, schedules & overrides | - | - | ✓ | ✓ |
+| Be included in on-call schedules | - | - | ✓ | ✓ |
+| Be part of escalation paths | - | - | ✓ | ✓ |
+| Request "Cover Me" for schedule shifts | - | - | ✓ | ✓ |
+| Create on-call overrides | - | - | ✓ | ✓ |
+| Create on-call pay reports | - | - | ✓ | ✓ |
+
+</div>
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Will I become a paid user if I use an incident tutorial?">
+    Learning is free at incident.io. Everyone in your company can - and should! - learn the ropes of incident.io to be ready to participate in incidents.
+    So, don't worry: your teammates won't be considered Responders (paid users) if they go through our tutorial flow.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,86 @@
+---
+title: "Permissions in Microsoft Teams"
+description: ""
+canonical_article_id: 317
+migrated_at: "2026-01-21T18:54:44Z"
+source_url: "https://help.incident.io/articles/1998331504-permissions-in-microsoft-teams"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1998331504-permissions-in-microsoft-teams) on January 21, 2026
+</Info>
+
+incident.io for Microsoft Teams requests three sets of permissions:
+
+1. Global permissions: these give us access to resources across your Microsoft tenant.
+2. Team-specific permissions: these allow us to manage the 'Incidents' team where the incident.io bot is installed.
+3. Install and upgrade permissions: optionally, these permissions allow us to automate setting up incident.io in your Microsoft account.
+
+## Global permissions
+
+Before you can install the incident.io app to Microsoft Teams, we first need access to view information about your Microsoft tenant.
+
+The permissions here are for app-only access, and allow us to perform certain operations against Microsoft's API without a user being present. This is called [app-only access](https://learn.microsoft.com/en-gb/entra/identity/enterprise-apps/user-admin-consent-overview#admin-consent) . When you sign up for incident.io, or when we need to add new permissions, you'll have to go through [the admin consent process](https://learn.microsoft.com/en-gb/entra/identity/enterprise-apps/user-admin-consent-overview#admin-consent) .
+
+|   |   |   |
+| --- | --- | --- |
+| **Permission** | **Description** | **Purpose** |
+| `OrganizationalBranding.Read.All` | See the name and logo configured in your Microsoft tenant | This lets us show your logo in the incident.io dashboard |
+| `User.ReadBasic.All` | View a list of all users in your Microsoft tenant | We use this to add users to Catalog |
+| `TeamsAppInstallation.ReadWriteAndConsentSelfForUser.All` | Install the incident.io bot to users in your account | This allows us to send Chats and Activities to users across your Microsoft tenant. We use this to notify people when they are assigned a role or action for example. |
+| `Chat.Create` | Create chats within Microsoft Teams | We use this to create group chats for private incidents. |
+| `TeamsAppInstallation.ReadWriteAndConsentSelfForChat.All` | Install the incident.io bot to chats in your account | We use this so that we can install the incident.io app into the chats that we create. |
+
+## Team-specific permissions
+
+When you install the incident.io app for Microsoft Teams, we'll gain additional access to the Team the app is installed to, but not other Teams or Chats within your Microsoft tenant.
+
+<Info>
+
+**Note** : these permissions only apply inside the Team that the incident.io app is installed to. No access is granted to other Teams in your account.
+
+</Info>
+
+|   |   |   |
+| --- | --- | --- |
+| **Permissions** | **Description** | **Purpose** |
+| Channel.Create.Group Channel.Delete.Group ChannelSettings.ReadWrite.Group | Create, rename, archive and delete channels | Create a channel for each incident, and keep its name in sync with the incident's name. ​ Once resolved, the channel can be archived based on your settings. |
+| ChannelMessage.Read.Group | View messages posted to public channels where the incident.io app is installed (excluding **** private or shared channels) | Build the incident timeline based on messages in the incident channelGenerate a summary and suggest actions based on conversation in the incident channelTrack who is working on the incident and for how long |
+| TeamsTab.Create.Group TeamsTab.ReadWrite.Group | View, create, and update tabs in channels within the Team | Add the incident.io tab to the 'General' channelAdd the incident.io tab to each incident channel |
+| TeamSettings.Read.Group TeamSettings.ReadWrite.Group | View and change settings for the Team | Allows us to view & update the name and description of the incidents team |
+| TeamsAppInstallation.Read.Group | View apps installed to the Team | Check which version of the incident.io app is installed. |
+
+## Chat-specific permissions
+
+When we create a chat and install the incident.io app for Microsoft Teams into it, we'll gain additional access to the chat we created, but not other Teams or Chats within your Microsoft tenant.
+
+<Info>
+
+**Note** : these permissions only apply inside the chat that the incident.io app is installed to. No access is granted to other chats in your account.
+
+</Info>
+
+|   |   |   |
+| --- | --- | --- |
+| **Permissions** | **Description** | **Purpose** |
+| ChatSettings.ReadWrite.Chat | Update the topic of chats | Keep the topic of an incident's chat in sync with the incident's name. |
+| TeamsTab.ReadWrite.Chat | View, create, and update tabs in chats | Add the incident.io tab to each incident channel |
+| Chat.Manage.Chat | Add and remove members in chats | Invite selected users to private incident chatsRemove users from private incident chats if access is revoked |
+
+## Install & upgrade permissions
+
+These permissions allow us to create the Incidents Team and install the incident.io app to it on your behalf.
+
+We only ask for these permissions for one hour at a time, after which we won't be able to use these permissions without your explicit consent.
+
+|   |   |   |
+| --- | --- | --- |
+| **Permission** | **Description** | **Purpose** |
+| Team.Create | Create a team | Create the 'Incidents' team, where incident channels will created. |
+| TeamsAppInstallation.ReadWriteAndConsentForTeam | Install an app to a Team, and grant it permissions within that Team | Install or upgrade the incident.io app within the 'Incidents' team. |
+
+<Tip>
+
+If you would prefer not to grant us these permissions, you can take these actions manually from within Microsoft Teams. Please get in touch and we'll help you get set up manually.
+
+</Tip>

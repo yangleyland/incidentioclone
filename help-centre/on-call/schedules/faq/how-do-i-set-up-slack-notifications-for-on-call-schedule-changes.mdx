@@ -1,0 +1,37 @@
+---
+title: "How do I set up Slack notifications for on-call schedule changes?"
+description: ""
+canonical_article_id: 154
+migrated_at: "2026-01-21T18:30:30Z"
+source_url: "https://help.incident.io/articles/1850463972-how-do-i-set-up-slack-notifications-for-on-call-schedule-changes"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1850463972-how-do-i-set-up-slack-notifications-for-on-call-schedule-changes) on January 21, 2026
+</Info>
+
+## Context
+
+Teams often need to notify members when on-call schedules change, including who is coming on/off duty. Setting up automated Slack notifications helps keep everyone informed of these schedule changes.
+
+## Answer
+
+You can configure automated Slack notifications for on-call schedule changes using workflows. Here's how to set it up:
+
+1. Navigate to Workflows and create a new workflow
+2. Select "An On-call schedule shift changes" as the trigger
+3. Add a Slack message action and choose your destination channel
+4. In the message, you can use these variables to display shift information:
+  - "Previously on-call users" - Shows who was on call
+  - "Currently on-call users" - Shows who is now on call
+
+![Workflow configuration showing message setup with variables for previously and currently on-call users](/images/help-centre/how-do-i-set-up-slack-notifications-for-on-call-schedule-changes/screenshot-1.png)
+
+<Info>
+
+Important notes:
+
+- The workflow triggers only when shifts change hands between users, not when shifts start or end with no handover
+- Individual users can set up personal notifications through User Preferences for shift notifications
+
+</Info>

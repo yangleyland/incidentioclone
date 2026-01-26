@@ -1,0 +1,49 @@
+---
+title: "Adding Chronosphere as an alert source"
+description: ""
+canonical_article_id: 123
+migrated_at: "2026-01-21T18:21:18Z"
+source_url: "https://help.incident.io/articles/6767697438-adding-chronosphere-as-an-alert-source"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6767697438-adding-chronosphere-as-an-alert-source) on January 21, 2026
+</Info>
+
+This article provides step by step instructions for setting up Chronosphere as an alert source within incident.io.
+
+## Instructions
+
+1. Head over to the [Alerts](https://app.incident.io/~/alerts/sources) section in your incident.io dashboard
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-1.png)
+
+2. Select the sources tab at the top of the page
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-2.png)
+
+3. Press the 'New alert source' button
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-3.png)
+
+4. Search for 'Chronosphere' and click continue to create the alert source
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-4.png)
+
+5. Head over to the Chronosphere dashboard, and find the Notifiers page under the Alerts section in the menu bar
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-5.png)
+
+6. Create a new notifier by clicking the green button which says 'Create notifier'. Choose a name and select 'Webhook' as the type of notifier. Enter in the URL which we provide in the incident.io dashboard after completing step 4.
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-6.png)
+
+7. After saving the notifier, go to the 'Notification policies' page which can be found in the Alerts section as in step 5, above 'Notifiers'.
+
+8. Create a new Notification policy by clicking the green button which says 'Create notification policy'. Choose your notification policy name and parent team, and then add incident.io (or whichever notifier you just set up) as a critical alert notifier. You may also wish to add it as a warning alert notifier.
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-7.png)
+
+9. Now, whenever you create a new monitor within Chronosphere, you can select your new notification policy, which will send alerts the alert source that you set up in incident.io.
+
+![](/images/help-centre/adding-chronosphere-as-an-alert-source/screenshot-8.png)

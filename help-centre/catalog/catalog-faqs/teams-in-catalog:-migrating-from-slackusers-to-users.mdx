@@ -1,0 +1,73 @@
+---
+title: "Teams in Catalog: Migrating from SlackUsers to Users"
+description: ""
+canonical_article_id: 108
+migrated_at: "2026-01-21T18:19:38Z"
+source_url: "https://help.incident.io/articles/7617266530-teams-in-catalog%3A-migrating-from-slackusers-to-users"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7617266530-teams-in-catalog%3A-migrating-from-slackusers-to-users) on January 21, 2026
+</Info>
+
+<Warning>
+
+This article is relevant if you've [set up a Team catalog type](https://incident-io-knowledge-base.help.usepylon.com/articles/4629305061-setting-up-teams-in-catalog) , and that catalog type has an attribute (e.g. Team Members) with the SlackUser resource type. ​ ​ *If you're unsure, head to* [Catalog](https://app.incident.io/~/catalog) *, search for Team, then Edit type, and check the Resource Type is not SlackUser. If your catalog type is externally managed (e.g. not editable), continue reading this article for more information.*
+
+</Warning>
+
+## Background
+
+In January 2024, we [shipped a powerful new feature](https://incident.io/changelog/adding-connected-users-to-the-catalog) allowing you to represent Users in Catalog. This new User catalog type can be linked to other user accounts across various systems, like Slack, Jira, Notion, Salesforce, Github, and so on. By linking connecting user accounts in Catalog, a whole host of [powerful User-based workflows](https://incident.io/changelog/adding-connected-users-to-the-catalog) can be unlocked.
+
+Building on our Users in Catalog release, in March 2024 [we released Teams in Catalog](https://incident.io/changelog/teams-in-catalog) . This feature is a way for you to flexibly model your organisation (e.g. Users) in Catalog. By being able to models Team Members, Managers, Tech Leads, and more, you (yet again) unlock some really [powerful Team-based workflows](https://incident.io/changelog/teams-in-catalog) .
+
+## What is this migration?
+
+Before these exciting changes to Users and Teams, it was possible to build your own version of Teams in Catalog: by linking SlackUsers to Teams. However, to get the most out of our recent changes, we strongly recommend moving away from using SlackUsers (e.g. to represent Team Members), and migrating to our new first-class representation of a User within your Teams catalog type.
+
+## Migration path
+
+The migration path depends on how you manage your Team catalog type:
+
+- [Managed via the UI](/help-centre/catalog/catalog-faqs/teams-in-catalog:-migrating-from-slackusers-to-users)
+- [Managed via Catalog Importer](/help-centre/catalog/catalog-faqs/teams-in-catalog:-migrating-from-slackusers-to-users)
+- [Managed via Terraform](/help-centre/catalog/catalog-faqs/teams-in-catalog:-migrating-from-slackusers-to-users)
+## Managed via the UI
+
+If you aren’t using an attribute of the SlackUser anywhere (e.g. grabbing the email of a SlackUser in Workflows) you can simply change the attribute type from SlackUser → User in the ‘edit type’ screen in the catalog type.
+
+![](/images/help-centre/teams-in-catalog:-migrating-from-slackusers-to-users/screenshot-1.png)
+
+In the unlikely case that you're "using" an attribute of the SlackUser that isn't available in the User type, this’ll be prevented by our ‘deletion protection’ checks designed to stop you breaking your catalog & dependent workflows.
+
+*An example of a "usage" is within a Workflow Expression, navigating from Team > SlackUser > Job Title, where Job Title may not exist on your User catalog type.*
+
+In this case, you will need to:
+
+1. Manually look at all the ‘usages’
+2. Temporarily remove those ‘usages’
+3. Add the required attributes to the new User catalog type
+4. Add the required ‘usages’ back
+
+<Warning>
+
+*If you still have issues or questions on this migration, please reach out to us via your Slack Connect channel, or* [support@incident.io](mailto:support@incident.io) *.*
+
+</Warning>
+
+## Managed via Catalog Importer
+
+You can change the schema of your Team type in the Catalog Importer, by changing `type: SlackUser` to be `type: User` .
+
+If when running the Catalog Importer after this change you hit the "a catalog attribute couldn't change type as it is in use by other resources" error, it's likely that you have dependencies on attributes of the SlackUser that are not available in the User type.
+
+In this case, please reach out to us via your Slack Connect channel or [support@incident.io](mailto:support@incident.io) , and we can assist you in identifying those dependencies and getting you unblocked.
+
+## Managed via Terraform
+
+You can change the schema of your Team type in the Terraform provider, by changing `type=SlackUser` to be `type=User` .
+
+If when running the Terraform provider after this change you hit the "a catalog attribute couldn't change type as it is in use by other resources" error, it's likely that you have dependencies on attributes of the SlackUser that are not available in the User type.
+
+In this case, please reach out to us via your Slack Connect channel or [support@incident.io](mailto:support@incident.io) , and we can assist you in identifying those dependencies and getting you unblocked.

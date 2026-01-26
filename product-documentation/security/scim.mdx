@@ -1,0 +1,73 @@
+---
+title: SCIM
+description: Automate user provisioning and permission management
+author: auto-ai-doc-migration
+icon: "shield"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="DRAFT" />
+
+SCIM (System for Cross-domain Identity Management) automatically provisions users and manages their permissions in incident.io through your identity provider. Users are created when assigned the application in your IdP, and deactivated when unassigned.
+
+Use SCIM to eliminate manual user management, ensure permissions stay synchronized with your IdP, and automate onboarding and offboarding. Available on the [Enterprise plan](https://incident.io/pricing).
+
+Configure SCIM at **Settings → Users → SCIM tab**. Once enabled, your IdP becomes the source of truth for user permissions.
+
+## How it works
+
+**Without SCIM**, incident.io automatically creates users when they join incident Slack channels or sign in to the dashboard using Slack or SAML. Users are deactivated when deactivated in Slack. Admins manually assign roles and permissions at **Settings → Users**.
+
+**With SCIM**, users are automatically created when assigned the application in your IdP and deactivated when unassigned. User permissions are automatically managed by your IdP and can no longer be edited in incident.io. Permission changes in your IdP automatically sync to incident.io.
+
+## Setting up SCIM
+
+To install SCIM, you need Owner permissions in incident.io (or a custom role with **Manage security settings**), plus admin permissions in your IdP.
+
+Navigate to **Settings → Users → SCIM tab** and click **Install**. Choose your identity provider from the list and follow the setup instructions.
+
+<Note>
+Not all providers are listed. Contact support if your provider shows as unsupported—we enable providers as we confirm they send appropriate group membership updates.
+</Note>
+
+## Mapping groups to roles
+
+Define relationships between IdP groups and incident.io roles. Map only groups requiring elevated permissions—all users receive the Standard role by default, which assigns a Viewer seat.
+
+**Example mappings:**
+- `Engineers` group → No mapping needed (receives default Standard role with Viewer seat)
+- `Incident Managers` group → Admin role
+- `IT` group → Custom role with **Manage security settings** permission
+
+<Warning>
+Ensure at least one group has Owner permissions and you're a member of that group. Removing yourself from all Owner groups locks you out of SCIM settings. Contact [help@incident.io](mailto:help@incident.io) if this occurs.
+</Warning>
+
+After defining mappings, confirm your setup. incident.io will begin creating users from SCIM and reassigning permissions to match your group-to-role mappings.
+
+## Managing on-call seats
+
+Automatically assign on-call seats through SCIM groups. In the SCIM configuration page, select which groups automatically receive on-call seats.
+
+Once configured, those group members' on-call seats are automatically managed—you cannot manually control them. Adding members to assigned groups grants seats automatically. Members leaving assigned groups retain their seats until manually revoked.
+
+## Existing users
+
+When you install SCIM, incident.io links existing users to SCIM users by email address and updates their permissions according to your group-to-role mappings. Users with elevated roles who aren't in mapped groups will be downgraded.
+
+Users existing in incident.io but not in SCIM retain their current role and appear as "Unlinked" in the user list. To restrict dashboard access to only SCIM users, install SAML linked to the same IdP.
+
+## Permission management
+
+Once SCIM is enabled, it becomes the source of truth for user permissions. You cannot change permissions in incident.io—add users to appropriate IdP groups to elevate permissions.
+
+When you uninstall SCIM, users remain in their current state with their existing roles. Users are not deactivated.
+
+## User deactivation
+
+Users deactivated in your IdP but still active in your Slack workspace remain active in incident.io. incident.io treats users as active if they're active in Slack. To prevent this, manage Slack users through the same IdP.
+
+## SAML integration
+
+SCIM works independently from SAML but can use the same identity provider. See the [SAML documentation](/product-documentation/security/saml-sso) for setup details.

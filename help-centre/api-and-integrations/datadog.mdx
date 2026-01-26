@@ -1,0 +1,66 @@
+---
+title: "Datadog"
+description: ""
+canonical_article_id: 242
+migrated_at: "2026-01-21T18:39:38Z"
+source_url: "https://help.incident.io/articles/7563617864-datadog"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7563617864-datadog) on January 21, 2026
+</Info>
+
+Looking for Datadog SIEM and how to stream audit logs? Please look at our [audit log help article here.](/help-centre/account-admin/audit-logs)
+
+## Alerts
+
+If you'd like to automatically create incidents from Datadog monitors, we'd recommend using our Alerts product. To do that, head into the dashboard and choose Alerts in the left hand bar (or open this link [here](https://app.incident.io/~/alerts/sources) ).
+
+Here, you can create a new alert source using Datadog, which will walk you through a series of steps to create a webhook in Datadog that triggers alerts. Once you've created your alert source and connected it to a route, you should be set to automatically create incidents.
+
+## Legacy Triggers
+
+<Warning>
+
+If you'd like to create incidents directly from Datadog, we'd recommend using the instructions detailed in **Alerts** above.
+
+</Warning>
+
+If you'd rather route Datadog through PagerDuty or OpsGenie to notify someone before creating an incident, you can do that and incident.io automatically pulls through information about any Datadog monitors that triggered the escalation.
+
+This means that when you join an incident channel, everything you need is right there:
+
+- The name of the triggering monitor, with a link to see more
+- Up to 500 characters of the body of the trigger monitor. This means if you can link things like runbooks in your monitors and have access to them in your incident channel.
+- The Alert Priority and Priority of your Datadog monitor
+- Any tags on your Datadog monitor
+
+![](/images/help-centre/datadog/screenshot-1.png)
+
+Additionally, we'll record the monitor as an incident.io attachment, so you if you go to the incident homepage on the web, you'll have a link to the monitor there under both the **Attachments** tab, and listed in your **Timeline** .
+
+![](/images/help-centre/datadog/screenshot-2.png)
+
+## How do I set it up?
+
+To get started, you need to first send your Datadog monitors to either PagerDuty or OpsGenie - if you've not done that, you can find instructions on Datadog's site ( [PagerDuty](https://www.pagerduty.com/docs/guides/datadog-integration-guide/) , [OpsGenie](https://docs.datadoghq.com/integrations/opsgenie/) ).
+
+Once you've installed those integrations, you can tag whichever service you want inside a Datadog monitor using something like `@pagerduty-growth-team` . This will mean that when your monitor triggers, you'll page the service you've tagged.
+
+The final piece to set up is to configure incident.io to trigger incidents when a PagerDuty/OpsGenie alert occurs - details on how to do this can be found [here](/help-centre/creating-and-running-incidents/faqs/alerts-and-automatic-incident-creation) .
+
+Once you've completed the above steps, that's you! incident.io will now automatically pull through the originating Datadog monitor when an incident is created.
+
+## Pinning messages
+
+In addition to incident.io automatically pulling through Datadog Monitors, you can also pin Slack messages and incident.io will put them on your incident timeline in the dashboard and post-mortems.
+
+This is useful for links to Datadog logs, traces, and dashboards that might have helped you track down the cause of an incident.
+
+Additionally, if you paste in the link to any Datadog snapshots, Slack will unfurl the image, and if you pin that message, incident.io will add the linked image to your timeline.
+
+For more info on pinning items, check out our article on [incident timelines](/help-centre/learning-from-incidents/generating-your-incident-timeline) .
+
+## Screenshots
+
+Finally, incident.io automatically tracks any images that are shared in incident channels. So, if you screenshot a useful graph or trace, and then paste it into your incident channel, that image will automatically be tracked on the incident timeline and will be included in generated post-mortems.

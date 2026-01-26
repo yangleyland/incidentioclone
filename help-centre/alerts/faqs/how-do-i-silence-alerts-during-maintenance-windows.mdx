@@ -1,0 +1,34 @@
+---
+title: "How do I silence alerts during maintenance windows?"
+description: ""
+canonical_article_id: 129
+migrated_at: "2026-01-21T18:21:11Z"
+source_url: "https://help.incident.io/articles/6458677537-how-do-i-silence-alerts-during-maintenance-windows"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6458677537-how-do-i-silence-alerts-during-maintenance-windows) on January 21, 2026
+</Info>
+
+## Context
+
+During scheduled maintenance periods (such as database updates, system upgrades, or component maintenance), you may expect alerts to trigger due to temporary service disruptions. These alerts are expected and don't require immediate attention, so you may want to prevent notifications during these planned maintenance windows.
+
+## Answer
+
+Currently, there isn't a built-in maintenance mode feature to automatically silence alerts during specific time windows. However, there is a manual workaround you can use to manage alerts during maintenance periods:
+
+**Temporary Alert Route Disabling**
+
+1. Navigate to your Alert Routes configuration
+2. Find the specific alert route related to the service under maintenance
+3. Toggle off the alert route using the switch before beginning maintenance
+4. After maintenance is complete, toggle the alert route back on to resume normal operations
+
+<Warning>
+
+Important: Be cautious when disabling alert routes, as this will prevent ALL alerts associated with that route from triggering incidents, not just maintenance-related ones. Make sure to re-enable routes promptly after maintenance is complete.
+
+</Warning>
+
+For more granular control over maintenance-related alerts, you can consider adding a maintenance indicator attribute in your alert payloads and configure your alert routes to filter based on this attribute.

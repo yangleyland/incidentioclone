@@ -1,0 +1,34 @@
+---
+title: "How do I sync incident status changes from incident.io to Jira?"
+description: ""
+canonical_article_id: 239
+migrated_at: "2026-01-21T18:39:25Z"
+source_url: "https://help.incident.io/articles/1515243282-how-do-i-sync-incident-status-changes-from-incident-io-to-jira"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1515243282-how-do-i-sync-incident-status-changes-from-incident-io-to-jira) on January 21, 2026
+</Info>
+
+## Context
+
+When managing incidents in incident.io that are linked to Jira tickets, users may want to automatically sync status updates between the two platforms. While incident.io does integrate with Jira, there are some limitations on what can be directly synchronized between the platforms.
+
+## Answer
+
+While direct status synchronization is not available between incident.io and Jira, you can implement a workaround using string custom fields and Jira automations. Here's how to set it up:
+
+1. Create a string custom field in Jira to store the incident status
+2. In incident.io's Jira export template, configure the incident status to sync to this string field
+3. Set up Jira automations to update the actual Jira ticket status based on the value in the string field
+
+<Info>
+
+Important limitations to note:
+
+1. Only string, date, and user fields can be synced from incident.io to Jira
+
+1. Single or multi-select fields in Jira can only be set as hard-coded values in the export template
+2. Other custom fields from Jira cannot be dynamically synced from incident.io
+
+</Info>

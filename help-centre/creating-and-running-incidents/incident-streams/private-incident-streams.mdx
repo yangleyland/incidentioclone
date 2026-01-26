@@ -1,0 +1,134 @@
+---
+title: "Private incident streams"
+description: ""
+canonical_article_id: 70
+migrated_at: "2026-01-21T18:10:59Z"
+source_url: "https://help.incident.io/articles/2595478027-private-incident-streams"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2595478027-private-incident-streams) on January 21, 2026
+</Info>
+
+You can manage the complexity of incidents by breaking large scale incidents into 'Streams', each of which will have its own Slack channel, Zoom/Meet call, and distinct leads and participants. Read more about managing incidents using streams [here](/help-centre/creating-and-running-incidents/incident-streams/incident-streams) .
+
+We are strong proponents of making incidents visible to all, so everyone has access to the information they need to do their job the best they can. As such, **incidents and streams in** [incident.io](http://incident.io/) **are public by default** .
+
+Nonetheless, we are also conscious that **in some circumstances, privacy is required** . Sensitive discussions may need to be locked down due to regulations around data privacy, cyber breaches, tip-off or securities law etc.
+
+Those discussions can be managed from a private stream, while the main incident and any of its public streams remain visible.
+
+---
+
+## What do private streams do?
+
+Private streams are by nature full of sensitive information. To keep that information safe, there are some restrictions and exceptions we’ve put in place:
+
+1. Private streams are **by-invitation only**
+2. Updates from private streams **will not be shared** to the incident channel
+3. Private streams are **not included** in the incident timeline, exports or Insights tabs
+4. When you escalate a private stream, we **won’t include any information about the stream** , other than a link to the dashboard, in the escalation.
+
+<Info>
+
+*Remember that* [incident.io](http://incident.io/) *Workspace owners AND Slack Workspace owners have access to all private incidents and streams, even those they are not actively invited to!*
+
+</Info>
+
+<Info>
+
+Unlike private incidents, users without access to a private stream will still be shown some basic information about it (stream name and lead) in order to know which stream of work they should request access to.
+
+</Info>
+
+---
+
+## Enabling private streams
+
+If you are an [Admin or Owner](/help-centre/account-admin/permissions/can-we-set-different-user-permissions) of your company's [incident.io](http://incident.io/) workspace, you can opt-in to Private Streams from Settings > [Security.](https://app.incident.io/~/settings/security)
+
+![](/images/help-centre/private-incident-streams/screenshot-1.png)
+
+---
+
+## Creating a private stream
+
+You can make an stream private from the start when you declare it, or turn a public stream private.
+
+### Declaring a private stream
+
+To create a private stream, simply **use the usual** `/incident stream` **Slack Command** (or create a new stream through the dashboard).
+
+We will add a drop-down labelled ' *Who should be able to access this stream?* '. To make the stream private, select ' *Only invited users (private)* '.
+
+![](/images/help-centre/private-incident-streams/screenshot-2.png)
+
+### Turning a public stream private
+
+Sometimes, you might not know if a stream should be private when you declare it - you might still be investigating and it's not quite clear what the issue and its impact is.
+
+Nothing to worry about! You can very easily convert a public stream into a private one by simply **making the streams** `#inc-...` **channel private from Slack** . We'll take care of locking it down for you from here.
+
+![](/images/help-centre/private-incident-streams/screenshot-3.png)
+
+This will remove all of the stream’s updates from the incident channel. The stream name and stream lead will still be visible from Slack and the dashboard when viewing the incident.
+
+![](/images/help-centre/private-incident-streams/screenshot-4.png)
+
+### Turning a public incident with streams private
+
+If you convert a public incident with streams to private, we’ll restrict access to all streams in the dashboard, and filter it out from any queries and insights, however:
+
+<Info>
+
+**We aren’t able to change the visibility of slack channels, so you’ll also need to make any stream channels private from Slack.**
+
+</Info>
+
+We’ll send a message to any stream channels and tag the stream lead to remind them to lock down the stream channel.
+
+### Turning a private stream into a public stream
+
+If you ever find the need to revert a private stream back to a public one, you can simply [convert the incident's slack channel to public](https://slack.com/intl/en-gb/help/articles/213185467-Convert-a-channel-to-private-or-public#convert-to-public-1:~:text=From%20your%20desktop%2C%20open%20the%20channel%20that%20you%20want%20to%20make%20public.) . We'll then do the same to the stream.
+
+### Turning a private incident with streams into a public incident
+
+If you ever find the need to revert a private incident back to a public one, you can simply [convert the incident's slack channel to public](https://slack.com/intl/en-gb/help/articles/213185467-Convert-a-channel-to-private-or-public#convert-to-public-1:~:text=From%20your%20desktop%2C%20open%20the%20channel%20that%20you%20want%20to%20make%20public.) .
+
+This won’t impact the streams associated with the incident, which will remain private. You can individually change their visibility by converting the stream’s slack channels to public.
+
+---
+
+## Requesting access to a private stream
+
+Only people who are in a private stream’s `#inc-...` channel will have access to it:
+
+- **If a stream is created as private from the start** , this includes the stream’s creator, the stream lead, and anyone they actively invite into the private channel;
+- **If you turn a public stream private** , this includes anyone who was on the public-turned-private channel, and anyone invited to the private channel hereafter.
+
+Unlike private incidents, private streams **are discoverable** by users who are not in the private stream already, but all stream content is hidden. They’ll be able to see the existence of the stream in the dashboard, and request access to it.
+
+![](/images/help-centre/private-incident-streams/screenshot-5.png)
+
+![](/images/help-centre/private-incident-streams/screenshot-6.png)
+
+---
+
+## Managing access
+
+The stream drawer will show you who has participated in the private stream ( *Active Participants* ) and who has been a member ( *Observers* ). Granting and revoking access can be done through the ' *Manage Access* ' button.
+
+Participants and Observers indicate members who **at any stage** have participated or observed, so even if their access has been revoked they’ll remain in the list.
+
+![](/images/help-centre/private-incident-streams/screenshot-7.png)
+
+Clicking the `Manage Access` button will allow you to:
+
+- **Grant access** : users you invite will be added automatically to the stream Slack channel, and will be able to view stream information in the dashboard
+- **Revoke access** : revoking someone’s access will mean they are removed from the Slack channel and they will no longer be able to see the stream details drawer. They’ll see the stream name and lead listed, but won’t have access to any of the information in the stream details drawer
+
+If your Slack workspace restricts who can remove people from channels, **we won’t be able to automatically remove a user from a channel** . In this case, you’ll need to ask the user to leave the channel, or have a workspace admin remove them, before you can revoke their access.
+
+*If a member leaves a private channel voluntarily, we’ll send a message to the channel asking if you’d like to remove their access to the stream. If you dismiss it, they will keep their access, and can rejoin the stream at any time.*
+
+---

@@ -1,0 +1,37 @@
+---
+title: "Embed your status page's data into your own product"
+description: ""
+canonical_article_id: 264
+migrated_at: "2026-01-21T18:40:37Z"
+source_url: "https://help.incident.io/articles/7434055319-embed-your-status-page%27s-data-into-your-own-product"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7434055319-embed-your-status-page%27s-data-into-your-own-product) on January 21, 2026
+</Info>
+
+Our **status page widget API** is a JSON API that reflects the current content of your status page, and is designed to allow you to reflect the status of your systems within your own product, and to retain full control over the look and feel of that. It updates whenever you update your status page, and is designed as a direct reflection of the data shown there.
+
+It is designed to allow you to build your status page content directly into your product. For example, you might display a banner at the top of your web page, or open a pop-up in your mobile app.
+
+To enable the widget API, go to your status page from our dashboard, then "Settings", then "Widget API":
+
+![CleanShot+2024-11-24+at+20_36_27%402x.png](/images/help-centre/embed-your-status-page's-data-into-your-own-product/screenshot-1.png)
+
+This feature is only available for public status pages.
+
+<Info>
+
+Please note, although the widget API **can** be called directly from a web app, we would strongly recommend proxying it through your own backend, and adding some level of caching. The response itself is highly cacheable. If we notice high levels of traffic for your status page, then in the first instance, we will reach out to you to discuss this. If you have any queries about this, please get in touch.
+
+</Info>
+
+## Response structure
+
+You can see a preview of the full JSON response from within the "Widget API" settings page. It contains three arrays — `ongoing_incidents` , `in_progress_maintenances` and `scheduled_maintenances` , allowing you to distinguish between those three different types of event. Each incident in those arrays will have dates associated with it.
+
+Each incident also has an ID, name, status, the last update message, and several other fields. It also contains affected components. By implementing your own logic, you can use these components to decide (for example) whether to show a banner on a certain page or not. For example, if the incident contains "Login" as an affected component, your login page can filter on that.
+
+## Authentication
+
+The endpoint is unauthenticated, and is publicly accessible on the internet. You can see the URL from within the "Widget API" settings page.

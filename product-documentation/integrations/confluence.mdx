@@ -1,0 +1,70 @@
+---
+title: "Confluence"
+description: "Integrate Confluence with incident.io to create post-mortems as Confluence pages"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Confluence
+
+You can now you can add multiple destinations for post-mortems, using different Confluence folders.
+
+## Setting up
+
+Integrate Confluence to incident.io via our Atlassian Marketplace app:
+
+1. Visit our [Atlassian Marketplace listing](https://marketplace.atlassian.com/apps/1233901/incident-io?tab=overview&hosting=cloud).
+
+2. Click on "**Get it now**" to install our app into your Jira and/or Confluence site.
+
+3. Next, navigate to your Jira/Confluence site and click on "**Apps > Manage Apps**".
+
+4. You should see the incident.io app in this page, click on the row to expand it, then click on the "**Get started**" button.
+
+5. You will be navigated to a page with a "**Link an incident.io organisation**" button. Click on it and you will be navigated to the incident.io dashboard.
+
+6. Within incident.io dashboard, verify the incident.io organisation that you'd like to connect to is correctly selected. Hit the "**Connect**" button.
+
+7. All done.
+
+<Note>
+If you previously connected to Confluence using OAuth, this method is now deprecated. You'll need to disconnect, and reconnect using the instructions above. Disconnecting won't remove any of your existing content.
+</Note>
+
+## Getting started
+
+### Add Confluence as your document destination for post-mortems
+
+Within the [Post-Mortem setting tab](https://app.incident.io/settings/post-mortem), add Confluence as your document destination by clicking 'Add destination'.
+
+<img src="/images/integrations/confluence/add-destination.png" alt="Add Confluence as document destination" />
+
+You can then configure the default destination for your post-mortems - we'll then create post-mortems as children of the page you select. This will be the default destination for your post-mortems.
+
+<Tip>
+Can't see the page destination you are looking for? You can simply search the page name in the drop-down to find the right one!
+</Tip>
+
+### Creating custom post-mortem destinations for different teams or services
+
+You can create different post-mortem destinations for different teams or services by adding further destinations.
+
+<img src="/images/integrations/confluence/multiple-destinations.png" alt="Multiple post-mortem destinations" />
+
+When you go to create and export a post-mortem, you can choose the correct destination depending on the team or service. Your default post-mortem destination will be used if you don't select a different destination!
+
+<img src="/images/integrations/confluence/choose-destination.png" alt="Choose post-mortem destination" />
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="I've installed the Jira integration but I'm now having trouble installing the Confluence one">
+    No worries! This can be sorted but the trick here might be that you need to hit **Get it now** twice - [here](https://help.incident.io/articles/2000519338-i-ve-installed-the-jira-integration-but-i-m-now-having-trouble-installing-the-confluence-one) is an article outlining this step-by-step.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+Still have questions? Let us know at [help@incident.io](mailto:help@incident.io) and we'll be happy to help.

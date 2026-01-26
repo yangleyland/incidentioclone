@@ -1,0 +1,19 @@
+---
+title: "What is Alert Deduplication?"
+description: ""
+canonical_article_id: 133
+migrated_at: "2026-01-21T18:21:13Z"
+source_url: "https://help.incident.io/articles/4201965005-what-is-alert-deduplication"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4201965005-what-is-alert-deduplication) on January 21, 2026
+</Info>
+
+Within the alert payloads received from our alert source integrations, a deduplication key is used to uniquely identify alerts and prevent the generation of duplicate alerts. For instance, if alert A is received with a deduplication key "x" and alert B with the same deduplication key is received while alert A is still active (in a firing state and not resolved), no new alert will be created for alert B. This can often be the reason why alerts may appear to be missing or not showing up within incident.io. Additionally, deduplication keys are used to manage the unique resolution of alerts. If an alert with a resolved status is sent using the same deduplication key as an active alert, the system will resolve the active alert accordingly. For HTTP alert sources, you have complete control over the choice of deduplication keys. However, for other alert sources, the configuration of deduplication keys varies depending on the integration.
+
+<Info>
+
+To learn more about how deduplication works for a specific alert source, please just head over to [this](/help-centre/alerts/alert-deduplication) collection of articles. If an article doesn't exist for a specific alert source and you still need assistance, please reach out to help@incident.io.
+
+</Info>

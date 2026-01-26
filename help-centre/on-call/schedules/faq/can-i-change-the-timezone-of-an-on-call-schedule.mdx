@@ -1,0 +1,39 @@
+---
+title: "Can I change the timezone of an on-call schedule?"
+description: ""
+canonical_article_id: 156
+migrated_at: "2026-01-21T18:29:11Z"
+source_url: "https://help.incident.io/articles/9473661807-can-i-change-the-timezone-of-an-on-call-schedule"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9473661807-can-i-change-the-timezone-of-an-on-call-schedule) on January 21, 2026
+</Info>
+
+## Context
+
+When creating on-call schedules, the timezone is set during creation. Users may want to change the timezone of an existing schedule, particularly when working with teams across different regions or after importing schedules from other platforms.
+
+## Answer
+
+The timezone of an on-call schedule cannot be changed after creation. This is by design, as changing the timezone could affect existing schedules and rotations.
+
+If you need a schedule in a different timezone, you will need to create a new schedule with the desired timezone.
+
+However, there are several ways to work with different timezones in existing schedules:
+
+1. Use the daily or 3-hour view to see multiple timezone conversions:
+  - Switch to the 3-hour or 1-day view of your schedule
+  - Click the timezone selector to add additional timezone conversions
+2. When creating overrides:
+  - The times will be shown in the schedule's original timezone
+  - Use the click-and-drag feature in the calendar view to create overrides visually
+  - Refer to the timezone conversions in the daily view to confirm the correct times
+
+![Screenshot 2025-05-14 at 5.22.40 PM.png](/images/help-centre/can-i-change-the-timezone-of-an-on-call-schedule/screenshot-1.png)
+
+<Info>
+
+Note: When viewing schedules, the system may display timezone abbreviations (like EST/EDT or PST/PDT) based on whether Daylight Saving Time is in effect. The schedule's base timezone remains unchanged.
+
+</Info>

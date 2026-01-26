@@ -1,0 +1,105 @@
+---
+title: "What data should I bring into Catalog?"
+description: ""
+canonical_article_id: 96
+migrated_at: "2026-01-21T18:54:13Z"
+source_url: "https://help.incident.io/articles/2433675791-what-data-should-i-bring-into-catalog"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2433675791-what-data-should-i-bring-into-catalog) on January 21, 2026
+</Info>
+
+[The](/help-centre/configure-your-account/using-the-catalog) [Catalog](/help-centre/configure-your-account/using-the-catalog) is a connected map of “everything” that exists in your organization that you can easily navigate and is available across features like Workflows, Insights, and Triggers to level up your incident response.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-1.png)
+
+Having great catalog data can supercharge your incident response process
+
+so understanding how you can import data and what data to import about your organization is incredibly important.
+
+So what data should you bring into catalog? This is something that will depend on your type of business and what you're using incident management for e.g. If I were a railway network, it would make sense for me to model all of my rail stations in a catalog type, but this wouldn't make any sense for a business in the finance sector.
+
+We'll explore how to navigate this in a later section , but before that let's look at the common catalog types that most organizations will want to have set up.
+
+## Common catalog types
+
+When declaring the vast majority of incidents, you'll likely want to be able to automatically bring in the teams/individuals responsible for resolving and communicating with stakeholders during an incident and so you'll likely want to model three catalog types:
+
+### Features
+
+In large organizations, it's unreasonable to expect someone declaring an incident to know who to specifically escalate something to. By adding a catalog type for features, you can therefore allow someone to just select the feature that's impacted and escalate accordingly based on the team that owns that feature.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-2.png)
+
+### Teams
+
+As part of the above, you'll probably want to know a bit more about the team you're escalating to e.g. What's their escalation policy? Who's the team lead? Who are the members? etc.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-3.png)
+
+### Customers
+
+It's often helpful to know more information about a customer when they're affected by an incident in order to inform relevant internal stakeholders or set priorities e.g. who is their customer success manager? What pricing package or tier are they on?
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-4.png)
+
+The combination of these three catalog types can be really powerful. For instance, if a critical incident is declared for a VIP customer where a specific feature is affected, we could automatically bring the Tech Lead(s) of the team(s) owning that feature and the Customer Success Manager for that customer into the incident channel.
+
+To do this, we need to create a couple of new custom fields backed by our new catalog types to allow users to select Features and Customers impacted when declaring an incident. For example the Features custom field would look like this:
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-5.png)
+
+We can then do the same with the Customer catalog type and configure our [incident declaration form](/help-centre/configure-your-account/configuring-incident-forms) to have these two fields available.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-6.png)
+
+You can see an example of how to configure the workflow below:
+
+<iframe src="https://www.loom.com/embed/5cc87afc51ab403786180efbb9b55186" width="100%" height="400" allowfullscreen></iframe>
+
+## Organization-specific catalog types
+
+It can often be difficult to know where to start when it comes to building a catalog that's tailored to your business but it's best to begin by identifying what your colleagues will know is broken when declaring an incident e.g. in a software business everyone understands the features / services we offer, whereas in a logistics company everyone will likely be referencing shipments or deliveries.
+
+Let's jump into a more in-depth example by imagining I'm responsible for incident management for a rail network. Our most common incident is when hardware (a signal failure point) fails on the network, meaning we have to send engineers to fix the issue and keep customers & drivers informed.
+
+My ideal flow here would be to select the component that's failing when declaring an incident, which should then automatically dispatch engineers to the component, assign a relevant comms lead and push a status page update.
+
+To do this, I'd need the following catalog types:
+
+#### Signal Failure Point
+
+All of the points that can fail on a network will be represented in this type, storing a lookup to the rail line it's on, the start and end stations and the type of component.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-7.png)
+
+#### Line
+
+Every tube line can be modeled in this type, with lookups to the status page for that line, the teams associated with the lines and the stations on that line.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-8.png)
+
+#### Station
+
+Having a station catalog type is needed to maintain a list of station options and also have the same station associated with multiple lines (we could also use this in reports e.g. show me all incidents that have involved station x).
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-9.png)
+
+#### Team
+
+Our team catalog type here holds all of the information I want to know about my teams i.e. who's the lead, what's their slack channel etc.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-10.png)
+
+These catalog types allow us to then [have a custom field](/help-centre/configure-your-account/using-the-catalog) related when declaring an incident to give us access to all the information in the lookups to other catalog types in automations and workflows.
+
+For example, if we wanted to get to the customer service team of the line that a signal failure point is on, we can do so by using an [expression](/help-centre/configure-your-account/workflows/how-to-use-workflow-expressions) within a workflow (Signal Failure Point -> Line -> Customer Service Team):
+
+<iframe src="https://www.loom.com/embed/80b58a7694f941558b6b00c2194501de" width="100%" height="400" allowfullscreen></iframe>
+
+Using this principle, we could then consider building out a more comprehensive workflow to automatically publish an update to our status page letting customers know we're having issues with line x between station y and z.
+
+![](/images/help-centre/what-data-should-i-bring-into-catalog/screenshot-11.png)
+
+You can quickly see how this becomes very powerful. We can give a huge amount of additional context and take manual actions away from responders simply by having one field selected on incident declaration.

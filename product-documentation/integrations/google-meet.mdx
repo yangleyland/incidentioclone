@@ -1,0 +1,62 @@
+---
+title: "Google Meet"
+description: "Automatically create Google Meet calls for incidents"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+# Google Meet
+
+We can automatically create an individual Google Meet call whenever an incident is declared, and attach it to the incident.
+
+This helps speed up your incident response, and reduces the burden of manual tasks on responders.
+
+<img src="/images/integrations/google-meet/google-meet-overview-1.png" alt="Google Meet integration overview" />
+
+<img src="/images/integrations/google-meet/google-meet-overview-2.png" alt="Google Meet call in incident details" />
+
+# Installation
+
+It's important to know that when the integration is installed, the connection to incident.io will belong to **the user that installed it**. Google Workspace connections like this, which use OAuth, belong to a specific user — for this reason, you may wish to set up a dedicated service or "bot" account.
+
+We use the same user account connection for all our Google integrations. Therefore, the account you use to connect this integration will need to be the same for Google Calendar (which we will connect automatically for you after you connect Meet) and Google Docs (which requires a separate installation).
+
+Make sure the user has the following privileges in [admin.google.com](https://admin.google.com):
+
+- Read and write calendar events
+
+- Read users
+
+Additionally Google requires the user to be an admin user. However, you should be able to restrict what the service account is able to do just like any custom role in Google Workspace. This can all be done via [admin.google.com](https://admin.google.com).
+
+## 1. Installing the Integration
+
+Go to [Settings → Integrations](https://app.incident.io/settings/integrations), find "Google Meet" and click "Install".
+
+Click "Install" and you'll be redirected to the install flow within Google Workspace. Review the permissions we're requesting and click "Next".
+
+<img src="/images/integrations/google-meet/install-permissions.png" alt="Google Meet installation permissions" />
+
+We request Google Calendar scopes, in order to create a Google Calendar meeting that has a Google Meet video call attached.
+
+## 2. Turn on auto-create call
+
+Click "Configure" next to Google Meet on the integrations page, and enable auto creating an incident call
+
+<img src="/images/integrations/google-meet/auto-create-call.png" alt="Enable auto-create call" />
+
+You should now be good to go!
+
+## Diagnosing common issues
+
+This section gives extra detail on errors that you might see when using Google Meet for your incident calls, or when using Scribe to transcribe them.
+
+### Call not found
+
+We need to look up data about the call, in order to fetch information about the people who are participating. If you see this error, it is because we weren't able to fetch information about the current call. If the call URL was set manually, please check that the call can be accessed by the Google account that was used to connect the Google Meet integration.
+
+### Scribe could not join breakout room
+
+If you see this error, it is because Scribe tried to join a Google Meet call which was a breakout room. Scribe does not currently support breakout rooms.

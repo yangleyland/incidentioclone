@@ -1,0 +1,123 @@
+---
+title: "Getting started with teams"
+description: ""
+canonical_article_id: 113
+migrated_at: "2026-01-21T18:19:46Z"
+source_url: "https://help.incident.io/articles/1165995295-getting-started-with-teams"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/1165995295-getting-started-with-teams) on January 21, 2026
+</Info>
+
+[incident.io](http://incident.io/) is designed to help you handle all kinds of incidents across your business, from disks running out of space, to laptops getting lost on a train. However, most of the time, most people want to *only* see incidents, as well as configuration, for their team(s). Essentially, only show items that are most relevant to their day-to-day work.
+
+So, if you tell us about your teams and who is in each team within [Catalog](/help-centre/configure-your-account/using-the-catalog) , you'll be able to leverage:
+
+- Escalation paths belonging to a team are automatically linked in Catalog, so each team can control what it means to page them
+- With alert routes and workflows, you don't need to set up loads of new configuration for each team; Instead, use attributes on your teams to adjust where alerts and messages go. Learn more about [alert routing](/help-centre/alerts/alert-configuration/creating-escalations-and-incidents-from-alerts) and [workflows](/help-centre/configure-your-account/workflows/getting-started-with-workflows) .
+- When viewing escalation paths and schedules, those owned by your team will always appear at the top of the list — super useful if you're a manager who's not on-call but wants to keep an eye on your team's rota!
+- When browsing incidents and alerts, we'll only show those related to your team
+
+## Creating teams
+
+In [Settings → Teams](https://app.incident.io/~/settings/teams) , jump into the three-step team setup wizard.
+
+First, tell us about any existing teams configuration you have, that you'd like us to use. If you're already managing team memberships in another system, we can sync them across.
+
+<Info>
+
+You can sync teams and their members from:
+
+- An identity provider or HR system like Okta or HiBob [using SCIM](/help-centre/catalog/catalog-best-practices/using-scim-to-create-a-team-catalog-type)
+- [Backstage](/help-centre/catalog/catalog-integrations/backstage)
+- Cortex
+- Linear
+- Opslevel
+- Slack
+
+If you manage teams and their members somewhere else, let us know!
+
+</Info>
+
+![Preview](/images/help-centre/getting-started-with-teams/screenshot-1.png)
+
+If you want to just create a few teams to try things out, you can manage membership manually instead:
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-2.png)
+
+Finally, you can add any extra attributes to your Team type. These can be really useful in Workflows and Alert Routes, for example to send messages to a different channel for each team. If you're not sure, you can always come back later to set up new attributes!
+
+<Info>
+
+If you want to migrate to using SCIM to manage team memberships later, you can run this wizard again, from [Settings → Teams → Configure](https://app.incident.io/~/settings/teams/configure) .
+
+</Info>
+
+## Managing your teams
+
+There are three different ways you can manage teams:
+
+### 1. Manually in incident.io
+
+If you just have a few teams, this is the quickest way to get started. You can add, remove, and manage members of teams from [Settings → Teams](https://app.incident.io/~/settings/teams) , and change which schedules and escalation paths they own:
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-3.png)
+
+### 2. With SCIM, or another integration
+
+If you've got your team memberships managed in a SCIM-compatible provider like Okta, Google Workspace, or Microsoft Entra ID, we will automatically sync changes to team members.
+
+You can create new teams linked to SCIM Groups in [Settings → Teams](https://app.incident.io/~/settings/teams) , and change which schedules and escalation paths they own, but you'll need to add and remove members in your SCIM provider.
+
+### 3. Using catalog-importer or Terraform
+
+If you're already using [catalog-importer](https://github.com/incident-io/catalog-importer) or [Terraform](https://registry.terraform.io/providers/incident-io/incident/latest) to manage your Catalog, you can also use this to manage teams and their members! This is really powerful if you have this data in code already, and want to manage relationships between teams, services, and other infrastructure components in code.
+
+You can read more about using catalog-importer [here](/help-centre/catalog/catalog-best-practices/how-do-i-get-data-into-catalog) .
+
+You won't be able to manage your teams and their members in [Settings → Teams](https://app.incident.io/~/settings/teams) , but you can still link them to schedules and escalation paths here.
+
+## Automatic filtering by team
+
+By default, some pages in the dashboard will be filtered by the teams you're a member of. So if you're in the "Payments" team, you will see all incidents that affect the Payments team.
+
+You can change this default when prompted to, or from [Preferences  → My dashboard](https://app.incident.io/~/user-preferences/my-dashboard) .
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-4.png)
+
+<Info>
+
+Pro tip: you can always access your preferences by using our ⌘+K menu and searching "preferences".
+
+</Info>
+
+### Incidents and alerts
+
+By default, incidents will be filtered using the "Affected teams" custom field, and alerts will be filtered by the "Team" attribute. You can change which custom field and alert attribute we use, or disable this entirely, in [Settings → Teams → Configure](https://app.incident.io/~/settings/teams/configure) .
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-5.png)
+
+### Escalation paths and schedules
+
+If you're using incident.io [On-call](https://incident.io/on-call) , you'll can link your teams to escalation paths and schedules when setting them up. You can change this later when editing the schedule or escalation path, or when editing the team.
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-6.png)
+
+<Info>
+
+If you're managing schedules or escalation paths with Terraform, you'll need to also set the `team_ids` attribute, and you won't be able to manage this in the incident.io dashboard.
+
+</Info>
+
+## Routing alerts and escalations to teams
+
+To make alert routing to escalation paths easier, when you attach an escalation path to a Team, we'll automatically link that back in Catalog:
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-7.png)
+
+You can use this to automatically route alerts to teams:
+
+![image.png](/images/help-centre/getting-started-with-teams/screenshot-8.png)
+
+If your alerts are tagged by *service* , you can route escalations based on the service's owning team. Read more about how to route alerts in [📄 Creating escalations and incidents from alerts](/help-centre/alerts/alert-configuration/creating-escalations-and-incidents-from-alerts) .

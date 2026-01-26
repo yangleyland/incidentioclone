@@ -1,0 +1,41 @@
+---
+title: "How do I set a default timezone for my organization?"
+description: ""
+canonical_article_id: 46
+migrated_at: "2026-01-21T17:57:35Z"
+source_url: "https://help.incident.io/articles/7149302075-how-do-i-set-a-default-timezone-for-my-organization"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7149302075-how-do-i-set-a-default-timezone-for-my-organization) on January 21, 2026
+</Info>
+
+## Context
+
+When working with a distributed team across multiple time zones, it can be challenging to coordinate incident responses and ensure everyone is looking at timestamps in the same timezone. Organizations often want to standardize on a single timezone (such as UTC) for consistency across their incident management process.
+
+## Answer
+
+Organizations can set a default timezone that will be used across most areas of incident.io. This feature is available on Pro and Enterprise plans.
+
+To set your organization's default timezone:
+
+1. Navigate to [Organization Settings](https://app.incident.io/~/settings/organization)
+2. Look for the timezone settings section
+3. Select your desired default timezone from the dropdown
+4. Save your changes
+
+## Important Notes:
+
+- This setting affects most areas of the product, including incident timelines and timestamps in the main interface
+- Some features will continue to use local timezone or UTC:
+  - On-call schedules are not affected by the default timezone setting
+  - Insights continue to display in the user's local timezone
+  - Status page emails remain in UTC
+- When this feature is enabled, users will need to input timestamps in the organization's default timezone rather than their local time
+
+<Info>
+
+If you don't see the timezone setting in your organization settings, contact your Customer Success Manager to have the feature enabled for your account.
+
+</Info>

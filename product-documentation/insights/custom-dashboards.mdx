@@ -1,0 +1,75 @@
+---
+title: Custom dashboards and scheduled delivery
+description: Build personalized dashboards and deliver them automatically
+author: auto-ai-doc-migration
+icon: "/icons/chart.svg"
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+Custom dashboards let you build exactly the view you need by combining panels from core Insights dashboards. Add chart and text panels, apply filters, and schedule automatic delivery to keep stakeholders informed.
+
+Use custom dashboards to focus on specific teams, incident types, or time periods. Schedule reports to deliver dashboard snapshots via email or Slack on a regular cadence.
+
+## Creating a custom dashboard
+
+Navigate to the [Insights homepage](https://app.incident.io/~/insights) and click **Create dashboard** in the top right. Give your dashboard a name, choose an icon and color, then click **Create**.
+
+New dashboards start empty. Add panels to populate them with data.
+
+## Adding panels
+
+Add panels containing charts or text to your dashboard by clicking the corresponding button:
+- **Chart panels** - Select any panel from core Insights dashboards
+- **Text panels** - Add markdown-formatted text for context or explanations
+
+Choose chart panels from the drawer showing all available panels from core dashboards. Panels display the same data as they would in their original dashboard, but with any filters you apply.
+
+## Filtering dashboards
+
+Apply filters at the dashboard level to affect all panels, or at the panel level to filter individual charts.
+
+### Dashboard-wide filters
+
+Add filters in the header bar using **Add filter**. These filters apply to every panel on the dashboard. For example, filter to show only major incidents across all charts.
+
+Dashboard filters persist when you save the dashboard, so viewers always see the filtered view.
+
+### Panel filters
+
+Filter individual panels by clicking **Add filter** in the panel header. Panel filters apply in addition to dashboard-wide filters—panels show data matching both filter sets.
+
+Use panel filters to compare different subsets within the same dashboard. For example, one panel showing critical incidents and another showing major incidents, both on a dashboard filtered to a specific team.
+
+## Scheduling reports
+
+Schedule automatic delivery of dashboard snapshots via email or Slack. Reports capture the current state of your dashboard at the scheduled time and deliver it to specified recipients.
+
+Click **Schedule** in the top right of any custom dashboard to configure delivery:
+- **Recipients** - Slack channels or email addresses (inside or outside your organization)
+- **Frequency** - Daily, weekly, or monthly delivery
+- **Test** - Send a test report to verify formatting and content
+
+<Note>
+Scheduled reports are only available for custom dashboards. To schedule reports for core dashboards, create a custom dashboard with the same panels.
+</Note>
+
+### Testing scheduled reports
+
+Click **Send a test report** at the bottom of the scheduling drawer to send a preview to your email address. Reports take up to one minute to generate.
+
+Review the test report to verify:
+- All panels render correctly
+- Filters are applied as expected
+- Data shows the intended time period
+- Formatting meets your needs
+
+Once satisfied, confirm the schedule. Reports will be delivered according to your selected frequency.
+
+## Managing scheduled reports
+
+View and edit scheduled reports from the custom dashboard by clicking **Schedule** again. Modify recipients, change frequency, or disable delivery without deleting the schedule configuration.
+
+Delete a scheduled report by removing all recipients and saving the configuration.

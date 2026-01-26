@@ -1,0 +1,37 @@
+---
+title: "Using a bot account for integrations"
+description: ""
+canonical_article_id: 245
+migrated_at: "2026-01-21T18:39:39Z"
+source_url: "https://help.incident.io/articles/3753306120-using-a-bot-account-for-integrations"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/3753306120-using-a-bot-account-for-integrations) on January 21, 2026
+</Info>
+
+**What are bot accounts?**
+
+Bot accounts are dummy accounts on the system you wish to integrate with, allowing you to connect integrations with your systems without them being attached to a specific user. ​ ​ **When should you use bot accounts?**
+
+Bot accounts are recommended to be used with any of our third-party integrations that require you to Authenticate via a user's account.
+
+**When Bot accounts are recommended:**
+
+For example, with our [Jira integration](/help-centre/api-and-integrations/task-and-issue-tracking/jira) you are prompted to give permissions for incident.io to take action on Jira's side.
+
+![](/images/help-centre/using-a-bot-account-for-integrations/screenshot-1.png)
+
+In this case, utilizing a Bot account would be useful to ensure that regardless of company user changes, the integration will continue to work as expected and not be tied to a specific user that would cause the integration to fail if that user leaves the company.
+
+**When are bot accounts not needed:**
+
+![](/images/help-centre/using-a-bot-account-for-integrations/screenshot-2.png)
+
+In the case of **Opsgenie** [integration](/help-centre/api-and-integrations/alternative-on-call-management-solutions/opsgenie) , we ask you to set up an API key on the account and copy-paste it into our settings page, which is globally set to the **Opsgenie** account and is not tied to a user, so no Bot account is needed as the integration will not lose permission if the user leaves the company.
+
+**Challenges of not Using Bot Accounts**
+
+The user account used for the integration gets deactivated:
+
+- This would cause the integration to break as the user is no longer an active user in the third-party app, causing disruption to your incident management process.

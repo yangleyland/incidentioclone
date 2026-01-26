@@ -1,0 +1,106 @@
+---
+title: "How do I escalate manually?"
+description: ""
+canonical_article_id: 11
+migrated_at: "2026-01-21T18:57:30Z"
+source_url: "https://help.incident.io/articles/8455552499-how-do-i-escalate-manually"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8455552499-how-do-i-escalate-manually) on January 21, 2026
+</Info>
+
+Sometimes there are situations in which you need to notify your on-call responders without a corresponding alert - imagine the case where you've discovered a critical issue and it hasn't triggered your alerts but you want to make sure the team are notified. In these cases, you can trigger a *manual escalation* which behaves just like an escalation triggered by an alert.
+
+![A screenshot of the incident Slack channel, showing the pinned message with an option to escalate the incident.](/images/help-centre/how-do-i-escalate-manually/screenshot-1.png)
+
+You can page someone either as part of an incident, or before declaring an incident. Both of which can be done in Slack (by typing `/inc page` ), in the mobile app and in the web dashboard.
+
+To escalate via the web dashboard without an incident, look for the "Declare incident" button and use the dropdown on its side to open the "Escalate to someone" page.
+
+To escalate via the web dashboard within an incident, open the overflow menu with the 3 dots at the top right and choose "Escalate to someone".
+
+![](/images/help-centre/how-do-i-escalate-manually/screenshot-2.png)
+
+From there you can manually escalate the incident to any of your configured escalators. This will start the notification process and associate the escalation with the relevant incident.
+
+To make the most of on-call, we'd recommend that you aim to configure your alert sources and routing to escalate automatically in as many situations as possible.
+
+If we don't have an integration for a tool that you use, you can try using our [HTTP webhooks](/help-centre/on-call/get-started-with-on-call/getting-started-with-on-call) and if that doesn't work for your use case, get in touch via your Slack Connect channel, or at [help@incident.io](mailto:help@incident.io) and we'll see what we can do.
+
+## How to customise the escalate form
+
+When someone escalates (e.g. using `/inc escalate` , or clicking on an `Escalate to someone` quick action), what they're presented with depends on what escalators you have installed.
+
+If you have multiple escalators installed (e.g. you've connected PagerDuty **and** you're using incident.io On-call) then by default someone will be asked which escalator to use when they're escalating.
+
+![](/images/help-centre/how-do-i-escalate-manually/screenshot-3.png)
+
+However, you can customise this in a number of ways...
+
+### Customise which escalator to use
+
+If you'd like to always go to a particular incident.io, PagerDuty, Opsgenie or Splunk On-call escalation form, you can do this by going to the incident.io dashboard, then choosing `Settings -> Forms -> Escalate` and choosing one of those.
+
+![SCR-20250331-icxv.png](/images/help-centre/how-do-i-escalate-manually/screenshot-4.png)
+
+### Escalating to users
+
+If you choose to escalate `Dynamically using Catalog` and you have multiple providers available to escalate with (e.g. incident.io, PagerDuty, Opsgenie), then users will be searchable across those providers.
+
+By default, if a user has an incident.io on-call seat, they'll be paged using incident.io. However, they can customise this in their preferences or by pressing the edit icon beside the **User** input.
+
+When you open this edit drawer, you can see all the user across both providers, and where its possible, you can change the preferred provider for users in your organisation.
+
+If a user has an account in external provider (e.g. PagerDuty) and doesn't have a related incident.io account, then they'll only be pageable via that external provider.
+
+If a user is showing up twice, it might be that their email in the external provider does not match their email in incident.io. You can manually link the accounts in Catalog by finding the user under the "Users" catalog type and then choosing their account in the external provider.
+
+![image.png](/images/help-centre/how-do-i-escalate-manually/screenshot-5.png)
+
+### Escalating using a Catalog type
+
+By default, you can escalate by letting users choose from a person or an escalation path that they'd like to page. However, if you're a person escalating, you might not always know who to escalate to, or which escalation path to use.
+
+For example, you might work in customer support and you spot an issue with Login. You might not know which team is responsible for Login, so you don't know who to escalate to.
+
+You can customise the Escalate form so that you can search for any Catalog type, and so long as you tell us how that Catalog type relates to an Escalation Path, we'll escalate to the appropriate people. For example:
+
+- You could let people search for `Features` . Then your `Features` type has a related `Team` , which has an `Escalation path` , so we'll automatically escalate to the team that own that feature.
+- You could let people search for `Services` , which have an associated `Team` , which has an `Escalation path` , so we'll automatically escalate to the team responsible for that service.
+
+To set this up, go to `Settings -> Forms -> Escalate` and scroll down to `Add another field` . Here you can choose which Catalog type you'd like to let people search for.
+
+Once you've chosen a Catalog type, you'll need to tell us how to map from this type to a related escalation path.
+
+![](/images/help-centre/how-do-i-escalate-manually/screenshot-6.png)
+
+![](/images/help-centre/how-do-i-escalate-manually/screenshot-7.png)
+
+### What if I'm in the middle of migrating to incident.io?
+
+If you're in the middle of migrating, or you're testing out incident.io on-call, you can default to escalating via incident.io, but still escalate to other providers for certain teams.
+
+To get started with this, you need to set up a Catalog type that people can search for. This is most often a `Team` type.
+
+You'll then want to give your `Team` type some attributes such as:
+
+- Escalation path - so you can tell us how to escalate using incident.io
+- PagerDuty service - if you're using PagerDuty, so you can tell us which teams should still be contacted using PagerDuty
+- Opsgenie team - if you're using Opsgenie, so you can tell us which teams should still be contacted using Opsgenie
+
+Once you've set up your Catalog type, update each of its entries to have appropriate values for each of those attributes.
+
+For example, in the screenshot below the `On-call` team can be escalated to using incident.io via the `ONC` escalation path. And the `Infrastructure` team can be escalated to using PagerDuty for the `Database` service.
+
+![](/images/help-centre/how-do-i-escalate-manually/screenshot-8.png)
+
+Once you've set up the Catalog type, you need to plug that into your escalation form. Go to `Settings -> Forms -> Escalate` and choose `Add another field` . Pick your Catalog type and then tell us how to map from that Catalog type to an escalation path.
+
+Then press `Escalate to another service` and tell us to map from that type to either a PagerDuty Service or an Opsgenie Team.
+
+Once that's done, choose `incident.io` as the place to 'send manual escalations to', as otherwise we'll still ask users which escalator to use each time they escalate. When `incident.io` is selected, if you've defined other escalators using Catalog, we'll still escalate using those other escalators, not just incident.io.
+
+![SCR-20250331-idkj.png](/images/help-centre/how-do-i-escalate-manually/screenshot-9.png)
+
+![SCR-20250331-idno.png](/images/help-centre/how-do-i-escalate-manually/screenshot-10.png)

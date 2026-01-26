@@ -1,0 +1,51 @@
+---
+title: "Why are my Prometheus Alertmanager alerts not appearing in incident.io?"
+description: ""
+canonical_article_id: 135
+migrated_at: "2026-01-21T18:21:13Z"
+source_url: "https://help.incident.io/articles/5500468007-why-are-my-prometheus-alertmanager-alerts-not-appearing-in-incident-io"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5500468007-why-are-my-prometheus-alertmanager-alerts-not-appearing-in-incident-io) on January 21, 2026
+</Info>
+
+## Context
+
+When using Prometheus Alertmanager to send alerts to incident.io, you might notice that some alerts don't appear as expected in the incident.io interface. This typically happens due to how Alertmanager groups alerts and how incident.io processes these grouped alerts.
+
+## Answer
+
+The behavior you're seeing is related to how Prometheus Alertmanager groups alerts and how incident.io processes these grouped alerts. Here's what you need to know:
+
+## How Alertmanager Grouping Works
+
+Alertmanager groups alerts based on the `group_by` labels specified in your route configuration. When multiple alerts share the same group labels, they're combined into a single notification. For example:
+
+Plain Text 
+
+```plaintext
+route: group_by: - job group_interval: 1m group_wait: 30s receiver: incident.io
+```
+
+## How incident.io Processes Grouped Alerts
+
+When incident.io receives grouped alerts from Alertmanager:
+
+- Multiple alerts within the same group are treated as a single alert in incident.io
+- Subsequent alerts with the same group key will be deduplicated while the original alert is still firing
+- A new alert will only be created once the previous alert with the same group key has been resolved
+
+## Solutions
+
+To ensure alerts appear as expected in incident.io, you can:
+
+1. Adjust your `group_by` labels in the Alertmanager configuration to create more granular groupings
+2. Wait for existing alerts to resolve before expecting new alerts with the same group key to appear
+3. If you need individual alerts instead of grouped alerts, you can consider using the Grafana alert source instead of Alertmanager, as it handles grouped alerts differently.
+
+<Info>
+
+Note: If you need to track individual alerts rather than grouped alerts, the Grafana alert source might be more suitable as it creates independent alerts from grouped alerts.
+
+</Info>

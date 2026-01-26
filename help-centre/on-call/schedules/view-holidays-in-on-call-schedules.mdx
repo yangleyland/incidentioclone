@@ -1,0 +1,109 @@
+---
+title: "View holidays in On-call schedules"
+description: ""
+canonical_article_id: 161
+migrated_at: "2026-01-21T18:29:14Z"
+source_url: "https://help.incident.io/articles/6645368897-view-holidays-in-on-call-schedules"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6645368897-view-holidays-in-on-call-schedules) on January 21, 2026
+</Info>
+
+We now let you integrate with external systems as well as subscribe to countries' public holidays so that you can view your team's holidays in your On-call schedules.
+
+This lets you see whether cover might be required for certain On-call shifts at a glance, and easily create overrides from those holidays.
+
+## People holidays / time-off / vacation / PTO
+
+To get started with bringing your team's personal holidays into incident.io, you'll need to have a URL to the calendar feed that contains your team's holiday. We provide tips on how some popular HRIS let you set up calendar feed subscriptions [below](/help-centre/on-call/schedules/view-holidays-in-on-call-schedules)
+![](/images/help-centre/view-holidays-in-on-call-schedules/screenshot-1.png)
+
+1. Head to **Settings > Integrations** and select [Calendar feeds](https://app.incident.io/~/settings/integrations/calendar_feeds)
+
+2. Click **Add calendar feed** and enter the URL of the calendar feed you've generated in your HRIS or calendar system, and a name for the feed.
+
+3. That's it - your calendar feed is parsed and ready to be used within schedules! If we find an holiday that matches a responder on your schedule, we'll surface that event in the timeline view.
+
+We will best-effort match users to holiday events using name heuristics or the attendees of the event. If you are not seeing a holiday alongside your On-call schedule as expected, please [let us know](mailto:support@incident.io) and we'll take a look!
+
+![](/images/help-centre/view-holidays-in-on-call-schedules/screenshot-2.png)
+
+## Public holidays / bank holidays
+
+Alongside people's PTO, we also let you subscribe to one or multiple countries' public holidays per schedule. This is done per schedule as On-call schedules are often configured per team, which might work in different regions of the work.
+
+To make this set up as simple as possible for you, when you create or edit a schedule we'll automatically suggest public holiday subscriptions based on the schedule's timezone!
+
+To subscribe to public holidays:
+
+1. Head to your [Schedules](https://app.incident.io/~/on-call/schedules) list, and click **New schedule** or click **Edit** on an existing schedule
+
+2. In the **Public holidays** section, click **Add** and search for the country whose holidays you want to subscribe to
+
+3. **Repeat if needed** , and that's it!
+
+![](/images/help-centre/view-holidays-in-on-call-schedules/screenshot-3.png)
+
+## Acting on your team's holidays
+
+Once you've set up some public holiday or calendar feed subscriptions, we'll automatically surface relevant holidays alongside your On-call schedule shifts.
+
+To easily arrange cover, hover over the holiday and click **Create override** !
+
+![](/images/help-centre/view-holidays-in-on-call-schedules/screenshot-4.png)
+
+<Info>
+
+We are planning on building on top of this feature. If there's any features you'd like to see here, please [let us know](mailto:support@incident.io) - we'd love to hear from you!
+
+</Info>
+
+---
+
+## Bringing in calendar feeds from popular HRIS
+
+To help you get set up with this feature, we've detailed how you can get bring in calendar feeds from some popular HRIS below.
+
+#### BambooHR
+
+- Follow the steps in [this help article](https://help.bamboohr.com/s/article/587318) to get a calendar feed URL
+- Follow the steps above to use this calendar feed in incident.io!
+
+#### CharlieHR
+
+- Follow the steps in [this help article](https://help.charliehr.com/en/articles/839648-importing-your-time-off-calendar-to-google-calendar) to get a calendar feed URL
+- Follow the steps above to use this calendar feed in incident.io!
+
+#### HiBob
+
+- From the sidebar menu, [head to the people's time off view](https://app.hibob.com/time-off/peoples-time-off/calendar)
+- In the top right, click Filters and select which parts of your organisation or which people whose holidays you want to subscribe to
+  - If you care about everyone, add "None", otherwise HiBob just generates a feed of company events without people's names
+- On the top right, click "Sync with external calendar", pick "Filtered view" and copy the URL
+- Follow the steps above to use this calendar feed in incident.io!
+
+#### Personio
+
+- Follow the steps in [this help article](https://support.personio.de/hc/en-us/articles/360000286117-Add-a-Personio-Calendar-via-an-iCal-link) to get a calendar feed URL
+- Follow the steps above to use this calendar feed in incident.io!
+
+#### Rippling
+
+- Follow the steps [in this video tutorial](https://www.youtube.com/watch?v=XWZsfwbF0jg) to get a calendar feed URL
+- Replace the webcal:// protocol with the https:// protocol in the URL
+- Follow the steps above to use this calendar feed in incident.io!
+
+#### Google Calendar
+
+- If you have a custom calendar in Google Calendar, you can also bring it in!
+- In the sidebar, hover over the calendar you care about and click the dropdown menu
+- Click "Settings"
+- At the bottom of the page, in the **Integrate calendar** section copy the URL shown under **Public address in ical format** - note that you might [need to configure this calendar to be public](https://support.google.com/calendar/answer/37083?sjid=15786370471486530353-EU#link&zippy=%2Cshare-a-link) for this to appear.
+- Follow the steps above to use this calendar feed in incident.io!
+
+<Info>
+
+Other HRIS may support calendar feeds as we do not have access to all their documentation - if you use a system which is not listed here, and are successful with this feature, please [let us know](mailto:support@incident.io) ! We'd love to know how you end up using it.
+
+</Info>

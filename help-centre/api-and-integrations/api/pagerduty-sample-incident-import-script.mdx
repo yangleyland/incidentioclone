@@ -1,0 +1,111 @@
+---
+title: "Pagerduty sample incident import script"
+description: ""
+canonical_article_id: 197
+migrated_at: "2026-01-21T18:29:20Z"
+source_url: "https://help.incident.io/articles/2498787495-pagerduty-sample-incident-import-script"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2498787495-pagerduty-sample-incident-import-script) on January 21, 2026
+</Info>
+
+This script provides a basic structure that can be utilized to import historical incident data from Pagerduty to incident.io.
+
+For best results, we recommend doing further mapping to ensure all fields are being mapped to your requirements.
+
+You can use the PagerDuty API to fetch incidents and the incident.io API to add retrospective incidents.
+
+## Prerequisites
+
+Ensure you have the necessary API keys and permissions for both services.
+
+Also, make sure you have the required libraries installed by running: ​
+
+```plaintext
+bash pip install requests
+```
+
+## Sample script
+
+Here's a simple Python script that demonstrates how you might export incidents from PagerDuty and add them as retrospective incidents to incident.io:
+
+```plaintext
+import math
+
+import requests
+import json
+
+# PagerDuty API credentials
+pagerduty_token = 'your_pagerduty_token'
+pagerduty_api_url = 'https://api.pagerduty.com/incidents'
+
+# Incident.io API credentials
+incidentio_token = 'your_incidentio_token'
+incidentio_api_url = 'https://api.incident.io/v2/incidents'
+
+# Function to fetch incidents from PagerDuty
+def fetch_pagerduty_incidents(params):
+    headers = {
+        'Authorization': f'Token token={pagerduty_token}',
+        'Content-Type': 'application/json',
+    }
+    response = requests.get(pagerduty_api_url, headers=headers, params=params)
+    return response.json()
+
+def import_incidents_to_incident_io(incident, retrospective_data):
+    headers = {
+        'Authorization': f'Bearer {incidentio_token}',
+        'Content-Type': 'application/json',
+    }
+
+    response = requests.post(incidentio_api_url, headers=headers, data=json.dumps(retrospective_data))
+    if response.status_code == 201:
+        print(f"Retrospective incident added for PagerDuty incident ID: {incident['id']}")
+    else:
+        print(f"Failed to add retrospective incident for PagerDuty incident ID: {incident['id']}")
+
+# Function to add retrospective incidents to Incident.io
+def add_retrospective_incidents(incident_total):
+    max_pages = math.ceil(incident_total/10)  # calculate how many pages we need
+
+    for page in range(1, max_pages + 1):
+        offset = (page - 1) * 10
+        params = {
+            "limit": 10,
+            "offset": offset
+        }
+        pagerduty_incidents = fetch_pagerduty_incidents(params)["incidents"]
+
+        if pagerduty_incidents:
+            for incident in pagerduty_incidents:
+                # Customize the data you want to send to Incident.io
+                retrospective_data = {
+                    'title': f"Retrospective - {incident['summary']}",
+                    'description': incident['description'],
+                    'status': 'resolved',  # Set the appropriate status
+                    # Add any other relevant fields, This is where you get to customize any fields on incident.io side
+                    # with data from PagerDuty
+                }
+                import_incidents_to_incident_io(incident, retrospective_data)
+
+def main():
+    # Fetch the total number of incidents from PagerDuty to handle pagination
+    total_number_of_incidents = fetch_pagerduty_incidents({"limit": 10, "offset": 0, "total": True})["total"]
+    print(total_number_of_incidents)
+    
+    # Extract relevant information from PagerDuty incidents and add to Incident.io
+    if total_number_of_incidents:
+        add_retrospective_incidents(total_number_of_incidents)
+    else:
+        print("No incidents found in PagerDuty.")
+
+if __name__ == "__main__":
+    main()
+```
+
+<Warning>
+
+**Note:** Make sure to replace placeholders like `'your_pagerduty_token'` , and `'your_incidentio_token'` , and customize the data fields according to your needs. Also, you will need to add a loop to handle pagination if there are many incidents in PagerDuty.
+
+</Warning>

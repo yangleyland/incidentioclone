@@ -1,0 +1,93 @@
+---
+title: "Shortcuts cheatsheet"
+description: ""
+canonical_article_id: 66
+migrated_at: "2026-01-21T18:31:22Z"
+source_url: "https://help.incident.io/articles/7750701908-shortcuts-cheatsheet"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/7750701908-shortcuts-cheatsheet) on January 21, 2026
+</Info>
+
+There are quite a few handy shortcuts in incident.io....
+
+---
+
+## The One Command to Rule Them All
+
+If you have to learn just one command, it's `/inc` **while in an incident's** `#inc-...` **Slack channel** - it will pop up a menu of all the actions you can run on that incident
+
+<iframe src="https://www.loom.com/embed/1fa3d053e5aa4c7fbb35ade397ae2a42" width="100%" height="400" allowfullscreen></iframe>
+
+`/inc` *in any other channel will pop up the incident creation form*
+
+---
+
+## Other super-commands
+
+## Emojis
+
+From an incident's `#inc-...` Slack channel, you can react to messages with:
+
+|   |   |
+| --- | --- |
+| `:boom:` | Turns the message into an [Action](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/keeping-track-of-who's-doing-what) |
+| `:fast_forward:` | Turns the message into a [Follow-up](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/keeping-track-of-who's-doing-what) |
+| `:pushpin:` `:bookmark:` `:round_pushpin:` `:star:` | Pins the message to the incident's [timeline](/help-centre/learning-from-incidents/generating-your-incident-timeline) |
+| `:mega:` `:speech_balloon:` | Turns the message into an [Update](/help-centre/creating-and-running-incidents/managing-ongoing-incidents/sharing-status-updates-with-your-team) |
+
+## Slack Commands
+
+|   |   |
+| --- | --- |
+| **GENERAL** |  |
+| `/incident help` | See information on how to get help |
+| `/incident workflow` | Trigger a workflow from an incident channel |
+| **CREATING/UPDATING INCIDENTS** |  |
+| `/incident` `/inc` | Create an incident |
+| `/inc retro` | Routes you to the dashboards to create a retrospective incident |
+| `/incident lead` | Make someone the incident lead `/incident lead [me|@user]` to auto-fill the lead |
+| `/incident resolve` | Mark a live incident as resolved. Once you've done this, you can choose to close the incident or enter the post-incident flow. |
+| `/incident close` | Skip the post-incident flow and close the incident |
+| `/incident cancel` | Mark the incident as canceled. Use this if you've realised that the incident is not actually a problem. |
+| `/incident severity` `/incident sev` | Upgrade and downgrade severities `/incident \{severity|sev\} [level]` to auto-fill the severity |
+| `/incident roles` `/incident role` | View, assign and unassign roles during the incident |
+| `/incident field` `/incident fields` `/incident customfield` `/incident customfields` | Manage custom fields for this incident |
+| `/incident summary` | Update the top level summary of the incident `/incident summary [description]` to auto-fill the summary |
+| `/incident overview` | See a summary of the incident's history so far |
+| `/incident action` `/incident actions` | Create and manage Actions `/incident \{action|actions\} [description]` to auto-fill an action's title |
+| `/incident followup` `/incident followups` `/incident follow-up` `/incident follow-ups` | Create an incident follow-up item. |
+| `/incident rename` | Change the title of the incident `/incident rename [name]` to auto-fill |
+| `/incident status` `/incident state` | Update the incident status `/incident \{status|state\} [level]` to auto-fill the status |
+| `/incident accept` | When an incident is in triage, it'll open the 'accept incident' modal |
+| `/incident merge` | When an incident is in triage, it'll open a modal to help you merge the incident into another one |
+| `/incident decline` | When an incident is in triage, it'll open a modal to let you decline the incident and provide an update |
+| `/incident related` | Link a related incident |
+| `/inc private` | Find out how to make the incident private. |
+| `/inc handover` | Hand over responsibilities in an incident to another user. |
+| `/inc decision` | Browse/Trigger decision flows |
+| `/inc pause` | Temporarily pause an ongoing incident |
+| `/inc stream` | Create a stream under the current active incident |
+| **COMMUNICATION** |  |
+| `/incident update` | Provide an internal status update to your team about the incident `/incident \{update\} [message]` to auto-fill the update message |
+| `/incident request` `/incident request-update` | Request an internal status update from the incident lead |
+| `/incident statuspage` `/incident sp` | Create and update your public [Statuspage](/help-centre/api-and-integrations/communication/statuspage) |
+| `/incident escalate` `/incident page` | Pull in other teammates for help. `/incident page` can be used outside of incidents! |
+| `/incident whoisoncall` `/incident oncall` | See who is currently on-call for a given team or escalation path |
+| `/incident coverme` ​ `/incident cover` ​ `/incident cover me` | Request on-call cover for an upcoming shift |
+| `/incident call` | Set a call link `/incident call [link]` to auto-fill the link |
+| `/incident shoutout` | Recognize your team for their work |
+| `/incident announce` | Announce the incident in another channel |
+| `/incident revoke` `/inc revoke me` `/inc revoke @user` | choose a user to remove from a private incident leave the channel and remove yourself from a private incident revoke a specified user passed as an argument from a private incident |
+| **POSTMORTEM** |  |
+| `/incident doc` `/incident document` | View and set postmortem docs `/incident \{doc|document\} [link]` to auto-fill the postmortem link |
+| `/inc timestamp` | View and update an incident's timestamp values |
+| `/inc attachments` | Opens a modal showing all the attachments for this incident |
+| `/inc attach [link]` | Adds a link as an attachment to the incident (only works for links related to enabled [integrations](https://app.incident.io/~/settings/integrations) ) |
+
+## FAQ
+
+**Does incident.io support custom slack slash commands?**
+
+No, Slack does not allow applications to create custom slash commands as they require explicit approval and need to be consistent across all users of the application.

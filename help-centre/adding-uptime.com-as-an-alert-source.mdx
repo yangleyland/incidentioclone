@@ -1,0 +1,57 @@
+---
+title: "Adding Uptime.com as an alert source"
+description: ""
+canonical_article_id: 7
+migrated_at: "2026-01-21T18:57:17Z"
+source_url: "https://help.incident.io/articles/6638739699-adding-uptime.com-as-an-alert-source"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/6638739699-adding-uptime.com-as-an-alert-source) on January 21, 2026
+</Info>
+
+## Instructions
+
+To open the alert source creation form directly, simply follow [this link](https://app.incident.io/~/alerts/sources/create) , and skip to step 4.
+
+1. Head over the the [Alerts](https://app.incident.io/~/alerts/sources) section in your incident.io dashboard
+
+2. Select the Sources tab at the top of the page
+
+3. Press the 'New alert source' button
+
+![](/images/help-centre/adding-uptime.com-as-an-alert-source/screenshot-1.png)
+
+4. Search for 'Uptime', select it and customise the name if desired. Click continue to create the alert source.
+
+![](/images/help-centre/adding-uptime.com-as-an-alert-source/screenshot-2.png)
+
+5. Switch to your Uptime.com dashboard and navigate to Notifications: Integrations.
+
+6. Click 'New Profile' in the top right, and select 'Custom Postback URL (Webhook)' as the provider type.
+
+7. Assign the integration to an existing Uptime.com contact or create a new contact for the integration.
+
+8. Grab the webhook URL and Authorization token provided to you on the incident.io alert source and paste them in to 'URL' and 'Custom HTTP Headers' field.
+
+![](/images/help-centre/adding-uptime.com-as-an-alert-source/screenshot-3.png)
+
+9. Once you've clicked save, Uptime will prompt you to test the integration. Click 'Start Test' and make sure the test alert arrives.
+
+1. Navigate to 'Monitoring' to select the Uptime.com check(s) for which you want to receive alerts in incident.io and assign them to the contact you've assigned the Integration Profile to.
+
+![](/images/help-centre/adding-uptime.com-as-an-alert-source/screenshot-4.png)
+
+And you're done! Next time an Uptime.com monitoring check fails, you'll receive an alert within incident.io.
+
+![](/images/help-centre/adding-uptime.com-as-an-alert-source/screenshot-5.png)
+
+---
+
+### Frequently Asked Questions
+
+- **How are Uptime.com monitoring alerts deduplicated in incident.io?**
+  - When an Uptime.com monitoring check starts firing, you'll receive an alert in incident.io. If you receive additional failing checks from the monitor, these will be deduplicated in incident.io them to limit alert noise.
+
+- **How do Uptime.com monitoring alert events map to incident.io alerts?**
+  - **Uptime.com** ' `test` ' and ' `alert_raised` ' events map to the incident.io ' `firing` ' status. ' `alert_cleared` ' events map to the incident.io ' `resolved` ' status.

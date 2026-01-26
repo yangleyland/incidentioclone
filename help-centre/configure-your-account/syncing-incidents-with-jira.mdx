@@ -1,0 +1,77 @@
+---
+title: "Syncing incidents with Jira"
+description: ""
+canonical_article_id: 39
+migrated_at: "2026-01-21T17:35:11Z"
+source_url: "https://help.incident.io/articles/2332253882-syncing-incidents-with-jira"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/2332253882-syncing-incidents-with-jira) on January 21, 2026
+</Info>
+
+You might be aware that you can [export follow-ups to Jira](/help-centre/api-and-integrations/task-and-issue-tracking/how-to-export-follow-ups-to-jira-cloud) but did you know that you can automatically create tickets representing an incident too?
+
+Often it can be hard to keep track of which tickets or follow-ups relate to which incident, or have a central place in your project tracking where you can add comments and extra information.
+
+By having a single incident ticket created automatically you can attach, link, and refer back easily back to this one ticket. We will also keep fields and variables in sync and update the ticket with the latest information.
+
+You can also use templates and conditions to create different tickets in different projects depending on custom fields, and incident types within incident.io.
+
+## Getting started
+
+To get this set up, follow the [setup process](/help-centre/api-and-integrations/task-and-issue-tracking/jira) and once connected head to [Settings → Incident tickets](https://app.incident.io/~/settings/incident-tickets) .
+
+<Info>
+
+You may not have a default template - before you can save, you will need to add a template and potentially any conditions you wish to match against.
+
+</Info>
+
+## Creating and editing templates
+
+When we sync information about an incident with Jira we will need to know what project, issue type, and any required fields to use when we create it.
+
+By filling out the template you can specify any required and optional fields along with the ticket description itself using either static text or fields powered by our variables.
+
+This gives you the flexibility to show more or less in the description for certain incidents. For example you might want a completely different set of information for a maintenance event vs a critical incident.
+
+![](/images/help-centre/syncing-incidents-with-jira/screenshot-1.png)
+
+You can create multiple templates (depending on your billing plan) and use conditions to select which one to use in certain circumstances. This will allow you to route your tickets to different Jira projects based on incident conditions.
+
+## Using conditions
+
+You're now ready to enable ' **Create tickets** ':
+
+![](/images/help-centre/syncing-incidents-with-jira/screenshot-2.png)
+
+If there are no conditions specified we will use the first template in the list and create a ticket for all incidents.
+
+If you only wish to create a ticket for certain incidents, or create tickets in different projects then you'll need to set up some conditions.
+
+For example, if we wanted to use a security template for security type issues we can create the following condition:
+
+![](/images/help-centre/syncing-incidents-with-jira/screenshot-3.png)
+
+And once saved see how it will affect the creation of tickets:
+
+![](/images/help-centre/syncing-incidents-with-jira/screenshot-4.png)
+
+<Info>
+
+By default if you have created at least one condition we will **not** create a ticket if there is no match.
+
+</Info>
+
+You can edit this no match fallback behaviour to enable always creating a ticket, for example here we fallback to our default template:
+
+![](/images/help-centre/syncing-incidents-with-jira/screenshot-5.png)
+
+![](/images/help-centre/syncing-incidents-with-jira/screenshot-6.png)
+
+## Private incidents
+
+If you do wish to create tickets for private incidents you can enable this with the checkbox.
+
+However be aware that anyone with access to the chosen Jira project will be able to see them, so take care.

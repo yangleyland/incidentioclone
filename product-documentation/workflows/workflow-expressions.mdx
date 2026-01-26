@@ -1,0 +1,59 @@
+---
+title: How to use workflow expressions
+description: Vary workflow behavior based on conditional logic
+author: auto-ai-doc-migration
+---
+
+import { StatusBanner } from '/snippets/status-banner.mdx';
+
+<StatusBanner status="PLACEHOLDER" />
+
+You can write workflow expressions as a way to vary parts of a workflow based on a set of conditions.
+
+For example, if you want to escalate an incident to the specific on-call engineer for the affected product, Expressions will let you do that. This looks something like this:
+
+- If **Affected Service** is **Payments:**
+  - **Escalation Team** = **Payments Team**
+- Else if **Affected Service** is **Onboarding:**
+  - **Escalation Team = Onboarding Team**
+- Else:
+  - **Escalation Team** is not set
+
+Later on in your workflow, you can then use `Escalation Team` in any step that expects that type. So, we could pair that with an `Escalate to PagerDuty` step that uses the `Escalation Team`.
+
+## Defining an expression
+
+- Open [Workflows](https://app.incident.io/workflows) in your dashboard and create or edit a workflow.
+
+- Navigate to the Workflow step where you want to use an expression, click "Use a variable" and then `Add new expression` to begin creating an expression.
+
+![Add new expression button](/images/workflows/expression-add-new.png)
+
+- Choose which type of expression you require.
+
+![Choose expression type](/images/workflows/expression-type-selection.png)
+
+- In this example, we'll use "If... else...". Give your expression a name. This should be something short that suggests what the expression results in (e.g. Escalation Service, or Mailing Lists).
+- Choose a return type. This will decide what *kind* of thing your expression will return (e.g. a Slack Channel or some text).
+
+![Expression name and return type](/images/workflows/expression-name-and-type.png)
+
+- Choose whether or not your expression will return multiple values:
+  - Please note that not all conditions and steps will accept multiple values. For example, the 'Send message to Slack Channel' step expects one single channel. If you choose to return multiple items for a 'Slack Channel' expression, then it won't be available in the 'Send message to Slack Channel' options.
+
+![Multiple values option](/images/workflows/expression-multiple-values.png)
+
+- Define your conditions and the things you want to return when those conditions are met.
+
+![Define conditions](/images/workflows/expression-define-conditions.png)
+
+- Define what happens when none of your conditions are met. You can either return 'nothing', or a default value. If you return nothing and then use the expression in a step that needs a value, we'll skip running the rest of the workflow from that step.
+
+![Define default behavior](/images/workflows/expression-default-behavior.png)
+
+- Click `Add` to finish creating your expression.
+- Continue with creating the rest of your workflow. When you create a condition or add a step that expects something matching the type you've defined, you should see it in the dropdown options.
+
+![Use expression in workflow](/images/workflows/expression-in-workflow.png)
+
+That's all! Use workflow expressions to consolidate many workflows doing similar things into one general workflow that varies as needed for the incident at hand.

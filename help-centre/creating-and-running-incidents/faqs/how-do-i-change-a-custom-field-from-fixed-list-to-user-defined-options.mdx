@@ -1,0 +1,33 @@
+---
+title: "How do I change a custom field from fixed list to user-defined options?"
+description: ""
+canonical_article_id: 89
+migrated_at: "2026-01-21T18:15:10Z"
+source_url: "https://help.incident.io/articles/9724533924-how-do-i-change-a-custom-field-from-fixed-list-to-user-defined-options"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/9724533924-how-do-i-change-a-custom-field-from-fixed-list-to-user-defined-options) on January 21, 2026
+</Info>
+
+## Context
+
+When creating a multi-select custom field, you have the option to either use a fixed list of options or allow users to add their own options. Once a custom field has been created with a fixed list, the UI prevents direct modification to change it to user-defined options.
+
+## Answer
+
+While you cannot directly modify an existing fixed-list custom field to allow user-defined options, you can create a new custom field and migrate the existing data. Here's how to transfer your data:
+
+1. Create a new custom field with user-defined options enabled
+2. Go to the incidents tab
+3. Filter for incidents that contain a specific value in the old custom field
+4. Use the bulk update feature to set the new custom field value
+5. Repeat this process for each distinct value in your old custom field
+
+![image.png](/images/help-centre/how-do-i-change-a-custom-field-from-fixed-list-to-user-defined-options/screenshot-1.png)
+
+<Warning>
+
+Note: If you encounter generic errors during bulk updates, this may be due to rate-limiting. To work around this, try reducing the size of your bulk update batch.
+
+</Warning>

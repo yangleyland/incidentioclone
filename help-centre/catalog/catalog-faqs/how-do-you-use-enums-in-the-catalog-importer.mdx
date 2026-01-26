@@ -1,0 +1,64 @@
+---
+title: "How do you use enums in the Catalog Importer?"
+description: ""
+canonical_article_id: 107
+migrated_at: "2026-01-21T18:54:02Z"
+source_url: "https://help.incident.io/articles/8629615575-how-do-you-use-enums-in-the-catalog-importer"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/8629615575-how-do-you-use-enums-in-the-catalog-importer) on January 21, 2026
+</Info>
+
+**What is an enum?**
+
+Enums are a way to better support categorical attribute types. This allows you to create child catalog types from a parent catalog type.
+
+```plaintext
+{
+      outputs: [
+        {
+          name: 'Teams',
+          description: 'Team in org',
+          type_name: 'Custom[\"Teams\"]',
+          source: {
+            name: 'goal',
+            external_id: 'external_id',
+          },
+          attributes: [
+            {
+              id: 'description',
+              name: 'Description',
+              type: 'Text',
+              source: 'description',
+            },
+            {
+              id: 'email',
+              name: 'Email list',
+              source: 'emails',
+              array: true,
+              enum: {
+                    name: 'List of emails',
+                    type_name: 'Custom["ListOfEmails"]',
+                    description: 'List of all team members',
+                  },
+            },
+            {
+              id: 'name',
+              name: 'Goal',
+              type: 'Text',
+              source: 'goal',
+            },
+          ],
+        },
+      ],
+    },
+```
+
+In the sample above a `Team` catalog type will be created with `name` , `description` , and `email` attributes. The `List of emails` attribute will be created as a child attribute catalog type from the parent `Teams` .
+
+#### Why does this matter?
+
+Having child catalog types for these attributes allows workflows to know which options that attribute supports and gives you a drop-down instead of being textual.
+
+![](/images/help-centre/how-do-you-use-enums-in-the-catalog-importer/screenshot-1.png)

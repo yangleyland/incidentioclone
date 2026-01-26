@@ -1,0 +1,128 @@
+---
+title: "Tools to make migrating from Opsgenie easier"
+description: ""
+canonical_article_id: 343
+migrated_at: "2026-01-21T18:55:36Z"
+source_url: "https://help.incident.io/articles/4988110247-tools-to-make-migrating-from-opsgenie-easier"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/4988110247-tools-to-make-migrating-from-opsgenie-easier) on January 21, 2026
+</Info>
+
+## Overview
+
+We know that migrating from Opsgenie to [incident.io](http://incident.io/) can feel intimidating, as there can be a lot of configuration that you have in place that you don’t want to lose. So, we’ve built (and continue to build) tooling to make this process easier for you.
+
+Below is a list of tools that you can leverage to make your testing phase and official migration / onboarding easier, including:
+
+- Opsgenie alert source
+- Pull Opsgenie information into Catalog
+- Importing schedules
+- Importing escalation paths
+- Terraform provider
+- Datadog migration tool
+- On-call readiness support
+- Preferred provider for manual escalations
+
+Also, let us know if there is something else that you’d need help with migrating! We are here to make this as painless as possible - so we can always work together to figure out what else we can provide.
+
+## Opsgenie alert source
+
+![Screenshot 2025-04-16 at 16.07.57.png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-1.png)
+
+You are able to connect your Opsgenie instance directly to [incident.io](http://incident.io/) as an alert source. What this allows you to do is test our On-call features such as schedules and escalation paths without having to move over your alert providers (ie. Datadog, Grafana), which can decrease the time to testing.
+
+So, you can have a simplified testing set-up like:
+
+Grafana → Opsgenie → escalate via [incident.io](http://incident.io/)
+
+Once you are ready to fully migrate or onboard, you would move to a set-up that looks like:
+
+Grafana → escalate via [incident.io](http://incident.io/)
+
+Related help docs:
+
+[Opsgenie help docs](/help-centre/api-and-integrations/alternative-on-call-management-solutions/opsgenie)
+
+[Extracting alert source information help doc](/help-centre/api-and-integrations/faqs/extracting-json-alert-data)
+
+## Pull Opsgenie information into Catalog
+
+![Screenshot 2025-04-16 at 16.10.54.png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-2.png)
+
+If you have connected Opsgenie into [incident.io](http://incident.io/) , we will automatically pull in your Opsgenie schedules, services, teams, and users into the Catalog.
+
+This allows you to use the Opsgenie catalog with the rest of your catalog data. For example, you can determine what should still be paged via Opsgenie vs. [incident.io](http://incident.io/) .
+
+Related help docs:
+
+[How to get data into the catalog help doc](/help-centre/catalog/catalog-best-practices/how-do-i-get-data-into-catalog)
+
+[Using the catalog help doc](/help-centre/configure-your-account/using-the-catalog)
+
+## Importing schedules
+
+![Screenshot 2025-04-16 at 16.11.59.png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-3.png)
+
+We allow you to import (including bulk import!) schedules directly from Opsgenie.
+
+## Importing escalation paths
+
+![SCR-20251105-juts (1).png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-4.png)
+
+We allow you to import (including bulk import!) escalation policies directly from Opsgenie.
+
+## Terraform provider support
+
+![image (38).png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-5.png)
+
+If you use Terraform to manage your on-call configuration, we also support Terraform for alert sources, alert routes, escalation paths and schedules.
+
+Additionally, Terraform can help with migrating alert sources. For example: If you have loads of monitors in Datadog that point to Opsgnie. You can quickly and easily update the Terraform config to have those monitors point to [incident.io](http://incident.io/) instead.
+
+Related docs:
+
+[Terraform documentation](https://registry.terraform.io/providers/incident-io/incident/latest/docs)
+
+## Datadog migration tool (beta)
+
+![Screenshot 2025-04-24 at 14.25.28.png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-6.png)
+
+If you do not use Terraform, and have loads of Datadog monitors, you can leverage our migration tool to update everything to point to [incident.io](http://incident.io/) .
+
+Download the tool from us, plug in your Datadog API keys and you’ll be able to:
+
+- Talk you through the options for one webhook in Datadog or multiple webhooks
+- Automatically create the webhook configurations in Datadog
+- Automatically update your monitors to point to [incident.io](http://incident.io/)
+- Automatically remove Opsgenie when we are successful
+
+It's on GitHub [here](http://github.com/incident-io/datadog-migrator) (currently private until out of beta), and have a helpful Loom for reference [here](https://www.loom.com/share/1f0a862752054bb0a1a8830f5bd9c500) .
+
+## On-call readiness report
+
+![image (39).png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-7.png)
+
+You can use the On-call readiness report to understand how prepared your team is to start receiving pages from [incident.io](http://incident.io/) . These insights will help you track your migration and onboarding of new responders going on-call. At a glance, you can see responder adoption with different notification methods:
+
+- How people are reachable (via the app, phone, etc.)
+- What percentage of your on-call responders are reachable through different methods
+
+You’ll also be able to drill down into individual responder setups so that you can contact the right people if necessary.
+
+We also have on-call readiness available via the Members tab of your teams page(s), and you can leverage On-call readiness [policies](/help-centre/policies) to enforce a particular set up.
+
+## Preferred provider for manual escalations
+
+![Screenshot 2025-12-01 at 12.58.53.png](/images/help-centre/tools-to-make-migrating-from-opsgenie-easier/screenshot-8.png)
+
+If you have connected Opsgenie to your account, we will now allow individual users to identify if they want to be paged via Opsgenie or [incident.io](http://incident.io/) . Previously, we made the person initiating the manual escalation decide which provider to use - which wasn’t a great experience, as they wouldn’t have a way to know which one to use (ie. is that user set up with [incident.io](http://incident.io/) ? what is Opsgenie?).
+
+This work will allow individuals to configure which paging solution they want to be paged by, so when a manual escalation comes through they are appropriately paged via that solution.
+
+Once Opsgenie is removed from [incident.io](http://incident.io/) , we will default all escalations to [incident.io](http://incident.io/) .
+
+Related help docs:
+
+[How do I manually escalate?](/help-centre/how-do-i-escalate-manually)

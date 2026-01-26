@@ -1,0 +1,79 @@
+---
+title: "How do I get data into Catalog?"
+description: ""
+canonical_article_id: 97
+migrated_at: "2026-01-21T18:15:31Z"
+source_url: "https://help.incident.io/articles/5006458726-how-do-i-get-data-into-catalog"
+---
+
+<Info>
+Content migrated from [original help article](https://help.incident.io/articles/5006458726-how-do-i-get-data-into-catalog) on January 21, 2026
+</Info>
+
+After identifying [what data we want to bring into the catalog](/help-centre/catalog/catalog-best-practices/what-data-should-i-bring-into-catalog) , we can now consider how we can push it into incident.io.
+
+There are four ways we can do this, with the decision of which to use very much being dependent on where and how your data is currently stored:
+
+## Native integrations
+
+### When should I use these?
+
+If the data you want to bring into Catalog lives in an integration we natively support, you'll almost always want to set it up.
+
+The only limitation to consider here is that we only sync your data once a day, so if you need super fresh data, then it might be worth considering using our [catalog importer](https://github.com/incident-io/catalog-importer) .
+
+### How do I get started?
+
+You can find a list of all the integrations we support [here](https://incident.io/integrations) . Where appropriate, we'll then automatically create catalog types when you connect an integration, such as GitHub repositories or PagerDuty services and teams.
+
+### How much effort is required?
+
+Minimal, almost all of our integrations are one-click setups and we'll take care of all the syncing behind the scenes.
+
+## Catalog Importer
+
+### When should I use it?
+
+The Catalog Importer gives you complete control over what you bring into the catalog and how often that data is being brought in.
+
+It's the perfect tool to use if you have large datasets stored in tools that we don't already support with native integrations, whilst also giving you much more control over the relationships and lookups within your catalog.
+
+### How do I get started?
+
+You can find the documentation for our catalog importer [here](https://github.com/incident-io/catalog-importer) , along with some example importers.
+
+### How much effort is required?
+
+The catalog importer does require some technical uplift to use, however the time investment is usually hugely worthwhile given the impact this can have on your MTTX (mean time to x) metrics.
+
+Take the train station example [here](/help-centre/catalog/catalog-best-practices/what-data-should-i-bring-into-catalog) 5-6 hours to build out, but given how frequently this incident can occur and the time it can take off our mean time to resolution, the investment can pay itself off within weeks.
+
+## Manually adding the data
+
+### When should I use it?
+
+If you have small datasets or just want to test / play around with the catalog, you can simply manually add catalog types and entries within our dashboard.
+
+### How do I get started?
+
+Just head over to the [catalog](https://app.incident.io/~/catalog) section of your dashboard. Here you can add new types and entries with just a few clicks.
+
+### How much effort is required?
+
+For small datasets this shouldn't take too long and also won't require any technical resource.
+
+## Our API
+
+### When should I use it?
+
+Primarily, our API serves as a robust solution for importing data into your catalog. However, we recommend considering our [catalog importer](https://github.com/incident-io/catalog-importer) as your go-to choice. It not only utilizes the same API but also provides a more streamlined integration experience.
+
+We encourage opting for the catalog importer whenever possible. Nevertheless, we acknowledge that there could be specific scenarios where a direct integration with the API is preferred. In such cases, the option is at your disposal.
+
+### How do I get started?
+
+Our API docs can be found [here](https://api-docs.incident.io/tag/Catalog-V2) .
+
+### How much effort is required?
+
+Similar to the [catalog importer](https://github.com/incident-io/catalog-importer) , this will require some technical uplift to use but the time investment is usually hugely worthwhile.
