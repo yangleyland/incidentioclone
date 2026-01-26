@@ -20,7 +20,7 @@
               "help-centre/index",
               {
                 "group": "Getting Started",
-                "icon": "rocket",
+                "icon": "/icons/rocket.svg",
                 "public": true,
                 "pages": [
                   "help-centre/what-s-incident-io/what's-incident.io",
