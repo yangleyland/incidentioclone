@@ -18,6 +18,7 @@
             "public": true,
             "pages": [
               "help-centre/index",
+              "image-test",
               {
                 "group": "Getting Started",
                 "icon": "/icons/rocket.svg",
