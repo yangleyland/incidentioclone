@@ -15,14 +15,12 @@
         "groups": [
           {
             "group": "Help Centre",
-            "public": true,
             "pages": [
               "help-centre/index",
               "image-test",
               {
                 "group": "Getting Started",
                 "icon": "/icons/rocket.svg",
-                "public": true,
                 "pages": [
                   "help-centre/what-s-incident-io/what's-incident.io",
                   "help-centre/installing-incident-io/index"
