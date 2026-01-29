@@ -1,0 +1,64 @@
+---
+title: 'Image Test'
+description: 'Testing different ways to display images'
+---
+
+## 1. Normal Image
+
+Here's a simple image displayed the standard way:
+
+<Frame>
+  <img src="/assets/pig1.jpg" alt="Pig 1" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## 2. Inline React Component
+
+This image is wrapped in a React component defined within this file:
+
+export const ImageWrapper = ({ src, alt, caption }) => (
+  <div style={{ 
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    padding: '1.5rem',
+    borderRadius: '1rem',
+    boxShadow: '0 10px 40px rgba(0,0,0,0.2)'
+  }}>
+    <img 
+      src={src} 
+      alt={alt} 
+      style={{ 
+        width: '100%', 
+        borderRadius: '0.5rem',
+        display: 'block'
+      }} 
+    />
+    {caption && (
+      <p style={{ 
+        color: 'white', 
+        textAlign: 'center', 
+        marginTop: '1rem',
+        marginBottom: 0,
+        fontWeight: 500
+      }}>
+        {caption}
+      </p>
+    )}
+  </div>
+);
+
+<ImageWrapper 
+  src="/assets/pig2.jpeg" 
+  alt="Pig 2" 
+  caption="A lovely pig wrapped in a gradient border" 
+/>
+
+## 3. External React Component
+
+This image uses a React component imported from a separate file:
+
+import { FancyImage } from '/snippets/FancyImage.mdx';
+
+<FancyImage 
+  src="/assets/pig3.jpeg" 
+  alt="Pig 3" 
+  title="Fancy Pig Gallery"
+/>
